@@ -1,0 +1,15 @@
+;; Object test/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "test/"
+  :tables (list 
+   (semanticdb-table "TextClassifierTest.java"
+    :major-mode 'java-mode
+    :tags '(("ac.at.tuwien.dbai.verditz.classify.test" package nil nil [1 49]) ("junit.framework.TestCase" include nil nil [51 83]) ("TextClassifierTest" type (:typemodifiers ("public") :superclasses "TestCase" :members (("TextClassifierTest" function (:constructor-flag t :typemodifiers ("public") :arguments (("name" variable (:type "String") (reparse-symbol formal_parameters) [165 176]))) (reparse-symbol class_member_declaration) [139 197]) ("test" function (:typemodifiers ("public") :type "void") (reparse-symbol class_member_declaration) [201 812]) ("setUp" function (:throws ("Exception") :typemodifiers ("protected") :type "void") (reparse-symbol class_member_declaration) [815 859]) ("tearDown" function (:throws ("Exception") :typemodifiers ("protected") :type "void") (reparse-symbol class_member_declaration) [862 909])) :type "class") nil [86 912]))
+    :file "TextClassifierTest.java"
+    :pointmax 913
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0pre3"
+  :semanticdb-version "2.0pre3"
+  )
