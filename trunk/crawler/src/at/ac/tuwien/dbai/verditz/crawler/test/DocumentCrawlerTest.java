@@ -13,7 +13,7 @@ public class DocumentCrawlerTest extends TestCase{
 	public void test(){
 		FeedCrawler crawler = new FeedCrawler();
 
-		crawler.addFeedSource(new FlatFileSource(new File("feeds.txt")));
+		crawler.addFeedSource(new FlatFileSource(new File("resources/feeds.txt")));
 
 		crawler.addFetcherEventListener(new DocumentCrawler());
 
