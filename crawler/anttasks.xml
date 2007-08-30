@@ -1,0 +1,16 @@
+<?eclipse.ant.import?>
+<project basedir=".">
+	<import file="build.xml" />
+	<property name="config.dir" value="config" />
+	<property name="resources.dir" value="resources" />
+
+	<target depends="build" name="Crawler">
+		<java classname="at.ac.tuwien.dbai.verditz.crawler.databaseindexer.Main" failonerror="true" fork="yes">
+			<classpath refid="crawler.classpath" />
+			<jvmarg value="-Dlog4j.configuration=log4j.properties" /> 
+			<jvmarg value="-DdatabaseSettings=database.properties" />
+			<jvmarg value="-DfeedsFile=feeds.txt" />
+		</java>
+	</target>
+
+</project>

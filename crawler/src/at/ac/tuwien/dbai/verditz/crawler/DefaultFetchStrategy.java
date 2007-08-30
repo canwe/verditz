@@ -1,10 +1,11 @@
-package at.ac.tuwien.dbai.crawler;
+package at.ac.tuwien.dbai.verditz.crawler;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -15,6 +16,11 @@ import com.sun.syndication.fetcher.impl.FeedFetcherCache;
 import com.sun.syndication.fetcher.impl.HttpURLFeedFetcher;
 import com.sun.syndication.io.FeedException;
 
+/**
+ * The Default Strategy is used by the FeedCrawler if no other Strategy was
+ * specified. It can distribute feed parsing over various Threads, but the empty
+ * constructor used by the FeedCrawler uses only a single Thread.
+ */
 public final class DefaultFetchStrategy implements FetchStrategy {
 
 	private final class CircularBuffer implements Iterable<FeedFetcher> {
@@ -51,6 +57,7 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 		}
 
 	}
+
 	private static Logger log = Logger.getLogger(DefaultFetchStrategy.class);
 
 	private final FilePersistentCache cache;
@@ -65,6 +72,10 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 	public DefaultFetchStrategy(int numThreads) {
 		this.cache = new FilePersistentCache();
 		this.fetchers = createFeedFetchers(numThreads, this.cache);
+	}
+
+	public DefaultFetchStrategy(List<FetcherListener> obervers) {
+		this.cache = new FilePersistentCache();
 	}
 
 	@Override
@@ -133,13 +144,14 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 		}
 	}
 
-	private Collection<FeedFetcher> createFeedFetchers(
-			final Integer num, FeedFetcherCache cache) {
+	private Collection<FeedFetcher> createFeedFetchers(final Integer num,
+			FeedFetcherCache cache) {
 		Collection<com.sun.syndication.fetcher.FeedFetcher> fetchers = new ArrayList<com.sun.syndication.fetcher.FeedFetcher>();
 		for (int i = 0; i < num; i++) {
 			fetchers.add(new HttpURLFeedFetcher(cache));
 		}
 		return fetchers;
 	}
+
 
 }

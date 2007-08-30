@@ -1,4 +1,4 @@
-package at.ac.tuwien.dbai.crawler;
+package at.ac.tuwien.dbai.verditz.crawler;
 
 import java.io.File;
 import java.io.FileInputStream;
