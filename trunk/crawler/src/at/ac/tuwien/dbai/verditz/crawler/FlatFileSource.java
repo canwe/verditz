@@ -1,4 +1,4 @@
-package at.ac.tuwien.dbai.crawler;
+package at.ac.tuwien.dbai.verditz.crawler;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,9 @@ public class FlatFileSource implements Iterable<URL> {
         try {
             final List<String> lines = FileUtils.readLines(file, "UTF-8");
             for (String line : lines) {
-                urls.add(new URL(line));
+            	if(line.trim().length()>4){
+            		urls.add(new URL(line));
+            	}
             }
         } catch (IOException e) {
             log.error(e.getMessage(), e);

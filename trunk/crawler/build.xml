@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="crawler">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../opt/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <import file="anttasks.xml"/>
+    <path id="crawler.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/ant.jar"/>
+        <pathelement location="lib/commons-collections-3.2.jar"/>
+        <pathelement location="lib/commons-dbcp-1.2.1.jar"/>
+        <pathelement location="lib/commons-io-1.2.jar"/>
+        <pathelement location="lib/commons-pool-1.3.jar"/>
+        <pathelement location="lib/jaxen-core.jar"/>
+        <pathelement location="lib/jaxen-jdom.jar"/>
+        <pathelement location="lib/jdom.jar"/>
+        <pathelement location="lib/log4j-1.2.14.jar"/>
+        <pathelement location="lib/mysql-connector-java-5.0.3-bin.jar"/>
+        <pathelement location="lib/rome-0.8.jar"/>
+        <pathelement location="lib/rome-fetcher-0.7.jar"/>
+        <pathelement location="lib/saxpath.jar"/>
+        <pathelement location="lib/xalan.jar"/>
+        <pathelement location="lib/xerces.jar"/>
+        <pathelement location="lib/xml-apis.jar"/>
+        <pathelement location="lib/junit-4.1.jar"/>
+        <pathelement location="lib/commons-cli-1.1.jar"/>
+        <pathelement location="lib/commons-dbcp-1.2.2.jar"/>
+        <pathelement location="lib/commons-configuration-1.4.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="crawler.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="FeedCrawlerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="at.ac.tuwien.dbai.verditz.crawler.test.FeedCrawlerTest" todir="${junit.output.dir}"/>
+            <classpath refid="crawler.classpath"/>
+        </junit>
+    </target>
+    <target name="Main">
+        <java classname="at.ac.tuwien.dbai.verditz.crawler.databaseindexer.Main" failonerror="true" fork="yes">
+            <classpath refid="crawler.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

@@ -1,4 +1,4 @@
-package at.ac.tuwien.dbai.crawler;
+package at.ac.tuwien.dbai.verditz.crawler;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.apache.log4j.Logger;
+
+import com.sun.syndication.fetcher.FetcherListener;
 
 public final class FeedCrawler {
 
@@ -23,12 +25,14 @@ public final class FeedCrawler {
 		this.sources = sources;
 	}
 
-	public FeedCrawler(final Collection<Iterable<URL>> sources) {
+	public FeedCrawler(final Collection<Iterable<URL>> sources,
+			FetcherListener observer) {
 		this(sources, new DefaultFetchStrategy());
+		this.distributionStrategy.addObserver(observer);
 	}
 
-	public FeedCrawler() {
-		this(new ArrayList<Iterable<URL>>());
+	public FeedCrawler(final FetcherListener observer) {
+		this(new ArrayList<Iterable<URL>>(), observer);
 	}
 
 	public void addFeedSource(final Iterable<URL> source) {
@@ -41,16 +45,6 @@ public final class FeedCrawler {
 
 	public Collection<Iterable<URL>> getSources() {
 		return Collections.unmodifiableCollection(sources);
-	}
-
-	public void addFetcherEventListener(
-			com.sun.syndication.fetcher.FetcherListener observer) {
-		this.distributionStrategy.addObserver(observer);
-	}
-
-	public void removeFetcherEventListener(
-			com.sun.syndication.fetcher.FetcherListener observer) {
-		this.distributionStrategy.removeObserver(observer);
 	}
 
 	public void fetch() {

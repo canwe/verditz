@@ -1,20 +1,24 @@
 package at.ac.tuwien.dbai.verditz.crawler.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import junit.framework.TestCase;
-import at.ac.tuwien.dbai.crawler.FeedCrawler;
+import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
 
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.fetcher.FetcherEvent;
 import com.sun.syndication.fetcher.FetcherListener;
 
-public class FeedCrawlerTest extends TestCase {
+public class FeedCrawlerTest {
 
+	@org.junit.Test
 	public void test() throws MalformedURLException {
 
 		// create cache on disk if exists. See DefaultFeedStrategy uses local
@@ -25,18 +29,10 @@ public class FeedCrawlerTest extends TestCase {
 					+ cacheFile.getAbsolutePath());
 		}
 
-		FeedCrawler crawler = new FeedCrawler();
-
-		// create feed source, contain one remote feed:
-		URL testFeed = new URL("http://blog.bookworm.at/feeds/posts/default");
-		Collection<URL> feedList = new ArrayList<URL>();
-		feedList.add(testFeed);
-		crawler.addFeedSource(feedList);
-
+		// we will register this handler with the crawler
 		final int[] eventFiredCount = new int[1];
 		final Collection<SyndFeed> newFeeds = new ArrayList<SyndFeed>();
-
-		crawler.addFetcherEventListener(new FetcherListener() {
+		final FetcherListener handler = new FetcherListener() {
 			public void fetcherEvent(FetcherEvent event) {
 				System.out.println(event.getEventType());
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
@@ -48,7 +44,15 @@ public class FeedCrawlerTest extends TestCase {
 				}
 				eventFiredCount[0]++;
 			}
-		});
+		};
+
+		FeedCrawler crawler = new FeedCrawler(handler);
+
+		// create feed source, contain one remote feed:
+		URL testFeed = new URL("http://blog.bookworm.at/feeds/posts/default");
+		Collection<URL> feedList = new ArrayList<URL>();
+		feedList.add(testFeed);
+		crawler.addFeedSource(feedList);
 
 		// first time we fetch: cache is empty, new feed is found
 		crawler.fetch();

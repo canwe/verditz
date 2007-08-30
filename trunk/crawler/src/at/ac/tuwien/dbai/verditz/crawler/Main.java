@@ -1,4 +1,4 @@
-package at.ac.tuwien.dbai.crawler;
+package at.ac.tuwien.dbai.verditz.crawler;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
 
 import com.sun.syndication.fetcher.FetcherEvent;
 import com.sun.syndication.fetcher.FetcherListener;
@@ -28,10 +29,7 @@ public class Main {
 				log.info(e.getMessage());
 			}
 		}
-		FeedCrawler crawler = new FeedCrawler();
-		crawler.addFeedSource(urls);
-
-		crawler.addFetcherEventListener(new FetcherListener() {
+		FeedCrawler crawler = new FeedCrawler(new FetcherListener() {
 
 			public void fetcherEvent(final FetcherEvent event) {
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
@@ -41,6 +39,7 @@ public class Main {
 			}
 
 		});
+		crawler.addFeedSource(urls);
 
 		crawler.fetch();
 
