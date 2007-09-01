@@ -1,7 +1,8 @@
-package at.ac.tuwien.dbai.verditz.classify.test;
+package at.ac.tuwien.dbai.verditz.classify;
 
 import java.util.HashSet;
 import java.util.Set;
+
 
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
