@@ -7,8 +7,6 @@ import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.filters.Filter;
-import at.ac.tuwien.dbai.verditz.classify.test.ClassifierState;
-import at.ac.tuwien.dbai.verditz.classify.test.TextClass;
 
 public final class TextClassifier {
 

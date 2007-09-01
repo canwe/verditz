@@ -1,4 +1,4 @@
-package at.ac.tuwien.dbai.verditz.classify.test;
+package at.ac.tuwien.dbai.verditz.classify;
 
 import java.util.Set;
 

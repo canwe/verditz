@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import at.ac.tuwien.dbai.verditz.classify.NaiveBayesState;
+import at.ac.tuwien.dbai.verditz.classify.TextClass;
 import at.ac.tuwien.dbai.verditz.classify.TextClassifier;
 
 public class TextClassifierTest extends TestCase {
