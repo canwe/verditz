@@ -1,16 +1,22 @@
-package ac.at.tuwien.dbai.verditz.classify;
+package at.ac.tuwien.dbai.verditz.classify;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+import weka.classifiers.Classifier;
+import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Attribute;
+import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.FastVector;
 import weka.core.Utils;
-import weka.classifiers.Classifier;
-import weka.classifiers.trees.J48;
-import weka.classifiers.bayes.NaiveBayes;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
-import java.io.*;
 
 @SuppressWarnings("serial")
 public class MessageClassifier implements Serializable {
@@ -93,7 +99,7 @@ public class MessageClassifier implements Serializable {
 
 	/**
 	 * Method that converts a text message into an instance.
-	 */
+	 */	
 	private Instance makeInstance(String text, Instances data) {
 		// Create instance of length two.
 		Instance instance = new Instance(2);
