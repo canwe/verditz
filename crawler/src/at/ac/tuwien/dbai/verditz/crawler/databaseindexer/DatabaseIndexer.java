@@ -1,11 +1,13 @@
 package at.ac.tuwien.dbai.verditz.crawler.databaseindexer;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.fetcher.FetcherEvent;
@@ -45,6 +47,7 @@ public final class DatabaseIndexer implements FetcherListener {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private void addEntryToDatabse(final SyndEntry entry) {
 		String source = entry.getUri();
 		String title = entry.getTitle();
@@ -56,10 +59,22 @@ public final class DatabaseIndexer implements FetcherListener {
 		this.database.addDocument(title, body, source);
 	}
 
-	private String getFeedBody(List contents) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(contents.get(0));
+	private String getFeedBody(List<SyndContent> contents) {
+		final StringBuilder sb = new StringBuilder();
+
+		for (SyndContent content : contents) {
+			if (this.isSupportedContentType(content.getType())) {
+				sb.append(content.getValue());
+			}
+		}
+
 		return sb.toString();
 	}
 
+	private boolean isSupportedContentType(final String type) {
+		Collection<String> supportedContentTypes = Arrays.asList(new String[] {
+				"text/plain", "text/html", "text", "html" });
+
+		return supportedContentTypes.contains(type);
+	}
 }
