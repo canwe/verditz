@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.InvalidPropertiesFormatException;
 import java.util.LinkedList;
@@ -13,7 +14,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
+import at.ac.tuwien.dbai.verditz.crawler.DefaultFetchStrategy;
 import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
+import at.ac.tuwien.dbai.verditz.crawler.FetchStrategy;
 import at.ac.tuwien.dbai.verditz.crawler.FlatFileSource;
 
 public class Main {
@@ -24,10 +27,11 @@ public class Main {
 
 		Iterable<URL> feedSource = searchFeedSource();
 		DatabaseIndexer dbi = new DatabaseIndexer(searchDatabaseProperties());
+		FetchStrategy fetchStrategy = new DefaultFetchStrategy(10);
+		fetchStrategy.addObserver(dbi);
 
-		FeedCrawler crawler = new FeedCrawler(dbi);
+		FeedCrawler crawler = new FeedCrawler(fetchStrategy);
 		crawler.addFeedSource(feedSource);
-
 		crawler.fetch();
 
 	}

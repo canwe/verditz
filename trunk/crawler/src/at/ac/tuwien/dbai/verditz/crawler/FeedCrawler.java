@@ -25,6 +25,10 @@ public final class FeedCrawler {
 		this.sources = sources;
 	}
 
+	public FeedCrawler(final FetchStrategy distributionStrategy) {
+		this(new ArrayList<Iterable<URL>>(), distributionStrategy);
+	}
+
 	public FeedCrawler(final Collection<Iterable<URL>> sources,
 			FetcherListener observer) {
 		this(sources, new DefaultFetchStrategy());
