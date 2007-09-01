@@ -49,7 +49,7 @@ public final class DatabaseIndexer implements FetcherListener {
 
 	@SuppressWarnings("unchecked")
 	private void addEntryToDatabse(final SyndEntry entry) {
-		String source = entry.getUri();
+		String source = entry.getLink();
 		String title = entry.getTitle();
 		String body = this.getFeedBody(entry.getContents());
 		if (title == null || body == null || source == null) {
@@ -61,13 +61,11 @@ public final class DatabaseIndexer implements FetcherListener {
 
 	private String getFeedBody(List<SyndContent> contents) {
 		final StringBuilder sb = new StringBuilder();
-
 		for (SyndContent content : contents) {
 			if (this.isSupportedContentType(content.getType())) {
 				sb.append(content.getValue());
 			}
 		}
-
 		return sb.toString();
 	}
 
