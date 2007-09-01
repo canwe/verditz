@@ -1,4 +1,4 @@
-package ac.at.tuwien.dbai.verditz.classify;
+package at.ac.tuwien.dbai.verditz.classify;
 
 public class Main {
 
