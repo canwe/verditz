@@ -14,7 +14,7 @@ or down (if they do not want to see more like these). It was also possible to pl
 Entries were taking from a collection of technical weblogs. 
 
 -->
-<items>
+<corpus>
   <samples>
 	<sample>ben</sample>
 	<sample>michi</sample>
@@ -22,14 +22,10 @@ Entries were taking from a collection of technical weblogs.
 	<sample>michi_title</sample>
 	<sample>thomas_mixed</sample>
   </samples>
-
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2006/12/closures-talk-and-spec-update.html]]></link>
     <title><![CDATA[Closures Talk and Spec Update]]></title>
@@ -37,11 +33,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/08/what-does-it-mean-to-own-right-was.html]]></link>
     <title><![CDATA[What does it mean to own a "right"? Was Gandhi a thief?]]></title>
@@ -49,11 +42,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3827325/]]></link>
     <title><![CDATA[Redesign]]></title>
@@ -61,11 +52,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/07/review-avocet-700x28-fasgrip-tires.html]]></link>
     <title><![CDATA[Review: Avocet 700x28 Fasgrip Tires]]></title>
@@ -73,11 +61,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/06/future-of-processor-hardware.html]]></link>
     <title><![CDATA[The Future of Processor Hardware]]></title>
@@ -85,11 +70,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/08/mldm-2007-clustering-in-leipzig.html]]></link>
     <title><![CDATA[MLDM 2007: Clustering in Leipzig]]></title>
@@ -97,11 +79,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/06/9hour_delay_of.html]]></link>
     <title><![CDATA[9-hour delay of a jet2 plane because the crew couldn't install seats into the aircraft.]]></title>
@@ -109,11 +89,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/05/google-trends.html]]></link>
     <title><![CDATA[Google Trends]]></title>
@@ -121,11 +99,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/4012944/]]></link>
     <title><![CDATA[Zahnarzt]]></title>
@@ -133,11 +108,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://blog.alexandrow.org/stories/3783562/]]></link>
     <title><![CDATA[Syria 2007]]></title>
@@ -145,11 +117,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://pogue.blogs.nytimes.com/2007/08/29/be-careful-what-you-joke-about/]]></link>
     <title><![CDATA[Be Careful What You Joke About]]></title>
@@ -157,11 +126,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/03/bytecode-to-native-compilation.html]]></link>
     <title><![CDATA[Bytecode to Native Compilation]]></title>
@@ -169,11 +136,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/05/heroes-linderman-sylar.html]]></link>
     <title><![CDATA[Heroes: Linderman, Sylar]]></title>
@@ -181,11 +145,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2007/01/video-interview-at-javapolis.html]]></link>
     <title><![CDATA[Video Interview at Javapolis]]></title>
@@ -193,11 +154,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/08/16gb-iphone-slr-includes-high-quality.html]]></link>
     <title><![CDATA[16GB iPhone "SLR" includes high-quality 8MP camera]]></title>
@@ -205,11 +164,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2423]]></link>
     <title><![CDATA[A functional correspondence between evaluators and abstract machines]]></title>
@@ -217,11 +173,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://channel9.msdn.com/ShowPost.aspx?PostID=277977#277977]]></link>
     <title><![CDATA[Jon Udell: A talk with Marty Collins about blogs, architectural guidance, and technical marketing]]></title>
@@ -229,11 +183,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/3926335/]]></link>
     <title><![CDATA[Viele Geschenke (aber nicht für mich...)]]></title>
@@ -241,11 +193,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://fsinf.at/node/476]]></link>
     <title><![CDATA[Downtimes :-(]]></title>
@@ -253,11 +202,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/149200522/detail1906.html]]></link>
     <title><![CDATA[Rick Rashid - Technometria: Microsoft Research]]></title>
@@ -265,11 +211,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://programming.reddit.com/goto?rss=true&id=27ni1]]></link>
     <title><![CDATA[ Gnome Online Desktop - neat idea!]]></title>
@@ -277,11 +221,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/03/confessions-of-college-drop-out.html]]></link>
     <title><![CDATA[Confessions of a College Drop-Out]]></title>
@@ -289,11 +231,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/147149444/detail1887.html]]></link>
     <title><![CDATA[Elliot McGucken - Artistic Entrepreneurship & Technology 101]]></title>
@@ -301,11 +241,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/194]]></link>
     <title><![CDATA[Linked Data at WWW2007: GRDDL, SPARQL, and Wikipedia, oh my!]]></title>
@@ -313,11 +250,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/03/macfuse-news.html]]></link>
     <title><![CDATA[MacFUSE news]]></title>
@@ -325,11 +260,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2007/08/wellenpool-in-tokyo.html]]></link>
     <title><![CDATA[Wellenpool in Tokyo]]></title>
@@ -337,11 +269,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2007/03/compact-object-comparator.html]]></link>
     <title><![CDATA[A Compact Object Comparator]]></title>
@@ -349,11 +279,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/07/asia_design.html]]></link>
     <title><![CDATA[Good, simple,  elaborate design from Asia: chopsticks and bookmarks]]></title>
@@ -361,11 +288,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://blog.alexandrow.org/stories/2927473/]]></link>
     <title><![CDATA[Inode - wegen Reichtum geschlossen]]></title>
@@ -373,11 +297,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://ponderer.org/two_letter_scrabble_words]]></link>
     <title><![CDATA[two letter scrabble words]]></title>
@@ -385,11 +306,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/192]]></link>
     <title><![CDATA[Collaboration and crime at a distance at HASTAC, WWW2007]]></title>
@@ -397,11 +316,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/05/who-are-you.html]]></link>
     <title><![CDATA[Who are you?]]></title>
@@ -409,11 +325,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582869/interactive-tv-conference-and-best.html]]></link>
     <title><![CDATA[Interactive TV: Conference and Best Paper]]></title>
@@ -421,11 +334,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://olabini.blogspot.com/2007/01/iain-m-banks-and-culture.html]]></link>
     <title><![CDATA[Iain M Banks and The Culture]]></title>
@@ -433,11 +343,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/say-anything-still-got-it.html]]></link>
     <title><![CDATA["say anything": still got it]]></title>
@@ -445,11 +353,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/DataMining/~3/146524243/super-hero-soci.html]]></link>
     <title><![CDATA[Super Hero Social Network]]></title>
@@ -457,11 +363,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/07/more-compiler-strategy-call-adapters.html]]></link>
     <title><![CDATA[More Compiler Strategy: Call Adapters and Stack-based Methods]]></title>
@@ -469,11 +372,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://olabini.blogspot.com/2006/12/post-of-intent.html]]></link>
     <title><![CDATA[Post of intent.]]></title>
@@ -481,11 +381,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://armstrongonsoftware.blogspot.com/2006/08/concurrency-is-easy.html]]></link>
     <title><![CDATA[Concurrency is easy]]></title>
@@ -493,11 +391,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2006/12/javapolis-2006.html]]></link>
     <title><![CDATA[Javapolis 2006]]></title>
@@ -505,11 +400,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582873/see-you-at-chi.html]]></link>
     <title><![CDATA[See you at CHI]]></title>
@@ -517,11 +409,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/geek-conversations-about-love-final.html]]></link>
     <title><![CDATA[geek conversations about love (final part in a series)]]></title>
@@ -529,11 +418,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2007/03/apple-bloopers.html]]></link>
     <title><![CDATA[Apple Bloopers]]></title>
@@ -541,11 +428,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://armstrongonsoftware.blogspot.com/2006/09/why-i-often-implement-things-from.html]]></link>
     <title><![CDATA[Why I often implement things from scratch]]></title>
@@ -553,11 +438,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/sunw_rarr_java]]></link>
     <title><![CDATA[SUNW&rArr;JAVA]]></title>
@@ -565,11 +448,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3756951/]]></link>
     <title><![CDATA[Liberal]]></title>
@@ -577,11 +457,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://a-nickels-worth.blogspot.com/2007/02/losing-big-is-easy.html]]></link>
     <title><![CDATA[Losing Big Is Easy]]></title>
@@ -589,11 +467,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/05/beliefs-intelligence-and-failure.html]]></link>
     <title><![CDATA[Beliefs, intelligence, and failure]]></title>
@@ -601,11 +476,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/02/comics.html]]></link>
     <title><![CDATA[Comics]]></title>
@@ -613,11 +485,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://fsinf.at/node/479]]></link>
     <title><![CDATA[Inskriptionsberatung]]></title>
@@ -625,11 +494,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/07/donothingsaturd.html]]></link>
     <title><![CDATA[do-nothing-saturday]]></title>
@@ -637,11 +503,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2007/06/toyota-human-touch.html]]></link>
     <title><![CDATA[Toyota human touch]]></title>
@@ -649,11 +512,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/04/taste-of-google-desktop.html]]></link>
     <title><![CDATA[A taste of Google Desktop]]></title>
@@ -661,11 +522,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582866/and-awards-go-to.html]]></link>
     <title><![CDATA[And the Awards Go To ...]]></title>
@@ -673,11 +531,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/07/finding-jvm-compilation-strategy-for.html]]></link>
     <title><![CDATA[Finding a JVM compilation strategy for Ruby's dynamic nature]]></title>
@@ -685,11 +540,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://ponderer.org/text_messages]]></link>
     <title><![CDATA[text messages]]></title>
@@ -697,11 +549,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/07/how-to-explain-data-mining-to-your.html]]></link>
     <title><![CDATA[How to explain data mining to your mother]]></title>
@@ -709,11 +559,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.dekorte.com/blog/blog.cgi?do=item&id=2886]]></link>
     <title><![CDATA[Headlines]]></title>
@@ -721,11 +568,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/05/data-mining-with-kxen.html]]></link>
     <title><![CDATA[Data mining with KXEN]]></title>
@@ -733,11 +578,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2420]]></link>
     <title><![CDATA[Theory and Practice of Constraint Handling Rules]]></title>
@@ -745,11 +587,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/08/review-cyclists-training-bible.html]]></link>
     <title><![CDATA[Review: Cyclist's Training Bible]]></title>
@@ -757,11 +596,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://olabini.blogspot.com/2007/08/new-model-army-high.html]]></link>
     <title><![CDATA[New Model Army - High]]></title>
@@ -769,11 +605,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/06/svm-toolboxes.html]]></link>
     <title><![CDATA[SVM toolboxes]]></title>
@@ -781,11 +614,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/back_from_siggraph]]></link>
     <title><![CDATA[Back from Siggraph]]></title>
@@ -793,11 +623,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/07/why-is-matlab-best-language-for-data.html]]></link>
     <title><![CDATA[Why is Matlab the best language for data mining?]]></title>
@@ -805,11 +633,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/4056672/]]></link>
     <title><![CDATA[zur zeit auf reise]]></title>
@@ -817,11 +643,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2412]]></link>
     <title><![CDATA[Commercial Users of Functional Programming 2007]]></title>
@@ -829,11 +653,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/03/shimmy_shimmy_s.html]]></link>
     <title><![CDATA[shimmy, shimmy, ?ey]]></title>
@@ -841,11 +663,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://blog.alexandrow.org/stories/4144272/]]></link>
     <title><![CDATA[Tag the Bird 1.2 out]]></title>
@@ -853,11 +673,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/150128978/detail1908.html]]></link>
     <title><![CDATA[Dr. Tom Anderson - BioTech Nation]]></title>
@@ -865,11 +683,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/02/visit-to-apple.html]]></link>
     <title><![CDATA[A visit to Apple]]></title>
@@ -877,11 +693,8 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/intern-antics-2007-and-1997.html]]></link>
     <title><![CDATA[intern antics 2007 (and 1997)]]></title>
@@ -889,11 +702,9 @@ Entries were taking from a collection of technical weblogs.
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/184]]></link>
     <title><![CDATA[What is the Analogue for the Semantic Web? If the Web is like a Page+Links, the SW is like a...]]></title>
@@ -954,11 +765,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2426]]></link>
     <title><![CDATA[Establishing Object Invariants with Delayed Types]]></title>
@@ -966,11 +774,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/02/jet-engines.html]]></link>
     <title><![CDATA[Jet Engines]]></title>
@@ -978,11 +783,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/05/jvm-languages-future.html]]></link>
     <title><![CDATA[JVM Languages: The Future]]></title>
@@ -990,11 +792,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[/info/1xjgg/comments#c1xnkf]]></link>
     <title><![CDATA[mjakl on  Ecmascript 4: try it now! (reference implementation, specs and a brand new site)]]></title>
@@ -1002,11 +801,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/02/heroes-claire-bennet.html]]></link>
     <title><![CDATA[Heroes: Claire Bennet]]></title>
@@ -1014,11 +810,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/08/first-thing-that-you-need-to-understand.html]]></link>
     <title><![CDATA[The first thing that you need to understand about humans]]></title>
@@ -1026,11 +819,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2417]]></link>
     <title><![CDATA[An Accidental Simula User, Luca Cardelli]]></title>
@@ -1038,11 +828,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/08/10-years-of-data-mining.html]]></link>
     <title><![CDATA[10 years of data mining]]></title>
@@ -1050,11 +838,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://pogue.blogs.nytimes.com/2007/08/21/onstar-for-lost-cellphones/]]></link>
     <title><![CDATA[OnStar for Lost Cellphones]]></title>
@@ -1062,11 +847,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/05/final-bugs.html]]></link>
     <title><![CDATA[The Final Bugs]]></title>
@@ -1074,11 +856,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/185]]></link>
     <title><![CDATA[US Congress Telecommuncations and the Internet Subcommittee Hearing on the Future of the Web]]></title>
@@ -1086,11 +866,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/05/jruby-t-shirt.html]]></link>
     <title><![CDATA[JRuby: The T-Shirt!]]></title>
@@ -1098,11 +876,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/08/review-privilege-of-sword.html]]></link>
     <title><![CDATA[Review: The Privilege of the Sword]]></title>
@@ -1110,11 +885,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/07/video-highlights.html]]></link>
     <title><![CDATA[NCAA 08's Video Highlights]]></title>
@@ -1122,11 +894,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/04/emacs-buffer-tabs.html]]></link>
     <title><![CDATA[Emacs: buffer tabs]]></title>
@@ -1134,11 +904,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/05/impossible-dream-3.html]]></link>
     <title><![CDATA[Impossible Dream #3]]></title>
@@ -1146,11 +913,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582875/hiring-lake-wobegon-strategy.html]]></link>
     <title><![CDATA[Hiring: The Lake Wobegon Strategy]]></title>
@@ -1158,11 +922,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/07/its-captain-switzerland-er.html]]></link>
     <title><![CDATA[It's Captain Switzerland... er... SwitzerAmerica... er..]]></title>
@@ -1170,11 +931,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2007/01/definition-of-closures.html]]></link>
     <title><![CDATA[A Definition of Closures]]></title>
@@ -1220,11 +979,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/144158497/detail1892.html]]></link>
     <title><![CDATA[Scott Lemon, Ben Galbraith - Technometria]]></title>
@@ -1232,11 +988,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://hackr.de/2007/09/01/nuss-pt-2]]></link>
     <title><![CDATA[Nuss pt. 2]]></title>
@@ -1244,11 +997,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/07/understanding-jvm-jit-and-helping-it.html]]></link>
     <title><![CDATA[Understanding the JVM JIT and helping it along]]></title>
@@ -1256,11 +1007,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/03/mt_stylecatcher.html]]></link>
     <title><![CDATA[MT StyleCatcher broken with Konqueror]]></title>
@@ -1268,11 +1016,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://olabini.blogspot.com/2007/05/something-or-other.html]]></link>
     <title><![CDATA[Something or other]]></title>
@@ -1280,11 +1025,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Up</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Up</vote>
+      <vote sample='michi'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Up</vote>
     </votes>
     <link><![CDATA[http://steve-yegge.blogspot.com/2006/05/not-managing-software-developers.html]]></link>
     <title><![CDATA[(Not) Managing Software Developers]]></title>
@@ -1292,11 +1035,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3910997/]]></link>
     <title><![CDATA[Polylog gewinnt Grimme Award]]></title>
@@ -1304,11 +1045,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi">Down</vote>
-      <vote sample="michi_title"/>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/07/way-freakin-hilarious-iphone-review.html]]></link>
     <title><![CDATA[way freakin' hilarious iPhone review]]></title>
@@ -1316,11 +1055,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/07/noob-monster-one-noob-two-noobs.html]]></link>
     <title><![CDATA[noob monster: one noob, two noobs, ...]]></title>
@@ -1328,11 +1064,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title"/>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben">Down</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
+      <vote sample='ben'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/4044894/]]></link>
     <title><![CDATA[Javascript for Java Guys]]></title>
@@ -1340,11 +1074,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/06/quick-job-culture.html]]></link>
     <title><![CDATA[Quick: Job culture]]></title>
@@ -1352,11 +1084,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/04/senzees-developer-interview-test-q-1.html]]></link>
     <title><![CDATA[Senzee's Developer Interview Test, Q. 1]]></title>
@@ -1364,11 +1094,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/05/one-jruby-on-rails-talk-already-full.html]]></link>
     <title><![CDATA[One JRuby on Rails Talk Already Full!]]></title>
@@ -1376,11 +1104,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2007/02/family-guy-brokeback-horses.html]]></link>
     <title><![CDATA[Family Guy - Brokeback Horses]]></title>
@@ -1388,11 +1114,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/06/not-having-health-insurance-is-really.html]]></link>
     <title><![CDATA[Not getting health insurance is a really bad idea]]></title>
@@ -1400,11 +1124,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/06/optimizing-everything-some-details.html]]></link>
     <title><![CDATA[Optimizing everything: some details matter a lot, most don't]]></title>
@@ -1412,11 +1134,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://www.anobii.com/anobi/person_view_mode.php?s=019d8910f5cb2e5a38&v=00a676693563533b2c]]></link>
     <title><![CDATA[Ruby for Rails]]></title>
@@ -1424,11 +1144,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/196]]></link>
     <title><![CDATA[More on privacy issues with Apple's DRM-less iTunes Plus]]></title>
@@ -1436,11 +1154,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/06/using-google-to-mine-sensitive-data.html]]></link>
     <title><![CDATA[Using Google to mine sensitive data]]></title>
@@ -1448,11 +1164,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://channel9.msdn.com/ShowPost.aspx?PostID=276286#276286]]></link>
     <title><![CDATA[Jon Udell: Chris Wilson on IE7, Ajax, and web standards]]></title>
@@ -1460,11 +1174,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/3949452/]]></link>
     <title><![CDATA[Keine Daten]]></title>
@@ -1472,11 +1184,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/08/data-mining-jobs-in-europe.html]]></link>
     <title><![CDATA[Data mining jobs in Europe]]></title>
@@ -1484,11 +1194,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/danger_the_fire_marshal]]></link>
     <title><![CDATA[Danger & the fire marshal]]></title>
@@ -1496,11 +1203,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[/info/1shbq/comments#c1skgg]]></link>
     <title><![CDATA[mjakl on  Unix editors: a parable]]></title>
@@ -1508,11 +1213,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/08/mt4_available.html]]></link>
     <title><![CDATA[MT4 available]]></title>
@@ -1520,11 +1222,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/06/quick-big-screen-development.html]]></link>
     <title><![CDATA[Quick: Big screen development]]></title>
@@ -1532,11 +1232,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/08/data-mining-research-updated.html]]></link>
     <title><![CDATA[Data Mining Research updated]]></title>
@@ -1544,11 +1242,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/and-he-also-thinks-iphone-is-too-skinny.html]]></link>
     <title><![CDATA[he also thinks the iPhone is too skinny]]></title>
@@ -1556,11 +1252,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://www.dekorte.com/blog/blog.cgi?do=item&id=2879]]></link>
     <title><![CDATA[Headed to Burning Man on Wednesday]]></title>
@@ -1568,11 +1262,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://channel9.msdn.com/ShowPost.aspx?PostID=335996#335996]]></link>
     <title><![CDATA[Marc Mercuri on platform incubation and Tafiti]]></title>
@@ -1580,11 +1271,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/07/alioth-numbers-for-jruby-10.html]]></link>
     <title><![CDATA[Alioth Numbers for JRuby 1.0]]></title>
@@ -1592,11 +1280,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/06/jruby-100rc3-released-and-this-is-it.html]]></link>
     <title><![CDATA[JRuby 1.0.0RC3 Released - And This Is It!]]></title>
@@ -1604,11 +1289,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2006/10/closures-for-java-v03.html]]></link>
     <title><![CDATA[Closures for Java (v0.3)]]></title>
@@ -1616,11 +1299,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/08/an_island_in_th.html]]></link>
     <title><![CDATA[An island in the Tennessee heat: Opryland's biosphere hotel in Nashville]]></title>
@@ -1628,11 +1308,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/06/linuxwochen_07.html]]></link>
     <title><![CDATA[Linuxwochen 07]]></title>
@@ -1640,11 +1318,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/04/psycholinguisti.html]]></link>
     <title><![CDATA[Psycholinguistics and mexican food in San Diego]]></title>
@@ -1652,11 +1328,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://www.terminally-incoherent.com/blog/2007/08/27/install-games-on-a-separate-partition/]]></link>
     <title><![CDATA[Install Games on a Separate Partition]]></title>
@@ -1664,11 +1338,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/crunch_time_for_javaone]]></link>
     <title><![CDATA[Crunch time for JavaOne]]></title>
@@ -1676,11 +1347,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/05/mt_phishing_att.html]]></link>
     <title><![CDATA[MT phishing attempt]]></title>
@@ -1688,11 +1356,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2007/03/closures-for-organizing-your-code.html]]></link>
     <title><![CDATA[Closures for Organizing Your Code]]></title>
@@ -1700,11 +1366,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/186]]></link>
     <title><![CDATA[MP3 patent mess and lessons for standards making]]></title>
@@ -1712,11 +1376,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/193]]></link>
     <title><![CDATA[IKL by Hayes et al. provides a semantics for N3?]]></title>
@@ -1724,11 +1385,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3659594/]]></link>
     <title><![CDATA[HUAWEI go! - Installation eines USB-HSDPA/UMTS Modems auf einem Apple MacBook Pro]]></title>
@@ -1736,11 +1395,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582865/cscw-2006-collaborative-editing-20.html]]></link>
     <title><![CDATA[CSCW 2006: Collaborative editing 20 years later]]></title>
@@ -1748,11 +1405,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/198]]></link>
     <title><![CDATA[Units of measure and property chaining]]></title>
@@ -1760,11 +1414,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://steve-yegge.blogspot.com/2007/02/nooglers-view-of-google.html]]></link>
     <title><![CDATA[A Noogler's View of Google]]></title>
@@ -1772,11 +1423,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://steve-yegge.blogspot.com/2007/02/next-big-language.html]]></link>
     <title><![CDATA[The Next Big Language]]></title>
@@ -1784,11 +1433,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/DataMining/~3/149379910/googlevirtual-e.html]]></link>
     <title><![CDATA[Google/Virtual Earth Wish List]]></title>
@@ -1796,11 +1443,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/fun_with_widgets]]></link>
     <title><![CDATA[Fun with widgets]]></title>
@@ -1808,11 +1453,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/06/emacs-22-release-june-2-2007.html]]></link>
     <title><![CDATA[Emacs 22 release - June 2, 2007]]></title>
@@ -1820,11 +1463,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/147034293/introducing-sky-in-google-earth.html]]></link>
     <title><![CDATA[Introducing Sky in Google Earth]]></title>
@@ -1832,11 +1473,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582878/making-difference.html]]></link>
     <title><![CDATA[Making a difference]]></title>
@@ -1844,11 +1482,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582859/drink-from-firehose-with-university.html]]></link>
     <title><![CDATA[Drink from the firehose with University Research Programs]]></title>
@@ -1856,11 +1492,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/4067156/]]></link>
     <title><![CDATA[setting off]]></title>
@@ -1868,11 +1501,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://reddit.com/goto?rss=true&id=1skex]]></link>
     <title><![CDATA[ Intel to slash prices for quad-core server processors in July]]></title>
@@ -1880,11 +1511,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://programming.reddit.com/goto?rss=true&id=2isv9]]></link>
     <title><![CDATA[ Windows Update updating without permission!]]></title>
@@ -1892,11 +1521,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/4184521/]]></link>
     <title><![CDATA[<a href="http://www.yxaiio.com">http://www.yxaiio.com</a>]]></title>
@@ -1904,11 +1531,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/07/flapper-fiasco.html]]></link>
     <title><![CDATA[flapper fiasco]]></title>
@@ -1916,11 +1540,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/geek-conversations-about-love-part-4-in.html]]></link>
     <title><![CDATA[geek conversations about love (part 4 in a series)]]></title>
@@ -1928,11 +1550,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/08/non-secrets-of-wwdc.html]]></link>
     <title><![CDATA[(Non-)Secrets of WWDC]]></title>
@@ -1940,11 +1559,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.feedburner.com/~r/blogspot/gJZg/~3/144582876/experimental-study-of-p2p-voip.html]]></link>
     <title><![CDATA[An experimental study of P2P VoIP]]></title>
@@ -1952,11 +1569,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/180]]></link>
     <title><![CDATA[A design for web content labels built from GRDDL and rules]]></title>
@@ -1964,11 +1578,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/07/mike-pouts-at-bludenz-train-station.html]]></link>
     <title><![CDATA[Mike pouts at the Bludenz Train Station.]]></title>
@@ -1976,11 +1588,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://headius.blogspot.com/2007/05/big-plans.html]]></link>
     <title><![CDATA[Big Plans]]></title>
@@ -1988,11 +1597,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://blog.alexbosworth.net/article/a_new_weblog]]></link>
     <title><![CDATA[A New Weblog]]></title>
@@ -2000,11 +1606,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://arved.priv.at/weblog/archives/2007/05/still_alive.html]]></link>
     <title><![CDATA[Still alive...]]></title>
@@ -2012,11 +1615,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://paulbuchheit.blogspot.com/2007/05/amazingly-bad-apis.html]]></link>
     <title><![CDATA[Amazingly bad APIs]]></title>
@@ -2024,11 +1625,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
     </votes>
     <link><![CDATA[http://gafter.blogspot.com/2006/10/concurrent-loops-using-java-closures.html]]></link>
     <title><![CDATA[Concurrent Loops Using Java Closures]]></title>
@@ -2036,11 +1634,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/time_for_the_toy_show]]></link>
     <title><![CDATA[Time for the Toy Show]]></title>
@@ -2048,11 +1643,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://fsinf.at/node/471]]></link>
     <title><![CDATA[Wahlergebnis ÖH-Wahl 2007]]></title>
@@ -2060,11 +1653,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://armstrongonsoftware.blogspot.com/2007/03/hasta-la-vista-baby.html]]></link>
     <title><![CDATA[Hasta La Vista,  baby]]></title>
@@ -2072,11 +1663,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://blog.alexandrow.org/stories/3298502/]]></link>
     <title><![CDATA[Evolver 07]]></title>
@@ -2084,11 +1673,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://steve-yegge.blogspot.com/2006/05/oblivion.html]]></link>
     <title><![CDATA[Oblivion]]></title>
@@ -2096,11 +1682,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://programming.reddit.com/goto?rss=true&id=2d3vw]]></link>
     <title><![CDATA[ Nice summary of the Unix filesystem-structure (Mindmap, GIF)]]></title>
@@ -2108,11 +1692,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/05/kelvingrove_mus.html]]></link>
     <title><![CDATA[Kelvingrove Museum: How did the airplane get on top of the elephant?]]></title>
@@ -2120,11 +1701,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.flog.in/stories/4196414/]]></link>
     <title><![CDATA[5 Monate!]]></title>
@@ -2132,11 +1711,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
     </votes>
     <link><![CDATA[http://pogue.blogs.nytimes.com/2007/08/23/the-psychology-of-numeracy/]]></link>
     <title><![CDATA[The Psychology of Numeracy]]></title>
@@ -2144,11 +1720,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://fsinf.at/node/475]]></link>
     <title><![CDATA[Regenbogenparade]]></title>
@@ -2156,11 +1729,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://senzee.blogspot.com/2007/07/nearest-neighbor.html]]></link>
     <title><![CDATA[Nearest Neighbor]]></title>
@@ -2168,11 +1739,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://blogs.sun.com/jag/entry/five_things_you_probably_don]]></link>
     <title><![CDATA[Five things you probably don't know about me]]></title>
@@ -2180,11 +1748,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[/info/2i3ji/comments#c2idf3]]></link>
     <title><![CDATA[mjakl on  Why you shouldn't use the Lesser GPL for your next library [by the Free Software Foundation (FSF)]]]></title>
@@ -2192,11 +1758,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2006/11/kiwi.html]]></link>
     <title><![CDATA[Kiwi!]]></title>
@@ -2204,11 +1767,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.davids-world.com/archives/2007/05/bike_strategy_c.html]]></link>
     <title><![CDATA[Bike Strategy. Cheap and no worries.]]></title>
@@ -2216,11 +1776,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://niniane.blogspot.com/2007/08/geek-conversations-about-love-part-5-in.html]]></link>
     <title><![CDATA[geek conversations about love (part 5 in a series)]]></title>
@@ -2228,11 +1785,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.terminally-incoherent.com/blog/2007/08/25/superbad/]]></link>
     <title><![CDATA[Superbad]]></title>
@@ -2240,11 +1794,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.dekorte.com/blog/blog.cgi?do=item&id=2882]]></link>
     <title><![CDATA[60 Minutes: US Comptroller on the Economy]]></title>
@@ -2252,11 +1803,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/05/emacs-highlighting-parentheses.html]]></link>
     <title><![CDATA[Emacs: highlighting parentheses]]></title>
@@ -2264,11 +1813,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
     </votes>
     <link><![CDATA[http://lambda-the-ultimate.org/node/2419]]></link>
     <title><![CDATA[Beyond Pretty-Printing: Galley Concepts in Document Formatting Combinators]]></title>
@@ -2276,11 +1822,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/05/who-are-you-poll-results.html]]></link>
     <title><![CDATA["Who are you" poll results]]></title>
@@ -2288,11 +1831,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/04/google-desktop-for-mac_04.html]]></link>
     <title><![CDATA[Google Desktop for Mac]]></title>
@@ -2300,11 +1841,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://hackr.de/2007/08/31/was-geht-dem-web-seine-dummen-reden]]></link>
     <title><![CDATA[Was geht dem Web seine dummen Reden]]></title>
@@ -2312,11 +1851,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/06/fun-youtube-videos.html]]></link>
     <title><![CDATA[Fun YouTube videos]]></title>
@@ -2324,11 +1860,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3829473/]]></link>
     <title><![CDATA[Colorpicker auf Twitter]]></title>
@@ -2336,11 +1870,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/01/heroes-character-connections.html]]></link>
     <title><![CDATA[Heroes: character connections]]></title>
@@ -2348,11 +1879,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/166]]></link>
     <title><![CDATA[Reinventing HTML]]></title>
@@ -2360,11 +1889,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/144447765/detail1855.html]]></link>
     <title><![CDATA[Cooking with IEEE Spectrum: Kevin Weeks - IEEE Spectrum Radio]]></title>
@@ -2372,11 +1898,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://amitp.blogspot.com/2007/05/wrong-number.html]]></link>
     <title><![CDATA[Wrong Number]]></title>
@@ -2384,11 +1907,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://piaw.blogspot.com/2007/07/thoughts-about-tour-de-france.html]]></link>
     <title><![CDATA[Thoughts about the Tour de France]]></title>
@@ -2396,11 +1917,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://www.matsblog.com/stories/3478023/]]></link>
     <title><![CDATA[Schnee]]></title>
@@ -2408,11 +1927,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://olabini.blogspot.com/2007/08/siouxsie-sioux-mantaray.html]]></link>
     <title><![CDATA[Siouxsie Sioux - Mantaray]]></title>
@@ -2420,11 +1937,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/150548437/detail1910.html]]></link>
     <title><![CDATA[Barbara Aronson - Jon Udell's Interviews with Innovators]]></title>
@@ -2432,11 +1946,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://feeds.gigavox.com/~r/gigavox/channel/itconversations/~3/146268555/detail1868.html]]></link>
     <title><![CDATA[Michael Evans - One Laptop per Child]]></title>
@@ -2444,11 +1956,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://googlemac.blogspot.com/2007/04/google-data-apis-connect-cocoa.html]]></link>
     <title><![CDATA[Google data APIs connect Cocoa developers to Google]]></title>
@@ -2456,11 +1966,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://hackr.de/2007/08/29/raging-wiki]]></link>
     <title><![CDATA[Raging Wiki]]></title>
@@ -2468,11 +1975,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Down</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Down</vote>
     </votes>
     <link><![CDATA[http://michaelzoehrer.blogspot.com/2006/12/will-kommen-sterreich-maschek.html]]></link>
     <title><![CDATA[Will kommen Österreich]]></title>
@@ -2480,11 +1985,9 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dig.csail.mit.edu/breadcrumbs/node/195]]></link>
     <title><![CDATA[A glimse of sanity in the online copyright arena]]></title>
@@ -2492,11 +1995,8 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Down</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Down</vote>
-      <vote sample="thomas_mixed"/>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Down</vote>
+      <vote sample='michi_title'>Down</vote>
     </votes>
     <link><![CDATA[http://www.dekorte.com/blog/blog.cgi?do=item&id=2883]]></link>
     <title><![CDATA[MSNBC Interviews Ron Paul]]></title>
@@ -2504,14 +2004,12 @@ The reason that vision of note book + memex appeals to me particularly is that i
   </item>
   <item>
     <votes>
-      <vote sample="ben_title">Up</vote>
-      <vote sample="michi"/>
-      <vote sample="michi_title">Up</vote>
-      <vote sample="thomas_mixed">Up</vote>
-      <vote sample="ben"/>
+      <vote sample='ben_title'>Up</vote>
+      <vote sample='michi_title'>Up</vote>
+      <vote sample='thomas_mixed'>Up</vote>
     </votes>
     <link><![CDATA[http://dataminingresearch.blogspot.com/2007/07/why-is-matlab-best-language-for-data_22.html]]></link>
     <title><![CDATA[Why is Matlab the best language for data mining? (cont'd)]]></title>
     <body><![CDATA[<!-- google_ad_section_start -->In the previous post, I was arguing that Matlab is an excellent programming language (and environment) for data mining. However, as you know, no programming language is perfect. Matlab also has its drawbacks. Here are a few of them.<span class="fullpost"><br /><br />First, Matlab is an interpreted language. Which means no compilation. The good thing is the <span style="font-style:italic;">on the fly</span> programming-executing aspect. On the other side, there is no declaration or type checking. This is normal since Matlab is not by definition a typed language. Or if you prefer, every element is a matrix. For example, the number 3 is stored as a 1x1 matrix containing the number 3. As there is no type checking, if you put by mistake '3' as a string in your matrix, you will have no error and no warning.<br /><br />Again, as there is no declaration, this situation can happen in Matlab:<br /><br /><blockquote>myvariable = 0;<br />...<br />myVariable = 10*i;<br />...<br />disp(myvariable)</blockquote><br />Indeed, since no declaration is needed, mistyping errors are dangerous in Matlab.<br /><br />Another issue in Matlab is its execution time which is quite high in comparison to C++ or even Java. Of course one solution is to use the MEX interface with which you can directly call C/C++ code. However, the communication between Matlab and the C code takes time and it is generally slower then a direct C/C++ code.<br /><br />Even with these limitations, I'm personally convinced that Matlab is a very powerful tool for data miners. The main reason is that you spend less time on the programming part and more on the problem your try to solve. If you think Matlab has other important drawbacks or on the contrary, if you think that the ones I mentioned are not really drawbacks, feel free to comment.<br /><br />Note: Data Mining Research is on holidays until August, 2nd.</span><!--google_ad_section_end --><div class="blogger-post-footer">RSS Feed</div>]]></body>
   </item>
-</items>
+</corpus>
