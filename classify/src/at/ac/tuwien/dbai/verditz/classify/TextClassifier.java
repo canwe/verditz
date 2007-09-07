@@ -37,8 +37,8 @@ public final class TextClassifier {
 
 			Instance filteredInstance = instance;
 			for (Filter filter : this.state.getFilterSet()) {
-				log.debug("filter.isOutputFormatDefined()"
-						+ filter.isOutputFormatDefined());
+				//log.debug("filter.isOutputFormatDefined()"
+				//		+ filter.isOutputFormatDefined());
 				filter.setInputFormat(instances);
 				classifier.buildClassifier(Filter.useFilter(instances, filter));
 				filter.input(filteredInstance);
@@ -78,8 +78,8 @@ public final class TextClassifier {
 
 		for (Filter filter : state.getFilterSet()) {
 			try {
-				log.debug("filterInstances -- filter.isOutputFormatDefined()"
-						+ filter.isOutputFormatDefined());
+				//log.debug("filterInstances -- filter.isOutputFormatDefined()"
+				//		+ filter.isOutputFormatDefined());
 				filter.setInputFormat(instances);
 				classifier.buildClassifier(Filter.useFilter(instances, filter));
 			} catch (Exception e) {
