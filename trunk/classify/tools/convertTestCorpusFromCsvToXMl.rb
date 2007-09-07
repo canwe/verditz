@@ -8,9 +8,11 @@ require "rexml/xmldecl"
 #"id","title","body","source","Ben Read","Ben Titles","Michi Read","Michi Titles","Thomas Mixed"
 
 doc = REXML::Document.new "", { :raw => :all }
-items = doc.add_element "items"
+items = doc.add_element "corpus"
 
 samples = {4 => "ben", 5 => "ben_title", 6 => "michi", 7 => "michi_title", 8 => "thomas_mixed" }
+
+
 
 CSV::Reader.parse(File.open('data.csv', 'rb')) do |row|
   item = items.add_element "item"
