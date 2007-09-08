@@ -1,9 +1,5 @@
 package at.ac.tuwien.dbai.verditz.classify;
 
-import java.util.HashSet;
-import java.util.Set;
-
-
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Attribute;
@@ -17,8 +13,10 @@ public final class NaiveBayesState implements ClassifierState {
 	private final static String DATASET_NAME = "VerditzTextClassification";
 	private final static String ATTRIBUTE_NAME = "Message";
 
-	private final NaiveBayes classifier;
+	private final Classifier classifier;
 	private final Instances instances;
+
+	private Filter filter = new StringToWordVector();
 
 	public NaiveBayesState() {
 		this.classifier = new NaiveBayes();
@@ -31,10 +29,8 @@ public final class NaiveBayesState implements ClassifierState {
 	}
 
 	@Override
-	public Set<Filter> getFilterSet() {
-		Set<Filter> filterSet = new HashSet<Filter>();
-		filterSet.add(new StringToWordVector());
-		return filterSet;
+	public Filter getFilter() {
+		return filter;
 	}
 
 	@Override
@@ -57,6 +53,5 @@ public final class NaiveBayesState implements ClassifierState {
 		instances.setClassIndex(instances.numAttributes() - 1);
 		return instances;
 	}
-
 
 }

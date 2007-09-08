@@ -1,16 +1,9 @@
 package at.ac.tuwien.dbai.verditz.classify.test;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-
 import junit.framework.TestCase;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.xml.sax.SAXException;
 
 import at.ac.tuwien.dbai.verditz.classify.NaiveBayesState;
 import at.ac.tuwien.dbai.verditz.classify.TextClass;
@@ -18,8 +11,11 @@ import at.ac.tuwien.dbai.verditz.classify.TextClassifier;
 
 public class TextClassifierTest extends TestCase {
 
+	private static Logger log = Logger.getLogger(TextClassifierTest.class);
+
 	static {
 		Logger.getRootLogger().setLevel(Level.ERROR);
+		Logger.getLogger(TextClassifierTest.class).setLevel(Level.DEBUG);
 		Logger.getLogger(TextClassifier.class).setLevel(Level.ERROR);
 		Logger.getLogger(SampleCorpus.class).setLevel(Level.ERROR);
 	}
@@ -37,7 +33,7 @@ public class TextClassifierTest extends TestCase {
 		return sb.toString();
 	}
 
-	public void testTrain() {
+	public void testTrain() throws Exception {
 		final TextClassifier classifier = new TextClassifier(
 				new NaiveBayesState());
 
@@ -50,41 +46,37 @@ public class TextClassifierTest extends TestCase {
 
 	}
 
-	public void testTrainAndClassifyMany() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException{
+	public void testTrainAndClassifyMany() throws Exception {
 		SampleCorpus corpus = new SampleCorpus(new java.io.File(
-		"data/samples.xml"), 50);
-		
-		for(int i=0;i<50;i++){
+				"data/samples.xml"), 50);
+
+		for (int i = 0; i < 5; i++) {
 			trainAndClassify(corpus);
 			corpus.shuffle();
-			System.out.println("----------------------------\n\n");
+			log.info("----------------------------\n\n");
 		}
-			
-	}
-	
-	private void trainAndClassify(SampleCorpus corpus) throws SAXException, IOException,
-			ParserConfigurationException, XPathExpressionException {
-		final TextClassifier classifier = new TextClassifier(
-				new NaiveBayesState());
 
-		
+	}
+
+	private void trainAndClassify(SampleCorpus corpus) throws Exception {
+
 		for (String sample : corpus.getSamples()) {
 			System.out.println("Sample: " + sample);
-
+			final TextClassifier classifier = new TextClassifier(
+					new NaiveBayesState());
 			// train
-			for (String message : corpus.getPositiveTrainingData(sample)) {
-				classifier.train(message, TextClass.Hit);
-			}
-			
-			System.out.println("trained " + corpus.getPositiveTrainingData(sample).size() + " positives" );
-			
-			for (String message : corpus.getNegativeTrainingData(sample)) {
-				classifier.train(message, TextClass.Miss);
-			}
+			classifier.trainAll(corpus.getPositiveTrainingData(sample),
+					TextClass.Hit);
 
-			System.out.println("trained " + corpus.getNegativeTrainingData(sample).size() + " negatives" );
+			log.info("trained " + corpus.getPositiveTrainingData(sample).size()
+					+ " positives");
 
-			
+			classifier.trainAll(corpus.getNegativeTrainingData(sample),
+					TextClass.Miss);
+
+			log.info("trained " + corpus.getNegativeTrainingData(sample).size()
+					+ " negatives");
+
 			int matchesPositive = 0;
 			int matchesNegative = 0;
 
@@ -92,7 +84,7 @@ public class TextClassifierTest extends TestCase {
 
 				if (classifier.classify(message) == TextClass.Hit) {
 					matchesPositive++;
-				} 
+				}
 
 			}
 
@@ -102,10 +94,10 @@ public class TextClassifierTest extends TestCase {
 				}
 			}
 
-			System.out.println("correct positive matches: " + matchesPositive
-					+ "(from " + corpus.getPositiveTestData(sample).size() + ")");
+			log.info("correct positive matches: " + matchesPositive + "(from "
+					+ corpus.getPositiveTestData(sample).size() + ")");
 
-			System.out.println("correct negative matches: " + matchesNegative + "(from "
+			log.info("correct negative matches: " + matchesNegative + "(from "
 					+ corpus.getNegativeTestData(sample).size() + ")");
 
 		}
