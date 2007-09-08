@@ -10,7 +10,7 @@ import weka.filters.Filter;
 public interface ClassifierState {
 	public Classifier getClassifier();
 
-	public Set<Filter> getFilterSet();
+	public Filter getFilter();
 
 	public Instances getInstances();
 

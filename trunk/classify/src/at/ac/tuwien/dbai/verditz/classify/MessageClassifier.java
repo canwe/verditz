@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 import weka.classifiers.Classifier;
 import weka.classifiers.bayes.NaiveBayes;
 import weka.core.Attribute;
@@ -20,6 +22,7 @@ import weka.filters.unsupervised.attribute.StringToWordVector;
 
 @SuppressWarnings("serial")
 public class MessageClassifier implements Serializable {
+
 	/* The training data gathered so far. */
 	private Instances m_Data = null;
 
@@ -68,6 +71,7 @@ public class MessageClassifier implements Serializable {
 	 * Classifies a given message.
 	 */
 	public void classifyMessage(String message) throws Exception {
+		
 		// Check whether classifier has been built.
 		if (m_Data.numInstances() == 0) {
 			throw new Exception("No classifier available.");
