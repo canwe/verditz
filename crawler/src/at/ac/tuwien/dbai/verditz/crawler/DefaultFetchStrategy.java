@@ -78,7 +78,6 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 		this.cache = new FilePersistentCache();
 	}
 
-	@Override
 	public void addObserver(FetcherListener observer) {
 		for (FeedFetcher fetcher : fetchers) {
 			fetcher.addFetcherEventListener(observer);
@@ -137,7 +136,6 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 
 	}
 
-	@Override
 	public void removeObserver(FetcherListener observer) {
 		for (FeedFetcher fetcher : fetchers) {
 			fetcher.removeFetcherEventListener(observer);
