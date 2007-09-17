@@ -34,7 +34,6 @@ public final class DatabaseIndexer implements FetcherListener {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public void fetcherEvent(FetcherEvent event) {
 		if (event.getEventType().equals(FetcherEvent.EVENT_TYPE_FEED_RETRIEVED)) {
 			SyndFeed feed = event.getFeed();

@@ -23,17 +23,14 @@ public final class NaiveBayesState implements ClassifierState {
 		this.instances = this.createInstances();
 	}
 
-	@Override
 	public Classifier getClassifier() {
 		return this.classifier;
 	}
 
-	@Override
 	public Filter getFilter() {
 		return filter;
 	}
 
-	@Override
 	public Instances getInstances() {
 		return this.instances;
 	}
