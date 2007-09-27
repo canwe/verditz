@@ -73,8 +73,8 @@ classify_file(Filename) ->
 	classify(binary_to_list(read_file(Filename))).
 
 classify(Text) ->
-	Probabilities = filter(interesting_word, 
-						   lib_misc:pmap(fun(Word) -> word_is_hit(Word) end, words(Text))),
+	AllProbabilities = lib_misc:pmap(fun(Word) -> word_is_hit(Word) end, words(Text)),
+	Probabilities = lists:filter(interesting_word, AllProbabilities),
  	Product = lists:foldl(fun(A,B)->A*B end,1,Probabilities),
 	Score = Product  / (Product + lists:foldl(fun(A,B)->(1-A)*B end,1,Probabilities)),
 	Score.
