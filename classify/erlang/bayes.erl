@@ -8,7 +8,8 @@
 		 init/0,
 		 classify/1,
 		 classify_file/1,
-		 test/0]).
+		 test/0,
+		 word_is_hit/1]).
 -define(bias,2).
 -define(min_word_length,3).
 
@@ -62,25 +63,33 @@ train(Class, Text) ->
 	ets:tab2file(Table, atom_to_list(Class)).
 
 init() ->
-	{ok, _} = ets:file2tab('hits'),
-	{ok, _} = ets:file2tab('misses').
+	init_tab('hits'),
+	init_tab('misses'),
+	{bayes,init,ok}.
 
+init_tab(Tab) ->
+	case ets:info(Tab) of
+		undefined -> {ok, _} = ets:file2tab(Tab);
+		_ -> ok
+		end.
 test() ->
-	Text = binary_to_list(read_file('raw_hits')),
-	Probabilities = lib_misc:pmap(fun(Word) -> word_is_hit(Word) end, words(Text)).
+	filelib:is_regular("hits").
+
+
 
 classify_file(Filename) ->
 	classify(binary_to_list(read_file(Filename))).
 
 classify(Text) ->
+	init(),
 	AllProbabilities = lib_misc:pmap(fun(Word) -> word_is_hit(Word) end, words(Text)),
-	Probabilities = lists:filter(interesting_word, AllProbabilities),
+	Probabilities = lists:filter(fun interesting_word/1, AllProbabilities),
  	Product = lists:foldl(fun(A,B)->A*B end,1,Probabilities),
 	Score = Product  / (Product + lists:foldl(fun(A,B)->(1-A)*B end,1,Probabilities)),
 	Score.
 
 interesting_word(P) ->
-	math:abs(P-0.5) > 0.1.
+	(abs(P-0.5) > 0.2).
 
 read_file(Filename) -> 
 	{ok, Bin} = file:read_file(Filename),
@@ -102,15 +111,19 @@ create_wordcounts_table(Class, Texts) ->
     Dict.
 
 word_is_hit(Word) ->  
-	W = list_to_binary(Word),
-   	Hit = wordcount(hits,W) * ?bias,
-	Miss = wordcount(misses,W),
-	Nhits = ets:info(hits,size),
-	Nmiss = ets:info(misses,size),
-	P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmiss)),
-	lists:max([lists:min([P,0.99]),0.1]).
+	case wordcounts(Word) of 
+		{{hits, 0}, {misses, 0}} -> 0.4;
+		{{hits, Hit}, {misses, Miss}} -> 
+			Nhits = ets:info(hits,size),
+			Nmiss = ets:info(misses,size),
+			P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmiss)),
+			lists:max([lists:min([P,0.99]),0.1]) 
+	end.
+wordcounts(W) ->
+	Word = list_to_binary(W),
+	{{hits, wordcount(hits,Word)},{misses, wordcount(misses,Word)}}.
 	
 wordcount(Dict, W) ->
 	case ets:lookup(Dict,W) of 
 		[{_,X}] -> X;
-	    [] -> 0.1 end.
+	    [] -> 0 end.

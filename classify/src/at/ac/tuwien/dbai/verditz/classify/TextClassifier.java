@@ -41,14 +41,13 @@ public final class TextClassifier {
 		log.debug("starting classification");
 		final long t1 = System.currentTimeMillis();
 		final Instances instances = state.getInstances();
-		final Classifier classifier = state.getClassifier();
 		final Filter filter = state.getFilter();
 
 		// Make separate little test set so that message
 		// does not get added to string attribute in m_Data.
 		final Instances testset = instances.stringFreeStructure();
 		// Make message into test instance.
-		final Instance instance = makeInstance(message, testset);
+		final Instance instance = state.makeInstance(message, testset);
 
 		filter.input(instance);
 		filter.batchFinished();
@@ -58,6 +57,8 @@ public final class TextClassifier {
 		final double predicted = state.getClassifier().classifyInstance(
 				filteredInstance);
 
+		
+		
 		double time = (System.currentTimeMillis() - t1) / 60.0;
 		log.debug("finfished classification. needed " + time + " seconds");
 
@@ -73,7 +74,7 @@ public final class TextClassifier {
 	 */
 	private void updateData(final String message, final String classValue) {
 		// Make message into instance.
-		final Instance instance = makeInstance(message, this.state
+		final Instance instance = state.makeInstance(message, this.state
 				.getInstances());
 		// Set class value for instance.
 		instance.setClassValue(classValue);
@@ -87,20 +88,6 @@ public final class TextClassifier {
 		filter.setInputFormat(instances);
 		state.getClassifier().buildClassifier(
 				Filter.useFilter(instances, filter));
-	}
-
-	/**
-	 * Method that converts a text message into an instance.
-	 */
-	private Instance makeInstance(final String text, final Instances instances) {
-
-		// Create instance of length two.
-		Instance instance = new Instance(2);
-		Attribute attribute = instances.attribute("Message");
-		instance.setValue(attribute, attribute.addStringValue(text));
-		// Give instance access to attribute information from the dataset.
-		instance.setDataset(instances);
-		return instance;
 	}
 
 	public int numInstances() {
