@@ -21,12 +21,14 @@ import org.w3c.dom.NodeList;
 public class SampleCorpus {
 
 	private static Logger log = Logger.getLogger(SampleCorpus.class);
-	
+
 	private final Document document;
 	final XPath xpath = XPathFactory.newInstance().newXPath();
 	private final int percentTraining;
 	private final Map<String, List<String>> positivesMap = new HashMap<String, List<String>>();
 	private final Map<String, List<String>> negativesMap = new HashMap<String, List<String>>();
+
+	private final static String ATTRIBUTE_TO_TEST = "body";
 
 	public SampleCorpus(final File xmlFile, int percentTraining) {
 		try {
@@ -71,8 +73,8 @@ public class SampleCorpus {
 	}
 
 	private int middleIndex(List l) {
-		double f =  (this.percentTraining / 100.0f) * l.size();
-		int n = (int)Math.round(f);
+		double f = (this.percentTraining / 100.0f) * l.size();
+		int n = (int) Math.round(f);
 		log.debug("split samples at element nr. = " + n);
 		return n;
 	}
@@ -118,8 +120,8 @@ public class SampleCorpus {
 		try {
 			final NodeList sampleNodes = (NodeList) xpath.evaluate(
 					"/corpus/item[votes/vote[@sample = '" + sample
-							+ "']/text() = 'Up']/body/text()", document,
-					XPathConstants.NODESET);
+							+ "']/text() = 'Up']/" + ATTRIBUTE_TO_TEST
+							+ "/text()", document, XPathConstants.NODESET);
 			for (int i = 0; i < sampleNodes.getLength(); i++) {
 				samples.add(((Node) sampleNodes.item(i)).getNodeValue());
 			}
@@ -134,8 +136,8 @@ public class SampleCorpus {
 		try {
 			final NodeList sampleNodes = (NodeList) xpath.evaluate(
 					"/corpus/item[votes/vote[@sample = '" + sample
-							+ "']/text() = 'Down']/body/text()", document,
-					XPathConstants.NODESET);
+							+ "']/text() = 'Down']/" + ATTRIBUTE_TO_TEST
+							+ "/text()", document, XPathConstants.NODESET);
 			for (int i = 0; i < sampleNodes.getLength(); i++) {
 				samples.add(((Node) sampleNodes.item(i)).getNodeValue());
 			}
