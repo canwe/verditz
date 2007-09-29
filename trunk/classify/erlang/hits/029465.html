@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [erlang-questions] Not an Erlang fan
+   </TITLE>
+   <LINK REL="Index" HREF="index.html" >
+   <LINK REL="made" HREF="mailto:erlang-questions%40erlang.org?Subject=%5Berlang-questions%5D%20Not%20an%20Erlang%20fan&In-Reply-To=8aff81590709230930x1bc2baf7r74916dc4a14d34b1%40mail.gmail.com">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="029462.html">
+   <LINK REL="Next"  HREF="029466.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[erlang-questions] Not an Erlang fan</H1>
+    <B>Thomas Lindgren</B> 
+    <A HREF="mailto:erlang-questions%40erlang.org?Subject=%5Berlang-questions%5D%20Not%20an%20Erlang%20fan&In-Reply-To=8aff81590709230930x1bc2baf7r74916dc4a14d34b1%40mail.gmail.com"
+       TITLE="[erlang-questions] Not an Erlang fan">&lt;<img border=0 src="../emailaddrs/001328.png">&gt;
+       </A><BR>
+    <I>Sun Sep 23 19:20:28 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="029462.html">[erlang-questions] Not an Erlang fan
+</A></li>
+        <LI>Next message: <A HREF="029466.html">[erlang-questions] Not an Erlang fan
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29465">[ date ]</a>
+              <a href="thread.html#29465">[ thread ]</a>
+              <a href="subject.html#29465">[ subject ]</a>
+              <a href="author.html#29465">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+--- Keith Irwin &lt;<img border=0 src="../emailaddrs/003550.png">&gt; wrote:
+
+&gt;<i> On 9/23/07, Alex Alvarez &lt;<img border=0 src="../emailaddrs/003546.png">&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; He definitely seems kind of bias at different
+</I>&gt;<i> points, but still it would
+</I>&gt;<i> &gt; be great to find out where he went wrong!
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> Isn't it that he's basing his whole analysis on file
+</I>&gt;<i> io, what's more, a
+</I>&gt;<i> single file which doesn't lend itself to
+</I>&gt;<i> parallelism?  Had he started by
+</I>&gt;<i> writing a client/server or p2p application around
+</I>&gt;<i> some domain other than
+</I>&gt;<i> system-admin stuff, perhaps he'd be much more
+</I>&gt;<i> favorable towards the
+</I>&gt;<i> multitude of strengths Erlang has to offer.
+</I>
+He's also using the obvious, tempting but very slow
+io:read_line. Reading the entire file into a binary
+takes 7 ms (sic) using file:read_file, not 34 seconds
+using io:read_line as he reports. For a beginner it's
+not obvious what to use, though, so life could be
+easier.
+
+My own experience with parsing XML in Erlang vs Ruby
+is that xmerl parsing about 4 MB of XML handily beat
+&quot;the obvious&quot; Ruby library the other guy used
+(REXML?), being 10+ times faster or more -- xmerl
+needed 10 seconds versus &quot;a few minutes&quot; for Ruby. So
+I wouldn't say Erlang is inherently slow w.r.t.
+parsing, but again, one may need some experience to
+get it right.
+
+Best,
+Thomas
+
+
+
+      ____________________________________________________________________________________
+Don't let your dream ride pass you by. Make it a reality with Yahoo! Autos.
+<A HREF="http://autos.yahoo.com/index.html">http://autos.yahoo.com/index.html</A>
+ 
+
+
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="029462.html">[erlang-questions] Not an Erlang fan
+</A></li>
+	<LI>Next message: <A HREF="029466.html">[erlang-questions] Not an Erlang fan
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#29465">[ date ]</a>
+              <a href="thread.html#29465">[ thread ]</a>
+              <a href="subject.html#29465">[ subject ]</a>
+              <a href="author.html#29465">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="http://www.erlang.org/mailman/listinfo/erlang-questions">More information about the erlang-questions
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+
+	<title>Sriram Krishnan: A &#39;Hello World&#39; Windows driver from scratch</title>
+	<style type="text/css" media="screen">
+                body {font-family:"Lucida Grande","Lucida Sans Unicode",Verdana,Geneva,sans-serif; font-size:13px;line-height:1.5em; background:url(/blog/images/fade.gif) repeat-x; color:#222222  }
+                #content {width:1000px;}
+                #main {width:650px;float:left;margin-left:160px;}
+                #header {width:800px;margin:40px 160px;}
+                #sidebar { width:150px; margin-top:60px;float:right;text-align:left;}
+                .title {text-align:center;font-size:140%;font-family:Georgia, Helvetica, Sans-Serif;}     
+                .link{text-decoration:none;color:#333333;}
+                a img {border:0;}
+                #footer {font-size:small;line-height:120%}
+                h2 a {color:#333333}
+
+		
+
+		div.byline {color:#555555;font-size:small;}
+		p#bloggerBug {padding-top:20px;}
+		.blogComments {padding-top:30px;color:#555555;padding-bottom:0px;margin-bottom:0px;font-weight:bold}
+		.blogComments .byline {font-size:1em;font-weight:normal;color:#555555;margin-right:10px;display:inline}
+		.blogComment {font-size:1em;margin:3%;color:#000000;font-weight:normal}
+                .deleted-comment {font-style:italic;color:gray;}
+        	.comment-link {margin-left:.6em;}
+                
+               
+</style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="generator" content="Blogger" />
+<link rel="alternate" type="application/atom+xml" title="Sriram Krishnan - Atom" href="http://www.sriramkrishnan.com/blog/atom.xml" />
+<link rel="alternate" type="application/rss+xml" title="Sriram Krishnan - RSS" href="http://www.sriramkrishnan.com/blog/rss.xml" />
+<link rel="service.post" type="application/atom+xml" title="Sriram Krishnan - Atom" href="http://www.blogger.com/feeds/29992405/posts/default" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.blogger.com/rsd.g?blogID=29992405" />
+<link rel="alternate" type="application/atom+xml" title="Sriram Krishnan - Atom" href="http://www.sriramkrishnan.com/blog/atom.xml" />
+<style type="text/css">
+@import url("http://www.blogger.com/css/blog_controls.css");
+@import url("http://www.blogger.com/dyn-css/authorization.css?blogID=29992405");
+</style>
+
+</head>
+
+<body bgcolor="white">
+
+<!-- Header -->
+<div id="header">
+<h2> <a href="/" style="text-decoration:none;"> Sriram Krishnan </a> > <a href="/blog" style="text-decoration:none;">Blog</a></h2>
+</div>
+<div id="content">
+
+<div id="sidebar">
+<p>
+<a href="/blog/atom.xml" class="link">Subscribe  <img src="/blog/images/feed.jpg" border="0"/></a>
+</p>
+<a href="http://www.google.com/reader/shared/08823757300846004274" class="link">Link blog</a><p>
+<a class="link" href="mailto:mail@sriramkrishnan.com">Contact</a> </p><p>
+<a href="http://www.popfly.ms/users/SriramK" class="link">Me on Popfly</a>
+</p></div>
+
+
+<div id="main">
+
+
+
+
+
+<!-- Blog Posts -->
+
+     
+     <a name="6578590246298112199">&nbsp;</a>
+     <h3 class="title">
+      A &#39;Hello World&#39; Windows driver from scratch</h3>
+
+		<div class="blogPost">
+          <div style="clear:both;"></div><p>One of the advantages of having no social life is that you get to spend long weekends catching up on technical topics that you otherwise wouldn't be able to :-). For this weekend, I decided to take a break from the usual feverish Popfly hacking and catch up on some stuff I've always wanted to&nbsp;dig into but never really found the time for.&nbsp;</p> <p>On the top of my list was to go and learn how Windows *really* works in kernel mode (a&nbsp; pretty&nbsp;long way away from my daily managed code/JS hackery). I ordered a copy of <a href="http://www.amazon.com/Microsoft-Windows-Internals-Fourth-Pro-Developer/dp/0735619174">Microsoft Windows Internals</a> by the incomparable <a title="Mark Russinovich blog" href="http://blogs.technet.com/markrussinovich/">Mark Russinovich</a> and David Solomon&nbsp;and after some re-reading (the last time I read it was over a year ago), set out to write my first device driver.<a href="http://www.amazon.com/Microsoft-Windows-Internals-Fourth-Pro-Developer/dp/0735619174" atomicselection="true"><img src="http://g-ec2.images-amazon.com/images/I/51ZE8R1VAEL._BO2,204,203,200_PIsitb-dp-500-arrow,TopRight,45,-64_OU01_AA240_SH20_.jpg" align="right"></a>&nbsp;</p> <p>This is not the first time I've tried to do so and I've often forgotten how to get started . This post is mostly a reference for me to come and look up later.</p> <p><em>Note: This really isn't a tutorial. I would strongly suggest that you read all of <a href="http://www.catch22.net/tuts/">James Brown's tutorials</a> which do a much better job of *explaining* this stuff.</em></p> <p><strong>Pre-requisites (all free downloads)</strong></p> <ul> <li>The latest <a href="http://www.microsoft.com/whdc/devtools/ddk/default.mspx">Windows Driver Kit</a> installed. I pulled a copy from one of our internal shares but I just found out that it is now a free download as well (you could only get it shipped to you in the past).<br> <li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=04D26402-3199-48A3-AFA2-2DC0B40A73B6&amp;displaylang=en">Microsoft Virtual PC</a>. This is to let me test my driver without having to get another machine and finding the right cable to go between them (I'm just lazy).&nbsp;Modifying this tutorial to work with a real machine is pretty trivial.<br> <li><a href="http://www.microsoft.com/whdc/devtools/debugging/default.mspx">Debugging Tools for Windows</a>. Visual Studio cannot do kernel-mode debugging and hence you need to use the&nbsp;WinDBG/NTSD/CDB family of debuggers.<br> <li>Windows XP/2003/Vista installed on VPC. In my case, I have a Win2k3 VPC but depending on which operating system you have, pick the right build environment in the 'Build your driver' section below.</li></ul> <p><strong>Code for your driver</strong></p> <p>1. Create a directory where your driver sources will lie. For the following example,&nbsp;all&nbsp;my source&nbsp;files will lie&nbsp;in C:\testdrv</p> <p>&nbsp;</p> <p>2. Create a file called <strong>test.c</strong> with the following contents. This is as simple a driver as you can get (in fact, it doesn't even know how to unload itself). When started, it prints a 'Hello World' message which any attached kernel debugger or DbgView will see.<br></p><pre class="alt">#include &lt;ntddk.h&gt;&nbsp;</pre><pre class="alt">NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) &nbsp;<br>{</pre><pre>  DbgPrint(<span class="str">"Hello World\n"</span>);<br>  <span class="kwrd">return</span> STATUS_SUCCESS;</pre><pre>}</pre><br /><p>3.&nbsp;Create a file called <strong>makefile.def</strong> with the following line it it. This pulls in the appropriate makefile for your build environment (more on that later).<br><br><font size="1">&nbsp;&nbsp; !INCLUDE $(NTMAKEENV)\makefile.def</font></p><br /><p>4. Create a file called <strong>sources</strong> (note that it doesn't have any extension) with the following contents. This specifies which source files you are compiling, that it will build a driver and the headers and lib files to use.&nbsp;</p><br /><div class="csharpcode"><br /><p><font face="Courier New" size="1">TARGETNAME = test<br>TARGETPATH = obj<br>TARGETTYPE = DRIVER </font><br /><p><font face="Courier New" size="1">INCLUDES = %BUILD%\inc<br>LIBS = %BUILD%\lib </font><br /><p><font face="Courier New" size="1">SOURCES = test.c</font> <br /><p>&nbsp; <br /><p><strong>Building your driver<a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="138" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb.png" width="265" align="right" border="0"></a></strong> <br /><p>1. &nbsp;Click on Start-&gt;All Programs-&gt;Windows Driver Kits-&gt;WDK 6000-&gt;Build Environments-&gt;Windows Server 2003-&gt;Windows Server 2003 x86 Checked Build. I'm picking this since I have a 32-bit Win2k3 &nbsp;VPC - pick the one which matches the closest with your target machine. For example, if you have a physical Windows Vista x64 machine you want to try out your driver on, you would pick <em>'Windows Vista and Windows Server Longhorn x64 Checked Build Environment'</em>.&nbsp;&nbsp; <br /><p>&nbsp;This drops you into a command prompt with some nice environment variables (your build environment) already set for you. <br /><p>&nbsp; <br /><p>2. Change to the directory which has your driver source and run 'build'. This invokes build.exe , the de-facto Microsoft build tool for&nbsp;almost two decades until MSBuild came on the scene (and even now, a lot of product groups still use build.exe). Written by Steve Wood over 15 years ago, this is one tool that has withstood the test of time :-) <sup>1</sup><br><br><a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_3.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="352" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb_3.png" width="549" border="0"></a>&nbsp;<br><br>If you've followed along well, you should see a&nbsp;<strong>test.sys</strong> and a <strong>test.pdb</strong> (along with other files) in your object build directory. <br /><p>&nbsp; <br /><p><strong>Setting up your target machine for kernel debugging</strong> <br /><p>1. To attach a kernel debugger to a running instance of Windows, you need to do some minor configuration. In the target VPC Win2k3 instance, go to My Computer-&gt;Properties-&gt;Advance-&gt;Settings under Startup and Recovery-&gt;Edit. You should see a line like <br><br><font face="Courier New" size="1">multi(0)disk(0)rdisk(0)partition(1)\WINDOWS="Windows Server 2003, Enterprise" /fastdetect /NoExecute=OptOut<br></font><br>Add <font face="Courier New" size="1">"/debug /debugport=com1</font>" to the line above (without the quotes).<br><br>If you're using Windows Vista as your target operating system, you can't use this technique - you'll have to use the inbuilt bcdedit.exe utility. <br /><p>2. In the virtual machine's settings, redirect the COM port to a pipe called <a href="file://\\.\pipe\vpc">\\.\pipe\vpc</a>&nbsp;. What we're doing here is telling Windows to redirect all debug spew to the COM1 port and then telling VPC to redirect COM1 to a named pipe.<br><br><a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_4.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="179" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb_4.png" width="468" border="0"></a> <br /><p>3. Restart the virtual machine (the boot settings need a restart to kick in). <br /><p>4. One final step - running the kernel debugger! Run windbg with the following command-line (if you already have symbols setup correctly, ignore the -y parameter). <br /><p><font face="Courier New" size="1">windbg-y SRV*c:\symbols*http://msdl.microsoft.com/download/symbols -k com:pipe,port=\\.\pipe\vpc,resets=0,reconnect</font> <br /><p>This should open up windbg and connect it to your running instance of Win2k3 on VPC. <br /><p>&nbsp; <br /><p><strong>Registering and running your driver</strong> <a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_5.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="244" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb_5.png" width="190" align="right" border="0"></a> <br /><p>Whew. Just a couple of steps more and we'll be home. The last 2 things for us to do are to register the driver and then to run it. Our driver currently cannot be unloaded (the ability to do so would just require 4 more lines of code though) so you'll have to restart the machine manually to see new changes reflected. <br /><p>1. First, let's register the driver. James Brown's tutorial covers some of the ways you can register the driver but (like him), I'll recommend downloading the 'Driver Loader' utility from <a href="http://www.osronline.com">http://www.osronline.com</a> which unfortunately requires a free registration.&nbsp;Run it on your target Win2k3 VPC <br /><p>2. Copy your drivers' binaries over to the VPC (I typically do this using the shared folder feature).&nbsp;Point Driver Loader to your binary and register your driver. This needs to be done only once irrespective of how many times you rebuild your binaries.&nbsp;</p><br /><p>If you've followed along so far, congratulations for you're finally&nbsp;home. Hit 'Start Service'&nbsp;in&nbsp;'Driver Loader'. This should result in a call to your DriverEntry method and in your WinDBG running on the host computer, you should see&nbsp;this<br><br><a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_6.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="107" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb_6.png" width="240" border="0"></a>&nbsp;<br>&nbsp;<br>To quote John McClane, <em>Yippie-Ki-ay &lt;insert non-family-friendly-term&gt;</em>!<br><br>From here, it is pretty trivial to start exploring. Here's a screenshot of a breakpoint in my DriverEntry routine (the WRK stuff is because I'm running a custom Windows kernel built from the publicly available&nbsp;Windows Research Kernel code). <br><br><a href="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_7.png" atomicselection="true"><img style="border-top-width: 0px; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="154" alt="image" src="http://www.sriramkrishnan.com/blog/images/AHelloWorldWindowsdriver_E84B/image_thumb_7.png" width="872" border="0"></a> </p><br /><p>&nbsp;Happy hacking!</p><br /><p>&nbsp; <br /><p><strong>Notes</strong> <br /><p>1. If you're interested in the internals of build.exe, you should check out the code that ships with Rotor (<a href="http://www.google.com/codesearch?hl=en&amp;q=show:-WLa-Fiov60:tKC99iw8sYY&amp;sa=N&amp;ct=rdp&amp;cs_p=http://www.netsw.org/softeng/lang/csharp/sscli_20020619.tgz&amp;cs_f=sscli/tools/build">online cached copy here</a>). However, I haven't checked to see whether it is from the same code base as the real build.exe.</p></div><div style="clear:both; padding-bottom:0.25em"></div><br />
+          <div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html" title="permanent link">#
+
+Sunday, September 02, 2007
+ 11:30 AM</a>
+
+
+ <span class="item-control blog-admin pid-645413025"><a style="border:none;" href="http://www.blogger.com/post-edit.g?blogID=29992405&postID=6578590246298112199" title="Edit Post"><span class="quick-edit-icon">&nbsp;</span></a></span> </div>
+		</div>
+ 
+<div style="float:right;">
+
+<script type="text/javascript">
+digg_url="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html";
+reddit_url= digg_url;
+digg_skin = 'compact';
+</script>
+<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+<script language="javascript" src="http://reddit.com/button.js?t=1"></script>
+
+</div>
+  <div class="blogComments">
+
+	<a name="comments"></a>
+			Comments:
+			
+			<div class="blogComment">
+				<a name="3627504784638790822"></a> 		If you want to write drivers, you should definitely use the KMDF or UMDF (Kernel/User mode driver framework), it will make writing drivers *much* less painful. Otherwise you have to deal with a bunch of PNP stuff that's really easy to get wrong<br />
+				<div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html#3627504784638790822" title="permanent link">#</a> posted by <a href="http://blog.paulbetts.org" rel="nofollow">Paul Betts</a> : 8:22 AM, September 03, 2007</div>
+
+				<span class="item-control blog-admin pid-2022434305"><a style="border:none;" href="http://www.blogger.com/delete-comment.g?blogID=29992405&postID=3627504784638790822" title="Delete Comment" ><span class="delete-comment-icon">&nbsp;</span></a></span>
+			</div>
+			
+			<div class="blogComment">
+				<a name="8902422882591785175"></a> 		WRK is not exactly publicly available, is it? From what I can see it's only for MSDN subscribers or faculty, or am I wrong?<br />
+				<div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html#8902422882591785175" title="permanent link">#</a> posted by <a href="http://www.blogger.com/profile/08189512911465193641" rel="nofollow">Miodrag</a> : 9:01 AM, September 03, 2007</div>
+
+				<span class="item-control blog-admin pid-1751357300"><a style="border:none;" href="http://www.blogger.com/delete-comment.g?blogID=29992405&postID=8902422882591785175" title="Delete Comment" ><span class="delete-comment-icon">&nbsp;</span></a></span>
+			</div>
+			
+			<div class="blogComment">
+				<a name="6787445908386523826"></a> 		yummy post btw<br />
+				<div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html#6787445908386523826" title="permanent link">#</a> posted by <a href="http://www.blogger.com/profile/08189512911465193641" rel="nofollow">Miodrag</a> : 9:02 AM, September 03, 2007</div>
+
+				<span class="item-control blog-admin pid-1751357300"><a style="border:none;" href="http://www.blogger.com/delete-comment.g?blogID=29992405&postID=6787445908386523826" title="Delete Comment" ><span class="delete-comment-icon">&nbsp;</span></a></span>
+			</div>
+			
+			<div class="blogComment">
+				<a name="5603479473167935445"></a> 		@Miodrag - Copy pasting from the WRK requirements page <BR/><BR/>"Use of the Windows Research Kernel requires academic affiliation with an accredited institution of higher education and direct involvement in teaching and/or research, such as being academic faculty members, system or lab administrators or instructors, students enrolled in relevant undergraduate or graduate programs, or academic researchers working on faculty sponsored projects." <BR/><BR/>If you think you fit the bill and you can't figure out how to get access, send me a mail and I'll redirect you to the right people internally.<br />
+				<div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html#5603479473167935445" title="permanent link">#</a> posted by <a href="http://www.blogger.com/profile/14514067854950617393" rel="nofollow">Sriram</a> : 10:36 AM, September 03, 2007</div>
+
+				<span class="item-control blog-admin pid-645413025"><a style="border:none;" href="http://www.blogger.com/delete-comment.g?blogID=29992405&postID=5603479473167935445" title="Delete Comment" ><span class="delete-comment-icon">&nbsp;</span></a></span>
+			</div>
+			
+			<div class="blogComment">
+				<a name="7056376185849581470"></a> 		Sriram, <BR/>This brings back memories of trying to hack a Windows NT driver together 11 years ago. I nearly quit the software industry after that experience. I quit coding, which probably made the world a better place ;-)<BR/><BR/>Sridhar<br />
+				<div class="byline"><a href="http://www.sriramkrishnan.com/blog/2007/09/world-windows-driver-from-scratch.html#7056376185849581470" title="permanent link">#</a> posted by <a href="http://blogs.zoho.com" rel="nofollow">Sridhar Vembu</a> : 2:39 AM, September 04, 2007</div>
+
+				<span class="item-control blog-admin pid-2022434305"><a style="border:none;" href="http://www.blogger.com/delete-comment.g?blogID=29992405&postID=7056376185849581470" title="Delete Comment" ><span class="delete-comment-icon">&nbsp;</span></a></span>
+			</div>
+			
+			<a class="comment-link" href="http://www.blogger.com/comment.g?blogID=29992405&postID=6578590246298112199">Post a Comment</a>
+	  
+        <br /> <br />
+       
+        
+
+	<br /> <br />
+	<a href="http://www.sriramkrishnan.com/blog/">&lt;&lt; Home</a>
+    </div>
+
+
+
+
+
+<!-- Archive Links -->
+<h3 id="archives">Archives</h3>
+<p>
+	<a href="http://www.sriramkrishnan.com/blog/2004_11_01_archive.html">November 2004</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_01_01_archive.html">January 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_06_01_archive.html">June 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_07_01_archive.html">July 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_08_01_archive.html">August 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_09_01_archive.html">September 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_10_01_archive.html">October 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_11_01_archive.html">November 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2006_12_01_archive.html">December 2006</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_01_01_archive.html">January 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_02_01_archive.html">February 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_03_01_archive.html">March 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_04_01_archive.html">April 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_05_01_archive.html">May 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_06_01_archive.html">June 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_07_01_archive.html">July 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_08_01_archive.html">August 2007</a>&nbsp;&nbsp;
+
+	<a href="http://www.sriramkrishnan.com/blog/2007_09_01_archive.html">September 2007</a>&nbsp;&nbsp;
+
+
+<div id="footer">
+<em> Sriram works on the <a href="http://www.popfly.com">Popfly</a> team at Microsoft. However,the opinions expressed here are his
+ personal opinions and do not represent Microsoft's opinion in any way. No warranties or other guarantees 
+will be offered as to the quality of the opinions or anything else offered here 
+<br/>
+<br/>
+ mail@sriramkrishnan.com
+<br/>
+
+Copyright &copy; 2006 Sriram Krishnan
+</em>
+
+
+</div>
+</div>
+</div>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1807758-1";
+urchinTracker();
+</script>
+</body>
+</html>

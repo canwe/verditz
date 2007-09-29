@@ -1,0 +1,1473 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+
+    <title>Amazon Web Services Developer Connection : Using Amazon S3 from Amazon EC2 with Ruby</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/connect/style/style.jsp;jsessionid=518A23F17297E021FB2DD8D50AD5DE43" title="Integrated Styles" />
+
+    <script language="JavaScript" type="text/javascript" src="/connect/scripts/global.js;jsessionid=518A23F17297E021FB2DD8D50AD5DE43"></script>
+
+
+
+    
+</head>
+<body>
+
+
+		<link rel="stylesheet" type="text/css" href="css/aws-rc.css">
+<link rel="stylesheet" type="text/css" href="css/aws-dev-content.css">
+
+<style>
+    .aws-newsletter {
+        margin: 10px
+        width: 100%;
+        border: 1px solid #cccccc;
+    }
+
+    .aws-newsletter-header {
+        padding: 15px;
+        background-color: #eeeeee;
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .aws-newsletter-body {
+
+        padding: 15px;
+    }
+
+    .aws-newsletter-section-header {
+        color: #cc6600;
+        font-weight: bold;
+        font-family: verdana, arial;
+        font-size: 14px;
+    }
+
+    .list-item {
+        padding: 3px;
+    }
+
+    .indent {
+        padding-left: 10px;
+    }
+
+    .sep {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-top: 1px solid #cccccc;
+    }
+
+    .space {
+        padding: 2px;
+    }
+</style>
+
+
+<style>
+body {
+    margin-top: 0px;
+}
+
+A.aws-navlink {
+    color: #474545;
+    font-family: verdana;
+    font-weight: bold;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.jive-fp-section a {
+    color: red;
+}
+
+A:link.aws-navlink {
+    color: #474545;
+}
+
+A:active.aws-navlink {
+    color: #474545;
+}
+
+A:visited.aws-navlink {
+    color: #474545;
+}
+
+A:hover.aws-navlink {
+    color: #003399;
+    text-decoration: underline;
+}
+
+A:link.aws-menulink {
+    text-decoration: none;
+    font-family: verdana, helvetica;
+    font-size: 11px;
+    color: #474545;
+}
+
+A:active.aws-menulink {
+    text-decoration: none;
+    font-family: verdana, helvetica;
+    font-size: 11px;
+    color: #474545;
+}
+
+A:visited.aws-menulink {
+    text-decoration: none;
+    font-family: verdana, helvetica;
+    font-size: 11px;
+    color: #474545;
+}
+
+A:hover.aws-menulink {
+    text-decoration: underline;
+    font-family: verdana, helvetica;
+    font-size: 11px;
+    color: #3399cc;
+}
+
+.aws-tinynavlink {
+    font-family: verdana;
+    font-size: 10px;
+}
+.aws-code {
+    font-family: "Courier New", Courier, mono;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #eff7ff;
+    border: 1px dashed #333;
+    overflow: auto;
+    max-height: 500px;
+    margin-right: 20px;		
+}
+
+A:link.aws-tinynavlink {
+    color: #666666;
+    text-decoration: none;
+}
+
+A:active.aws-tinynavlink {
+    color: #666666;
+    text-decoration: none;
+}
+
+A:visited.aws-tinynavlink {
+    color: #666666;
+    text-decoration: none;
+}
+
+A:hover.aws-tinynavlink {
+    color: #666666;
+    text-decoration: underline;
+}
+
+.aws-navsep {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #474545;
+}
+
+.aws-navsearch {
+    background-color: #D7D7D7;
+    color: #474545;
+}
+
+.aws-navinput {
+    border: #838383 1px solid;
+    color: #474545;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+}
+
+.jive-old-content {
+    font-size: 16pt;
+    color: #cccccc;
+}
+
+.jive-new-content {
+    font-size: 16pt;
+    color: green;
+}
+
+.menuitem {
+    padding: 2px;
+}
+
+.menuitemheader {
+    padding: 6px;
+    font-family: verdana, helvetica;
+    font-size: 11px;
+    color: #336699;
+    border-bottom: 1px solid #e0e0e0
+}
+
+.menusep {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 5px;
+    width: 100%;
+    height: 1px;
+    font-size: 1px;
+}
+
+.n2Pop {
+    border: 1px solid #999999;
+    background-color: #fff;
+    position: absolute;
+    z-index: 200;
+}
+
+
+</style>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td><a href="index.jspa"><img border="0" alt="Amazon Web Services Resource Center"
+                                      src="images/amazon/dev-connection.gif"/></a></td>
+        <td valign="bottom" align="right"><a href="recognition.jsp"><font color="#0C3A58" size="1" face="verdana">Community
+            Recognition</font></a> | <a href="guidelines.jsp"><font color="#0C3A58" size="1"
+                                                                    face="verdana">Guidelines</font></a> | <a
+                href="help.jspa"><font color="#0C3A58" size="1" face="verdana">Help</font></a>  | <a href="sitemap.jspa"><img hspace="2" border="0"  align="absmiddle" src="images/amazon/sitemap.gif" title="Site Map" alt="Site Map" /></a> | <a href="rss.jsp"><img
+                hspace="2" border="0" align="absmiddle" src="images/feed-icon-16x16.gif" title="RSS Feeds"
+                alt="RSS Feeds"/></a>
+            <table>
+                <tr>
+                    <td height="2"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <form action="isearch.jspa">
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td bgcolor="#256E9C" style="background-color:#256E9C;"><img src="images/blank.gif" width="1" height="3"/></td>
+    </tr>
+    <tr>
+        <td style="background-color:#eeeeee;" valign="middle">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td></td>
+                    <td nowrap="nowrap" style="padding: 5px;"><a name="categorypop|he|rc" class="aws-navlink"
+                                                                 href="kbcategory.jspa?categoryID=59">Resource
+                        Center</a></td>
+                    <td class="aws-navsep">|</td>
+                    <td style="padding: 5px;"><a name="categorypop|he|forums" class="aws-navlink"
+                                                 href="forumindex.jspa">Forums</a></td>
+                    <td class="aws-navsep">|</td>
+                    <td style="padding: 5px;"><a name="categorypop|he|sc" class="aws-navlink"
+                                                 href="kbcategory.jspa?categoryID=60">Solutions&nbsp;Catalog</a></td>
+                    <td class="aws-navsep">|</td>
+                    <td style="padding: 5px;" nowrap="nowrap"><a class="aws-navlink"
+                                                                 href="entry.jspa?externalID=385">Co-marketing</a>
+                    </td>
+                    <td class="aws-navsep">|</td>
+                    <td style="padding: 5px;"><a class="aws-navlink" href="kbcategory.jspa?categoryID=42">Newsletter</a>
+                    </td>
+                    <td class="aws-navsep">|</td>
+                    <td style="padding: 5px;"><a class="aws-navlink" href="http://aws.typepad.com">Blog</a></td>
+                    <td width="100%" align="right">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td class="aws-navsearch"><img src="images/amazon/search-lt.gif"></td>
+                                <td class="aws-navsearch"></td>
+                                <td class="aws-navsearch"><input class="aws-navinput" type="text" name="searchQuery"
+                                                                 style="width:150px;"><input align="absmiddle"
+                                                                                             hspace="10" vspace="1"
+                                                                                             type="image"
+                                                                                             src="images/amazon/go-light.gif"><input
+                                        type="hidden" name="searchKB" value="true">
+                                    <input type="hidden" name="searchForums" value="true"></td>
+                                <td class="aws-navsearch"><a
+                                        href="isearch.jspa?advanced=true&searchQuery=&searchKB=true&searchForums=true"
+                                        class="aws-tinynavlink">Advanced</a>&nbsp;&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td></form>
+    </td>
+</tr>
+</table></strong>
+
+<script type="text/javascript" src="js/popover.js"></script>
+
+
+<!-- MENUS -->
+<div style="display:none">
+    <div id="rc">
+        <table border="0" cellspacing="0" cellpadding="5" bgcolor="#eeeeee" width="235">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="3" width="100%" bgcolor="#FFFFFF">
+                        <tr valign="top">
+                            <td nowrap>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=5">Amazon E-Commerce Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=84">Amazon Elastic Compute Cloud
+                                        (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=123">Amazon Flexible Payments Service (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=6">Amazon Historical Pricing</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=7">Amazon Mechanical Turk
+                                        (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=46">Amazon Simple Storage Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=8">Amazon Simple Queue Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=51">Alexa Site Thumbnail</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=9">Alexa Top Sites</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=10">Alexa Web Information Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=94">Alexa Web Search</a>
+                                    </li>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div style="display:none">
+    <div id="forums">
+        <table border="0" cellspacing="0" cellpadding="5" bgcolor="#eeeeee" width="235">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="3" width="100%" bgcolor="#FFFFFF">
+                        <tr valign="top">
+                            <td nowrap>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=9">Amazon E-Commerce Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=30">Amazon Elastic Compute Cloud (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=35">Amazon Flexible Payments Service (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=10">Amazon Historical Pricing</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=11">Amazon Mechanical Turk (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=24">Amazon Simple Storage Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=12">Amazon Simple Queue Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=28">Alexa Site Thumbnail</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=13">Alexa Top Sites</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=14">Alexa Web Information Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=32">Alexa Web Search</a>
+                                    </li>
+                                </div>
+                                <div class="menusep"></div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=8">Feedback</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=26">Tips</a>
+                                    </li>
+                                </div>
+                                <div class="menusep"></div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=18">German</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="forum.jspa?forumID=19">Japanese</a>
+                                    </li>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div style="display:none">
+    <div id="sc">
+        <table border="0" cellspacing="0" cellpadding="5" bgcolor="#eeeeee" width="235">
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="3" width="100%" bgcolor="#FFFFFF">
+                        <tr valign="top">
+                            <td nowrap>
+                                <div class="menuitemheader"><strong>Solutions for...</strong></div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=71">Amazon Associates</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=74">Amazon Sellers</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=73">Businesses</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=75">Consumers</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=72">Developers</a>
+                                    </li>
+                                </div>
+                                <div class="menuitemheader"><strong>Browse by Service</strong></div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=63">Amazon E-Commerce Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=89">Amazon Elastic Compute Cloud (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=128">Amazon Flexible Payments Service (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=64">Amazon Historical Pricing</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=65">Amazon Mechanical Turk (Beta)</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=66">Amazon Simple Storage Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=67">Amazon Simple Queue Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=90">Alexa Site Thumbnail</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=68">Alexa Top Sites</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=69">Alexa Web Information Service</a>
+                                    </li>
+                                </div>
+                                <div class="menuitem">
+                                    <li type="square" style="color: #cccccc"><a class="aws-menulink"
+                                                                                href="kbcategory.jspa?categoryID=70">Alexa Web Search</a>
+                                    </li>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- /MENUS -->
+
+
+
+<br />
+
+<div id="jive-entrypage">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+<tr valign="top">
+    <td width="98%">
+        
+        
+        
+        
+        
+
+
+
+
+
+<div class="jive-breadcrumbs">
+    
+    
+    <a href="http://aws.amazon.com">Amazon Web Services</a>
+    &raquo;
+    
+    <a href="index.jspa">Developer Connection</a>
+    
+    
+        
+        
+            &raquo;
+            ...
+        
+        
+        
+            &raquo;
+            <a href="kbcategory.jspa?categoryID=84"
+                    
+                        title="
+                        "
+                    
+                    >Amazon Elastic Compute Cloud (Beta)</a>
+        
+        
+        
+            &raquo;
+            <a href="kbcategory.jspa?categoryID=100"
+                    
+                    >Articles and Tutorials</a>
+        
+    
+
+    
+    
+        &raquo;
+        <a href="entry.jspa?categoryID=100&amp;externalID=931">
+            Using Amazon S3 from Amazon EC2 with Ruby</a>
+    
+    
+    
+</div>
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="3" cellspacing="0" border="0" width="100%" style="border-bottom: 1px #ccc solid;">
+
+
+
+<tr>
+
+
+
+    <td><br/>
+
+        <h1 style="margin-bottom:0px;margin-top:0px;">Using Amazon S3 from Amazon EC2 with Ruby</h1>
+
+        
+
+    </td>
+
+    
+
+    <td align="right"valign="bottom" nowrap>
+
+        
+
+            <a href="kbcategory.jspa?categoryID=100"
+
+            
+
+            >&laquo; Back to Category</a>
+
+        
+
+    </td>
+
+</tr>
+
+</table>
+
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td>
+            
+
+
+
+
+
+
+
+
+
+<table cellpadding="3" cellspacing="0" border="0">
+<tr>
+    
+    
+    
+    <td>
+        <a href="entry!default.jspa?categoryID=100&amp;externalID=931&amp;printable=true"
+         ><img src="images/print-16x16.gif" width="16" height="16" border="0" alt="Click for a printer friendly version of this document"></a>
+    </td>
+    <td>
+        <span class="jive-button-label">
+        <a href="entry!default.jspa?categoryID=100&amp;externalID=931&amp;printable=true"
+         title="Click for a printer friendly version of this document">Printer Friendly</a>
+        </span>
+    </td>
+
+    
+    
+    
+    <td>
+        <a href="http://del.icio.us/post" onclick="window.open('http://del.icio.us/post?v=4&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;"><img src="images/amazon/delicious.small.gif" border="0"></a>
+    </td>
+    <td>
+        <span class="jive-button-label">
+        <a href="http://del.icio.us/post" onclick="window.open('http://del.icio.us/post?v=4&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;"> Save to del.icio.us</a>
+        </span>
+    </td>	
+</tr>
+</table>
+        </td>
+
+        
+        <td nowrap align="right">Average Review: 
+            
+                        <span class="jive-new-content"
+                              title="5 stars"><img
+                                align="absmiddle"
+                                src="images/rating-16x16.gif" width="16" height="16" border="0"></span>
+            
+        
+            
+                        <span class="jive-new-content"
+                              title="5 stars"><img
+                                align="absmiddle"
+                                src="images/rating-16x16.gif" width="16" height="16" border="0"></span>
+            
+        
+            
+                        <span class="jive-new-content"
+                              title="5 stars"><img
+                                align="absmiddle"
+                                src="images/rating-16x16.gif" width="16" height="16" border="0"></span>
+            
+        
+            
+                        <span class="jive-new-content"
+                              title="5 stars"><img
+                                align="absmiddle"
+                                src="images/rating-16x16.gif" width="16" height="16" border="0"></span>
+            
+        
+            
+                        <span class="jive-new-content"
+                              title="5 stars"><img
+                                align="absmiddle"
+                                src="images/rating-16x16.gif" width="16" height="16" border="0"></span>
+            
+        </td>
+
+        
+    </tr>
+</table>
+<table cellpadding="3" cellspacing="3" border="0" width="100%">
+    <tr>
+	<td><img src="images/blank.gif" width="10" height="10"/></td>
+	<td width="99%">
+        
+        <p>Amazon S3 provides a good distributed storage solution for accessing the distributed computing power of Amazon EC2. Using Ruby scripts like s3sync and s3cmd at the command line, you can move data to and from EC2 instances in your computing cloud.</p>
+        
+		<p>
+        
+		<table id="aws-table" cellspacing="0" cellpadding="0">
+        
+                                <tr>
+								<th width="20%">AWS Products Used:</th>
+                                <td>Amazon EC2, Amazon S3</td></tr>
+        
+                                <tr>
+								<th width="20%">Language(s):</th>
+                                <td>Ruby</td></tr>
+        
+                                <tr>
+								<th width="20%">Date Published:</th>
+                                <td>2007-07-31</td></tr>
+        
+		</table>
+		</p>
+
+        
+        <p><i>By <a href="http://www.ibm.com/developerworks/library/x-ajaxxml2/#author" target="_blank">Jack Herrington</a> (<a href="mailto:jherr@pobox.com">jherr@pobox.com</a>), Senior Software Engineer, Leverage Software Inc.</i><br/>
+<i>July 31, 2007</i></p>
+
+<h2>Introducing Amazon S3 and Amazon EC2</h2>
+
+<p>The distributed computing power of the Amazon Elastic Compute Cloud (Beta) (Amazon EC2™) isn't going to do you much good unless you can get data to and from each of the Amazon EC2 instances in your computing cloud. Amazon's Simple Storage Service (Amazon S3) provides a good distributed storage solution for doing this. Plus, Amazon does not charge for Amazon EC2 instances to read and write data from Amazon S3 buckets.</p>
+
+<p>That's all well and good, but how do we get Amazon EC2 instances to read and write files to Amazon S3? I tried several different approaches while writing this article, and the easiest turned out to be a set of Ruby command-line scripts called s3sync. In this article, I'll show you how to set up an Amazon EC2 image using one of Amazon's Fedora Core 4 images, then show you how to install and use the s3sync code to access files from Amazon S3.</p>
+
+<p>Before you begin, make sure you have Amazon EC2 command-line utilities installed. Instructions on how to do this are available on <a href="http://www.amazon.com/b/ref=sc_fe_l_2/104-6329643-5953501?ie=UTF8&node=201590011&no=3435361&me=A36L942TSJ2AJA" target="_blank">Amazon’s EC2</a> site. Amazon also has a complete <a href="http://docs.amazonwebservices.com/AmazonEC2/gsg/2007-01-19/?ref=get-started" target="_blank">Getting Started Guide</a> for its EC2 web service, which is what I used to help me as I was writing this article. It clearly describes how to install the tools, generate a key set, and build Amazon EC2 instances.</p>
+
+<p>Next, you have to determine the operating system image you are going to run on the Amazon EC2 instances. For the purposes of this article we are going to use one of the images provided by Amazon. Let's have a look at what those are by using the <code>ec2-describe-images</code> command-line utility:</p>
+
+<pre class="aws-code">
+% ec2-describe-images -o amazon
+IMAGE   ami-20b65349    ec2-public-images/fedora-core4-base.manifest.xml     amazon  available       public
+IMAGE   ami-22b6534b    ec2-public-images/fedora-core4-mysql.manifest.xml     amazon  available       public
+IMAGE   ami-23b6534a    ec2-public-images/fedora-core4-apache.manifest.xml    amazon  available       public
+IMAGE   ami-25b6534c    ec2-public-images/fedora-core4-apache-mysql.manifest.xml        amazon  available       public
+IMAGE   ami-26b6534f    ec2-public-images/developer-image.manifest.xml  	amazon  available       public
+IMAGE   ami-2bb65342    ec2-public-images/getting-started.manifest.xml  amazon  available       public
+IMAGE   ami-bd9d78d4    ec2-public-images/demo-paid-AMI.manifest.xml    amazon  available       public
+</pre>
+
+<p>I'll choose the fedora-core4-apache-mysql operating system image, because that's the kind of thing I would get from a hosting company, and it's sure to be full of useful utilities. I'll run an instance of that image using the following commands at the command line:</p>
+
+<pre class="aws-code">
+% ec2-run-instances ami-25b6534c -k gsg-keypair
+RESERVATION     r-e349af8a      961421114855    default
+INSTANCE        i-59c02230      ami-25b6534c                    pending gsg-keypair     0
+</pre>
+
+<p>After the image has booted, the Amazon EC2 command-line utility will give me a hostname. I'll check the name by using the <code>ec2-describe-instances</code> command:</p>
+<pre class="aws-code">
+% ec2-describe-instances
+RESERVATION     r-e349af8a      961421114855    default
+INSTANCE        i-59c02230      ami-25b6534c    ec2-72-44-57-99.z-1.compute-1.amazonaws.com     domU-12-31-36-00-3D-83.z-1.compute-1.internal   running gsg-keypair     0
+</pre>
+
+<p>Now I have a machine running Fedora Core 4 with a lot of handy stuff installed in it. Next is to log into the Amazon EC2 instance that I just created using the hostname provided by <code>ec2-describe-instances</code>.</p>
+
+<pre class="aws-code">
+% ssh -i ~/.ec2/id_rsa-gsg-keypair root@ec2-72-44-57-99.z-1.compute-1.amazonaws.com     
+The authenticity of host 'ec2-72-44-57-99.z-1.compute-1.amazonaws.com (72.44.57.99)' can't be established.
+RSA key fingerprint is f1:4e:d1:14:87:f0:57:71:89:6e:ed:b5:1c:14:84:b5.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'ec2-72-44-57-99.z-1.compute-1.amazonaws.com,72.44.57.99' (RSA) to the list of known hosts.
+
+         __|  __|_  )  Rev: 2
+         _|  (     / 
+        ___|\___|___|
+
+ Welcome to an EC2 Public Image
+                       :-)
+
+    Apache2+MySQL4
+
+
+    __ c __ /etc/ec2/release-notes.txt
+
+[root@domU-12-31-36-00-3D-83 ~]#
+</pre>
+
+<p>Now you have your sample files set up, you're logged in to your Amazon tools, and you are ready to apply the example scripts.</p>
+
+<h2>Installing S3Sync</h2>
+
+<p>S3sync is the Ruby package I will use to add, update, remove, and list files on the Amazon S3 servers. To do that I will first need to ensure that Ruby is installed, then get the s3sync package and set it up.</p>
+
+<p>To check the Ruby version, I use the following command line:</p>
+
+<pre class="aws-code">
+[root@domU-12-31-36-00-3D-83 ~]# ruby -v
+ruby 1.8.4 (2005-12-24) [i386-linux]
+[root@domU-12-31-36-00-3D-83 ~]# 
+</pre>
+
+<p>This tells me my computer is running a recent version of Ruby--version 1.8.4--which is a version that allows the script to run. This should do nicely.</p>
+
+<p>There are two ways that I can get the s3sync code. The first is to go to the s3sync web site (<a href="http://s3sync.net/wiki" target="_blank">http://s3sync.net/wiki</a>) and download it to my local computer. I would then copy it the Amazon EC2 instance. To do that I would use this command:</p>
+
+<pre class="aws-code">
+% scp -i ~/.ec2/id_rsa-gsg-keypair s3sync.tar.gz root@ ec2-72-44-57-99.z-1.compute-1.amazonaws.com:/root
+</pre>
+
+<p>The s3sync.tar.gz file would then be located in my home directory on the Amazon EC2 machine.</p>
+
+<p>I can also do this directly from the Amazon EC2 instance using the following commands:</p>
+
+<pre class="aws-code">
+[root@domU-12-31-36-00-3D-83 ~]# wget http://s3.amazonaws.com/ServEdge_pub/s3sync/s3sync.tar.gz
+--18:31:18--  http://s3.amazonaws.com/ServEdge_pub/s3sync/s3sync.tar.gz
+           =&gt; `s3sync.tar.gz'
+Resolving s3.amazonaws.com... 72.21.206.171
+Connecting to s3.amazonaws.com|72.21.206.171|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 26,667 (26K) []
+
+100%[============================================================================&gt;] 26,667        --.--K/s             
+
+18:31:19 (3.21 MB/s) - `s3sync.tar.gz' saved [26667/26667]
+
+[root@domU-12-31-36-00-3D-83 ~]#
+</pre>
+
+<p>Either way, after s3sync has been copied to my computer, the next thing to do is unpack it.</p>
+
+<pre class="aws-code">
+[root@domU-12-31-36-00-3D-83 ~]# tar -xzvf s3sync.tar.gz 
+s3sync/
+s3sync/HTTPStreaming.rb
+s3sync/README.txt
+s3sync/README_s3cmd.txt
+s3sync/S3.rb
+s3sync/s3cmd.rb
+s3sync/s3config.rb
+s3sync/s3config.yml.example
+s3sync/S3encoder.rb
+s3sync/s3sync.rb
+s3sync/s3try.rb
+s3sync/S3_s3sync_mod.rb
+s3sync/thread_generator.rb
+[root@domU-12-31-36-00-3D-83 ~]# 
+</pre>
+
+<p>Now we have all the s3sync files in a subdirectory and I can start moving files to and from my Amazon S3 bucket. But before I do that, I have to set two environment variables:</p>
+
+<pre class="aws-code">
+[root@domU-12-31-36-00-3D-83 s3sync]# AWS_ACCESS_KEY_ID=xxxx
+[root@domU-12-31-36-00-3D-83 s3sync]# export AWS_ACCESS_KEY_ID
+[root@domU-12-31-36-00-3D-83 s3sync]# AWS_SECRET_ACCESS_KEY=xxxx
+[root@domU-12-31-36-00-3D-83 s3sync]# export AWS_SECRET_ACCESS_KEY
+</pre>
+
+<p>Change the <i>xxxx</i> in lines 1 and 3 to your own Access Key ID and Secret Access Key (available from the <a href="http://www.amazon.com/gp/browse.html?node=3435361" target="_blank">Amazon Web Services site</a>).</p>
+
+<p>If everything is working properly, you should be able to use the s3cmd.rb script to list all available <a href="http://s3.amazonaws.com/doc/s3-developer-guide/BasicsBucket.html" target="_blank">buckets</a>:</p>
+
+
+<pre class="aws-code">
+[root@domU-12-31-36-00-3D-83 s3sync]# ./s3cmd.rb listbuckets
+jherr_video
+[root@domU-12-31-36-00-3D-83 s3sync]# 
+</pre>
+
+<p>To test this I'm going to create a test bucket. If you aren't familiar with Amazon S3 buckets, a bucket is similar to a disk drive. You can have as many buckets as you like, each with a unique name and each containing its own set of directories and files.</p>
+
+<p>I'll create a bucket for this article using the following command:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb createbucket art072407
+#
+</pre>
+
+<p>Then, I check to see whether it worked by using the <code>listbuckets</code> command again:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb listbuckets           
+art072407
+jherr_video
+#
+</pre>
+
+<p>Now I can list the contents of the bucket using the <code>list</code> command.</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb list art072407
+--------------------
+#
+</pre>
+
+<p>The output tells me there is nothing in the bucket. So let's put something in it. Just to test it, I'll put the Readme.txt file that comes with the s3sync code into the bucket.</p>
+
+
+<pre class="aws-code">
+# ./s3cmd.rb put art072407:Readme.txt Readme.txt 
+#
+</pre>
+
+<p>The <code>put</code> command copies the file to the Amazon S3 bucket. The first parameter after the <code>put</code> command is the bucket and the key name. The bucket name is before the colon, and the key name comes after the colon. In Amazon S3 terms, files are "keys" because, really, Amazon S3 can store any data bit. Normally though, your key will be the same as your file name. The last parameter is the name of the local file to copy.</p>
+
+<p>I can then use the <code>list</code> command to see that the file is still in the bucket:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb list art072407
+--------------------
+Readme.txt
+#
+</pre>
+
+<p>One great thing about Amazon S3 is that all uploaded files are available as URLs from a web browser (or any application that can read a URL). The format of the URL is as follows:</p>
+
+<pre class="aws-code">
+http://&lt;bucketname&gt;.s3.amazonaws.com/&lt;key&gt;
+</pre>
+
+<p>In the case of this example, the URL is:</p>
+
+<pre class="aws-code">
+http://art072407.s3.amazonaws.com/Readme.txt
+</pre>
+
+
+<p>But if I go to the URL at this point, I’ll get a message telling me that access to that resource is denied because, by default, uploaded data is not publicly accessible. To make it publicly accessible, we have to add to the <code>put</code> command:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb put art072407:Readme.txt Readme.txt x-amz-acl:public-read
+#
+</pre>
+
+<p>Now, if I go back to that URL in my web browser, Amazon S3 will happily show me the Readme.txt file.</p>
+
+<p>To remove the file from the bucket, I run the <code>delete</code> command:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb delete art072407:Readme.txt
+#
+</pre>
+
+<p>Or, to delete everything in the bucket, I run the <code>deleteall</code> command:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb deleteall art072407
+#
+</pre>
+
+<p>As noted above, you can use a URL to get to the data if the Amazon S3 key (the file) is designated as <i>public</i>. To get public data, you can use the following command:</p>
+
+<pre class="aws-code">
+# wget http://art072407.s3.amazonaws.com/Readme.txt
+...
+</pre>
+
+<p>But what if the data is private? To do that I use the handy <code>get</code> command that comes with s3cmd.rb.</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb get art072407:Readme.txt Out.txt
+#
+</pre>
+
+<p>This command takes the Readme.txt file from the Amazon S3 bucket and copies it to the local file Out.txt.</p>
+
+<h2>S3Sync</h2>
+
+<p>So far I've worked only with reading and writing a single file from the Amazon S3 bucket. What about entire directories of files, with nested subdirectories, and so on? Ruby code has a solution for that as well. The s3sync.rb command synchronizes whole directory structures with Amazon S3 buckets.</p>
+
+<p>To begin I'll create a new directory called /root/data and copy the contents of the s3sync code to it, just as an example:</p>
+
+<pre class="aws-code">
+# mkdir /root/data
+# copy /root/s3sync/* /root/data
+#
+</pre>
+
+<p>Now, I'll clear out the Amazon S3 bucket and copy the directory to it using s3sync:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb deleteall art072407
+# ./s3sync.rb -r /root/data/ art072407:/
+#
+</pre>
+
+<p>When I list the article bucket now, I can see all the original files:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb list art072407
+--------------------
+HTTPStreaming.rb
+Readme.txt
+Readme_s3cmd.txt
+S3.rb
+S3_s3sync_mod.rb
+S3encoder.rb
+s3cmd.rb
+...
+#
+</pre>
+
+<p>Next, I can remove all of the files from the /root/data directory and re-sync them using s3sync. First, to remove them, I use the following code:</p>
+
+<pre class="aws-code">
+# rm /root/data/*
+#
+</pre>
+
+<p>Now, to re-sync from the Amazon S3 bucket I run:</p>
+
+<pre class="aws-code">
+# ./s3sync.rb -r art072407: /root/data
+# ls -la /root/data/
+total 120
+drwxr-xr-x  2 root root  4096 Jul 24 11:59 .
+drwxr-x---  5 root root  4096 Jul 24 11:48 ..
+-rwxr-xr-x  1 root root  3427 Jul 24 11:59 HTTPStreaming.rb
+-rwxr-xr-x  1 root root 12775 Jul 24 11:59 Readme.txt
+-rwxr-xr-x  1 root root  4525 Jul 24 11:59 Readme_s3cmd.txt
+...
+#
+</pre>
+
+<p>Now I can <code>get</code> and <code>put</code> whole directories of data using Amazon S3 from my Amazon EC2 instance.</p>
+
+<p>To finish, I'm going to delete the contents of the bucket, and then delete the bucket itself:</p>
+
+<pre class="aws-code">
+# ./s3cmd.rb deleteall art072407   
+# ./s3cmd.rb deletebucket art072407
+</pre>
+
+<p>To finish working with this example completely, I'm going to delete the Amazon EC2 instance that I was testing:</p>
+
+<pre class="aws-code">
+% ec2-terminate-instances i-59c02230
+%
+</pre>
+
+<p>And there you have it: Amazon Simple Storage Service (Amazon S3) access, direct from one of the standard Fedora Core 4 Amazon images with just some simple Ruby scripts and a few environment variables.</p>
+
+
+<h2>Conclusion</h2>
+
+<p>Amazon S3 provides a powerful mechanism for moving data between Amazon EC2 instances, and for moving data to and from Amazon EC2 instances for distributed processing. Because all of the languages supported by the Amazon Fedora Core 4 images can access the command line, it's easy to invoke these commands from within page code or batch processors to <code>get</code> and <code>put</code> data from the Amazon S3 buckets.</p>
+
+<p><i>Jack Herrington is the author of several books, including </i><a href="http://www.manning.com/herrington/" target="blank">Code Generation in Action</a><i>, </i><a href="http://www.oreilly.com/catalog/podcastinghks/" target="blank">Podcasting Hacks</a><i>, and </i><a href="http://www.oreilly.com/catalog/phphks/" target="blank">PHP Hacks</a><i>. He has also written over 50 articles on technical topics, many of which use PHP. Jack is a PHP and AJAX columnist for <a href="http://www.ibm.com/developerworks" target="blank">IBM developerWorks</a>, and the editor of the <a href="http://www.ibm.com/developerworks/forums/dw_forum.jsp?forum=965&cat=78&ca=drs-fo" target="blank">AJAX Forum</a> on the IBM developerWorks web site.</i></p>
+        
+        
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+<br/><br/>
+<table cellpadding="3" cellspacing="0" border="0" width="100%" class="head-border">
+    <tr>
+        <td>
+            <b>Related Documents</b>
+            
+        </td>
+    </tr>
+</table>
+
+<table cellpadding="3" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <table cellpadding="2" cellspacing="0" border="0" width="100%">
+                
+                    <tr>
+                        <td class="bullet">
+                            <img src="images/amazon/aws-code-16x16.gif"
+                                 alt="Document Type: Code Samples"
+                                 width="16" height="16" border="0" vspace="3" hspace="3">
+                        </td>
+                        <td>
+                            <a href="entry.jspa?externalID=641&amp;categoryID=47">
+                                s3sync and s3cmd in Ruby</a>
+                        </td>
+                    </tr>
+                
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+    </td>
+	<td valign="top"><a href="reviewCreate!default.jspa?categoryID=100&amp;externalID=931"><img src="images/amazon/write-review.gif" border="0" width="132" height="25"/></a>
+	</td>
+	</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+	<td width="100%">
+        
+        
+        <br>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><tr><td height="10"></td></tr></table>
+
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td width="99%"><b>Reviews</b></td>
+        <td width="1%" nowrap>
+            
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    
+                    <td>
+                        <a href="reviewCreate!default.jspa?categoryID=100&amp;externalID=931"
+                                ><img src="images/comment-add-16x16.gif" width="16" height="16" border="0" hspace="6"
+                                      alt="Create Review"/></a>
+                    </td>
+
+                    <td nowrap>
+                        <a href="reviewCreate!default.jspa?categoryID=100&amp;externalID=931"
+                           title="Create Review">Write a Review</a>
+                    </td>
+                    
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+<table cellpadding="3" cellspacing="0" border="0" width="100%">
+    <tr valign="top">
+        <td colspan="2">
+            <table width="100%" cellspacing="0" border="0" cellpadding="0">
+			   <tr><td colspan="2"><div class="dashedLine"/></td></tr>
+                
+									<tr>
+										<td valign="top" width="1%">
+										<span
+												class="jive-new-content"
+												title=""><img
+												src="images/rating-16x16.gif"
+												width="16"
+												height="16"
+												border="0"></span>
+														
+										<span
+												class="jive-new-content"
+												title=""><img
+												src="images/rating-16x16.gif"
+												width="16"
+												height="16"
+												border="0"></span>
+														
+										<span
+												class="jive-new-content"
+												title=""><img
+												src="images/rating-16x16.gif"
+												width="16"
+												height="16"
+												border="0"></span>
+														
+										<span
+												class="jive-new-content"
+												title=""><img
+												src="images/rating-16x16.gif"
+												width="16"
+												height="16"
+												border="0"></span>
+														
+										<span
+												class="jive-new-content"
+												title=""><img
+												src="images/rating-16x16.gif"
+												width="16"
+												height="16"
+												border="0"></span>
+														<br/><img src="images/blank.gif" width="100" height="1" alt=""/></td>
+								<td style="padding-left:10px;padding-right:10px" valign="top" width="100%">
+									<b>Nice step-by-step</b>, Aug 24, 2007 3:15 PM
+									<br/><font size="1" face="verdana" color="#999999">Reviewer: <a
+										href="profile.jspa?userID=18616">greg13070</a>
+								</font>
+			
+									<table><tr><td></td></tr></table>
+									I'm glad to see someone take the time to put all these great technologies together in such a clear way.
+			
+									<table><tr><td height="20"></td></tr></table>
+								</td>
+							</tr>
+
+                
+
+            </table>
+        </td>
+    </tr>
+</table>
+
+        
+
+        
+	</td>
+	</tr>
+</table>
+</td>
+<td><img src="images/blank.gif" width="10" height="1" border="0" alt=""></td>
+<td width="1%" class="jive-top-table">
+    
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+<div style="padding: 4px;border-top: 3px solid #cccccc; border-bottom: 1px solid #cccccc;border-right: 1px solid #cccccc;border-left: 1px solid #cccccc" class="jive-accountbox">
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" summary="Jive Accountbox">
+
+
+
+
+
+
+
+<thead>
+
+    <tr>
+
+        <th colspan="2">
+
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+
+                <tr>
+
+                    <th width="99%" style="border-width:0px;">
+
+                        
+
+                        Welcome, Guest
+
+                    </th>
+
+                    <th width="1%" style="border-width:0px;" nowrap="nowrap">
+
+                       <a href="help.jspa"><img src="images/help-16x16.gif" width="16" height="16" border="0" alt="Help"/></a>
+
+                    </th>
+
+                </tr>
+
+            </table>
+
+        </th>
+
+    </tr>
+
+</thead>
+
+<tbody>
+
+    <tr>
+
+        <td width="1%" class="jive-icon"><a href="login!withRedirect.jspa"><img src="images/key-16x16.gif" width="16" height="16" border="0" alt="Login"/></a></td>
+
+        <td width="99%" class="jive-icon-label">
+
+            
+            <a href="login!withRedirect.jspa">Login</a>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td width="1%" class="jive-icon"><a href="guestsettings!default.jspa"><img src="images/preferences-16x16.gif"   width="16" height="16" border="0" alt="Guest Settings"/></a></td>
+
+        <td width="99%" class="jive-icon-label">
+
+            
+
+            <a href="guestsettings!default.jspa">Guest Settings</a>
+
+        </td>
+
+    </tr>
+
+</tbody>
+
+
+
+
+
+</table>
+
+</div>
+
+<table><tr><td height="18"></td></tr></table>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+</td>
+</tr>
+</table>
+</div>
+<!--Enable Code Syntax Highlighting-->
+<script src="js/aws-dev-content.js" language="javascript" type="text/javascript"></script>  
+<script language="javascript" type="text/javascript">
+dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+<br /><br />
+
+
+		<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr>
+	<td align="center"><span class="info">Have something you'd like to see here? <a href="forum.jspa?forumID=8">Give us your feedback</a> on our Developer Connection Feedback forum.</span>
+	</td>
+</tr>
+</table>
+<hr size="1" width="100%" color="#cccccc" moshade="noshade" />
+<center class="tiny">
+<a href="http://www.amazon.com/exec/obidos/subst/misc/policy/conditions-of-use.html">Conditions of Use</a>
+|
+<a href="http://www.amazon.com/exec/obidos/tg/browse/-/468496">Privacy Notice</a>
+© 2006-2007 Amazon Web Services LLC or its affiliates. All rights reserved.
+</center>
+
+
+
+</body>
+</html>

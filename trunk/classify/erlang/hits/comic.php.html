@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>Vim vs. Emacs
+</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-language" content="en">
+<meta name="generator" content="bcoos 1.0">
+<meta name="description" content="Ecol Strip">
+﻿<meta name="revisit-after" content="7 days">
+<link rel="icon" href="http://en.tiraecol.net/icon.png" type="image/png">
+<link rel="shortcut icon" href="http://en.tiraecol.net/icon.png" type="image/png">
+<link rel="alternate" type="application/rss+xml" title="News RSS - 0.92" href="http://en.tiraecol.net/modules/news/cache/news.xml">
+<link rel="alternate" type="application/rss+xml" title="Downloads - 0.92" href="http://en.tiraecol.net/modules/mydownloads/cache/downloads.xml">
+<link rel="alternate" type="application/rss+xml" title="Links - 0.92" href="http://en.tiraecol.net/modules/mylinks/cache/links.xml">
+<link rel="alternate" type="application/rss+xml" title="Faq - 0.92" href="http://en.tiraecol.net/modules/xoopsfaq/cache/faq.xml">
+<link rel="alternate" type="application/rss+xml" title="Sections - 0.92" href="http://en.tiraecol.net/modules/mysections/cache/mysections.xml">
+<link rel="alternate" type="application/rss+xml" title="Addresses - 0.92" href="http://en.tiraecol.net/modules/adresses/cache/adresses.xml">
+<script type='text/javascript'>
+<!--
+function xoopsGetElementById(id) {
+if (document.getElementById(id)) {
+	return document.getElementById(id);
+	} else if (document.all[id]) {
+		return document.all[id];
+		} else if (document.layers && document.layers[id]) {
+			return (document.layers[id]);
+			} else {
+				return false;
+			}
+}
+function toggle_visibility(id, flag)  {
+if (xoopsGetElementById(id)) {
+	xoopsGetElementById(id).style.visibility = (flag) ? 'visible' : 'hidden';
+	}
+}
+function showImgSelected(imgId, selectId, imgDir) {
+imgDom     = xoopsGetElementById(imgId);
+selectDom  = xoopsGetElementById(selectId);
+imgDom.src = "http://en.tiraecol.net/"+ imgDir + "/" + selectDom.options[selectDom.selectedIndex].value;
+}
+function justReturn() {
+	return;
+}
+function openWithSelfMain(url,name,width,height) {
+var options = "width=" + width + ",height=" + height + "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no";
+new_window = window.open(url, name, options);
+window.self.name = "main";
+new_window.moveTo(((screen.availWidth/2)-(width/2)),((screen.availHeight/2)-(height/2)))
+new_window.focus();
+}
+function setElementColor(id, color) {
+	xoopsGetElementById(id).style.color = "#" + color;
+}
+function setElementFont(id, font) {
+	xoopsGetElementById(id).style.fontFamily = font;
+}
+function setElementSize(id, size) {
+	xoopsGetElementById(id).style.fontSize = size;
+}
+function changeDisplay(id) {
+var elestyle = xoopsGetElementById(id).style;
+if (elestyle.display == "") {
+	elestyle.display = "none";
+	} else {
+		elestyle.display = "block";
+	}
+}
+function toggleDisplay(id) {
+var elestyle = xoopsGetElementById(id).style;
+if (elestyle.display == "block" || elestyle.display == "") {
+	elestyle.display = 'none';
+	} else {
+		elestyle.display = "block";
+	}
+}
+function setVisible(id) {
+	xoopsGetElementById(id).style.visibility = "visible";
+}
+function setHidden(id) {
+	xoopsGetElementById(id).style.visibility = "hidden";
+}
+function makeBold(id) {
+var eleStyle = xoopsGetElementById(id).style;
+if (eleStyle.fontWeight != "bold") {
+	eleStyle.fontWeight = "bold";
+	} else {
+		eleStyle.fontWeight = "normal";
+	}
+}
+function makeItalic(id) {
+var eleStyle = xoopsGetElementById(id).style;
+if (eleStyle.fontStyle != "italic") {
+	eleStyle.fontStyle = "italic";
+	} else {
+		eleStyle.fontStyle = "normal";
+	}
+}
+function makeUnderline(id) {
+var eleStyle = xoopsGetElementById(id).style;
+if (eleStyle.textDecoration != "underline") {
+	eleStyle.textDecoration = "underline";
+	} else {
+		eleStyle.textDecoration = "none";
+	}
+}
+function appendSelectOption(selectMenuId, optionName, optionValue) {
+var selectMenu = xoopsGetElementById(selectMenuId);
+var newoption  = new Option(optionName, optionValue);
+selectMenu.options[selectMenu.length] = newoption;
+selectMenu.options[selectMenu.length].selected = true;
+}
+function disableElement(target) {
+var targetDom = xoopsGetElementById(target);
+if (targetDom.disabled != true) {
+	targetDom.disabled = true;
+	} else {
+		targetDom.disabled = false;
+	}
+}
+function xoopsCheckAll(formname, switchid) {
+var ele = document.forms[formname].elements;
+var switch_cbox = xoopsGetElementById(switchid);
+for (var i=0; i<ele.length; i++) {
+	var e = ele[i];
+	if ( (e.name != switch_cbox.name) && (e.type == 'checkbox') ) {
+		e.checked = switch_cbox.checked;
+	}
+}
+}
+function setRequired(arguments) {
+var size = setRequired.arguments.length;
+for (i=0; i<size; i++) {
+	var id    = setRequired.arguments[i];
+	var field = xoopsGetElementById(id);
+	if (field.value == "") {
+		alert("Please complete the following field: " + setRequired.arguments[i]);
+		field.focus();
+		return false;
+	}
+}
+}
+//-->
+</script>
+<link href="http://en.tiraecol.net/include/style.css" rel="stylesheet" type="text/css" />
+
+	<style type='text/css' media='all'>
+	<!-- @import url(http://en.tiraecol.net/themes/ecol/style/style.css); -->
+	</style><script type='text/javascript' src='http://en.tiraecol.net/include/date.js' ></script></head><body onload='startclock();document.loginform.uname.focus();' background=''><table width='100%' class='main' ><tr><td>
+	<table width='100%'><tr><td width='160'  align='left'class='exoops'>
+	<a href='http://en.tiraecol.net/'><img src='http://en.tiraecol.net/images/logo.jpg' alt='Vim vs. Emacs
+/'></a></td>
+	<td colspan='2'><div align='center'></div></td></tr></table>
+	<table width='100%'><tr><td colspan='2' ></td></tr><tr class='loginbar'><form action="http://en.tiraecol.net/user.php" name="loginform" method="post">
+		<td class="loginbar"  width="320" >
+		<input type="hidden" name="op" value="login" />
+		&nbsp;<img src="http://en.tiraecol.net/images/icons/ecol_user.gif" alt="username" align="absmiddle" />
+		&nbsp;<input type="text" class="login" size="10" name="uname"  />
+		<img src="http://en.tiraecol.net/images/icons/ecol_key.gif" alt="password" align="absmiddle" />
+		&nbsp;<input type="password" class="login" size="10" name="pass" />
+		<input type="image" name="submit" src="http://en.tiraecol.net/images/icons/ecol_pen.gif" alt="login" align="absmiddle"  />
+		</td>
+		</form>
+		<td class="loginbar">
+		<a href="http://en.tiraecol.net/register.php">
+		<img src="http://en.tiraecol.net/images/icons/ecol_register.gif" alt="register" align="absmiddle"  ></a>
+		<a href="http://en.tiraecol.net/user.php#lost">
+		<img src="http://en.tiraecol.net/images/icons/ecol_lostpass.gif" alt="lostpass" align="absmiddle" ></a></td><form id="pagesearch" action="http://en.tiraecol.net/search.php" method="post">
+	<td class="loginbar" align="right">
+	<img style="cursor: hand;" onclick="xoopsGetElementById('pagesearch').submit();" align="absmiddle" src="http://en.tiraecol.net/images/icons/ecol_search.gif" alt="search" />
+	<input type="text" class="login" name="query" size="23" />
+	<input type="hidden" name="action" value="results" />
+	</td></form>
+	</tr></table>
+	<table><tr>
+	<td background="" id="leftblocks" name="leftblocks" align="left" valign="top" class="sidebar1" ><div class='sidblocktitle'>Main Menu</div>
+	<div class='sidblockcontent'><div align="left"><table cellpading="0" cellspacing="0" ><tr><td colspan="2">
+<a href="http://en.tiraecol.net/"><b>Main</b></a><br />
+<a href="http://en.tiraecol.net/modules/newbb/"><b>Forum</b></a><br />
+<a href="http://en.tiraecol.net/modules/comic/archive.php"><b>Comic  Archive</b></a><br />
+<a href="http://en.tiraecol.net/modules/comic/links.php"><b>Have the strip in your site!</b></a><br />
+
+<br /><b>Feeds</b></td></tr><tr><td><a href="http://en.tiraecol.net/modules/comic/cache/tiraecol_en-RSS2.0.xml">RSS 2.0</a></td><td><a href="http://en.tiraecol.net/modules/comic/cache/tiraecol_en-ATOM0.3.xml">Atom 0.3</a></td></tr><tr><td><a href="http://en.tiraecol.net/modules/comic/cache/tiraecol_en-RSS0.91.xml">RSS 0.91</a>&nbsp;</td><td><a href="http://en.tiraecol.net/modules/comic/cache/tiraecol_en-RSS1.0.xml">RSS 1.0</a></td></tr><tr><td colspan="2"><br /> <b>Translations</b></td></tr><tr><td><a href="http://www.tiraecol.net/">Spanish</a></td><td><a href="http://www.ricplan.net/tiras/tiras.html">French</a></td></tr><tr><td><a href="http://tira.somgnu.cat/">Català</a></td><td><a href="http://tira.inestable.org/">Gallego</a></td></tr><tr><td><a href="http://www.3arrano.com/biloetanano/">Euskera</a></td><td><a href="http://biloenano.wordpress.com/">Italiano</a></td></tr></table></div></div><div class='sidblocktitle'>Comic Random</div>
+	<div class='sidblockcontent'><div align='center'><a href='http://en.tiraecol.net/modules/comic/comic.php?content_id=232'><img src='http://en.tiraecol.net/modules/comic/cache/shots/tiraecol_en-232-160px.png' alt ='The voting machines
+' /></a></div></div><div class='sidblocktitle'>Text link ads</div>
+	<div class='sidblockcontent'>
+<ul style="list-style:none; margin-bottom:0px; padding:0px;
+width:100%; overflow:hidden; margin-right:0px; margin-top:0px;
+border:"0px none #FFFFFF"; border-spacing:0px; background-color:"";">
+	<li style="display:inline; float:left; clear:none; width:"9%";"><a style="line-height:140%; font-size:"10px"; color:"";"
+href="http://www.gamegoods.co.uk/" target="_self">WOW Gold</a></li>
+</ul>
+<br /></div></td><td width="100%" valign="top">
+	<table class="sidboxtitle" width="100%"  background=""><tr>
+	<td width="1"><img style="cursor: hand;" onclick="toggleDisplay('leftblocks');" src="http://en.tiraecol.net/images/icons/ecol_sidebar.gif" align="absmiddle" alt="Expand/Collapse" /></td>
+	<td><div class="myclock" align="right" id="myclock">&nbsp;</div></td>
+	<td width="1"><img style="cursor: hand;" onclick="toggleDisplay('rightblocks');" src="http://en.tiraecol.net/images/icons/ecol_sidebar.gif" align="absmiddle" alt="Expand/Collapse" /></td>
+	</tr></table><!-- START MODULE SPAN CSS -->
+<span id="comic_dom" name="comic_dom" class="comic_css">
+<!-- START MODULE SPAN CSS -->
+<table width='100%'><tr><td valign='top'>
+	<table width='100%' ><tr class='bg1'><td valign='top'><table width="100%">
+<tr>
+	<td align="left">
+		<span class="title">Vim vs. Emacs
+</span>	
+	
+	</td>
+	<td align="right">
+		<a href="http://en.tiraecol.net/userinfo.php?uid=2">GonzoTBA</a> 
+		on 2001/1/22 11:00:00 - 5820 reads<br /><br />
+	</td>
+</tr>
+<tr><td colspan="2" align="center"><img src="http://en.tiraecol.net/modules/comic/cache/images/tiraecol_en-2.png" alt="Vim vs. Emacs
+" /></td></tr>
+</table><br />
+<table width="100%"><tr><td width="200px" align="left"><a href='comic.php?content_id=267&amp;mode=flat&amp;order=0'><b>|&lt;</b></a>&nbsp;&nbsp;<a href='comic.php?content_id=3&amp;mode=flat&amp;order=0'><b>Previous</b></a>&nbsp;&nbsp;<br /></td><td align="center" ><a href="comic.php?content_id=267&amp;mode=flat&amp;order=0">1</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href='comic.php?content_id=4&amp;mode=flat&amp;order=0'>263</a>&nbsp;&nbsp;<a href='comic.php?content_id=3&amp;mode=flat&amp;order=0'>264</a>&nbsp;&nbsp;265&nbsp;&nbsp;<a href='comic.php?content_id=1&amp;mode=flat&amp;order=0'>266</a>&nbsp;&nbsp;</td><td width='200px' align='right'><a href='comic.php?content_id=1&amp;mode=flat&amp;order=0'><b>Next</b></a>&nbsp;&nbsp;<a href='comic.php?content_id=1&amp;mode=flat&amp;order=0'><b>&gt;|</b></a>&nbsp;<br /></td></tr></table><br />
+<form method='get' action='/modules/comic/comic.php'>
+<table width='100%' border='0' cellspacing='1' cellpadding='2'><tr>
+<td class='bg1' align='center'><select class='select' name='mode'><option value='0'>No Comments</option><option value='flat' selected='selected'>Flat</option><option value='thread'>Threaded</option></select> <select class='select' name='order'><option value='0' selected='selected'>Oldest First</option><option value='1'>Newest First</option></select><input type='hidden' name='item_id' value='2' /> <input type='submit' class='button' value='Refresh' />&nbsp;<input type='button' class='button' onclick='location="newcomment.php?item_id=2&amp;order=0&amp;mode=flat"' value='Post Comment' /></td></tr></table></form></td></tr></table></td></tr></table><!-- END MODULE SPAN CSS -->
+</span>
+<!-- END MODULE SPAN CSS -->
+<br /></td><td width='1' id='rightblocks' style='display:none;'>&nbsp;</td></tr></table></td></tr></table><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>
+	<td class="footer" align="center"><div align='center' style='font-size:large;'><b><a href='http://en.tiraecol.net/'>en.tiraecol.net</a></b></div></a></td>
+	</tr></table>
+	</td></tr></table><div class='debug'><table width='100%'><tr><td align='left' style='font-size:15px;font-weight: bold;'><a href='http://www.bcoos.net/'>bcoos 1.0 [GPL]</a></td><td align='right' style='font-size:small;'>0.79 Seconds | 10 Queries | 31 Files: 242.36 Kb | HTML: 12.34 Kb</td></tr></table></div></body></html>

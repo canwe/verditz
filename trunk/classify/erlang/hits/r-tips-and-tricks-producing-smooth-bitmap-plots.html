@@ -1,0 +1,920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title> R tips and tricks:  Producing smooth bitmap plots</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.moertel.com/xml/rsd" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://blog.moertel.com/xml/atom/article/550/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://blog.moertel.com/xml/rss20/article/550/feed.xml" />
+  <script src="/javascripts/cookies.js?1153753467" type="text/javascript"></script>
+  <script src="/javascripts/prototype.js?1153753467" type="text/javascript"></script>
+  <script src="/javascripts/effects.js?1153753467" type="text/javascript"></script>
+  <script src="/javascripts/typo.js?1156179783" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+  <link href="/stylesheets/theme/azure.css?1187978896" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/stylesheets/user-styles.css?1187979284" media="all" rel="Stylesheet" type="text/css" />
+  <link href="/stylesheets/theme/print.css?1167996662" media="print" rel="Stylesheet" type="text/css" />
+  <link rel="openid.server"   href="https://pip.verisignlabs.com/server" />
+  <link rel="openid.delegate" href="http://tmoertel.pip.verisignlabs.com/" />
+</head>
+
+<body>
+  <div id="container" class="clearfix">
+      <div id="header">
+        <div id="logo-box">
+          <div id="logo">
+            <h1 id="sitename"><a href="/">Tom Moertel's Weblog</a></h1>
+            <h2 id="subtitle">Quality rants on programming theory and stuff geeks like</h2>
+          </div>
+        </div>
+      </div>
+      
+      <div id="search"> <form action="/articles/search" id="sform" method="get">
+ <label for="q">Live Search:</label><input type="text" id="q" name="q" value="" size="15" />
+<img alt="Spinner-blue" id="search_spinner" src="/images/spinner-blue.gif?1153753467" style="display:none;" />
+</form>
+<script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('search-results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){Element.hide('search_spinner')}, onLoading:function(request){Element.show('search_spinner')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script></div>
+      
+
+      <div id="content" class="clearfix">
+        <div id="main">
+          <!--
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+       xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+    rdf:about=""
+    trackback:ping="http://blog.moertel.com/articles/trackback/550"
+    dc:title=" R tips and tricks:  Producing smooth bitmap plots"
+    dc:identifier="http://blog.moertel.com/articles/2007/08/25/r-tips-and-tricks-producing-smooth-bitmap-plots"
+    dc:description="The R statistics system can produce first-class data visualizations, commonly known as plots. Internally, plots are represented in an abstract graphics format that can be rendered on any of R&amp;#8217;s wide range o"
+    dc:creator="tmoertel"
+    dc:date="2007-08-26T02:37:06-04:00" />
+</rdf:RDF>
+-->
+
+<div class="post" onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_article'); }"  onmouseout="Element.hide('admin_article');" >
+  <a href="/admin/content/edit/550" class="admintools" id="admin_article" style="display: none">edit</a>
+  <h2> R tips and tricks:  Producing smooth bitmap plots</h2>
+  <p class="auth">Posted by Tom Moertel
+  <span class="typo_date" title="Sun, 26 Aug 2007 01:56:00 GMT">Sun, 26 Aug 2007 01:56:00 GMT</span></p>
+  <p>The <a href="http://www.r-project.org/">R statistics system</a> can produce
+first-class data visualizations, commonly known as plots.  Internally,
+plots are represented in an abstract graphics format that can be
+rendered on any of R&#8217;s wide range of graphics &#8220;devices&#8221; to produce
+concrete output &#8211; windows, bitmap files, PostScript files, <span class="caps">PDF</span> files,
+and others.</p>
+
+
+	<p>The bitmap formats, such as <span class="caps">PNG</span>, are preferred for posting
+plots online because of their widespread support by web browsers.  The
+default bitmap-rendering devices in R, unfortunately, produce graphics
+that look a little too &#8220;bitmapped&#8221; for modern web tastes.  Here, for example,
+is a plot rendered by R&#8217;s &#8220;png&#8221; device:</p>
+
+
+<div class="photo">
+
+	<p><img src="http://community.moertel.com/~thor/blog/pix-20070825/plot.png" title="Plot rendered via R's PNG device" alt="Plot rendered via R's PNG device" /></p>
+
+
+</div>
+
+	<p>There&#8217;s nothing technically wrong with the plot, but it looks out
+of place on a web page.  That&#8217;s because modern web
+browsers use font-smoothing and anti-aliasing techniques to render
+just about everything else on the page.  Against this clean, un-jagged
+backdrop, the oh-so-bitmapped plot looks like a throwback to
+a previous era.</p>
+
+
+	<p>Happily, we <em>can</em> produce clean, anti-aliased R plots with a little
+help.  Here&#8217;s the earlier plot, anti-aliased:</p>
+
+
+<div class="photo">
+
+	<p><img src="http://community.moertel.com/~thor/blog/pix-20070825/plot2.png" title="Plot rendered via R's PDF device, then post-processed" alt="Plot rendered via R's PDF device, then post-processed" /></p>
+
+
+</div>
+
+	<p>To produce the anti-aliased plot, I used R to produce a <span class="caps">PDF</span> file.  Then I
+rendered the <span class="caps">PDF</span> file into a <span class="caps">PNG</span> image at 300 dpi using Ghostscript.
+Finally, I scaled the 300-dpi image down to screen resolution,
+producing a high-quality, anti-aliased result.</p>
+
+
+	<p>Here&#8217;s the recipe in detail.</p>
+
+
+	<p>First, I define an R function called <em>pdfit</em> that takes an
+abstract graphics object and makes a <span class="caps">PDF</span>-file rendering of it, using
+my preferred graphics-device settings:</p>
+
+
+<pre><code>require("lattice")
+
+pdfit &lt;- function(f, ...) {
+  trellis.device(dev=pdf, theme="col.whitebg", ...);
+  print(f);
+  dev.off()
+}
+</code></pre>
+
+	<p>Then, when I create a plot I want to publish, I use <em>pdfit</em> to render
+it into a <span class="caps">PDF</span> file:</p>
+
+
+<pre><code>P.img &lt;- xyplot( subs.low + subs.high ~ date, ... )
+
+pdfit(P.img, file="image-downloads.pdf")  # render plot into PDF file
+</code></pre>
+
+	<p>Finally, I use <a href="http://www.ghostscript.com/">Ghostscript</a> and
+<a href="http://www.imagemagick.org/">ImageMagick</a> to convert the <span class="caps">PDF</span> file into
+a high-quality, anti-aliased <span class="caps">PNG</span> file.  (I keep both formats: the <span class="caps">PDF</span>
+file is best for publishing in printed papers, and the <span class="caps">PNG</span> file is
+best for posting online.)  I use a simple Makefile to automate the
+process of converting the <span class="caps">PDF</span> files into <span class="caps">PNG</span> files:</p>
+
+
+<pre><code># Makefile (GNU make)
+
+pdfs := $(wildcard *.pdf)
+pngs := $(pdfs:.pdf=.png)
+
+all: $(pngs)
+.PHONY: all
+
+%.png: %.pdf
+    gs -dSAFTER -dBATCH -dNOPAUSE -sDEVICE=png16m \
+       -dGraphicsAlphaBits=4 -dTextAlphaBits=4 -r300 \
+       -dBackgroundColor='16#ffffff' \
+       -sOutputFile=$@ &gt; /dev/null \
+       $&lt; &#38;&#38; \
+    mogrify -resize 500 $@
+</code></pre>
+
+	<p>With this Makefile in my graphics directory, just a single &#8220;make&#8221; 
+command is all it takes to convert my <span class="caps">PDF</span> images into
+anti-aliased <span class="caps">PNG</span> files, ready to post online.</p>
+
+
+	<p>And that&#8217;s it.</p>
+
+
+	<p>Do you have any tips or tricks for making good-looking graphics with
+R?  If so, please do share.</p>
+
+
+<div class="update">
+
+	<p><strong>Update:</strong>  There is one downside to the sexy, anti-aliased plots: they
+are not as compressible as the old-style jagged plots.  For the
+images above, for instance, the anti-aliased <span class="caps">PNG</span> file weighs in
+at 45&#160;KB, but the original <span class="caps">PNG</span> file is a feathery 4.7&#160;KB.
+So, if bandwidth is precious to you &#8211; or you&#8217;re planning on getting
+Slashdotted &#8211; you might want to stick
+with the jaggies.</p>
+
+
+</div>
+</div>
+<p class="meta">
+  Posted in <a href="/articles/category/statistics" rel="tag">statistics</a><br/>
+Tags <a href="/articles/tag/graphics" rel="tag">graphics</a>, <a href="/articles/tag/plots" rel="tag">plots</a>, <a href="/articles/tag/r" rel="tag">R</a>, <a href="/articles/tag/statistics" rel="tag">statistics</a>, <a href="/articles/tag/tips" rel="tag">tips</a>, <a href="/articles/tag/tricks" rel="tag">tricks</a><br/>
+<a href="/articles/2007/08/25/r-tips-and-tricks-producing-smooth-bitmap-plots#comments">8 comments</a><br/>
+<a href="/articles/2007/08/25/r-tips-and-tricks-producing-smooth-bitmap-plots#trackbacks">no trackbacks</a><br/>
+<a href="http://reddit.com/submit?url=http%3A%2F%2Fblog.moertel.com%2Farticles%2F2007%2F08%2F25%2Fr-tips-and-tricks-producing-smooth-bitmap-plots&amp;title=%20R%20tips%20and%20tricks%3A%20%20Producing%20smooth%20bitmap%20plots"
+         title="Submit to Reddit.com: &#x201C; R tips and tricks:  Producing smooth bitmap plots&#x201D;"
+      ><img alt="Reddit" border="0" height="18" src="/images/reddit.gif?1153169832" width="18" /></a>&#160;<a href="http://del.icio.us/post?v=2&amp;url=http%3A%2F%2Fblog.moertel.com%2Farticles%2F2007%2F08%2F25%2Fr-tips-and-tricks-producing-smooth-bitmap-plots&amp;title=%20R%20tips%20and%20tricks%3A%20%20Producing%20smooth%20bitmap%20plots"
+         title="Save to del.icio.us: &#x201C; R tips and tricks:  Producing smooth bitmap plots&#x201D;"
+      ><img alt="Delicious" border="0" height="16" src="/images/delicious.gif?1130112712" width="16" /></a>
+</p>
+
+  <a name="comments"></a><h4 class="blueblk">Comments</h4>
+      <p class="postmetadata alt">
+      <small><a href="#respond">Leave a response</a></small>
+    </p>
+    <ol class="comment-list" id="commentList">
+  
+    <li id="comment-551"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_551'); }"  onmouseout="Element.hide('admin_comment_551');" >
+  <div id="admin_comment_551" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/551', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-551&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/551" class="admintools">edit</a></div>
+  <a name="comment-551"></a>
+  
+  <cite><strong><a href="http://doorstop.net">Vineet Kumar</a></strong> </cite> said about 6 hours later:<br />
+  <p>You can probably cut the size of that new PNG by half if you convert it to an 8-bit colormap instead of 24-bit rgb.  Still, you&#8217;ll probably never get it as small as the jaggy one.</p>
+  </li>
+<li id="comment-553"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_553'); }"  onmouseout="Element.hide('admin_comment_553');" >
+  <div id="admin_comment_553" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/553', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-553&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/553" class="admintools">edit</a></div>
+  <a name="comment-553"></a>
+  
+  <cite><strong>Thibault</strong> </cite> said about 8 hours later:<br />
+  <p>Thanks for this tip Tom.
+But can we not produce SVG file from R? Or a simple Flash file? Also can we not display the PDF inline directly? 
+After all those pictures are originally vectors. Why converting them into bitmaps?
+Maybe I’m missing a point there, just a thought.</p>
+  </li>
+<li id="comment-554"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_554'); }"  onmouseout="Element.hide('admin_comment_554');" >
+  <div id="admin_comment_554" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/554', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-554&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/554" class="admintools">edit</a></div>
+  <a name="comment-554"></a>
+  
+  <cite><strong>Neil Mitchell</strong> </cite> said about 11 hours later:<br />
+  <p>Optipng will take 20% of size off the final one.</p>
+  </li>
+<li id="comment-556" class="author_comment"  onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_556'); }"  onmouseout="Element.hide('admin_comment_556');" >
+  <div id="admin_comment_556" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/556', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-556&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/556" class="admintools">edit</a></div>
+  <a name="comment-556"></a>
+  
+  <cite><strong>Tom Moertel</strong> </cite> said about 14 hours later:<br />
+  <p>Neil, thanks for the tip on <a href="http://optipng.sourceforge.net/" rel="nofollow">OptiPNG</a>. Thanks to you, my images are now about 20% slimmer.</p>
+
+
+	<p>Cheers!<br />
+&#8212;Tom</p>
+  </li>
+<li id="comment-558"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_558'); }"  onmouseout="Element.hide('admin_comment_558');" >
+  <div id="admin_comment_558" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/558', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-558&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/558" class="admintools">edit</a></div>
+  <a name="comment-558"></a>
+  
+  <cite><strong><a href="http://boredzo.org/blog/">Peter Hosey</a></strong> </cite> said about 22 hours later:<br />
+  <p>Even better: Use <a href="http://cybertherial.com/pngnq/pngnq.html" rel="nofollow">pngnq</a> and <a href="http://www.jonof.id.au/index.php?p=pngout" rel="nofollow">pngout</a>.</p>
+
+
+	<p>pngnq converts the image (lossily, if necessary) to 8-bit color while preserving the quality of the image, and nine times out of ten, it does an <strong>awesome</strong> job. pngout then compresses it, almost always better than pngcrush or optipng do. Together, they make a mighty combo.</p>
+
+
+	<p>In your case, plot2.png (the anti-aliased version) went from 45,716 bytes to 17,704 bytes (pngnq only) to 15,549 bytes (pngnq+pngout). That&#8217;s a savings of 66%.</p>
+
+
+	<p>The downside to pngout over pngcrush and optipng is that pngout is closed-source, so if that&#8217;s a deal-breaker for you, you&#8217;ll have to stick with optipng.</p>
+  </li>
+<li id="comment-559"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_559'); }"  onmouseout="Element.hide('admin_comment_559');" >
+  <div id="admin_comment_559" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/559', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-559&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/559" class="admintools">edit</a></div>
+  <a name="comment-559"></a>
+  
+  <cite><strong>Howard B. Golden</strong> </cite> said 1 day later:<br />
+  <p>My thoughts echo Thibault. Is there a vector format acceptable to almost all browsers? If so, I&#8217;d rather use that.</p>
+  </li>
+<li id="comment-561" class="author_comment"  onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_561'); }"  onmouseout="Element.hide('admin_comment_561');" >
+  <div id="admin_comment_561" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/561', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-561&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/561" class="admintools">edit</a></div>
+  <a name="comment-561"></a>
+  
+  <cite><strong>Tom Moertel</strong> </cite> said 2 days later:<br />
+  <p>Thibault and Howard, I&#8217;m completely in agreement that vector formats are the best way to represent plots.  The problem is that on the web there is no ubiquitously supported vector format.</p>
+
+
+	<p>Flash has fairly widespread support, but it is far from universal and additionally requires the use of a proprietary plug-in, making it unacceptable for people who prefer an open pipeline to the reader&#8217;s eyeballs.  SVG is more open and has the hope of being integrated into future web browsers, and the <a href="http://www.darkridge.com/~jake/RSvg/">RSvgDevice</a> CRAN package lets R produce SVG output, but <a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics#Support_for_SVG_in_browsers">browser support for SVG is poor</a>.</p>
+
+
+	<p>In theory, HTTP content negotiation could allow us to offer both SVG and PNG formats for an image, with the client&#8217;s browser selecting the preferred format, but here, too, the <a href="http://bitworking.org/news/WebServicesAndContentNegotiation">practice has not caught up with the theory</a>.</p>
+
+
+	<p>In sum, if you care about communicating on the web, you are stuck with raster image formats for the present.</p>
+
+
+	<p>Cheers,<br />Tom</p>
+  </li>
+<li id="comment-564"   onmouseover="if (getCookie('is_admin') == 'yes') { Element.show('admin_comment_564'); }"  onmouseout="Element.hide('admin_comment_564');" >
+  <div id="admin_comment_564" style="display: none"><a class="admintools" href="#" onclick="if (confirm('Are you sure you want to delete this comment?')) { new Ajax.Request('/articles/nuke_comment/564', {asynchronous:true, evalScripts:true, onComplete:function(request){new Effect.Puff(&quot;comment-564&quot;,{duration:0.6});}}); }; return false;">nuke</a><a href="/admin/comments/article/550/edit/564" class="admintools">edit</a></div>
+  <a name="comment-564"></a>
+  
+  <cite><strong>Ana Nelson</strong> </cite> said 7 days later:<br />
+  <p>This is also a useful approach if you are plotting a very large number of data points, for example data generated from a simulation, in which case a raster image file may actually be smaller and load much faster than a vector image which has to render each plotted data point individually.</p>
+  </li>
+
+  
+  </ol>
+
+  <a name="trackbacks"></a><h4 class="blueblk">Trackbacks</h4>
+  <p>
+    Use the following link to trackback from your own site:<br/>
+    <span class="light-bg">http://blog.moertel.com/articles/trackback/550</span>
+    </p>
+  
+
+<p class="postmetadata alt">
+  <small>
+  <a href="http://blog.moertel.com/xml/rss20/article/550/feed.xml" title="RSS Feed">RSS feed for this post</a>
+  <a href="http://blog.moertel.com/articles/trackback/550" >trackback uri</a>
+  </small>
+</p>
+
+  <form action="/articles/comment/550" class="commentform" id="commentform" method="post" onsubmit="new Ajax.Updater({success:'commentList'}, '/articles/comment/550', {asynchronous:true, evalScripts:true, insertion:Insertion.Bottom, onComplete:function(request){complete(request)}, onFailure:function(request){failure(request)}, onLoading:function(request){loading()}, parameters:Form.serialize(this)}); return false;">
+
+
+<div class="comment-box">
+  <div id="errors"></div>
+  <div id="preview" style="display: none"></div>
+
+  <a name="respond"></a>
+  <table cellpadding="4" cellspacing="0" class="frm-tbl">
+    <tr>
+      <td><p><label for="comment_author">Your name</label></p></td>
+      <td> <input id="comment_author" name="comment[author]" size="20" type="text" /> <small><a href="#" onclick="Element.toggle('guest_url'); Element.toggle('guest_email'); return false;">(leave url/email &#187;)</a></small></td>
+    </tr>
+    <tr id="guest_url" style="display:none;">
+      <td><p><label for="comment_url">Your blog</label></p></td>
+      <td> <input id="comment_url" name="comment[url]" size="30" type="text" /></td>
+    </tr>
+    <tr id="guest_email" style="display:none;">
+      <td><p><label for="comment_email">Your email</label></p></td>
+      <td> <input id="comment_email" name="comment[email]" size="30" type="text" /></td>
+    </tr>
+    <tr>
+      <td><p><label for="comment_body">Your message</label></p></td>
+      <td valign="top" colspan="2">
+        <textarea cols="40" id="comment_body" name="comment[body]" rows="20"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" id="frm-btns">
+      <span id="comment_loading" style="display:none;"><img alt="Spinner" src="/images/spinner.gif?1153753467" /></span>&nbsp;&nbsp;
+      <a href="/articles/markup_help/5" onclick="return popup(this, 'Typo Markup Help')">Comment Markup Help</a>
+      <a href="#" onclick="new Ajax.Updater('preview', '/articles/comment_preview',  {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;">Preview comment</a>      
+      <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
+      </td>
+    </tr>
+  </table>
+</div>
+</form>
+
+          <script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+        </div>
+        
+        <div id="sidebar">
+          
+            <div id="search-results"></div>
+            
+              
+      
+<div class="sidebar-node">
+  <h3>Advertisements</h3>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7843396314403828";
+google_ad_width = 180;
+google_ad_height = 90;
+google_ad_format = "180x90_0ads_al_s";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Tags</h3>
+<p style="overflow:hidden">
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/code">code</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/countpaths">countpaths</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/directory_tree_series">directory_tree_series</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/fedora">fedora</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/get">get</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/google">google</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/gwa">gwa</a></span>
+<span style="font-size:200%"><a href="/articles/tag/haskell">haskell</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/imdb">imdb</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/io">io</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/jam">jam</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/lectrotest">lectrotest</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/life">life</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/movies">movies</a></span>
+<span style="font-size:200%"><a href="/articles/tag/perl">perl</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/photography">photography</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/post">post</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/puzzles">puzzles</a></span>
+<span style="font-size:138.157894736842%"><a href="/articles/tag/r">R</a></span>
+<span style="font-size:177.631578947368%"><a href="/articles/tag/rails">rails</a></span>
+<span style="font-size:177.631578947368%"><a href="/articles/tag/ruby">ruby</a></span>
+<span style="font-size:98.6842105263158%"><a href="/articles/tag/safe">safe</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/security">security</a></span>
+<span style="font-size:177.631578947368%"><a href="/articles/tag/statistics">statistics</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/talks">talks</a></span>
+<span style="font-size:138.157894736842%"><a href="/articles/tag/testing">testing</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/trees">trees</a></span>
+<span style="font-size:118.421052631579%"><a href="/articles/tag/typo">typo</a></span>
+<span style="font-size:78.9473684210526%"><a href="/articles/tag/unsafe">unsafe</a></span>
+<span style="font-size:66.6666666666667%"><a href="/articles/tag/writing">writing</a></span>
+</p>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>About the author</h3>
+<ul>
+  <li><a href="/pages/about-tom">About Tom Moertel</a></li>
+</ul>
+
+<div style="text-align:center; margin-top:1em; border: solid 1px #ccc">
+<a href="http://blog.moertel.com/articles/2007/08/22/fun-with-statistics-estiating-blog-readership" style="text-decoration: none">now serving <img style="vertical-align:middle" src="http://blog.moertel.com/images/readers.png" alt="reader counter"/> readers</a>
+</div>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Subscribe!</h3>
+<ul>
+  <li><a href="http://fusion.google.com/add?feedurl=http%3A//blog.moertel.com/xml/atom/feed.xml"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" border="0" alt="Add to Google" /></a></li>
+<li><a href="http://www.bloglines.com/sub/http://blog.moertel.com/xml/atom/feed.xml">
+<img src="http://static.bloglines.com/images/sub_modern11.gif" border="0" alt="Subscribe with Bloglines" />
+</a></li>
+<li><a href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http://blog.moertel.com/xml/atom/feed.xml"><img  src="http://www.newsgator.com/images/ngsub1.gif" alt="Subscribe in NewsGator Online" border="0" /></a></li>
+<li><a href="http://www.rojo.com/add-subscription?resource=http://blog.moertel.com/xml/atom/feed.xml"><img src="http://www.rojo.com/corporate/images/rojowidered.gif" alt="Subscribe in Rojo" style="border:0" /></a></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Syndicate</h3>
+<ul>
+    <li><a href="/xml/atom10/feed.xml" title="Articles feed">Articles</a></li>
+  
+    <li><a href="/xml/atom10/comments/feed.xml" title="Comments feed">Comments</a></li>
+  
+  
+</ul>
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Popular stuff</h3>
+<ul class="popular-links">
+<li><a href="/">Blog home page</a></li>
+<li><a href="http://community.moertel.com/ss/space/Talks">Talks</a></li><li><a href="http://blog.moertel.com/articles/2006/10/18/a-type-based-solution-to-the-strings-problem">A type-based solution to the strings problem: a fitting end to XSS attacks?</a></li>
+<li><a href="http://blog.moertel.com/articles/2006/12/15/never-store-passwords-in-a-database">Never store passwords in a database!</a></li>
+<li><a href="http://blog.moertel.com/pages/seven-lessons-from-the-icfp-programming-contest">Seven lessons from the ICFP programming contest</a></li>
+<li><a href="http://community.moertel.com/ss/space/IMDB+Movie-Rating+Decoder+Ring">IMDB Movie-Rating Decoder Ring</a></li>
+<li><a href="http://blog.moertel.com/pages/coders-guide-to-coffee">A Coder's Guide To Coffee</a></li>
+<li><a href="http://community.moertel.com/ss/space/Programming+Fun+Challenge">Programming Fun Challenge</a></li>
+<li><a href="http://www.cafepress.com/lectrotest">The LectroTest Emporium</a> <em>New!</em></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Projects</h3>
+<ul>
+<li><a href="http://community.moertel.com/LectroTest">LectroTest</a> &#8211; automated Perl testing</li>
+<li><a href="http://community.moertel.com/ss/space/PXSL">PXSL</a> &#8211; sensible XML shorthand</li>
+<li><a href="http://community.moertel.com/ss/space/Cabal2rpm">Cabal2rpm</a> &#8211; Haskell pkgs to RPMs</li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Recent Comments</h3>
+<div>
+    <ul>
+                    <li>
+                                                <a href="/articles/2006/08/09/how-to-make-sure-your-servers-come-back-up-after-an-extended-power-outage#comment-586">by cleighto@erggroup.com on How to make sure your servers come back up after an extended power outage</a>
+            </li>
+                    <li>
+                                                <a href="/articles/2007/08/22/fun-with-statistics-estiating-blog-readership#comment-584">by Presh Talwalkar on Fun with statistics:  estimating blog readership (a do-it-yourself recipe)</a>
+            </li>
+                    <li>
+                                                <a href="/articles/2006/12/15/never-store-passwords-in-a-database#comment-583">by munchies on Never store passwords in a database!</a>
+            </li>
+                    <li>
+                                                <a href="/articles/2007/03/28/directory-tree-printing-in-haskell-part-three-lazy-i-o#comment-582">by petekaz on Directory-tree printing in Haskell, part three: lazy I/O</a>
+            </li>
+                    <li>
+                                                <a href="/articles/2007/08/22/fun-with-statistics-estiating-blog-readership#comment-580">by necrodome on Fun with statistics:  estimating blog readership (a do-it-yourself recipe)</a>
+            </li>
+        
+    </ul>
+</div>
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Advertisements</h3>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7843396314403828";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  
+<h3>Archives</h3>
+<ul id="archives">
+  
+    <li>
+      <a href="/articles/2007/9">September 2007</a>
+      <em>(4)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/8">August 2007</a>
+      <em>(6)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/7">July 2007</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/6">June 2007</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/5">May 2007</a>
+      <em>(3)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/4">April 2007</a>
+      <em>(3)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/3">March 2007</a>
+      <em>(5)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/2">February 2007</a>
+      <em>(3)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2007/1">January 2007</a>
+      <em>(1)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/12">December 2006</a>
+      <em>(1)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/11">November 2006</a>
+      <em>(4)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/10">October 2006</a>
+      <em>(5)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/9">September 2006</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/8">August 2006</a>
+      <em>(10)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/7">July 2006</a>
+      <em>(6)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/6">June 2006</a>
+      <em>(7)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/5">May 2006</a>
+      <em>(1)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/4">April 2006</a>
+      <em>(5)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/3">March 2006</a>
+      <em>(4)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/2">February 2006</a>
+      <em>(5)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2006/1">January 2006</a>
+      <em>(6)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/12">December 2005</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/11">November 2005</a>
+      <em>(9)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/10">October 2005</a>
+      <em>(3)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/9">September 2005</a>
+      <em>(4)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/8">August 2005</a>
+      <em>(5)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/7">July 2005</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/6">June 2005</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/5">May 2005</a>
+      <em>(3)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/4">April 2005</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/3">March 2005</a>
+      <em>(1)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/2">February 2005</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2005/1">January 2005</a>
+      <em>(1)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2004/12">December 2004</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2004/11">November 2004</a>
+      <em>(2)</em>
+    </li>
+  
+    <li>
+      <a href="/articles/2004/9">September 2004</a>
+      <em>(2)</em>
+    </li>
+  
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Categories</h3>
+<ul id="categories">
+  
+  <li><a href="/articles/category/asterisk">asterisk</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/books">books</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/business">business</a> <em>(3)</em></li>
+  
+  
+  <li><a href="/articles/category/engineering">engineering</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/espresso">espresso</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/food">food</a> <em>(3)</em></li>
+  
+  
+  <li><a href="/articles/category/freedom">freedom</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/fun-stuff">fun stuff</a> <em>(10)</em></li>
+  
+  
+  <li><a href="/articles/category/functional-programming">functional programming</a> <em>(10)</em></li>
+  
+  
+  <li><a href="/articles/category/good-stuff">good stuff</a> <em>(7)</em></li>
+  
+  
+  <li><a href="/articles/category/hacks">hacks</a> <em>(4)</em></li>
+  
+  
+  <li><a href="/articles/category/hardware">hardware</a> <em>(9)</em></li>
+  
+  
+  <li><a href="/articles/category/haskell">haskell</a> <em>(19)</em></li>
+  
+  
+  <li><a href="/articles/category/humor">humor</a> <em>(3)</em></li>
+  
+  
+  <li><a href="/articles/category/interesting-stuff">interesting stuff</a> <em>(9)</em></li>
+  
+  
+  <li><a href="/articles/category/linux">linux</a> <em>(4)</em></li>
+  
+  
+  <li><a href="/articles/category/marketing">marketing</a> <em>(5)</em></li>
+  
+  
+  <li><a href="/articles/category/math">math</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/movies">movies</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/networking">networking</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/perl">perl</a> <em>(14)</em></li>
+  
+  
+  <li><a href="/articles/category/photography">photography</a> <em>(7)</em></li>
+  
+  
+  <li><a href="/articles/category/pittsburgh">pittsburgh</a> <em>(7)</em></li>
+  
+  
+  <li><a href="/articles/category/privacy">privacy</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/programming">programming</a> <em>(25)</em></li>
+  
+  
+  <li><a href="/articles/category/programming-languages">programming languages</a> <em>(8)</em></li>
+  
+  
+  <li><a href="/articles/category/rails">rails</a> <em>(8)</em></li>
+  
+  
+  <li><a href="/articles/category/rants">rants</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/reviews">reviews</a> <em>(8)</em></li>
+  
+  
+  <li><a href="/articles/category/rpms">rpms</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/ruby">ruby</a> <em>(13)</em></li>
+  
+  
+  <li><a href="/articles/category/security">security</a> <em>(3)</em></li>
+  
+  
+  <li><a href="/articles/category/site-news">site news</a> <em>(11)</em></li>
+  
+  
+  <li><a href="/articles/category/statistics">statistics</a> <em>(11)</em></li>
+  
+  
+  <li><a href="/articles/category/sysadmin">sysadmin</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/talks">talks</a> <em>(4)</em></li>
+  
+  
+  <li><a href="/articles/category/testing">testing</a> <em>(7)</em></li>
+  
+  
+  <li><a href="/articles/category/typo">typo</a> <em>(7)</em></li>
+  
+  
+  <li><a href="/articles/category/usability">usability</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/web-development">web development</a> <em>(14)</em></li>
+  
+  
+  <li><a href="/articles/category/wondrous-oddities">wondrous oddities</a> <em>(1)</em></li>
+  
+  
+  <li><a href="/articles/category/work">work</a> <em>(2)</em></li>
+  
+  
+  <li><a href="/articles/category/writing">writing</a> <em>(4)</em></li>
+  
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3>Advertisements</h3>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7843396314403828";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+</div>
+
+
+  
+
+
+            
+            
+            <a href="http://www.typosphere.org/" class="powered"><img alt="Powered" src="/images/powered.gif?1153753467" /></a>
+            </div>
+
+            <br clear="all" />
+      </div>
+      <div id="footer">
+        <ul>
+          <li><a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a></li>
+          <li><a href="http://jigsaw.w3.org/css-validator/validator?uri=http://blog.moertel.com/">Valid CSS</a></li>
+        </ul>
+	<p>&#169; 2003&#8211;07 Thomas G. Moertel.  All rights reserved worldwide.<br/>
+        Unless otherwise specified, my source code on this site is licensed under the <a href="http://www.gnu.org/licenses/gpl.txt">GNU GPL</a>.</p>
+      </div>
+  </div>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-604725-1";
+urchinTracker();
+</script>
+
+</body>
+</html>
+

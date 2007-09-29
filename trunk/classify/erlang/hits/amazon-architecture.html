@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Amazon Architecture | High Scalability</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="/files/garland_favicon.gif" type="image/x-icon" />
+    <style type="text/css" media="all">@import "/files/css/cb99d5d75eb066aef67a2a8c50f07290.css";</style>
+    <script type="text/javascript" src="/misc/jquery.js"></script>
+<script type="text/javascript" src="/misc/drupal.js"></script>
+<script type="text/javascript" src="/misc/textarea.js"></script>
+    <style type="text/css" media="print">@import "/themes/garland/print.css";</style>
+    <!--[if lt IE 7]>
+    <style type="text/css" media="all">@import "/themes/garland/fix-ie.css";</style>
+    <![endif]-->
+  </head>
+  <body class="sidebars">
+
+<!-- Layout -->
+  <div id="header-region" class="clear-block"></div>
+
+    <div id="wrapper">
+    <div id="container" class="clear-block">
+
+      <div id="header">
+        <div id="logo-floater">
+        <h1><a href="/" title="High Scalability Building bigger, faster, more reliable websites."><span>High Scalability</span> Building bigger, faster, more reliable websites.</a></h1>        </div>
+
+                  <ul class="links primary-links"><li class="first menu-1-1-2"><a href="http://highscalability.com" title="Go to the main High Scalability page." class="menu-1-1-2">Home</a></li>
+<li class="menu-1-2-2"><a href="/start-here" title="Learn about how you get the most out of the High Scalibility web site." class="menu-1-2-2">Start Here</a></li>
+<li class="menu-1-3-2"><a href="http://highscalability.com/forum" title="Forums. Don&#039;t be afraid to ask if you have a question.  Someone will probably be able to help." class="menu-1-3-2">Ask a Question</a></li>
+<li class="menu-1-4-2"><a href="http://highscalability.com/links/weblink/24" title="A list of real life examples on how to build large scalable websites. Learn by example." class="menu-1-4-2">Real Life Architectures</a></li>
+<li class="menu-1-5-2"><a href="http://highscalability.com/links/weblink" title="Take a look at all content on this website organized by category." class="menu-1-5-2">All Weblinks</a></li>
+<li class="menu-1-6-2"><a href="http://highscalability.com/glossary" title="A list of common terms and products." class="menu-1-6-2">Glossary</a></li>
+<li class="menu-1-7-2"><a href="http://highscalability.jobamatic.com/a/jbb/find-jobs" title="Only the cream of the industry reads a site like this. Some of them may need a job and you can reach them here." class="menu-1-7-2">Jobs</a></li>
+<li class="menu-1-8-2"><a href="http://highscalability.com/node/add/weblink" title="Add an interesting link to this website." class="menu-1-8-2">Submit a Link</a></li>
+<li class="last menu-1-9-2"><a href="/contact" title="Contact a real live person." class="menu-1-9-2">Contact</a></li>
+</ul>                
+      </div> <!-- /header -->
+
+              <div id="sidebar-left" class="sidebar">
+                    <div id="block-user-1" class="clear-block block block-user">
+
+  <h2>Navigation</h2>
+
+  <div class="content">
+<ul class="menu">
+<li class="collapsed"><a href="/node/add">Create content</a></li>
+<li class="leaf"><a href="/tracker">Recent posts</a></li>
+<li class="leaf"><a href="http://highscalability.com/book-store" title="Books useful in building your scalable web site.">Useful Books</a></li>
+<li class="leaf"><a href="http://highscalability.com/links/weblink/70" title="Tools, software, products and anything else people have found useful when building their websites.">Useful Products</a></li>
+<li class="leaf"><a href="http://highscalability.com/tags/strategy" title="Strageties you can use to help scale your website.">Useful Strategies</a></li>
+<li class="leaf"><a href="http://highscalability.com/links/weblink/75" title="Blogs you may find useful in building scalable websites.">Useful Blogs</a></li>
+<li class="leaf"><a href="http://highscalability.com/links/weblink/83" title="Papers that can help you build a better website.">Useful Papers</a></li>
+
+</ul>
+</div>
+</div>
+<div id="block-adsense-0" class="clear-block block block-adsense">
+
+
+  <div class="content"><!--adsense: cached-->
+<div class="adsense">
+<script type="text/javascript"><!--
+google_ad_client = "pub-9451539202293335";
+google_ad_type = "text";
+google_ad_channel = "";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_color_border = "d5b048";
+google_color_bg = "FFFFFF";
+google_color_link = "971702";
+google_color_url = "971702";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div>
+</div>
+<div id="block-block-2" class="clear-block block block-block">
+
+
+  <div class="content"><script type='text/javascript'><!--
+amazon_ad_tag='possiboutpos-20'; 
+amazon_ad_width='180'; 
+amazon_ad_height='150'; 
+amazon_color_background='EFEFCC'; 
+amazon_color_border='A43907'; 
+amazon_color_logo='FFFFFF'; 
+amazon_color_link='A43907'; 
+amazon_ad_logo='hide'; 
+amazon_ad_title=' '; //--></script>
+<script type='text/javascript' src='http://www.assoc-amazon.com/s/asw.js'></script></div>
+</div>
+<div id="block-user-3" class="clear-block block block-user">
+
+  <h2>Who's online</h2>
+
+  <div class="content">There are currently <em>1 user</em> and <em>91 guests</em> online.<div class="item-list"><h3>Online users</h3><ul><li><a href="/user/todd-hoff" title="View user profile.">Todd Hoff</a></li></ul></div></div>
+</div>
+<div id="block-user-0" class="clear-block block block-user">
+
+  <h2>User login</h2>
+
+  <div class="content"><form action="/amazon-architecture?destination=node%2F35"  method="post" id="user-login-form">
+<div><div class="form-item">
+ <label for="edit-name">Username: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="60" name="name" id="edit-name"  size="15" value="" class="form-text required" />
+</div>
+<div class="form-item">
+ <label for="edit-pass">Password: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="password" name="pass" id="edit-pass"  maxlength="60"  size="15"  class="form-text required" />
+</div>
+<input type="submit" name="op" id="edit-submit" value="Log in"  class="form-submit" />
+<div class="item-list"><ul><li><a href="/user/register" title="Create a new user account.">Create new account</a></li><li><a href="/user/password" title="Request new password via e-mail.">Request new password</a></li></ul></div><input type="hidden" name="form_id" id="edit-user-login-block" value="user_login_block"  />
+
+</div></form>
+</div>
+</div>
+<div id="block-node-0" class="clear-block block block-node">
+
+  <h2>Syndicate</h2>
+
+  <div class="content"><a href="/rss.xml" class="feed-icon"><img src="/misc/feed.png" alt="Syndicate content" title="Syndicate content" width="16" height="16" /></a></div>
+</div>
+        </div>
+      
+      <div id="center"><div id="squeeze"><div class="right-corner"><div class="left-corner">
+          <div class="breadcrumb"><a href="/">Home</a></div>          
+                    <h2>Amazon Architecture</h2>          
+          
+                              
+<div id="node-35" class="node">
+
+<div class="picture"><a href="/user/todd-hoff" title="View user profile."><img src="http://highscalability.com/files/pictures/picture-5.jpg" alt="Todd Hoff&#039;s picture" title="Todd Hoff&#039;s picture"  /></a></div>
+
+      <span class="submitted">Tue, 09/18/2007 - 19:44 — <a href="/user/todd-hoff" title="View user profile.">Todd Hoff</a></span>
+  
+  <div class="content">
+    <p><ul id="links_weblink_list"><li><a href="/links/goto/35/26/links_weblink" title="http://highscalability.com/amazon-architecture" class="outgoing"> Amazon Architecture (1882)</a></li></ul><!-- google_ad_section_start --><p> <I>This is a wonderfully informative Amazon update based on Joachim Rohde's discovery of an interview with Amazon's CTO. You'll learn about how Amazon organizes their teams around services, the CAP theorem of building scalable systems, how they deploy software, and a lot more. Many new additions from the ACM Queue article have also been included.</I></p>
+<p>Amazon grew from a tiny online bookstore to one of the largest stores on earth. They did it while pioneering new and interesting ways to rate, review, and recommend products. Greg Linden shared is version of Amazon's birth pangs in a series of blog articles</p>
+<p>Site: <a href="http://amazon.com" title="http://amazon.com">http://amazon.com</a></p>
+<p><H2> Information Sources </H2><br />
+<LI> <A HREF="http://glinden.blogspot.com/2006/05/early-amazon-end.html"> Early Amazon by Greg Linden</A><br />
+<LI> <A HREF="http://news.com.com/2100-1001-275155.html">How <a class="glossary-term" href="/tags/linux"><acronym title="Linux: Linux is a free Unix-type operating system originally created by Linus Torvalds with the assistance of developers around the world. </p>
+<p>Linux is a very popular OS in data centers because it is free, runs on a lot of hardware, has tons of available software,  highly performing, easily virtualizable, and flexible. All good attributes when you are starting a web site and hoping to grow with demand.</p>
+<p>Some popular versions of Linux used in data centers are: CentOS, Red Hat, and Ubuntu.<br />
+http://www.linux.org/">Linux</acronym></a> saved Amazon millions</A><br />
+<LI> <A HREF="http://www.se-radio.net/index.php?post_id=157593">Interview Werner Vogels</A> - Amazon's CTO<br />
+<LI> <a class="glossary-term" href="/glossary/term/37"><acronym title="async: Fire-and-forget information exchange. Participants in an asynchronous messaging system don&#039;t have to wait for a response from the recipient, because they can rely on the messaging infrastructure to ensure delivery. This is a vital ingredient in loosely coupled systems such as web services, because it allows participants to communicate reliably even if one of the parties is temporarily offline, busy, or unobtainable. Asynchronous messaging systems are also vastly more scalable than those that rely on direct connections, such as remote procedure calls (RPCs).</p>
+<p>http://looselycoupled.com/glossary/asynchronous%20messaging">Asynchronous</acronym></a> Architectures - a nice <A HREF="http://www.webperformancematters.com/journal/2007/8/21/asynchronous-architectures-4.html">summary </A> of Werner Vogels' talk by Chris Loosley<br />
+<LI> <A HREF="http://www.acmqueue.com/modules.php?name=Content&amp;pa=showpage&amp;pid=388">Learning from the Amazon technology platform</A> - A Conversation with Werner Vogels<br />
+<LI><A HREF="http://www.allthingsdistributed.com">Werner Vogels' Weblog</A> - building scalable and robust distributed systems</p>
+<p><H2> Platform </H2></p>
+<p><LI> Linux<br />
+<LI> <a class="glossary-term" href="/tags/oracle"><acronym title="Oracle: A powerful high end RDBMS.</p>
+<p>http://www.oracle.com/">Oracle</acronym></a><br />
+<LI> C++<br />
+<LI> <a class="glossary-term" href="/tags/perl"><acronym title="Perl: Perl is a dynamic programming language created by Larry Wall and first released in 1987. Perl borrows features from a variety of other languages including C, shell scripting (sh), AWK, sed and Lisp.</p>
+<p>It&#039;s powerful text process features and amazing library support made it an early favorite language choice for website designers. Other languages like PHP, Java, and .Net have since become more popular, but it still is favorite of many.</p>
+<p>http://www.perl.com/">Perl</acronym></a><br />
+<LI> Mason<br />
+<LI> <a class="glossary-term" href="/tags/java"><acronym title="Java: Java is a programming language originally developed by Sun Microsystems and released in 1995. Java applications are typically compiled to bytecode, although compilation to native machine code is also possible. At runtime, bytecode is usually either interpreted or compiled to native code for execution, although direct hardware execution of bytecode by a Java processor is also possible.</p>
+<p>Java is very popular on the server side because it is free, relatively high performing. has a large number of useful libraries, and great development tools. Websites build using Java generally use application servers and are accessed using servelets.</p>
+<p>http://www.java.com/en/">Java</acronym></a><br />
+<LI> Jboss<br />
+<LI> Servlets</p>
+<p><H2> The Stats </H2></p>
+<p><LI> More than 55 million active customer accounts.<br />
+<LI> More than 1 million active retail partners worldwide.<br />
+<LI> Between 100-150 services are accessed to build a page.</p>
+<p><H2> The Architecture </H2></p>
+<p><LI> What is it that we really mean by scalability? A service is said to be scalable if when we increase the resources in a system, it results in increased performance in a manner proportional to resources added. Increasing performance in general means serving more units of work, but it can also be to handle larger units of work, such as when datasets grow.</p>
+<p><LI>The big architectural change that Amazon made was to move from a two-tier monolith to a fully-distributed, decentralized, services platform serving many different applications.<br />
+<LI> Started as one application talking to a back end. Written in C++.<br />
+<LI> It grew. For years the scaling efforts at Amazon focused on making the back-end databases scale to hold more items, more customers, more orders, and to support multiple international sites. In 2001 it became clear that the front-end application couldn't scale anymore. The databases were split into small parts and around each part and created a services interface that was the only way to access the data.<br />
+<LI> The databases became a shared resource that made it hard to scale-out the overall business. The front-end and back-end processes were restricted in their evolution because they were shared by many different teams and processes.<br />
+<LI> Their architecture is loosely coupled and built around services. A service-oriented architecture gave them the isolation that would allow building many software components rapidly and independently.<br />
+<LI> Grew into hundreds of services and a number of application servers that aggregate the information from the services. The application that renders the Amazon.com Web pages is one such application server. So are the applications that serve the Web-services interface, the customer service application, and the seller interface.<br />
+<LI> Many third party technologies are hard to scale to Amazon size. Especially communication infrastructure technologies. They work well up to a certain scale and then fail. So they are forced to build their own.<br />
+<LI> Not stuck with one particular approach. Some places they use jboss/java, but they use only servlets, not the rest of the J2EE stack.<br />
+<LI> C++ is uses to process requests. Perl/Mason is used to build content.<br />
+<LI> Amazon doesn't like middleware because it tends to be  framework and not a tool. If you use a middleware package you get lock-in around the software patterns they have chosen. You'll only be able to use their software. So if you want to use different packages you won't be able to. You're stuck. One event loop for messaging, data persistence,<br />
+<a class="glossary-term" href="/glossary/term/19"><acronym title="AJAX: Ajax, or AJAX, is a web development technique used for creating interactive web applications. The intent is to make web pages feel more responsive by exchanging small amounts of data with the server behind the scenes, so that the entire web page does not have to be reloaded each time the user requests a change. This is intended to increase the web page&#039;s interactivity, speed, functionality, and usability.</p>
+<p>http://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</acronym></a>, etc. Too complex. If middleware was available in smaller components, more as a tool than a framework, they would be more interested.<br />
+<LI> The SOAP web stack seems to want to solve all the same distributed systems problems all over again.<br />
+<LI> Offer both SOAP and REST web services. 30% use SOAP. These tend to be Java and .NET users and use WSDL files to generate remote object interfaces. 70% use REST. These tend to be <a class="glossary-term" href="/tags/php"><acronym title="PHP: PHP is a reflective programming language originally designed for producing dynamic web pages. PHP is used mainly in server-side scripting, but can be used from a command line interface or in standalone graphical applications. </p>
+<p>PHP is popular because it&#039;s free, relatively easy to program in, and has a lot of features for producing websites quickly.</p>
+<p>http://www.php.net/">PHP</acronym></a> or PERL users.<br />
+<LI> In either SOAP or REST developers can get an object interface to Amazon.  Developers just want to get job done. They don't care what goes over the wire.<br />
+<LI> Amazon wanted to build an open community around their services. Web services were chosed because it's simple. But hat's only on the perimeter. Internally it's a service oriented architecture. You can only access the data via the interface. It's described in WSDL, but they use their own encapsulation and transport mechanisms.<br />
+<LI> Teams are Small and are Organized Around Services<br />
+- Services are the independent units delivering functionality within Amazon. It's also how Amazon is organized internally in terms of teams.<br />
+- If you have a new business idea or problem you want to solve you form a team. Limit the team to 8-10 people because communication hard. They are called two pizza teams. The number of people you can feed off two pizzas.<br />
+- Teams are small. They are assigned authority and empowered to solve a problem as a service in anyway they see fit.<br />
+- As an example, they created a team to find phrases within a book that are unique to the text. This team built a separate service interface for that feature and they had authority to do what they needed.<br />
+- Extensive A/B testing is used to integrate a new service . They see what the impact is and take extensive measurements.<br />
+<LI> Deployment<br />
+- They create special infrastructure for managing dependencies and doing a <a class="glossary-term" href="/glossary/term/80"><acronym title="deployment: Deployment is installing, configuring, and managing your website. Deployment includes making sure you can deploy new capacity easily.">deployment</acronym></a>.<br />
+- Goal is to have all right services to be deployed on a box. All application code, monitoring, licensing, etc should be on a box.<br />
+- Everyone has a home grown system to solve these problems.<br />
+- Output of deployment process is a virtual machine. You can use <a class="glossary-term" href="/tags/ec2"><acronym title="EC2: Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud. It is designed to make web-scale computing easier for developers.</p>
+<p>http://aws.amazon.com/">EC2</acronym></a> to run them.<br />
+<LI>Work From the Customer Backwards to Verify a New Service is Worth Doing<br />
+- Work from the customer backward. Focus on value you want to deliver<br />
+for the customer.<br />
+- Force developers to focus on value delivered to the customer instead of building technology first and then figuring how to use it.<br />
+- Start with a press release of what features the user will see and work backwards to check that you are building something valuable.<br />
+- End up with a design that is as minimal as possible. Simplicity is the key if you really want to build large distributed systems.<br />
+<LI> State Management is the Core Problem for Large Scale Systems<br />
+- Internally they can deliver infinite storage.<br />
+- Not all that many operations are stateful. Checkout steps are stateful.<br />
+- Most recent clicked web page service has recommendations based on session IDs.<br />
+- They keep track of everything anyway so it's not a matter of keeping state. There's little separate state that needs to be kept for a session. The services will already be keeping the information so you just use the services.<br />
+<LI> Eric Brewer's CAP Theorem or the Three properties of Systems<br />
+- Three properties of a system: consistency, availability, tolerance to network partitions.<br />
+- You can have at most two of these three properties for any shared-data system.<br />
+- Partitionability: divide nodes into small groups that can see other groups, but they can't see everyone.<br />
+- Consistency: write a value and then you read the value you get the same value back. In a partitioned system there are windows where that's not true.<br />
+- Availability: may not always be able to write or read. The system will say you can't write because it wants to keep the system consistent.<br />
+- To scale you have to partition, so you are left with choosing either high consistency or high availability for a particular system. You must find the right overlap of availability and consistency.<br />
+- Choose a specific approach based on the needs of the service.<br />
+- For the checkout process you always want to honor requests to add items to a shopping cart because it's revenue producing. In this case you choose high availability. Errors are hidden from the customer and sorted out later.<br />
+- When a customer submits an order you favor consistency because several services--credit card processing, shipping and handling, reporting--are simultaneously accessing the data.</p>
+<p><H2> Lessons Learned </H2></p>
+<p><LI> You must change your mentality to build really scalable systems. Approach chaos in a probabilistic sense that things will work well. In traditional systems we present a perfect world where nothing goes down and then we build complex algorithms (agreement technologies) on this perfect world. Instead,  take it for granted stuff fails, that's<br />
+reality, embrace it. For example, go more with a fast reboot and fast recover approach. With a decent spread of data and services you might get close to 100%.  Create self-healing, self-organizing lights out operations.</p>
+<p><LI> Create a shared nothing  infrastructure. Infrastructure can become a shared resource for development and deployment with the same downsides as shared resources in your logic and data tiers. It can cause locking and blocking and dead lock. A service oriented architecture allows the creation of a parallel and isolated development process that  scales feature development to match your growth.</p>
+<p><LI> Open up you system with APIs and you'll create an ecosystem around your application.</p>
+<p><LI> Only way to manage as large distributed system is to keep things as simple as possible. Keep things simple by making sure there are no hidden requirements and hidden dependencies in the design. Cut technology to the minimum you need to solve the problem you have. It doesn't help the company to create artificial and unneeded layers of complexity.</p>
+<p><LI> Organizing around services gives agility. You can do things in parallel is because the output is a service. This allows fast time to market.  Create an infrastructure that allows services to be built very fast. </p>
+<p><LI>  There's bound to be problems with anything that produces hype before real implementation</p>
+<p><LI> Use SLAs internally to manage services.</p>
+<p><LI> Anyone can very quickly add web services to their product. Just implement one part of your product as a service and start using it.</p>
+<p><LI> Build your own infrastructure for performance, reliability, and cost control reasons. By building it yourself you never have to say you went down because it was company X's fault. Your software may not be more reliable than others, but you can fix, debug, and deployment much quicker than when working with a 3rd party.</p>
+<p><LI> Use measurement and objective debate to separate the good from the bad. I've been to several presentations by ex-Amazoners and this is the aspect of Amazon that strikes me as uniquely different and interesting from other companies.  Their deep seated ethic is to expose real customers to a choice and see which one works best and to make decisions based on those tests. </p>
+<p><A HREF="http://highscalability.com/blog-occam-s-razor-avinash-kaushik">Avinash<br />
+Kaushik</A> calls this getting rid of the influence of the HiPPO's, the highest paid people in the room.  This is done with techniques like A/B testing and <a class="glossary-term" href="/tags/web-analytics-0"><acronym title="Web Analytics: Web analytics is the study of the behaviour of website visitors. In a commercial context, web analytics especially refers to the use of data collected from a web site to determine which aspects of the website work towards the business objectives; for example, which landing pages encourage people to make a purchase.</p>
+<p>Data collected almost always includes web traffic reports. It may also include e-mail response rates, direct mail campaign data, sales and lead information, user performance data such as click heat mapping, or other custom metrics as needed. This data is typically compared against key performance indicators for performance, and used to improve a web site or marketing campaign&#039;s audience response.</p>
+<p>http://en.wikipedia.org/wiki/Web_analytics">Web Analytics</acronym></a>. If you have a question about what you should do code it up, let people use it, and see which alternative gives you the results you want.</p>
+<p><LI> Create a frugal culture. Amazon used doors for desks, for example.</p>
+<p><LI> Know what you need. Amazon has a bad experience with an early recommender system that didn't work out: "This wasn't what Amazon needed. <a class="glossary-term" href="/tags/book"><acronym title="Book: A book related in some way to making high scalability websites.">Book</acronym></a> recommendations at Amazon needed to work from sparse data, just a few ratings or purchases. It needed to be fast. The system needed to scale to massive numbers of customers and a huge catalog. And it needed to enhance discovery, surfacing books from deep in the catalog that readers wouldn't find on their own."</p>
+<p><LI> People's side projects, the one's they follow because they are interested, are often ones where you get the most value and innovation. Never underestimate the power of wandering where you are most interested.</p>
+<p><LI> Involve everyone in making dog food. Go out into the warehouse and pack books during the Christmas rush. That's teamwork.</p>
+<p><LI> Create a staging site where you can run thorough tests before releasing into the wild. </p>
+<p><LI> A robust, clustered, replicated, distributed file system is perfect for read-only data used by the web servers.</p>
+<p><LI> Have a way to rollback if an update doesn't work. Write the tools if necessary.</p>
+<p><LI> Switch to a deep services-based architecture (<a href="http://webservices.sys-con.com/read/262024.htm" title="http://webservices.sys-con.com/read/262024.htm">http://webservices.sys-con.com/read/262024.htm</a>).</p>
+<p><LI> Look for three things in interviews: enthusiasm, creativity, competence. The single biggest predictor of success at Amazon.com was enthusiasm.</p>
+<p><LI> Hire a Bob. Someone who knows their stuff, has incredible debugging skills and system knowledge, and most importantly, has the stones to tackle the worst high pressure problems imaginable by just leaping in.</p>
+<p><LI> Innovation can only come from the bottom. Those closest to the problem are in the best position to solve it. any organization that depends on innovation must embrace chaos. Loyalty and obedience are not your tools. </p>
+<p><LI> Creativity must flow from everywhere.</p>
+<p><LI> Everyone must be able to experiment, learn, and iterate. Position, obedience, and tradition should hold no power. For innovation to flourish, measurement must rule.</p>
+<p><LI> Embrace innovation. In front of the whole company, Jeff Bezos would give an old Nike shoe as "Just do it" award to those who innovated.</p>
+<p><LI> Don't pay for performance. Give good perks and high pay, but keep it flat. Recognize exceptional work in other ways. Merit pay sounds good but is almost impossible to do fairly in large organizations. Use non-monetary awards, like an old shoe. It's a way of saying thank you, somebody cared.</p>
+<p><LI> Get big fast. The big guys like Barnes and Nobel are on your tail. Amazon wasn't even the first, second, or even third book store on the web, but their vision and drive won out in the end.</p>
+<p><LI> In the data center, only 30 percent of the staff time spent on infrastructure issues related to value creation, with the remaining 70 percent devoted to dealing with the "heavy lifting" of hardware procurement, software management, load balancing, maintenance, scalability challenges and so on.</p>
+<p><LI> Prohibit direct database access by clients. This means you can make you service scale and be more reliable without involving your clients. This is much like Google's ability to independently distribute improvements in their stack to the benefit of all applications.</p>
+<p><LI> Create a single unified service-access mechanism. This allows for the easy aggregation of services, decentralized request routing, distributed request tracking, and other advanced infrastructure techniques.</p>
+<p><LI> Making Amazon.com available through a Web services interface to any developer in the world free of charge has also been a major success because it has driven so much innovation that they couldn't have thought of or built on their own.</p>
+<p><LI> Developers themselves know best which tools make them most productive and which tools are right for the job.</p>
+<p><LI> Don't impose too many constraints on engineers. Provide incentives for some things, such as integration with the monitoring system and other infrastructure tools. But for the rest, allow teams to function as independently as possible. </p>
+<p><LI> Developers are like artists; they produce their best work if they have the freedom to do so, but they need good tools. Have many support tools that are of a self-help nature. Support an environment around the service development that never gets in the way of the development itself.</p>
+<p><LI> You build it, you run it. This brings developers into contact with the day-to-day operation of their software. It also brings them into day-to-day contact with the customer. This customer feedback loop is essential for improving the quality of the service.</p>
+<p><LI> Developers should spend some time with customer service every two years.  Their they'll actually listen to customer service calls, answer customer service e-mails, and really understand the impact of the kinds of things they do as technologists.</p>
+<p><LI> Use a "voice of the customer," which is a realistic story from a customer about some specific part of your site's experience. This helps managers and engineers connect with the fact that we build these technologies for real people. Customer service statistics are an early indicator if you are doing something wrong, or what the real pain points are for your customers.</p>
+<p><LI> Infrastructure for Amazon, like for Google, is a huge competitive advantage. They can build very complex applications out of primitive services that are by themselves relatively simple. They can scale their operation independently, maintain unparalleled system availability, and introduce new services quickly without the need for massive reconfiguration. </p>
+<!-- google_ad_section_end -->  </div>
+
+  <div class="clear-block clear">
+    <div class="meta">
+          <div class="terms"><ul class="links inline"><li class="first taxonomy_term_24"><a href="/tags/example" rel="tag" title="An example website architecture that we can learn from." class="taxonomy_term_24">Example</a></li>
+<li class="taxonomy_term_50"><a href="/tags/java" rel="tag" title="Java is a programming language originally developed by Sun Microsystems and released in 1995. Java applications are typically compiled to bytecode, although compilation to native machine code is also possible. At runtime, bytecode is usually either interpreted or compiled to native code for execution, although direct hardware execution of bytecode by a Java processor is also possible.
+
+Java is very popular on the server side because it is free, relatively high performing. has a large number of useful libraries, and great development tools. Websites build using Java generally use application servers and are accessed using servelets.
+
+http://www.java.com/en/" class="taxonomy_term_50">Java</a></li>
+<li class="taxonomy_term_13"><a href="/tags/linux" rel="tag" title="Linux is a free Unix-type operating system originally created by Linus Torvalds with the assistance of developers around the world. 
+
+Linux is a very popular OS in data centers because it is free, runs on a lot of hardware, has tons of available software,  highly performing, easily virtualizable, and flexible. All good attributes when you are starting a web site and hoping to grow with demand.
+
+Some popular versions of Linux used in data centers are: CentOS, Red Hat, and Ubuntu.
+http://www.linux.org/" class="taxonomy_term_13">Linux</a></li>
+<li class="taxonomy_term_51"><a href="/tags/oracle" rel="tag" title="A powerful high end RDBMS.
+
+http://www.oracle.com/" class="taxonomy_term_51">Oracle</a></li>
+<li class="last taxonomy_term_53"><a href="/tags/perl" rel="tag" title="Perl is a dynamic programming language created by Larry Wall and first released in 1987. Perl borrows features from a variety of other languages including C, shell scripting (sh), AWK, sed and Lisp.
+
+It&#039;s powerful text process features and amazing library support made it an early favorite language choice for website designers. Other languages like PHP, Java, and .Net have since become more popular, but it still is favorite of many.
+
+http://www.perl.com/" class="taxonomy_term_53">Perl</a></li>
+</ul></div>
+        </div>
+
+          <div class="links"><ul class="links inline"><li class="first links_weblink"><a href="/links/goto/35/26/links_weblink" title="http://highscalability.com/amazon-architecture" class="outgoing links_weblink">Visit Amazon Architecture</a></li>
+<li class="last statistics_counter"><span class="statistics_counter">24593 reads</span></li>
+</ul></div>
+      </div>
+
+</div><div id="comments"><h2 class="comments">Comments</h2><a id="comment-94"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Thu, 08/09/2007 - 16:22 — <a href="http://hervalicio.us/blog">herval</a> (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-94" class="active">Jeff.. Bazos?</a></h3>
+
+    <div class="content">
+       <p>Jeff.. Bazos?</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/94" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-164"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Wed, 08/29/2007 - 22:07 — Joachim Rohde (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-164" class="active">Werner Vogels, the CTO of</a></h3>
+
+    <div class="content">
+       <p>Werner Vogels, the CTO of amazon, spoke a tiny bit about technical details on SE-Radio. You can find the podcast under <a href="http://www.se-radio.net/index.php?post_id=157593" title="http://www.se-radio.net/index.php?post_id=157593">http://www.se-radio.net/index.php?post_id=157593</a><br />
+Interesting episode.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/164" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-172"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Fri, 08/31/2007 - 05:27 — <a href="/user/todd-hoff" title="View user profile.">Todd Hoff</a></span>
+  
+  
+  <div class="picture"><a href="/user/todd-hoff" title="View user profile."><img src="http://highscalability.com/files/pictures/picture-5.jpg" alt="Todd Hoff&#039;s picture" title="Todd Hoff&#039;s picture"  /></a></div>
+    <h3><a href="/amazon-architecture#comment-172" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>That is a good interview. Thanks. I'll be adding the new information soon.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/172" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-203"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Fri, 09/07/2007 - 08:39 — <a href="http://sanrin.info">Arturo Fernandez</a> (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-203" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>Amazon uses <a class="glossary-term" href="/tags/perl"><acronym title="Perl: Perl is a dynamic programming language created by Larry Wall and first released in 1987. Perl borrows features from a variety of other languages including C, shell scripting (sh), AWK, sed and Lisp.
+
+It&#039;s powerful text process features and amazing library support made it an early favorite language choice for website designers. Other languages like PHP, Java, and .Net have since become more popular, but it still is favorite of many.
+
+http://www.perl.com/">Perl</acronym></a> and Mason.<br />
+See: <a href="http://www.masonhq.com/?MasonPoweredSites" title="http://www.masonhq.com/?MasonPoweredSites">http://www.masonhq.com/?MasonPoweredSites</a></p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/203" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-211"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Tue, 09/11/2007 - 07:52 — <a href="http://www.softhall.com">Alexei A. Korolev</a> (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-211" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>as i see they reduce c++ part and move to j2ee?</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/211" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-232"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Tue, 09/18/2007 - 02:30 — Anonymous (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-232" class="active">It&#039;s WSDL</a></h3>
+
+    <div class="content">
+       <p>I am not sure how you can get that one wrong, unless you are a manager, but even then some engineer would school you 'til Sunday.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/232" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-234"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Tue, 09/18/2007 - 04:37 — <a href="/user/todd-hoff" title="View user profile.">Todd Hoff</a></span>
+  
+  
+  <div class="picture"><a href="/user/todd-hoff" title="View user profile."><img src="http://highscalability.com/files/pictures/picture-5.jpg" alt="Todd Hoff&#039;s picture" title="Todd Hoff&#039;s picture"  /></a></div>
+    <h3><a href="/amazon-architecture#comment-234" class="active">Re: It&#039;s WSDL</a></h3>
+
+    <div class="content">
+       <p>Thanks for catching that. I listen to these things a few times and sometimes I just write what I hear instead of what I mean.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/234" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-236"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Tue, 09/18/2007 - 07:28 — <a href="http://www.allthingsdistributed.com">Werner</a> (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-236" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>I actually gave a scrisper definition of scalability at: <a href="http://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html">A Word on Scalability</a></p>
+<p>Personaly I like <a href="http://www.acmqueue.com/modules.php?name=Content&amp;pa=showpage&amp;pid=388">the interview in ACM Queue</a> best for a high level view</p>
+<p>--Werner</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/236" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-240"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Tue, 09/18/2007 - 22:30 — Anonymous (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-240" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>Seems more that they used <a class="glossary-term" href="/tags/java"><acronym title="Java: Java is a programming language originally developed by Sun Microsystems and released in 1995. Java applications are typically compiled to bytecode, although compilation to native machine code is also possible. At runtime, bytecode is usually either interpreted or compiled to native code for execution, although direct hardware execution of bytecode by a Java processor is also possible.
+
+Java is very popular on the server side because it is free, relatively high performing. has a large number of useful libraries, and great development tools. Websites build using Java generally use application servers and are accessed using servelets.
+
+http://www.java.com/en/">Java</acronym></a> for a job they usually would have done with <a class="glossary-term" href="/tags/perl"><acronym title="Perl: Perl is a dynamic programming language created by Larry Wall and first released in 1987. Perl borrows features from a variety of other languages including C, shell scripting (sh), AWK, sed and Lisp.
+
+It&#039;s powerful text process features and amazing library support made it an early favorite language choice for website designers. Other languages like PHP, Java, and .Net have since become more popular, but it still is favorite of many.
+
+http://www.perl.com/">Perl</acronym></a>.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/240" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-253"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Thu, 09/20/2007 - 05:33 — ex-amazonian (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-253" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>&gt; Use non-monetary awards, like an old shoe. It's a way of<br />
+&gt; saying thank you, somebody cared.</p>
+<p>The one time I was dumb enough to go to the amazon all-company meeting instead of treating it as a free sleep-in day, I saw Bezos give a shoe to a guy.</p>
+<p>And I was like, "this guy builds spaceships, and he gives out stinky old tennis shoes to high achievers?  And they don't, like, hit him with it?  Where's the self-respect?"</p>
+<p>But I guess that's why I'm an ex-amazonian.  Got a 20% salary boost when I ditched 'em, and no pager duty.  See ya, Jeff.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/253" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-261"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Thu, 09/20/2007 - 23:40 — Anonymous (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-261" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>That's one of the stupidest things I have read for some time. Why would a smart company spend money on employee "awards" -- that helps nobody except the people from whom you bought the awards? Real high-achievers at Amazon are rewarded when the company does well, and with the stock at ~ $90 I know they are feeling pretty good. My guess is they want to hug Jeff. </p>
+<p>A low achiever would more likely resent this and leave for somewhere else, and the fact that they worked at Amazon likely helped in this job search as I am sure it did in your case. And, it seems like you leaving hasn't hurt Amazon too much :)</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/261" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-277"></a>
+<div class="comment even">
+
+  <div class="clear-block">
+      <span class="submitted">Sat, 09/22/2007 - 15:13 — Anonymous (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-277" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>The thing with the old Nikies for high achievers sounds like the (stupid) diplomas given to IBMers.. If you really want to thank a high-achiever, give them a raise, or a bonus, or.. a axotic cruise.. not an constipated old shoe.. what a pluf :))</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/277" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<a id="comment-291"></a>
+<div class="comment odd">
+
+  <div class="clear-block">
+      <span class="submitted">Wed, 09/26/2007 - 00:41 — ex-amazonian (not verified)</span>
+  
+  
+  
+    <h3><a href="/amazon-architecture#comment-291" class="active">Re: Amazon Architecture</a></h3>
+
+    <div class="content">
+       <p>&gt; And, it seems like you leaving hasn't hurt Amazon too much :)</p>
+<p>Oh, I'm sure amzn is fine without me.  But the amazon employee half-life is about 18 months, so it isn't just me who thinks it sucks to work there.  Think of how much more efficiently amzn could operate if it didn't have to turn over half its workforce every 18 months.  I'm sure that would have an impact on its stock price.  :)</p>
+<p>&gt; Real high-achievers at Amazon are rewarded when the company<br />
+&gt; does well, and with the stock at ~ $90 I know they are feeling<br />
+&gt; pretty good. My guess is they want to hug Jeff.</p>
+<p>Sure, the stock is riding high now, and I'm happy for the people there who are making a good buck off it. But amzn pays under market standards for salary and counts on the stock to buff up their wages. Gambling with your paycheck ain't cool by me.</p>
+<p>Counting up all the money I've made over the past few years...  if all my amzn grants had paid out at $90 per, I might've made $15-25K more if I'd stayed there.  But a $25K premium (or $6.25K a year, since it take 4 years to vest) ain't nearly enough to get me in the door at amazon, considering that in exchange for that premium I'll be required to work 10-30 extra hours a week.  I think equity-based compensation is for suckers.  Equity compensation in exchange for huge workweek demands is for ... bigger suckers.</p>
+<p>My current company gives me real cash bonuses and extra paid time off for good performance.  I'll take that over a stupid old shoe!  Money is used for talking; shoes, like bullsh*t, are meant for walking.</p>
+     </div>
+
+  </div>
+
+      <div class="links"><ul class="links"><li class="first last comment_reply"><a href="/comment/reply/35/291" class="comment_reply">reply</a></li>
+</ul></div>
+  </div>
+<form action="/amazon-architecture"  method="post" id="comment-controls">
+<div><div class="box">
+
+  <h2>Comment viewing options</h2>
+
+  <div class="content"><div class="container-inline"><input type="hidden" name="form_id" id="edit-comment-controls" value="comment_controls"  />
+<div class="form-item">
+ <select name="mode" class="form-select" id="edit-mode" ><option value="1">Flat list - collapsed</option><option value="2" selected="selected">Flat list - expanded</option><option value="3">Threaded list - collapsed</option><option value="4">Threaded list - expanded</option></select>
+</div>
+<div class="form-item">
+ <select name="order" class="form-select" id="edit-order" ><option value="1">Date - newest first</option><option value="2" selected="selected">Date - oldest first</option></select>
+</div>
+<div class="form-item">
+ <select name="comments_per_page" class="form-select" id="edit-comments-per-page" ><option value="10">10 comments per page</option><option value="30">30 comments per page</option><option value="50" selected="selected">50 comments per page</option><option value="70">70 comments per page</option><option value="90">90 comments per page</option><option value="150">150 comments per page</option><option value="200">200 comments per page</option><option value="250">250 comments per page</option><option value="300">300 comments per page</option></select>
+</div>
+<input type="submit" name="op" id="edit-submit" value="Save settings"  class="form-submit" />
+</div><div class="description">Select your preferred way to display the comments and click "Save settings" to activate your changes.</div></div>
+</div>
+
+</div></form>
+<div class="box">
+
+  <h2>Post new comment</h2>
+
+  <div class="content"><form action="/comment/reply/35"  method="post" id="comment-form">
+<div><div class="form-item">
+ <label for="edit-name">Your name: </label>
+ <input type="text" maxlength="60" name="name" id="edit-name"  size="30" value="Anonymous" class="form-text" />
+</div>
+<div class="form-item">
+ <label for="edit-mail">E-mail: </label>
+ <input type="text" maxlength="64" name="mail" id="edit-mail"  size="30" value="" class="form-text" />
+ <div class="description">The content of this field is kept private and will not be shown publicly.</div>
+</div>
+<div class="form-item">
+ <label for="edit-homepage">Homepage: </label>
+ <input type="text" maxlength="255" name="homepage" id="edit-homepage"  size="30" value="" class="form-text" />
+</div>
+<div class="form-item">
+ <label for="edit-subject">Subject: </label>
+ <input type="text" maxlength="64" name="subject" id="edit-subject"  size="60" value="Re: Amazon Architecture" class="form-text" />
+</div>
+<div class="form-item">
+ <label for="edit-comment">Comment: <span class="form-required" title="This field is required.">*</span></label>
+ <textarea cols="60" rows="15" name="comment" id="edit-comment"  class="form-textarea resizable required"></textarea>
+</div>
+<ul class="tips"><li>Web page addresses and e-mail addresses turn into links automatically.</li><li>Allowed HTML tags: &lt;a&gt; &lt;em&gt; &lt;strong&gt; &lt;cite&gt; &lt;code&gt; &lt;ul&gt; &lt;ol&gt; &lt;li&gt; &lt;dl&gt; &lt;dt&gt; &lt;dd&gt;&lt;div ?=?&gt;&lt;p ?=?&gt; &lt;img ?=?&gt; &lt;embed ?=?&gt; &lt;h1 ?=?&gt;&lt;h2 ?=?&gt;&lt;h3 ?=?&gt;</li><li>Lines and paragraphs break automatically.</li><li>Glossary terms will be automatically marked with links to their descriptions</li><li>You may link to webpages <a href="<em>/filter/tips#weblink</em>">through the weblinks registry</a></li></ul><p><a href="/filter/tips">More information about formatting options</a></p><input type="hidden" name="form_id" id="edit-comment-form" value="comment_form"  />
+<input type="hidden" name="seed" id="edit-seed" value="a2b321efe5e7d77f9128330e461cef17"  />
+What is 44 + 6?<div class="form-item">
+ <label for="edit-captcha-answer">Answer: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="128" name="captcha_answer" id="edit-captcha-answer"  size="25" value="" class="form-text required" />
+ <div class="description">To combat spam, please solve the math question above.</div>
+</div>
+<input type="submit" name="op" id="edit-preview" value="Preview comment"  class="form-submit" />
+<input type="submit" name="op" id="edit-submit" value="Post comment"  class="form-submit" />
+
+</div></form>
+</div>
+</div>
+</div>          <span class="clear"></span>
+                    <div id="footer">
+</div>
+      </div></div></div></div> <!-- /.left-corner, /.right-corner, /#squeeze, /#center -->
+
+              <div id="sidebar-right" class="sidebar">
+                    <div id="block-google_cse-0" class="clear-block block block-google_cse">
+
+
+  <div class="content"><form action="/search/google"  method="get" id="google-cse-searchbox-form">
+<div><input type="hidden" name="cx" id="edit-cx" value="012108333369835174847:fp3ksdkn3xs"  />
+<input type="hidden" name="cof" id="edit-cof" value="FORID:11"  />
+<div class="form-item">
+ <input type="text" maxlength="128" name="query" id="edit-query"  size="15" value="" title="Enter the terms you wish to search for." class="form-text" />
+</div>
+<input type="submit" name="op" id="edit-sa" value="Search"  class="form-submit" />
+<input type="hidden" name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form"  />
+
+</div></form>
+</div>
+</div>
+<div id="block-block-3" class="clear-block block block-block">
+
+  <h2>Most Popular</h2>
+
+  <div class="content"><div class="item-list"><ul><li><a href="/scaling-twitter-making-twitter-10000-percent-faster">Scaling Twitter: Making Twitter 10000 Percent Faster</a></li><li><a href="/amazon-architecture" class="active">Amazon Architecture</a></li><li><a href="/youtube-architecture">YouTube Architecture</a></li><li><a href="/use-cdn-instantly-improve-your-websites-performance-20-or-more">Use a CDN to Instantly Improve Your Website&#039;s Performance by 20% or More </a></li><li><a href="/google-architecture">Google Architecture</a></li><li><a href="/paper-end-architectural-era-it-s-time-complete-rewrite">Paper: The End of an Architectural Era (It’s Time for a Complete Rewrite)</a></li><li><a href="/you-can-now-store-all-your-stuff-your-own-google-file-system">You Can Now Store All Your Stuff on Your Own Google Like File System</a></li><li><a href="/flickr-architecture">Flickr Architecture</a></li><li><a href="/unorthodox-approach-database-design-coming-shard">An Unorthodox Approach to Database Design : The Coming of the Shard</a></li><li><a href="/plentyoffish-architecture">PlentyOfFish Architecture</a></li><li><a href="/should-you-build-your-next-website-using-3teras-grid-os">Should you build your next website using 3tera&#039;s grid OS?</a></li><li><a href="/start-here">Start Here</a></li></ul></div></div>
+</div>
+<div id="block-comment-0" class="clear-block block block-comment">
+
+  <h2>Recent comments</h2>
+
+  <div class="content"><div class="item-list"><ul><li><a href="/should-you-build-your-next-website-using-3teras-grid-os#comment-305">Thanks to all of you for your comments</a><br />7 hours 34 min ago</li><li><a href="/wikimedia-architecture#comment-304">Re: Wikimedia architecture</a><br />7 hours 55 min ago</li><li><a href="/unorthodox-approach-database-design-coming-shard#comment-303">Re: An Unorthodox Approach to Database Design : The Coming of th</a><br />7 hours 57 min ago</li><li><a href="/you-can-now-store-all-your-stuff-your-own-google-file-system#comment-302">Re: You Can Now Store All Your Stuff on Your Own Google Like FS</a><br />11 hours 50 min ago</li><li><a href="/use-cdn-instantly-improve-your-websites-performance-20-or-more#comment-301">Build your own CDN?</a><br />19 hours 17 min ago</li><li><a href="/google-architecture#comment-300">Re: Google Architecture</a><br />20 hours 59 min ago</li><li><a href="/paper-end-architectural-era-it-s-time-complete-rewrite#comment-299">Re: Paper: The End of an Architectural Era (It’s Time for a Comp</a><br />21 hours 13 min ago</li><li><a href="/there-difference-between-partitioning-and-federation-and-sharding#comment-298">Re: Is there a difference between partitioning and federation an</a><br />21 hours 28 min ago</li><li><a href="/sync-data-all-servers#comment-297">Re: Sync data on all servers</a><br />22 hours 37 min ago</li><li><a href="/should-you-build-your-next-website-using-3teras-grid-os#comment-296">Re: Should you build your next website using 3tera&#039;s grid OS?</a><br />23 hours 16 min ago</li></ul></div></div>
+</div>
+<div id="block-forum-0" class="clear-block block block-forum">
+
+  <h2>Active forum topics</h2>
+
+  <div class="content"><div class="item-list"><ul><li><a href="/sync-data-all-servers" title="9 comments">Sync data on all servers</a></li><li><a href="/session-management-highly-scalable-web-sites" title="6 comments">Session management in highly scalable web sites</a></li><li><a href="/ha-switches" title="1 comment">HA for switches</a></li><li><a href="/what-software-runs-site" title="3 comments">What software runs on this site?</a></li><li><a href="/role-memory-within-web-2-0-architectures-and-deployments" title="3 comments">The Role of Memory within Web 2.0 Architectures and Deployments</a></li></ul></div><div class="more-link"><a href="/forum" title="Read the latest forum topics.">more</a></div></div>
+</div>
+<div id="block-tagadelic-2" class="clear-block block block-tagadelic">
+
+  <h2>Tags</h2>
+
+  <div class="content"><a href="/tags/apache" class="tagadelic level2">Apache</a> 
+<a href="/tags/blog" class="tagadelic level2">Blog</a> 
+<a href="/tags/caching" class="tagadelic level1">Caching</a> 
+<a href="/tags/cdn" class="tagadelic level1">CDN</a> 
+<a href="/tags/cluster-file-system" class="tagadelic level2">Cluster File System</a> 
+<a href="/tags/ec2" class="tagadelic level1">EC2</a> 
+<a href="/tags/example" class="tagadelic level5">Example</a> 
+<a href="/tags/geo-distributed-clusters" class="tagadelic level2">Geo-distributed Clusters</a> 
+<a href="/tags/java" class="tagadelic level2">Java</a> 
+<a href="/tags/lighttpd-1" class="tagadelic level1">lighttpd</a> 
+<a href="/tags/linux" class="tagadelic level3">Linux</a> 
+<a href="/tags/log-analyzer" class="tagadelic level1">Log Analyzer</a> 
+<a href="/tags/memcached" class="tagadelic level2">Memcached</a> 
+<a href="/tags/mysql" class="tagadelic level4">MySQL</a> 
+<a href="/tags/paper" class="tagadelic level2">Paper</a> 
+<a href="/tags/perl" class="tagadelic level1">Perl</a> 
+<a href="/tags/php" class="tagadelic level2">PHP</a> 
+<a href="/tags/product" class="tagadelic level6">Product</a> 
+<a href="/tags/shard" class="tagadelic level3">Shard</a> 
+<a href="/tags/strategy" class="tagadelic level3">Strategy</a> 
+<div class='more-link'><a href="/tagadelic/chunk/2">more tags</a></div></div>
+</div>
+<div id="block-block-4" class="clear-block block block-block">
+
+
+  <div class="content"><script type="text/javascript"><!--
+google_ad_client = "pub-9451539202293335";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text_image";
+//2007-09-12: high_scalability
+google_ad_channel = "7022772782";
+//-->
+</script><script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+</div>
+        </div>
+      
+    </div> <!-- /container -->
+  </div>
+<!-- /layout -->
+
+  <script type="text/javascript" src="/modules/adsense/adsense_click.js"></script><script type="text/javascript" src="/modules/google_cse/google_cse.js"></script>
+  </body>
+</html>
