@@ -1,0 +1,536 @@
+<!--[if !IE]> This has been served from cache <![endif]-->
+<!--[if !IE]> Request served from apache server: s263567nj2el40.uswhwk6.savvis.net <![endif]-->
+<!--[if !IE]> Cached on Fri, 28 Sep 2007 13:54:41 GMT and will expire on Fri, 28 Sep 2007 13:59:41 GMT <![endif]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if !IE]> BEGIN baseHeader <![endif]-->
+<!--[if !IE]> App Server /s263567nj2el59.uswhwk6.savvis.net:10.33.52.134/ <![endif]-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head> 
+  <title>
+  	Photo Slideshow | Reuters.com</title>
+
+  <meta id="MetaDescription" name="description" content=""></meta>
+  <meta id="MetaKeywords" name="keywords" content=""></meta>
+  <style type="text/css" media="all">
+    @import "/resources/css/rcom-master.css";
+    </style>
+  <!--[if IE 7.0]><link href="/resources/css/rcom-patch-ie7.css" rel="stylesheet" /><![endif]-->
+  <link rel="shortcut icon" href="/resources/images/favicon.ico" />
+  <link rel="icon" href="/resources/images/favicon.ico" />
+	<style type="text/css">
+/*
+div#thumbTab {
+width: 306px;
+}
+*/
+</style><script language="JavaScript" type="text/javascript" src="/resources/js/dart.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/resources/js/main.js"></script>
+	<script language='JavaScript' type="text/javascript" src="/resources/js/topbar.js"></script>
+	<script language='JavaScript' type="text/javascript" src="/resources/js/searchbox.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/js/external/yahoo/yahoo.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/js/external/yahoo/connection.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/js/com/reuters/rcom/newutils.js"></script>
+    <script language="JavaScript" type="text/javascript" >
+document.write("<script src='/resources/js/pid.js'></scr" + "ipt>"); 
+</script><script language="JavaScript" type="text/javascript" src="/resources/js/refresh.js"></script>
+	<noscript>
+	<meta http-equiv="refresh" content="300;url=/home?refresh=true">
+	</noscript>
+</head>
+<body>
+<!--[if !IE]> END baseHeader <![endif]-->
+<!--[if !IE]> BEGIN Content <![endif]-->
+
+    <!--[if !IE]> ### IE5 fix: Do not remove spacer GIF! ### <![endif]-->
+    <img src="/resources/images/spacer.gif" height="1" width="1" alt="" class="spacerHack" border="0" />
+    <!--[if !IE]> ### Cross-Channel Content <![endif]-->
+
+		<div class="contentBand" id="topContent">
+
+      </div>
+
+    <script language="javascript">
+
+var lastActive 		= 0;
+var arrImages 		= new Array();
+var arrThumbnails = new Array();
+var arrCaptions 	= new Array();
+var reloadAdOK 		= true;
+var startingID 		= "2";
+var strRelatedLink = "";
+var intSizeChecker = 0;
+
+var intViewableArea 		= 0;
+var intContentArea 			= 0;
+var intCurrentPosition 	= 0;
+var intNewPosition 			= 0;
+var intScrollInterval 	= 0;
+var intScrollSpeed 			= 8; // 1=slow, 10=fast
+var intAmountToJump 		= 150;
+
+
+
+/* Navigation */
+
+function nextPhoto(objClicked) {
+	blurAll();
+	var nextActive = lastActive + 1;
+	if (nextActive >= arrImages.length) {
+		nextActive = 0;
+	}
+	loadImage(nextActive);
+}
+
+function prevPhoto(objClicked) {
+	blurAll();
+	var nextActive = lastActive - 1;
+	if (nextActive < 0) {
+		nextActive = arrImages.length - 1
+	}
+	loadImage(nextActive);
+}
+
+function blurAll() {
+	if (document.getElementById("photo").blur) {
+		document.getElementById("prevButton").blur();
+		document.getElementById("nextButton").blur();
+		document.getElementById("photo").blur();
+	}
+}
+
+function scrollRowDown() {
+	if ((intViewableArea != 0) && (intContentArea != 0) && (intViewableArea < intContentArea)) {
+		var intSpaceRemaining = intContentArea - intViewableArea + intCurrentPosition;
+		if (intSpaceRemaining < intAmountToJump) {
+		// if (intSpaceRemaining < intViewableArea) { intNewPosition = intCurrentPosition - intSpaceRemaining;
+			intNewPosition = intCurrentPosition - intSpaceRemaining;
+		} else {
+			intNewPosition = intCurrentPosition - intAmountToJump; // intViewableArea;
+		}
+		scrollToNewPosition();
+	}
+}
+
+function scrollRowUp() {
+	if ((intViewableArea != 0) && (intContentArea != 0) && (intViewableArea < intContentArea)) {
+		var intSpaceRemaining = -(intCurrentPosition);
+		if (intSpaceRemaining < intAmountToJump) { // intViewableArea) {
+			intNewPosition = 0;
+		} else {
+			intNewPosition = intCurrentPosition + intAmountToJump; // intViewableArea;
+		}
+		scrollToNewPosition();
+	}
+}
+
+function scrollUntil() {
+	if (intCurrentPosition < intNewPosition) {
+		var intScrollSegment = Math.ceil((intNewPosition - intCurrentPosition)/intScrollSpeed);
+		intCurrentPosition += intScrollSegment;
+		document.getElementById("thumbTab").style.cssText = "margin-top:" + intCurrentPosition + "px";
+	} else if (intCurrentPosition > intNewPosition) {
+		var intScrollSegment = Math.ceil((intCurrentPosition - intNewPosition)/intScrollSpeed);
+		intCurrentPosition -= intScrollSegment;
+		document.getElementById("thumbTab").style.cssText = "margin-top:" + intCurrentPosition + "px";
+	} else {
+		clearInterval(intScrollInterval);
+		reloadAd();
+	}
+}
+
+function scrollToNewPosition() {
+	clearInterval(intScrollInterval);
+	intScrollInterval = setInterval(scrollUntil, 50);
+}
+
+function scrollToPosition(intPosition) {
+	intNewPosition = intPosition;
+	scrollToNewPosition();
+}
+
+function scrollToPhoto(intPhotoIndex) {
+	var intPhotoPosition = document.getElementById("thumb" + intPhotoIndex).offsetTop;
+	var intNewCalculatedPosition = intCurrentPosition - intPhotoPosition + 20;
+	if (intContentArea > intViewableArea) {
+		if ((intNewCalculatedPosition+20) > -(intContentArea - intViewableArea)) {
+			scrollToPosition(intNewCalculatedPosition);
+		} else {
+			scrollToPosition(-(intContentArea - intViewableArea));
+		}
+	}
+}
+
+function scrollHome() {
+	scrollToPosition(0);
+}
+
+function scrollEnd() {
+	scrollToPosition(-(intContentArea - intViewableArea));
+}
+
+function buttonPush(e) {
+	if (!e) var e = window.event;
+	if (e.button != 2) {
+		document.getElementById(this.id).style.cssText = "border-top: 1px solid #000; border-left: 1px solid #000;";
+	}
+}
+
+function buttonRelease(e) {
+	if (!e) var e = window.event;
+	if (e.button != 2) {
+		document.getElementById(this.id).style.cssText = "";
+	}
+}
+
+function buttonMenu() {
+	return false;
+}
+
+/* Ads */
+
+function reloadAd() {
+	if (reloadAdOK) {
+		document.getElementById("ReutersAd1").src = document.getElementById("ReutersAd1").src
+		reloadAdOK = false;
+		intCountdown = setTimeout(allowReloads, "4000");
+	}
+}
+
+function reloadTracking(intImageIndex) {
+	if (typeof(dcsMultiTrack) == "function") {
+		var onebased = intImageIndex + 1;
+		dcsMultiTrack('DCSext.PageNumber', onebased.toString());
+	}
+}
+
+function allowReloads() {
+	reloadAdOK = true;
+}
+
+/* Image Loading */
+
+function loadImage(intImageIndex) {
+	if (arrImages.length == 1) {
+		document.getElementById("photoFrame").className = "photoFrame expanded";
+	}
+	document.getElementById("photo").src = "/resources/images/loadingImage.gif";
+	document.getElementById("thumb" + lastActive).className = "thumbnail";
+	document.getElementById("photo").src = arrImages[intImageIndex];
+	document.getElementById("caption").innerHTML = strRelatedLink + fixAttribution(arrCaptions[intImageIndex]);
+	document.getElementById("thumb" + intImageIndex).className = "thumbnail active";
+	document.getElementById("photoId").innerHTML = (intImageIndex+1) + " of " + arrImages.length;
+	lastActive = intImageIndex;
+	//checkViewableArea();
+	scrollToPhoto(intImageIndex);
+	//reloadAd();
+	reloadTracking(intImageIndex);
+}
+
+function loadThumbs() {
+	for (j=0; j<arrImages.length; j++) {
+		document.write('<div id="thumb' + j + '" class="thumbnail" onclick="javascript:loadImage(' + j + ');return false;">');
+		document.write('<table cellpadding="0" cellspacing="0"><tr><td align="center" valign="middle"><img id="img' + j + '" src="' + arrThumbnails[j] + '" alt="Thumbnail" title="Click to view full image" /></td></tr></table></div>');
+	}
+	if (arrImages.length == 1) {
+		document.getElementById("thumbFrame").className = "hidden";
+		document.getElementById("prevButton").className = "hidden";
+		document.getElementById("nextButton").className = "hidden";
+	}
+}
+
+function fixAttribution(strRawCaption) {
+	var re = new RegExp('(.*)(REUTERS/)(.*)', "g");
+	var arrProcessedCaption = re.exec(strRawCaption);
+	if (arrProcessedCaption != null) {
+		return '<p>' + arrProcessedCaption[1] + '</p><p><span class="label"><strong>' + arrProcessedCaption[2] + arrProcessedCaption[3] + '</strong></span></p>';
+	} else {
+		return '<p>' + strRawCaption + '</p>';
+	}
+}
+
+/* Initialization */
+
+function initImage(intImageIndex) {
+	intImageIndex = intImageIndex - 1;
+	if (intImageIndex >= arrImages.length) {
+		intImageIndex = 0;
+	}
+	loadImage(intImageIndex);
+	checkViewableArea();
+	document.getElementById("slideshowTitle").innerHTML = strSlideshowTitle;
+	if (typeof(window['strAudioFile']) != 'undefined'){
+		document.getElementById("photoCaption").className = "photoCaption withAudio";
+	}
+	initButtons();
+	intSizeChecker = setTimeout(checkViewableArea, 1000);
+	if (arrImages.length == 1) {
+		document.getElementById("photo").title = "";
+	}
+}
+
+function checkViewableArea() {
+	intViewableArea = document.getElementById("thumbnails").offsetHeight;
+	intContentArea = document.getElementById("thumbTab").offsetHeight;
+	if ((intViewableArea - 30) > (intContentArea - 72)) {
+		disableButton("controlUp");
+		disableButton("controlDown");
+	} else {
+		enableButton("controlUp");
+		enableButton("controlDown");
+		clearInterval(intSizeChecker);
+	}
+}
+
+function disableButton(buttonId) {
+	document.getElementById(buttonId).className = "hidden";
+}
+
+function enableButton(buttonId) {
+	document.getElementById(buttonId).className = "";
+}
+
+function initButtons() {
+	document.getElementById("controlUp").onclick = scrollRowUp;
+	document.getElementById("controlUp").ondblclick = scrollHome;
+	document.getElementById("controlDown").onclick= scrollRowDown;
+	document.getElementById("controlDown").ondblclick = scrollEnd;
+	document.getElementById("controlUp").oncontextmenu = buttonMenu;
+	document.getElementById("controlDown").oncontextmenu= buttonMenu;
+	
+	document.getElementById("controlUp").onmousedown = buttonPush;
+	document.getElementById("controlDown").onmousedown = buttonPush;
+	document.getElementById("controlUp").onmouseup = buttonRelease;
+	document.getElementById("controlDown").onmouseup = buttonRelease;
+}
+
+
+
+var strSlideshowTitle = "Nine killed in Myanmar protest crackdown";
+var strRelatedLink = '<div class="headlineSm"><a href="/article/newsOne/idUSB58859920070927" target="_blank">Go to Article</a></div>';
+
+
+
+	arrImages[0] = '/resources/r/?m=02&d=20070927&t=2&i=1840867&w=&r=2007-09-27T205522Z_01_B588599_RTRUKOP_0_PICTURE0';
+	arrThumbnails[0] = '/resources/r/?m=02&d=20070927&t=2&i=1840867&w=50&r=2007-09-27T205522Z_01_B588599_RTRUKOP_0_PICTURE0';
+	arrCaptions[0] = "<p>Military officials release smoke canisters after firing upon a crowd of thousands, which took to the streets of Yangon's city centre to protest, September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[1] = '/resources/r/?m=02&d=20070927&t=2&i=1839150&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE0';
+	arrThumbnails[1] = '/resources/r/?m=02&d=20070927&t=2&i=1839150&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE0';
+	arrCaptions[1] = "<p>Kenji Nagai of APF tries to take photographs as he lies injured after police and military officials fired upon and then charged at protesters in Yangon's city centre September 27, 2007. Kenji, 52, a Japanese photographer, was shot by soldiers as they fired to disperse the crowd. Kenji later died. REUTERS/Stringer</p>";
+
+
+	arrImages[2] = '/resources/r/?m=02&d=20070927&t=2&i=1839151&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE2';
+	arrThumbnails[2] = '/resources/r/?m=02&d=20070927&t=2&i=1839151&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE2';
+	arrCaptions[2] = "<p>A man gestures to members of the military after a crowd of thousands were fired upon while protesting in Yangon's city centre September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[3] = '/resources/r/?m=02&d=20070927&t=2&i=1839463&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE2';
+	arrThumbnails[3] = '/resources/r/?m=02&d=20070927&t=2&i=1839463&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE2';
+	arrCaptions[3] = "<p>Two Buddhist monks chant prayers on the sidewalk of the Sule Pagoda, in downtown Yangon September 27, 2007 while onlookers watch and repeat after them. At least nine people, including a Japanese photographer, were killed in Myanmar's main city on Thursday when soldiers and police fired on crowds protesting against decades of military rule, state media said. REUTERS/Aung Hla Tun</p>";
+
+
+	arrImages[4] = '/resources/r/?m=02&d=20070927&t=2&i=1839152&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE3';
+	arrThumbnails[4] = '/resources/r/?m=02&d=20070927&t=2&i=1839152&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE3';
+	arrCaptions[4] = "<p>Onlookers watch as Buddhist monks (partially hidden) chant prayers along the sidewalk of the Sule Pagoda in Yangon September 27, 2007. REUTERS/Aung Hla Tun</p>";
+
+
+	arrImages[5] = '/resources/r/?m=02&d=20070927&t=2&i=1839464&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE5';
+	arrThumbnails[5] = '/resources/r/?m=02&d=20070927&t=2&i=1839464&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE5';
+	arrCaptions[5] = "<p>Security forces patrol a street in Yangon September 27, 2007. At least nine people, including a Japanese photographer, were killed in Myanmar's main city on Thursday when soldiers and police fired on crowds protesting against decades of military rule, state media said. REUTERS/Aung Hla Tun</p>";
+
+
+	arrImages[6] = '/resources/r/?m=02&d=20070927&t=2&i=1839153&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE4';
+	arrThumbnails[6] = '/resources/r/?m=02&d=20070927&t=2&i=1839153&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE4';
+	arrCaptions[6] = "<p>Some of thousands of protesters rally as military officials arrive at the scene of demonstration in Yangon's city centre September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[7] = '/resources/r/?m=02&d=20070927&t=2&i=1839467&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE7';
+	arrThumbnails[7] = '/resources/r/?m=02&d=20070927&t=2&i=1839467&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE7';
+	arrCaptions[7] = "<p>People holding pictures of Nobel Peace Prize winner Aung San Suu Kyi demonstrate in support of democracy in Myanmar, in front of the embassy of Myanmar in Paris, September 27, 2007. REUTERS/Benoit Tessier</p>";
+
+
+	arrImages[8] = '/resources/r/?m=02&d=20070927&t=2&i=1839154&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE5';
+	arrThumbnails[8] = '/resources/r/?m=02&d=20070927&t=2&i=1839154&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE5';
+	arrCaptions[8] = "<p>A policeman looks back at his colleagues as they face a crowd in Yangon September 27, 2007. REUTERS/Aung Hla Tun</p>";
+
+
+	arrImages[9] = '/resources/r/?m=02&d=20070927&t=2&i=1839155&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE6';
+	arrThumbnails[9] = '/resources/r/?m=02&d=20070927&t=2&i=1839155&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE6';
+	arrCaptions[9] = "<p>Men rally others to join in an anti-government protest in Yangon's city centre September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[10] = '/resources/r/?m=02&d=20070927&t=2&i=1839156&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE7';
+	arrThumbnails[10] = '/resources/r/?m=02&d=20070927&t=2&i=1839156&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE7';
+	arrCaptions[10] = "<p>Buddhist monks and civilians protest in the streets of Yangon September 26, 2007. Seething crowds filled the streets of Myanmar's main city on Wednesday, defying warning shots, tear gas and baton charges meant to quell the biggest anti-junta protests in 20 years. REUTERS/Stringer</p>";
+
+
+	arrImages[11] = '/resources/r/?m=02&d=20070927&t=2&i=1839157&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE8';
+	arrThumbnails[11] = '/resources/r/?m=02&d=20070927&t=2&i=1839157&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE8';
+	arrCaptions[11] = "<p>A person stands next to bricks and slippers in the Ngwe Kyar Yan Monastery, which was raided by security forces, in Yangon September 27, 2007. REUTERS/The Irrawaddy</p>";
+
+
+	arrImages[12] = '/resources/r/?m=02&d=20070927&t=2&i=1839160&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE9';
+	arrThumbnails[12] = '/resources/r/?m=02&d=20070927&t=2&i=1839160&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE9';
+	arrCaptions[12] = "<p>A monk in the Ngwe Kyar Yan Monastery looks on after the monastery was raided by security forces in Yangon September 27, 2007. REUTERS/The Irrawaddy</p>";
+
+
+	arrImages[13] = '/resources/r/?m=02&d=20070927&t=2&i=1839158&w=&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE10';
+	arrThumbnails[13] = '/resources/r/?m=02&d=20070927&t=2&i=1839158&w=50&r=2007-09-27T155142Z_01_B588599_RTRUKOP_0_PICTURE10';
+	arrCaptions[13] = "<p>A view of a room in the Ngwe Kyar Yan Monastery after it was raided by security forces in Yangon September 27, 2007. REUTERS/Mizzima Media</p>";
+
+
+	arrImages[14] = '/resources/r/?m=02&d=20070927&t=2&i=1838047&w=&r=2007-09-27T131424Z_01_B588599_RTRUKOP_0_PICTURE9';
+	arrThumbnails[14] = '/resources/r/?m=02&d=20070927&t=2&i=1838047&w=50&r=2007-09-27T131424Z_01_B588599_RTRUKOP_0_PICTURE9';
+	arrCaptions[14] = "<p>Novice monks are seen taking refuge at a monastery in Yangon September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[15] = '/resources/r/?m=02&d=20070927&t=2&i=1838045&w=&r=2007-09-27T131424Z_01_B588599_RTRUKOP_0_PICTURE11';
+	arrThumbnails[15] = '/resources/r/?m=02&d=20070927&t=2&i=1838045&w=50&r=2007-09-27T131424Z_01_B588599_RTRUKOP_0_PICTURE11';
+	arrCaptions[15] = "<p>Riot police arrive at the scene of a crowd of thousands protesting at Yangon's city centre September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[16] = '/resources/r/?m=02&d=20070927&t=2&i=1839469&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE16';
+	arrThumbnails[16] = '/resources/r/?m=02&d=20070927&t=2&i=1839469&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE16';
+	arrCaptions[16] = "<p>A riot policeman charges at a crowd attempting to disperse after police and military officials fired upon protesters taking to the streets of Yangon's city center September 27, 2007. REUTERS/Stringer</p>";
+
+
+	arrImages[17] = '/resources/r/?m=02&d=20070927&t=2&i=1839468&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE17';
+	arrThumbnails[17] = '/resources/r/?m=02&d=20070927&t=2&i=1839468&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE17';
+	arrCaptions[17] = "<p>Two Buddhist monks chant prayers in front of onlookers along the sidewalk of the Sule Pagoda in Yangon September 27, 2007. REUTERS/Aung Hla Tun</p>";
+
+
+	arrImages[18] = '/resources/r/?m=02&d=20070927&t=2&i=1839465&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE18';
+	arrThumbnails[18] = '/resources/r/?m=02&d=20070927&t=2&i=1839465&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE18';
+	arrCaptions[18] = "<p>A Myanmar activist shouts slogans after burning a portrait of Myanmar supreme leader Senior General Than Shwe during a protest outside the Myanmar embassy in Bangkok September 27, 2007. About 50 activists from Myanmar held a protest calling for a stop to violence against peaceful demonstrators in Myanmar. REUTERS/Chaiwat Subprasom</p>";
+
+
+	arrImages[19] = '/resources/r/?m=02&d=20070927&t=2&i=1839466&w=&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE19';
+	arrThumbnails[19] = '/resources/r/?m=02&d=20070927&t=2&i=1839466&w=50&r=2007-09-27T163946Z_01_B588599_RTRUKOP_0_PICTURE19';
+	arrCaptions[19] = "<p>An activist jumps on a burning portrait of Myanmar's leader Senior General Than Shwe during a protest outside the Myanmar embassy in Bangkok September 27, 2007. About 50 activists from Myanmar held a protest calling for a stop to violence against peaceful demonstrations in Myanmar. REUTERS/Chaiwat Subprasom</p>";
+
+
+	arrImages[20] = '/resources/r/?m=02&d=20070927&t=2&i=1838387&w=&r=2007-09-27T135428Z_01_B588599_RTRUKOP_0_PICTURE19';
+	arrThumbnails[20] = '/resources/r/?m=02&d=20070927&t=2&i=1838387&w=50&r=2007-09-27T135428Z_01_B588599_RTRUKOP_0_PICTURE19';
+	arrCaptions[20] = "<p>An activist holds a poster of Myanmar's opposition leader Aung San Suu Kyi during a protest outside the Myanmar embassy in Bangkok September 27, 2007. About 50 activists from Myanmar held a protest calling for a stop to violence against peaceful demonstrations in Myanmar. REUTERS/Chaiwat Subprasom</p>";
+</script>
+
+<link href="/resources/css/rcom-slideshow-450.css" rel="stylesheet" />
+<script language="javascript" src="/resources/js/browserDetection.js"></script>
+<meta http-equiv="imagetoolbar" content="no" />
+
+<div id="multimedia"></div>
+<div class="slideshow">
+	<div class="slideshowHeader">
+		<div class="logo"><a href="http://www.reuters.com" target="_blank"><img src="/resources/images/logo_black.gif" border="0" alt="Reuters" /></a></div>
+		<div id="sponsor" class="sponsor"></div>
+	</div>
+	<div class="slideshowToolbar">
+		<h1 id="slideshowTitle">Reuters Picture Slideshow</h1>
+		<div class="photoControls">
+			<a id="prevButton" href="javascript:prevPhoto();">Previous</a>
+			<a id="nextButton" href="javascript:nextPhoto();">Next</a>
+		</div>
+		<div id="photoId" class="photoPosition"></div>
+		<div id="photoLinks">
+			<div class="headlineSm"><a href="/news/pictures" target="_blank">More Reuters Pictures</a></div>
+			<div class="headlineSm"><a href="http://about.reuters.com/pictures/prints/galleries/index.aspx" target="_blank">Buy Prints</a></div>
+			</div>
+	</div>
+	<div id="thumbFrame" class="thumbFrame" >
+		<div class="thumbnails" id="thumbnails">
+			<div id="thumbTab">
+				<script language="javascript">loadThumbs();</script></div>
+		</div>
+		<div class="thumbnailControls">
+			<div class="thumbnailControl up"><img id="controlUp" src="/resources/images/slideshowScrollUp.gif" alt="scroll up" border="0" /></div>
+			<div class="thumbnailControl down"><img id="controlDown" src="/resources/images/slideshowScrollDown.gif" alt="scroll down" border="0" /></div>
+		</div>
+	</div>
+	<div id="photoFrame" class="photoFrame">
+		<table id="mainImage" width="100%" border="0" cellpadding="0" cellspacing="0" class="mainImage">
+			<tr>
+				<td valign="middle" id="mainPhotoContainer">
+					<a href="javascript:nextPhoto();" id="photoArea"><img id="photo" src="/resources/images/loadingImage.gif" border="0" alt="Photo" title="Click for next image" /></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="photoCaption" id="photoCaption" align="top"><span id="caption"></span></div>
+	<div class="adContainer"></div>
+</div>
+
+<script language="javascript">initImage(startingID);</script><!--[if !IE]> START News Content Page Tags <![endif]-->
+<META name="DCSext.ContentType"     content="Slideshow">
+<META name="DCSext.ContentID"       content="USB58859920070927">
+<META name="DCSext.ContentHeadline" content="Nine+killed+in+Myanmar+protest+crackdown"> <!--[if !IE]> ie. headline for article <![endif]-->
+<META name="DCSext.PageNumber"      content="2">
+<META name="DCSext.PageTotal"				content="21">
+<!--[if !IE]> END News Content Page Tags <![endif]-->
+<META name="DCSext.rChannel" content="Pictures">
+<META name="DCSext.rCountry" content="US">
+<META name="WT.cg_n" content="Pictures - Article Slideshow">
+<META name="WT.cg_s" content="">
+<META name="DCSext.DartZone" content="reuters.com.dart/news/pictures/slideshows">
+<!--[if !IE]> START OF SmartSource Data Collector TAG <![endif]-->
+<!--[if !IE]> Copyright (c) 1996-2006 WebTrends Inc.  All rights reserved. <![endif]-->
+<SCRIPT TYPE="text/javascript"><!--[if !IE]>
+setModuleImpressionTracking();
+
+var gDomain="statse.webtrendslive.com";
+var gDcsId="dcsncwimc10000kzgoor3wv9x_3f2v";
+var gFpc="WT_FPC";
+var gConvert=true;
+if ((typeof(gConvert)!="undefined")&&gConvert&&(document.cookie.indexOf(gFpc+"=")==-1)&&(document.cookie.indexOf("WTLOPTOUT=")==-1)){
+	document.write("<SCR"+"IPT TYPE='text/javascript' SRC='"+"http"+(window.location.protocol.indexOf('https:')==0?'s':'')+"://"+gDomain+"/"+gDcsId+"/wtid.js"+"'><\/SCR"+"IPT>");
+}
+//<![endif]-->
+</SCRIPT>
+<script language="JavaScript" src="/resources/js/dcs_tag.js"></script>
+<NOSCRIPT>
+<IMG ALT="" BORDER="0" NAME="DCSIMG" WIDTH="1" HEIGHT="1" SRC="http://statse.webtrendslive.com/dcsncwimc10000kzgoor3wv9x_3f2v/njs.gif?dcsuri=/nojavascript&amp;WT.js=No">
+</NOSCRIPT>
+<!--[if !IE]> END OF SmartSource Data Collector TAG <![endif]-->
+<script language="JavaScript" src="/resources/js/dm_clientUS.js"></script>
+<script language="JavaScript">
+function revSciPixel() {
+  DM_cat("reuters.com.dart > news > pictures > slideshows");DM_tag();
+}
+revSciPixel();
+</script>
+<noscript><img src="/resources/images/noscript.gif"></noscript>
+<script>
+  var adsrc = 'reuters.com.dart/news/pictures/slideshows;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;ptile=2;articleID=USB58859920070927;ord=' + (typeof(tmstmp)!='undefined'?tmstmp:12345) + '?';
+</script>
+<div class="ad" id="advert_761672" onload="renderMask761672()">
+	<div>
+	<iframe name="advert_761672" id="ReutersAd1" marginwidth="0" marginheight="0" framespacing="0" frameborder="0" scrolling="no" width="300" height="250" src="" style="width:300px; height:250px; overflow: hidden;">
+<script language="javascript">
+  if ((!document.images && navigator.userAgent.indexOf("Mozilla/2.") >= 0) || navigator.userAgent.indexOf("WebTV") >= 0) {
+    document.write('<a href="http://ad.doubleclick.net/jump/reuters.com.dart/news/pictures/slideshows;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;ptile=2;articleID=USB58859920070927;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" target="_blank">');
+    document.write('<img src="http://ad.doubleclick.net/ad/reuters.com.dart/news/pictures/slideshows;' + (typeof(seg)=='undefined'?'':seg) + 'type=HighImpact;sz=300x250;ptile=2;articleID=USB58859920070927;ord=' + (typeof(tmstmp)=='undefined'?12345:tmstmp) + '?" width="300" height="250"  border=0 alt=""></a>');
+  }
+</script>
+<noscript>
+  <a href="http://ad.doubleclick.net/jump/reuters.com.dart/news/pictures/slideshows;seg1=46FC64D2;type=HighImpact;sz=300x250;ptile=2;articleID=USB58859920070927;ord=4350?" target="_blank">
+    <img src="http://ad.doubleclick.net/ad/reuters.com.dart/news/pictures/slideshows;seg1=46FC64D2;type=HighImpact;sz=300x250;ptile=2;articleID=USB58859920070927;ord=4350?" width="300" height="250" border="0" alt="">
+  </a>
+</noscript>
+</iframe>
+<script>
+  document.getElementById("ReutersAd1").src = 'http://ad.doubleclick.net/adi/' + adsrc;
+</script>
+</div>
+
+</div>
+
+<!--[if !IE]> END Content <![endif]-->
+
+</body>
+
+</html>
+

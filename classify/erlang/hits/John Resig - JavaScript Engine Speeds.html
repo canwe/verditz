@@ -1,0 +1,630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <title>John Resig -   JavaScript Engine Speeds</title>
+  <link href="/css/style.css" media="screen" rel="Stylesheet" type="text/css"/>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/index.rdf" />
+</head>
+<body>
+
+<div id="head" class="other">
+        <div class="nav">
+                <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/blog/">Archives</a></li>
+                        <li><a href="/projects/">Projects</a></li>
+                        <!--<li><a href="/interests/">Interests</a></li>-->
+                        <li><a href="/about/">About Me</a></li>
+                </ul>
+        </div>
+        <div class="side">
+                <a href="http://ejohn.org/about/"><img src="/images/ejohn.png" class="logo" alt="John Resig" /></a>
+                <div class="text">
+                        <a href="/about/" class="name"><strong>John</strong> Resig</a><br/>
+                        <a href="/about/">Contact</a>,
+                        <a href="/index.rdf">Subscribe</a>
+                </div>
+        </div>
+</div>
+<div class="drop"><img src="/images/ejohn-main-drop.gif"/></div>
+<div id="wrap">
+        <div id="body"><div class="wrap">
+<h2>  JavaScript Engine Speeds</h2><br/>
+
+		
+		
+<style>.postentry h3 { font-weight: bold; }
+.postentry blockquote { padding-left: 5px; border-left: 3px solid #BBB; }
+.syntax_hilite ol { list-style: none; }</style>
+  			
+				<div class="postentry">
+
+
+	<p>Recently, I&#8217;ve been spending a lot of time analyzing the speed of pure JavaScript engines, looking at how well they perform and what their particular strengths and weaknesses are. To start with, I analyzed the bleeding-edge code from:</p>
+	<ul>
+	<li><a href="http://www.mozilla.org/rhino/">Rhino</a></li>
+	<li><a href="http://www.mozilla.org/js/spidermonkey/">Spidermonkey</a> (Firefox 3)</li>
+	<li><a href="http://www.mozilla.org/projects/tamarin/">Tamarin</a> (Firefox 4?)</li>
+	<li><a href="http://webkit.org/projects/javascript/index.html">JavaScriptCore</a> (Safari 3)</li>
+	</ul>
+	<p>Right now I&#8217;m only looking at pure, JavaScript-only, tests (no tests of DOM or other APIs) and am NOT looking at the speed of the browsers&#8217; native JavaScript engine implementations. (So, even though you may see a speed for a particular engine, that does not directly correlate to the speed of the JavaScript running within the browser itself. There&#8217;s always a significant amount of overhead required to run JavaScript code seurely within a browser, thus the efficiency of that security layer will frequently become a deciding factor in the results.</p>
+	<p>The four engines that I picked all had complete JavaScript implementations and usable JavaScript shells (that way I could feed my tests in and have them cleanly run).</p>
+	<p>If you&#8217;re interested in running these tests for yourself (and have an OSX Intel machine) you can check out the test suite from SVN:<br />
+<tt>svn co http://ejohn.org/code/js-speed/</tt></p>
+	<p>To browse the results I&#8217;ve pulled together a simple application that can be used to view a representation of the data from all the major JavaScript engines paired with the code from the tests which run them.</p>
+	<p>Right now the browser works fine in Firefox, is quirky in Opera and Safari, and explodes in IE (it requires canvas support). I&#8217;ll finesse it into shape when I have a little more time this week.</p>
+	<p><a href="http://ejohn.org/apps/speed/"><img src="http://ui.jquery.com/speed.png" style="width: 480px;"/></a></p>
+	<p><b>Note:</b> This demo uses a bunch of functionality from the new <a href="http://ui.jquery.com/">jQuery UI</a> library, including themes, tabs, accordion, and resizables.
+</p>
+ 
+
+				</div>
+
+		<p><small><strong>Posted:</strong> September 17th, 2007		&#183; <strong>Tags:</strong> <a href="http://ejohn.org/blog/tags/javascript/" target="_self">javascript</a>, <a href="http://ejohn.org/blog/tags/data/" target="_self">data</a>, <a href="http://ejohn.org/blog/tags/speed/" target="_self">speed</a>, <a href="http://ejohn.org/blog/tags/analysis/" target="_self">analysis</a>, <a href="http://ejohn.org/blog/tags/ecmascript/" target="_self">ecmascript</a>				</small></p>
+			
+				<!--
+				<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	    xmlns:dc="http://purl.org/dc/elements/1.1/"
+	    xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+		<rdf:Description rdf:about="http://ejohn.org/blog/javascript-engine-speeds/"
+    dc:identifier="http://ejohn.org/blog/javascript-engine-speeds/"
+    dc:title="JavaScript Engine Speeds"
+    trackback:ping="http://ejohn.org/blog/javascript-engine-speeds/trackback/" />
+</rdf:RDF>				-->
+			<img src="http://ejohn.org/apps/rss/?from=single&id=5479" style="width:0px;height:0px;"/>
+			
+
+<!-- You can start editing here. -->
+
+
+	<h4 id="comments">
+	24 Comments		</h4>
+
+	<style>#commentlist li { font-size: 13px; }
+	#commentlist li h3 { background: #F5F5F5; border-bottom: 1px solid #BBB; padding: 4px; }
+	#commentlist li div.comment-text { margin-left: 15px; }
+	#commentform { border-top: 1px solid #BBB; border-bottom: 1px solid #BBB; margin-left: 20px; margin-right: 20px; background: #F5F5F5; padding: 5px; margin-top: 50px; }
+	#commentform h4 { margin: 0; }</style>
+	
+	<ol id="commentlist" style="list-style:none;margin:0;padding:0;">
+
+	
+		<li class="alt" id="comment-251113">
+		
+		<h3 class="commenttitle"><b><a href='http://rsaccon.com' rel='external nofollow'>Roberto Saccon</a></b>
+	
+		<small><small>
+			(September 17, 2007 
+			at <a href="#comment-251113" title="Permanent link to this comment">11:35 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>that&#8217;s a great ! I have started to implement a JS compiler for the Erlang virtual machine (right now it just compiles/runs a very small subset of Ecma 262, and haven&#8217;t released the code yet). So if things go as planned (but they usually don&#8217;t) you can add another engine to your charts in a few weeks &#8230;</p>
+	<p>regards<br />
+Roberto
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251140">
+		
+		<h3 class="commenttitle"><b>Peter Kasting</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251140" title="Permanent link to this comment">12:37 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>If I read your graphs right, it looks like on most tests you run, Spidermonkey and Tamarin are roughly on par (with a few notable exceptions), while Rhino and JSCore tend to lag well behind, with Rhino worse than JSCore.  Is that a fair summary?
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251156">
+		
+		<h3 class="commenttitle"><b><a href='http://webkit.org/' rel='external nofollow'>Mark Rowe</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251156" title="Permanent link to this comment">1:05 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>What versions of the various JavaScript engines are being tested here? Looking at the testkjs executable in the SVN repository you reference, it is linked against /Users/jresig/Code/WebKit/WebKitBuild/Release/JavaScriptCore.framework/Versions/A/JavaScriptCore, which clearly will not exist for anyone interested in reproducing your results.  The dynamic linker will fall back to whatever version of JavaScriptCore.framework people happen to have on their system which would lead to wildly different results.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251158">
+		
+		<h3 class="commenttitle"><b><a href='http://glandium.org/' rel='external nofollow'>glandium</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251158" title="Permanent link to this comment">1:13 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>&gt; There’s always a significant amount of overhead required to run JavaScript code seurely within a browser, thus the efficiency of that security layer will frequently become a deciding factor in the results.</p>
+	<p>&#8230; and Firefox is pretty bad at it. And the more extensions you install, the slower it gets&#8230;
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251168">
+		
+		<h3 class="commenttitle"><b><a href='http://webkit.org/' rel='external nofollow'>Maciej Stachowiak</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251168" title="Permanent link to this comment">1:25 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>Which is fastest seems to depend on which benchmark you look at. JSC seems to do pretty well on array and string operations (with a few exceptions), excellent on regexp operations, and not so good on things that are math-heavy (which most of the &#8220;real world&#8221; tests are.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251170">
+		
+		<h3 class="commenttitle"><b><a href='http://jupiterit.com' rel='external nofollow'>Justin Meyer</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251170" title="Permanent link to this comment">1:31 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>Very interesting!  I think that most &#8216;real world&#8217; tests in javascript are string manipulations.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251175">
+		
+		<h3 class="commenttitle"><b>Boris</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251175" title="Permanent link to this comment">1:44 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>John, I assume you&#8217;ll be filing bugs on cases when Tamarin is slower than SpiderMonkey, right?  Array.unshift comes to mind, as do most of the regexp tests, some of the String tests, the partial-sums test, the Fib test.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251246">
+		
+		<h3 class="commenttitle"><b>Paul</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251246" title="Permanent link to this comment">3:23 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>What -O level are you using with Rhino? With -O 9 (compiled) it&#8217;s usually pretty fast (once the jvm gets a chance to JIT).
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251272">
+		
+		<h3 class="commenttitle"><b><a href='http://jwatt.org/' rel='external nofollow'>Jonathan Watt</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251272" title="Permanent link to this comment">4:04 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>It&#8217;s probably not really the case, but the time taken by Spidermonkey seems to increase linearly, while the time taken by Tamarin seems to increase exponentially. Do you fancy running a larger number of iterations? :-)
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251383">
+		
+		<h3 class="commenttitle"><b><a href='http://ejohn.org/' rel='external nofollow'>John Resig</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251383" title="Permanent link to this comment">7:22 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>@Peter: It all depends on the test. I&#8217;m trying to build some better aggregate views of the data, but I&#8217;m wary of presenting false assumptions. I&#8217;ll figure something out and get it up online.</p>
+	<p>@Mark: Ah, damn! Yeah, I built a copy of JavaScriptCore from the WebKit SVN just before I ran these tests, yesterday. Hmm&#8230; I&#8217;ll have to try and think of another strategy for distributing that binary. Any thoughts are appreciated.</p>
+	<p>@Justin: Well, I&#8217;d argue that most real-world JavaScript is DOM traversing and manipulation, but removing that, I&#8217;d probably say object property access, looping, then string and array manipulation.</p>
+	<p>@Boris: I could do that - just straight into bugzilla?</p>
+	<p>@Paul: Here&#8217;s the options that I&#8217;m using for Rhino:<br />
+<code>java -server -jar dep/js.jar -opt 9</code></p>
+	<p>You can see this in the test suite&#8217;s Makefile:<br />
+<a href='http://ejohn.org/code/js-speed/Makefile' rel='nofollow'>http://ejohn.org/code/js-speed/Makefile</a></p>
+	<p>@Jonathan: Possibly - some of these tests already take a significant amount of time to run - especially the array-related ones. I&#8217;ll have to see what&#8217;s best.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251458">
+		
+		<h3 class="commenttitle"><b>Frankie Robertson</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251458" title="Permanent link to this comment">9:54 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>&gt;&gt; and explodes in IE (it requires canvas support)<br />
+<a href='http://sourceforge.net/projects/iecanvas' rel='nofollow'>http://sourceforge.net/projects/iecanvas</a>
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251472">
+		
+		<h3 class="commenttitle"><b><a href='http://ejohn.org/' rel='external nofollow'>John Resig</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251472" title="Permanent link to this comment">10:25 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>@Frankie - Yep! I&#8217;m lazy and haven&#8217;t gotten around to it yet, but thanks!
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251473">
+		
+		<h3 class="commenttitle"><b>steve</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251473" title="Permanent link to this comment">10:26 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>Is there a CLI version/access to the JScript engine (or whatever IE/Trident uses?)</p>
+	<p>I would be interested to know, again, at a core level, how their JS engine compares.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251512">
+		
+		<h3 class="commenttitle"><b>Asd</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251512" title="Permanent link to this comment">11:20 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>Wow. I had thought Rhino was fairly fast.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251523">
+		
+		<h3 class="commenttitle"><b><a href='http://webkit.org/' rel='external nofollow'>Maciej Stachowiak</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251523" title="Permanent link to this comment">11:26 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>John, would you be interested in contribution of more tests for this benchmark? I have a huge pile of JavaScript benchmarks from the web and I think some of them cover interesting things that aren&#8217;t covered by these tests (which nontheless are pretty awesome).</p>
+	<p>Also, would you be interested in contribution of a harness for browser-based testing? I don&#8217;t think there will be a big difference in relative performance from the raw engine numbers, but it would allow fair comparisons to the JS engines in IE, Opera and other browsers.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251532">
+		
+		<h3 class="commenttitle"><b><a href='http://ejohn.org/' rel='external nofollow'>John Resig</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251532" title="Permanent link to this comment">11:49 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>@steve: I&#8217;m not sure offhand, that&#8217;s my area of expertise, but I suspect that there must be something (or, at least, a way to build a simple CLI to JSript). Anyone with the knowhow is welcome to pick this up!</p>
+	<p>@Asd: Don&#8217;t get it wrong - Rhino is quite speedy, it&#8217;s just that these other engines are speedier. :-)</p>
+	<p>@Maciej: That&#8217;d be fantastic! I&#8217;ll drop you an email off-site.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251541">
+		
+		<h3 class="commenttitle"><b><a href='http://webkit.org/' rel='external nofollow'>Mark Rowe</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251541" title="Permanent link to this comment">12:00 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>John, you should be able to &#8220;fix&#8221; testkjs by including the built JavaScriptCore.framework along side it in the dep directory and then running the following command to update the linker search path for the framework:</p>
+	<p><code>install_name_tool -change /Users/jresig/Code/WebKit/WebKitBuild/Release/JavaScriptCore.framework/Versions/A/JavaScriptCore @executable_path/JavaScriptCore.framework/Versions/A/JavaScriptCore ./testkjs</code></p>
+	<p>An easy way to verify that this has worked would be to attempt to run testkjs on a Mac OS X machine without the Safari 3 beta installed.  Prior to this command, or if the command does not do what is intended, testkjs will refuse to run with an error from dyld.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251549">
+		
+		<h3 class="commenttitle"><b><a href='http://ejohn.org/' rel='external nofollow'>John Resig</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251549" title="Permanent link to this comment">12:16 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>@Mark: Excellent - thanks Mark! I&#8217;ll hop on that and get that committed right away.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251551">
+		
+		<h3 class="commenttitle"><b><a href='http://davidgolightly.blogspot.com' rel='external nofollow'>David Golightly</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251551" title="Permanent link to this comment">12:18 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>John - those tests are interesting and quite useful, though there were some surprises: Tamarin&#8217;s regex engine appears to be unusually slow!  However, I&#8217;d have two requests for the tool itself (when you get the chance):</p>
+	<p>1. Allow bookmarks to particular views of the tool, so I can link to eg. the graph for Array constructors.</p>
+	<p>2. Have some sort of way to get at the specific value of each bar in the graph, whether it&#8217;s by mouseover or what have you.  It&#8217;s somewhat frustrating to look at a graph like that for &#8220;Array Construction, new Array()&#8221; and not be able to have any idea about the values for the rest of the graph because one engine (in this case, Rhino) is such an outlier.</p>
+	<p>Anyway, I know these features are both somewhat complicated to build, but I thought I&#8217;d get that in there for the record.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251579">
+		
+		<h3 class="commenttitle"><b>Boris</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251579" title="Permanent link to this comment">12:45 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>Yeah, just filing these issues directly in Bugzilla on the Tamarin component is the way to go.  Please cc me and Brendan when you do.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-251694">
+		
+		<h3 class="commenttitle"><b>B C</b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251694" title="Permanent link to this comment">4:12 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>John,</p>
+	<p>Sun&#8217;s JVM&#8217;s use a period of profiling code-use before they perform optimizations. The -server mode you used is intended for long-running server applications and sacrifices initial speeds for greater eventual improvements after a long time. (I read once that the server VM needs 10000 executions before it will optimize a given section of code).</p>
+	<p>Did you take these issues into account when timing Rhino?
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-251942">
+		
+		<h3 class="commenttitle"><b><a href='http://ejohn.org/' rel='external nofollow'>John Resig</a></b>
+	
+		<small><small>
+			(September 18, 2007 
+			at <a href="#comment-251942" title="Permanent link to this comment">11:54 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>@BC: I haven&#8217;t seen the speed costs that you mention - the server flag seemed to help, when I tried it. If you&#8217;re interested, you could run the tests to see if that flag really is a significant factor. Let me know if it is!
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="alt" id="comment-252083">
+		
+		<h3 class="commenttitle"><b><a href='http://db48x.net/' rel='external nofollow'>db48x</a></b>
+	
+		<small><small>
+			(September 19, 2007 
+			at <a href="#comment-252083" title="Permanent link to this comment">4:45 am</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>This is really cool John. I especially like the way you show the js source of the tests. However, it seems the js shown is not always complete or correct. For example, the code for the n-body test ends with &#8220;for (i = 0; i&#8221;.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+		<li class="" id="comment-253078">
+		
+		<h3 class="commenttitle"><b>drbobb</b>
+	
+		<small><small>
+			(September 20, 2007 
+			at <a href="#comment-253078" title="Permanent link to this comment">3:58 pm</a>)
+					</small></small>
+		</h3>
+		
+		<div class="comment-text">	<p>In Rhino, i just noticed that String.replace becomes slow (and I mean _pathetically_ slow) when the string you&#8217;re performing the replacements on is large(ish). I tried <code>s = s.replace(sFrom, sTo, 'g');</code> where s.length was 964949, sFrom.length == 3,  sTo.length == 4 &#8212; and it turned out that <code>var a = s.split(sFrom); s = a.join(sTo);</code> was faster by a factor of over 1600 (!!). There is clearly some sort of anomaly here.<br />
+Btw. <code>s = ( new java.lang.String(s) ).replace( sFrom, sTo );</code> did reasonably well, but still took about 70 percent more time than using Array.split. (There were about 9000 instances of s.From in the original string s).</p>
+	<p>The reason that made me test this was that in one script, I had tried to perform a replace on a string of length about 3MB. Several _hours_ later it still hadn&#8217;t completed (and was hogging the cpu 100%), so I killed the jvm and was left wondering whether there might be some infinite loop bug there. But no, it is just that ridiculously slow.
+</p>
+</div>
+		
+		</li>
+
+		
+	
+	</ol>
+	
+	<!--<p class="small">
+	<a href='http://ejohn.org/blog/javascript-engine-speeds/feed/'><abbr title="Really Simple Syndication">RSS</abbr> feed for comments on this post</a>		</p>-->
+
+
+
+		
+		<form action="http://ejohn.org/wp-comments-post.php" method="post" id="commentform">
+		<h4 id="postcomment">Leave a Comment</h4>
+		
+			
+		<p>
+		<input type="text" name="author" id="author" value="" size="30" tabindex="1" />
+		<label for="author">Name (required)</label>
+		</p>
+		
+		<p>
+		<input type="text" name="email" id="email" value="" size="30" tabindex="2" />
+		<label for="email">E-mail (required, never displayed)</label>
+		</p>
+		
+		<p>
+		<input type="text" name="url" id="url" value="" size="30" tabindex="3" />
+		<label for="url"><abbr title="Uniform Resource Identifier">URI</abbr></label>
+		</p>
+
+		
+	<p>
+	<textarea name="comment" id="comment" cols="70" rows="10" tabindex="4"></textarea>
+	</p>
+
+	<p><small><b>Note:</b> Wrap all of your code blocks in &lt;code>...&lt;/code> and replace &lt; and &gt; with &amp;lt; and &amp;gt;, respectively.</small></p>
+
+	<p>
+	<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+	<input type="hidden" name="comment_post_ID" value="5479" />
+	</p>
+
+	
+	</form>
+
+	
+				
+		
+				
+	
+        </div></div>
+
+        <div id="side">
+                <div id="projects">
+                        <h2>Current <span>Projects</span></h2>
+
+                        <div class="box">
+                        <a href="http://jquery.com/" title="jQuery JavaScript Library"><img src="/images/ejohn-side-jquery.gif" class="icon" alt="jQuery JavaScript Library" /></a>
+                        <div class="desc">
+                                <h3><a href="http://jquery.com/" title="jQuery JavaScript Library">jQuery</a></h3>
+                                <p>Comprehensive DOM, Event, Animation, and Ajax JavaScript Library.</p>
+                        </div>
+                        </div>
+
+                        <h2>Recent <span>Projects</span></h2>
+
+                        <div class="box">
+                        <a href="http://jspro.org/"><img src="/images/ejohn-side-book.gif" class="icon" alt="Pro JavaScript Techniques"/></a>
+                        <div class="desc">
+                                <h3><a href="http://jspro.org/">JavaScript Book</a></h3>
+                                <p>The best techniques for professional  JavaScript. Published by Apress.</p>
+                        </div>
+                        </div>
+
+                        <div class="more"><a href="/projects/"><strong>More</strong> Projects...</a></div>
+                </div>
+        </div>
+
+</div>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">_uacct = "UA-50335-1";urchinTracker();</script>
+</body>
+</html>

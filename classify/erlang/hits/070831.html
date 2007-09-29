@@ -1,0 +1,174 @@
+<html>
+<head>
+<title>Bill Clementson's Blog: Emacs Fingers</title>
+<script type='text/javascript' src='glider.js'>
+</script>
+<style type="text/css">
+  @import url("blog.css"); 
+</style>
+<style type="text/css">
+    @import "quicksub.css";
+</style>
+  <style type='text/css'>
+   div#GLIDER_0 { background-image: url(glider0-27x27.png); width: 27px; height: 27px; layer = 0;}
+   </style>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-80909-1";
+urchinTracker();
+</script>
+</head>
+<body onload='javascript:startGlider("GLIDER_0");'>
+<div id="quickSub" style="position:absolute; visibility:hidden; z-index:1000;" onMouseOut="return timeqs();" onMouseMove="return delayqs();"></div>
+<script language="JavaScript" src="quicksub.js"></script>
+<div class="header">
+<a href="index.html">
+<h1>Bill Clementson's Blog</h1></a>
+<i>Bits and pieces (mostly Lisp-related) that I collect from the ether.</i>
+</div>
+<br>
+<div id="Calendar">
+<table border="0" cellspacing="0" cellpadding="1">
+<tr><td colspan="7"><center><a href="0708.html">August</a> 2007</center></td></tr>
+<tr>
+<td><font size="-2" color="green">Sun</font></td>
+<td><font size="-2" color="green">Mon</font></td>
+<td><font size="-2" color="green">Tue</font></td>
+<td><font size="-2" color="green">Wed</font></td>
+<td><font size="-2" color="green">Thu</font></td>
+<td><font size="-2" color="green">Fri</font></td>
+<td><font size="-2" color="green">Sat</font></td>
+</tr><tr>
+<td colspan="3"></td>
+<td align="center"><a href="070801.html"><font size="-2">1</font></a></td>
+<td align="center"><font size="-2">2</font></td>
+<td align="center"><font size="-2">3</font></td>
+<td align="center"><font size="-2">4</font></td>
+</tr><tr>
+<td align="center"><font size="-2">5</font></td>
+<td align="center"><font size="-2">6</font></td>
+<td align="center"><font size="-2">7</font></td>
+<td align="center"><font size="-2">8</font></td>
+<td align="center"><a href="070809.html"><font size="-2">9</font></a></td>
+<td align="center"><a href="070810.html"><font size="-2">10</font></a></td>
+<td align="center"><font size="-2">11</font></td>
+</tr><tr>
+<td align="center"><font size="-2">12</font></td>
+<td align="center"><a href="070813.html"><font size="-2">13</font></a></td>
+<td align="center"><font size="-2">14</font></td>
+<td align="center"><font size="-2">15</font></td>
+<td align="center"><font size="-2">16</font></td>
+<td align="center"><font size="-2">17</font></td>
+<td align="center"><font size="-2">18</font></td>
+</tr><tr>
+<td align="center"><font size="-2">19</font></td>
+<td align="center"><font size="-2">20</font></td>
+<td align="center"><font size="-2">21</font></td>
+<td align="center"><font size="-2">22</font></td>
+<td align="center"><font size="-2">23</font></td>
+<td align="center"><font size="-2">24</font></td>
+<td align="center"><font size="-2">25</font></td>
+</tr><tr>
+<td align="center"><font size="-2">26</font></td>
+<td align="center"><a href="070827.html"><font size="-2">27</font></a></td>
+<td align="center"><font size="-2">28</font></td>
+<td align="center"><font size="-2">29</font></td>
+<td align="center"><a href="070830.html"><font size="-2">30</font></a></td>
+<td align="center"><font size="-2" color="red">31</font></td>
+</tr><tr>
+<td align="center" colspan="7"><font size="-2"><a href="070728.html">Jul</a>&nbsp;&nbsp;<a href="070904.html">Sep</a></font>
+</td></tr>
+</table>
+<p>
+</div>
+<div id="myLinks">
+<!--Side Links-->
+<p>
+<!-- Begin Blogs I Read Search v3 -->
+<script type="text/javascript">
+var myweblog = "bc.tech.coop/blog";
+var mygooglekey = "gJKV0vRQFHJEtNRWxN+Q0dc2m9Ene5pz";
+var myopmlfile = "http://bc.tech.coop/blog/myChannels.opml";
+var myblogrollopml = "";
+</script>
+<p>
+<form name="s" action="http://www.alpern.org/weblog/php/blogsearch/blogsearch.php" method="get">
+<p>
+<input type="hidden" name="opmlfile">
+<input type="hidden" name="googlekey">
+<input type="hidden" name="weblog">
+<input type="hidden" name="blogrollopml">
+<p>
+<script type="text/javascript">
+document.s.opmlfile.value = myopmlfile;
+document.s.googlekey.value = mygooglekey;
+document.s.weblog.value = myweblog;
+document.s.blogrollopml.value = myblogrollopml;
+</script>	
+<p>
+<input name="outline" type="hidden" id="outline" value="true">
+  <table class="radioboxes">
+     <tr>
+	<td nowrap>
+	  <input name="q" type="text" id="q" size="10" maxlength="255" >
+	  <input type="submit" name="go2" value="Search">		
+	</td>
+      </tr>
+      <tr>
+	 <td nowrap><label for=mysite>
+	    <input type="radio" value="mysite" id=mysite name="scope" checked onClick="javascript:window.focus(); document.s.q.focus();">My Blog</label>
+         </td>
+      </tr>
+      <tr>
+	 <td nowrap><label for=web>
+	    <input type="radio" value="web" id=web name="scope" onClick="javascript:window.focus(); document.s.q.focus();">The Web</label>
+         </td>
+      </tr>
+  </table>  
+</form>
+<p>
+<!-- End Blogs I Read Search -->
+<b>Contact Links:</b><br>
+<a href="http://bc.tech.coop/">Home</a>
+<br>
+<a href="mailto:billclem@gmail.com">Email</a>
+<br>
+<a href="http://bc.tech.coop/blog/rss.xml"><img src="xml.png" alt="XML feed"></a>
+<br><br>
+<b>Lisp-Related Weblogs:</b><br>
+<a href="http://planet.lisp.org/">Planet Lisp</a><br>
+<a href="http://www.scheme.dk/planet/">Planet Scheme</a>
+<p>
+</div>
+<div class="content">
+<span class="rss:item">
+<h2> Emacs Fingers</h2>
+<h3>Friday, August 31, 2007</h3><p>
+<!--Emacs Fingers-->
+Having fingers like these would definitely be an advantage with
+Emacs ;-) :<br /><br />
+<img src="images/emacs-fingers.png" alt="Emacs Fingers" />
+<br /><br />
+(from the <a href="http://www.ai.mit.edu/research/publications/browse/0500browse.shtml">
+"EMACS Manual for ITS Users (AIM-554)"</a>)
+<p>
+</span>
+</div>
+<p>
+<p>
+<table>
+<tr>
+<td>
+<a href='http://www.catb.org/hacker-emblem/'><div
+   class='glider' id='GLIDER_0' onmouseover='javascript:startGlider("GLIDER_0");'></div></a>
+</a>
+</td>
+<td>
+<a href="http://www.gnu.org/software/emacs/">
+<img src="emacs.png" alt="emacs" align="left"></a>
+Copyright &copy; 2007 by 
+<a href="mailto:billclem@gmail.com">Bill Clementson</a>
+</td></tr></table>
+</body>
+</html>

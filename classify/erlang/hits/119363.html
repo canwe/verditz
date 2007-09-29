@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+   <head>
+
+
+
+<title>Linux.com :: Export Writer documents into any wiki format</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Generator" content="Xaraya" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="One of the most welcome additions to OpenOffice.org 2.3 is a new export filter that allows you to save Writer documents as MediaWiki-formatted pages. That's all fine and dandy if you are using MediaWiki, but what about other wiki systems? The answer to this question comes in the form of the OpenOffice2UniWakka export filter. While it's designed to work with the UniWakka wiki, with a bit of hacking you can adapt it to other wiki systems as well, even if you are not familiar with XML and XSLT." />
+<meta name="rating" content="General" />
+
+
+
+<!-- Linking for Mozilla and related browser site tab -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.linux.com/feature/119363?theme=rss" />
+
+
+    <link rel="alternate" type="text/html" title="Print" href="http://www.linux.com/feature/119363?theme=print" />
+
+
+
+<link rel="pingback" href="http://www.linux.com/ws.php" />
+<link rel="Top" type="text/html" href="http://www.linux.com/" />
+<link rel="Parent" type="text/html" href="http://www.linux.com/" />
+<link rel="author" href="Linux.com" />
+
+
+
+
+
+
+<link rel="contents" type="text/html" href="http://www.linux.com/articles/map/" />
+
+<link rel="search" type="text/html" href="http://www.linux.com/?module=search" />
+<script type="text/javascript" src="/themes/linux/scripts/jquery.js"></script>
+<script type="text/javascript" src="/themes/linux/scripts/special.js"></script>
+<script type="text/javascript" src="/themes/linux/scripts/thickbox.js"></script>
+<script type="text/javascript" src="/themes/linux/scripts/jquery.truncate.js"></script>
+<style type="text/css">
+     #ad_pos_30 {display: none;}
+     #fad1 embed, #fad1 object {position: relative; z-index: 5 !important}
+</style>
+<!-- <base href="&xar-baseurl;" /> -->
+<!--  the following styles were supplied from component theme  -->
+<!--  link style  -->
+<link rel="stylesheet" type="text/css" href="http://www.linux.com/themes/linux/style/style.css" media="screen" />
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://www.linux.com/themes/linux/style/ie_win_sad7.css" media="screen" /><![endif]-->
+<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="http://www.linux.com/themes/linux/style/ie_win.css" media="screen" /><![endif]-->
+<!--  the following styles were supplied from component module  -->
+<!--  link style  -->
+<link rel="stylesheet" type="text/css" href="http://www.linux.com/modules/comments/xarstyles/comments.css" media="screen" />
+<!--  the following styles were supplied from component common  -->
+<!--  link style  -->
+<link rel="stylesheet" type="text/css" href="http://www.linux.com/modules/base/xarstyles/xarcore-xhtml1-strict.css" media="screen" />
+
+<script type="text/javascript">
+//<![CDATA[
+var thisuser = '0';
+var thispage = 'page';
+var thiscat = 'none';
+var thistpc = '';
+var thisurl = '';
+   $(document).ready(function(){
+       $('#articles').removeClass("xar-menu-item").addClass("xar-menu-item-current");
+       $("ul ul li.xar-menu-item-current > ul li:nth-child(1) a ").addClass("thiscurrent");
+       $('#articles ul.xar-menu-subitem').removeClass("hide").css("display","block");
+       $("ul li.xar-menu-item#articles").hover(
+           function(){ $(this).children('ul').removeClass("hide"); },
+           function(){ $(this).children('ul').removeClass("hide"); }
+       );
+   });
+//]]>
+</script>
+   </head>
+   <body>
+     <div id="top">
+<!-- DoubleClick Random Number -->
+<script type="text/javascript">
+   dfp_ord=Math.random()*10000000000000000;
+   dfp_tile = 1;
+</script>
+<!-- End DoubleClick Random Number --></div>
+     <div id="doc3" class="yui-t1">
+       <div id="hd">
+<div class="fix top"></div>                                                                                                                                                                                                                                                                                                                                                          
+<div id="frame1"></div>  
+   <h1>
+       <a href="http://www.linux.com/" title="Linux.com">
+            <span>Linux.com</span>
+       </a>
+   </h1>
+<div class="xar-block-body-topnav" id="search">
+
+<form action="/" method="get" id="searchin">
+ <fieldset>
+   <legend>Search</legend>
+   <label for="q8">Search</label>
+      <input type="hidden" name="sort" value="date"/>
+      <input type="hidden" name="header[title]" value="1"/>
+      <input type="hidden" name="header[text]" value="1"/>
+      <input type="hidden" name="module" id="module" value="search" />
+     <input type="text" value="" name="q" id="q8" size="15" />
+    <input style="margin-top: 5px" type="button" onclick="this.form.submit();" value="Search" />
+</fieldset>
+</form>
+</div>
+<div class="xar-block-body-topnav" id="login">
+<div id="user">
+    <div class="cover">
+    <a href="http://www.linux.com/authsystem/login">Log in</a>&nbsp;&nbsp;|&nbsp;  <a href="http://www.linux.com/registration/register">Create Account</a>&nbsp;&nbsp;|&nbsp; <a href="/submit">Submit Story</a>
+   </div>
+</div>
+
+</div>
+</div>
+       <div id="frame2">
+         <div id="frame3"></div>
+         <div class="fix"></div>
+         <div id="bd">
+	<div class="yui-b first">
+	<div class="block" id="mainmenu2">
+<ul class="xar-menu-section" id="mainmenu">
+	<li class="xar-menu-section">
+		<ul class="xar-menu-item">
+			<li class="xar-menu-item" id="articles">
+				<a href="/articles/feature/" title="Linux features, reviews, commentary, and news">
+					Articles 
+				</a>
+				<ul class="hide xar-menu-subitem">
+					<li class="xar-menu-subitem" id="casestudies">
+						<a href="/feature/c4206" title="Case Studies">
+							Case Studies
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="feature">
+						<a href="/feature/" title="Features">
+							Features
+						</a>
+					</li>
+				        <li class="xar-menu-subitem" id="news">
+						<a href="/feature/c4201" title="Original News Features">
+							News
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="newsvac">
+						<a href="/feed/" title="Open Source around the Web">
+							NewsVac
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="reviews">
+						<a href="/feature/c4203" title="Reviews">
+							Reviews
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="xar-menu-item" id="documentation">
+				<a href="/base/ldp/howto/" title="Linux HOWTOs">
+					Documentation 
+				</a>
+				<ul class="hide xar-menu-subitem">
+					<li class="xar-menu-subitem" id="howto1">
+						<a href="/base/ldp/howto/HOWTO-INDEX/intro.html" title=" ">
+What Are Linux HOWTOs?
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto2">
+						<a href="/base/ldp/howto/HOWTO-INDEX/location.html" title=" ">
+Where Can I Get Linux HOWTOs?
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto3">
+						<a href="/base/ldp/howto/HOWTO-INDEX/translations.html" title=" ">
+HOWTO Translations
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto4">
+						<a href="/base/ldp/howto/HOWTO-INDEX/categories.html" title=" ">
+Categorized List of HOWTOs 
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto5">
+						<a href="/base/ldp/howto/HOWTO-INDEX/howtos.html" title=" ">
+Single list of HOWTOs
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto6">
+						<a href="/base/ldp/howto/HOWTO-INDEX/mini.html" title=" ">
+Single list of mini-HOWTOs
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto7">
+						<a href="/base/ldp/howto/HOWTO-INDEX/unmaintained.html" title=" ">
+Unmaintained HOWTOs
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto8">
+						<a href="/base/ldp/howto/HOWTO-INDEX/writing.html" title=" ">
+Writing and Submitting a HOWTO
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="howto9">
+						<a href="/base/ldp/howto/HOWTO-INDEX/copyright.html" title=" ">
+Copyright Information 
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="xar-menu-item" id="distributions">
+				<a href="/distributions/" title="Variety of different Linux OSes">
+					Distributions 
+				</a>
+			</li>
+			<li class="xar-menu-item" id="forums">
+				<a href="/forums/" title="Linux forums">
+					Forums 
+				</a>
+			</li>
+			<li class="xar-menu-item" id="sponsorsolutions">
+				<a href="/sponsor_solutions/" title="Solutions from our sponsors">
+					Sponsor Solutions 
+				</a>
+				<ul class="hide xar-menu-subitem">
+					<li class="xar-menu-subitem" id="hpos">
+						<a href="/sponsor_solutions/hpos" title=" Open source and Linux from HP">
+							 Open Source and Linux from HP
+						</a>
+					</li>
+					<li class="xar-menu-subitem" id="perforce">
+						<a href="/sponsor_solutions/perforce" title="Perforce Fast Software Manager">
+							Perforce Fast Software Manager
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="xar-menu-item" id="about">
+				<a href="/about/" title="About Linux.com">
+					About Us 
+				</a>
+			</li>
+		</ul>
+	</li>
+</ul></div>
+<div class="block" id="whatislinux">
+<h4>What is Linux?</h4>
+<p class="linux1"><a href="/whatislinux/"><img src="http://images.linux.com/themes/linux/images/icon_learn.gif" alt="" />Learn more about Linux</a></p>
+<p class="linux2"><a href="/download_linux/"><img src="http://images.linux.com/themes/linux/images/icon_down.gif" alt="" />Download Linux</a></p></div>
+<div class="block" id="feeds">
+<h4>Feeds</h4>
+<ul style="margin: 1em">
+<li><a href="/feature?theme=rss">Features</a></li>
+<li><a href="/feed?theme=rss">NewsVac</a></li>
+<li><a href="/xarbb?theme=rss">Forums</a></li>
+<li><a href="/feature/c4201?theme=rss">News</a></li>
+<li><a href="http://linuxcom.blip.tv/rss">Video</a></li>
+<li><a href="/?module=comments&amp;func=rss&amp;theme=rss">Comments</a></li>
+</ul></div>
+<div class="block" id="ad_pos_special">
+<h4>Special Offers</h4>
+<form method="post" action="http://newsletters.osdn.com/signup.pl">
+<fieldset>
+  <input type="hidden" name="source" value="lc" />
+  <input type="hidden" name="tmpchk" value="1" />
+<p>
+			<b>Get special offers on:</b></p><p>
+    			<input type="checkbox"  name="listname" value="OSDN/linux.list" /> Linux <br />
+    			<input type="checkbox"  name="listname" value="OSDN/application_development.list" /> Application Dev<br />
+    			<input type="checkbox"  name="listname" value="OSDN/computer_programming.list" /> Programming<br />
+    			<input type="checkbox"  name="listname" value="OSDN/software.list" /> Software
+</p>
+	<p>
+		Email: 
+		<br />
+		<input type="text" name="email_address" size="10" value="" style="width: 80px" />
+		<br />
+		<input type="hidden" name="source" value="standalone" />
+		<input type="hidden" name="tmpchk" value="standalone" />
+		<input type="submit" name="Submit" value="Submit" />
+	</p>
+</fieldset>
+</form>
+</div>
+</div>
+<div id="yui-main">
+	<div class="yui-b">
+		<div class="yui-g">
+			<div class="3col">
+				<div class="l0">
+					<div class="l1">
+						<div class="l2">
+							<div class="l3">
+								<div class="l4">
+									<div class="l5">
+																				<script type="text/javascript">                                                                                                                                                                                                   
+//<![CDATA[                                                                                                                                                                                                                       
+   $(document).ready(function(){                                                                                                                                                                                                 
+       $('#feature').removeClass("xar-menu-subitem").addClass("xar-menu-subitem-current");                                                                                                                                       
+   });                                                                                                                                                                                                                           
+//]]>                                                                                                                                                                                                                             
+</script> 
+<script type="text/javascript">
+var thisnewtpc = 'tpc=Tools & Utilities;tpc=Office Software;';
+var thistpc = thisnewtpc.replace(/\s+/g,'').replace(/&amp;/g,';tpc=').toLowerCase();
+var thiscat = 'feature';
+var thispage = 'article';
+</script>
+<div id="articlepage">
+	<div class="rightblock" id="ad_pos_20a">
+<div id="fad20" class="pb_art"><div><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p20_powerbar;pg='+thispage+';logged_in='+thisuser+';tile='+dfp_tile+';'+thistpc+'sz=1x1;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div></div>
+<div class="rightblock" id="ad_pos_6">
+<div id="fad6"><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p6_imu;pg='+thispage+';logged_in='+thisuser+';tile='+dfp_tile+';'+thistpc+'sz=300x250,336x280;ptile=2;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div>
+	<div id="center" class="article_wrap feature">
+		<div class="adframe">
+   					<div class="module-title"><h2>Feature</h2></div>
+				<div class="xar-left">
+					<div class="xar-standard-box-padding">
+					        <h3>Export Writer documents into any wiki format</h3>
+					        <div class="xar-article-details">
+					 			      			          By <a href="http://www.nothickmanuals.info">Dmitri Popov</a>
+					 							on
+							September 27, 2007 (4:00:00 PM)					</div>
+<p class="xar-padding-thicktop xar-article-options">
+   <small>
+            <br />
+        <a href="http://www.linux.com/feature/119363?theme=print"><img src="/themes/linux/images/tango-icon-theme/16x16/devices/printer.png" alt="Printer friendly page"/> Print</a>
+            <br />
+            <a href="http://www.linux.com/articles/119363#commentthis"><img src="/themes/linux/images/comments.png" alt="Comment on this article"/> Comments</a>
+    </small>
+        </p>
+					        <div class="xar-clearleft">
+					            <p>One of the most welcome additions to OpenOffice.org 2.3 is a new export filter that allows you to save Writer documents as MediaWiki-formatted pages. That's all fine and dandy if you are using MediaWiki, but what about other wiki systems? The answer to this question comes in the form of the <a href="http://uniwakka.sourceforge.net/OpenOffice2UniWakka">OpenOffice2UniWakka</a> export filter. While it's designed to work with the <a href="http://uniwakka.sourceforge.net/HomePage">UniWakka</a> wiki, with a bit of hacking you can adapt it to other wiki systems as well, even if you are not familiar with XML and XSLT.</p>					        </div>
+						<div id="featurecontent" class="xar-align-left">
+					            <p>The OpenOffice2UniWakka filter itself consists of the OD2UniWakka.xslt file (or OOo2UniWakka.xslt, if you are still using OpenOffice.org 1.x.x). You can think of this file as a simple conversion program written in <a href="http://en.wikipedia.org/wiki/Xslt">XSLT</a> (Extensible Stylesheet Language Transformations), &quot;an XML-based language used for the transformation of XML documents into other XML or human-readable documents.&quot; Since the content of an .odt document is stored as an XML file, XSLT is a perfect tool for transforming Writer documents into wiki-formatted text files.</p>
+
+<p>To start hacking the OpenOffice2UniWakka filter, download its latest version from <a href="http://uniwakka.sourceforge.net/HomePage">UniWakka's main page</a> and unpack it, then open the OD2UniWakka.xslt file in a text editor. Let's start seeing how we can modify the output with something simple like specifying transformation rules for basic formatting, including bold, italic, and underlined. The filter defines three variables that describe each style: font-style, font-weight, and font-underline:</p>
+
+<pre>
+&lt;xsl:variable name=&quot;font-style&quot; select=&quot;//office:automatic-styles/style:style[@style:name=$style]/style:text-properties/@fo:font-style&quot;/&gt;
+&lt;xsl:variable name=&quot;font-weight&quot; select=&quot;//office:automatic-styles/style:style[@style:name=$style]/style:text-properties/@fo:font-weight&quot;/&gt;
+&lt;xsl:variable name=&quot;font-underline&quot; select=&quot;//office:automatic-styles/style:style[@style:name=$style]/style:text-properties/@style:text-underline-style&quot;/&gt;
+</pre>
+
+<p>It then finds all text fragments containing the specified formatting and wraps them in wiki markup:</p>
+
+<pre>&lt;xsl:when test=&quot;$font-weight='bold' and $font-style='italic' and $font-underline='none'&quot;&gt;**//&lt;/xsl:when&gt;</pre>
+
+<p>This means that all you have to do is to locate all the statements that start with &lt;xsl:when test= followed by the &quot;style&quot; condition, and replace the existing markup with the one you want.</p>
+
+<p>The XSLT file also contains a separate section called &quot;my styles&quot; (it starts with the &lt;--! my styles --&gt; comment) where you can specify custom transformation rules. If you take a closer look at the default transformation rules, you'll quickly notice that each rule has the following structure:</p>
+
+<pre>
+&lt;xsl:template match=&quot;//text:span[@text:style-name='emph']&quot;&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;**&lt;/xsl:text&gt;
+   &lt;xsl:apply-templates/&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;**&lt;/xsl:text&gt;
+&lt;/xsl:template&gt;
+</pre>
+
+<p>You don't need a degree in rocket science to figure out how the rule works: it simply finds text with a specific style and wraps it in the appropriate wiki markup, so the sentence &quot;This is &lt;b&gt;bold&lt;/b&gt;&quot; is converted into &quot;This is **bold**.&quot; Knowing that, you can quickly add your own rules. If you are using, for example, <a href="http://wiki.splitbrain.org/wiki:dokuwiki">DokuWiki</a>, you can create a Writer template containing custom styles like dw-bold, dw-italic, dw-underlined, and so on. You can then specify transformation rules for each style in the &quot;my styles&quot; section of the OD2UniWakka.xslt file:</p>
+
+<pre>
+&lt;xsl:template match=&quot;//text:span[@text:style-name='dw-italic']&quot;&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;''&lt;/xsl:text&gt;
+   &lt;xsl:apply-templates/&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;''&lt;/xsl:text&gt;
+&lt;/xsl:template&gt;
+&lt;xsl:template match=&quot;//text:span[@text:style-name='dw-bold']&quot;&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;**&lt;/xsl:text&gt;
+   &lt;xsl:apply-templates/&gt;
+   &lt;xsl:text disable-output-escaping=&quot;yes&quot;&gt;**&lt;/xsl:text&gt;
+&lt;/xsl:template&gt;
+</pre>
+
+<p>To make use of the defined custom transformation rules, you need to create a Writer template containing the specified styles (i.e. dw-italic, dw-bold, dw-underlined, etc.) and use them to format text.</p>
+
+<p>Once you've figured out the basics, you can tweak the rest of the OD2UniWakka.xslt file. The final step of the process is to add the modified OD2UniWakka filter to OpenOffice.org. To do this, choose Tools -&gt; XML Filter Settings and press the New button. Enter the filter's name in the Filter name field (e.g. &quot;OD2Wiki&quot;) and select OpenOffice.org Writer from the Application drop-down list. In the Name of file type field, enter the name of the filter as it will appear in the list of available formats (e.g. &quot;wiki&quot;) and enter &quot;txt&quot; in the File extension field. Switch to the Transformation tab, and enter the path to the OD2UniWakka.xslt file in the XSLT for Export field. Press OK, then Close, and the filter is ready to go.</p>
+
+<p>If you want to add the filter to multiple OpenOffice.org installations, or you want to share it with other users, you can export it as a .jar package. To do this, choose Tools -&gt; XML Filter Settings, select the filter, and press the Save as Package button. You and other users can then install the package by simply pressing the Open Package button.</p>					        </div>
+					 
+						<div class="xar-align-left">
+							<I>Dmitri Popov is a freelance writer whose articles have appeared in Russian, British, US, German, and Danish computer magazines.</I>						</div>
+				 											<div class="xar-align-left" style="padding-top:20px;">
+										        	<div class="block" id="3rdparty_badges">
+<!-- Start Slashdot This link -->
+<p>
+<a href="javascript:location.href='http://slashdot.org/bookmark.pl?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)"><img src="http://images.slashdot.org/favicon.ico" alt="Slashdot" border="0" height="16" width="16" /></a>&nbsp;<a href="javascript:location.href='http://slashdot.org/bookmark.pl?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)" >Slashdot it!</a>
+&nbsp;  -  &nbsp; 
+<a href="http://del.icio.us/post" target="_blank"  onclick="window.open('http://del.icio.us/post?v=4&amp;noui&amp;jump=close&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;"><img src="/themes/linux/images/delicious.small.gif" alt="del.icio.us" border="0" height="16" width="16" /></a>&nbsp;<a href="http://del.icio.us/post" onclick="window.open('http://del.icio.us/post?v=4&amp;noui&amp;jump=close&url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=700,height=400'); return false;"  >del.icio.us</a>
+&nbsp;  -  &nbsp; <script type="text/javascript">digg_skin = 'icon';</script>
+<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> <a href="javascript:location.href='http://digg.com/submit?phase=2&amp;url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title)" style="margin-left: 2px;">Digg This!</a>
+</p>
+<!-- End Slashdot This link --></div>
+										        </div>
+
+       <div class="xar-normal related_links">
+           <h4>Related Links</h4>
+
+
+
+
+<p><strong>Last 5 articles by this author:</strong></p>
+	<div class="xar-align-left;">
+       <ul style="list-style-type: square;margin-left:20px;">
+                       <li> <a href="http://www.linux.com/feature/119363">
+Export Writer documents into any wiki format</a>
+                            &nbsp; Sep 27, 2007</li>
+                       <li> <a href="http://www.linux.com/feature/119245">
+Adding a basket tool to OpenOffice.org</a>
+                            &nbsp; Sep 20, 2007</li>
+                       <li> <a href="http://www.linux.com/feature/119138">
+Buddi: A simple way to track personal finances</a>
+                            &nbsp; Sep 18, 2007</li>
+                       <li> <a href="http://www.linux.com/feature/119107">
+Make your Thunderbird start page a wiki</a>
+                            &nbsp; Sep 13, 2007</li>
+                       <li> <a href="http://www.linux.com/feature/118919">
+Anonymous browsing with JAP</a>
+                            &nbsp; Sep 12, 2007</li>
+</ul>
+   </div>
+<p><strong>Sponsored links:</strong></p>
+           <ul style="list-style-type: square; margin-left:20px;">
+<script type="text/javascript">
+ thispg= "Tools & Utilities";
+       var pg= thispg;
+       var pgs= pg.replace(/\s+/g,'+').replace(/&amp;/g,'+').toLowerCase();
+document.write('<li><a href="http://ostg.pricegrabber.com/search.php?form_keyword='+pgs+'">Best deals: '+pg+'</a></li>');
+ thispg= "Office Software";
+       var pg= thispg;
+       var pgs= pg.replace(/\s+/g,'+').replace(/&amp;/g,'+').toLowerCase();
+document.write('<li><a href="http://ostg.pricegrabber.com/search.php?form_keyword='+pgs+'">Best deals: '+pg+'</a></li>');
+</script>
+           </ul>
+</div>
+       <a name="commentthis"></a>
+	<div class="xar-normal xar-clear-both" id="comments">
+           		<h4>Comments</h4>
+		 on <strong><a href="http://www.linux.com/articles/119363">Export Writer documents into any wiki format</a></strong></p>
+           		<div class="title_divide"></div>
+           		                		
+
+
+
+<div>
+   <p class="xar-cm-note xar-sub">
+ Note: Comments are owned by the poster. We are not responsible for their content. </p>
+</div>
+<div class="xar-tr-wrapper xar-accent">
+   <label class="xar-tr-title">Title</label>
+   <label class="xar-tr-author">Author</label>
+   <label class="xar-tr-date">Date-Time</label>
+</div>
+
+
+       <div class="xar-tr-wrapper">
+           <span class="xar-tr-title">
+                    <img class="xar-tr-image" height="21" src="/modules/comments/xarimages/n_nosub.gif" width="9" alt="" />
+
+                    <a href="#" id="collapser" name="collapser" onclick="document.getElementById('1166636').style.display = (document.getElementById('1166636').style.display == 'block') ? 'none' : 'block'; return false;" title="Toggle the full view of comment..">
+                        Importing from MediaWiki would be great too!</a>
+</span>
+           <span class="xar-tr-author">
+ Anonymous             </span>
+            <span class="xar-tr-date">
+                September 27, 2007 07:27 PM</span>
+       </div>
+
+
+        <div class="xar-tr-collapsed" id="1166636">
+           <div class="xar-accent-outline">
+               <!-- actions buttons -->
+                        <form action="http://www.linux.com/?module=comments&amp;func=reply" method="post" class="xar-cm-actions">
+                            <div>
+                                <input type="hidden" name="header[modid]" value="151" />
+                                <input type="hidden" name="header[itemtype]" value="12" />
+                                <input type="hidden" name="header[objectid]" value="119363" />
+                                <input type="hidden" name="header[pid]" value="1166636" />
+                                <input type="hidden" name="receipt[returnurl][decoded]" value="http://www.linux.com/feature/119363?&amp;depth=5&amp;order=1&amp;sortby=3&amp;render=threaded" />
+                                <input type="hidden" name="receipt[returnurl][encoded]" value="http%3A%2F%2Fwww.linux.com%2Ffeature%2F119363%3F%26amp%3Bdepth%3D5%26amp%3Border%3D1%26amp%3Bsortby%3D3%26amp%3Brender%3Dthreaded" />
+                                <input type="hidden" name="receipt[action]" value="reply" />
+                                <input type="submit" name="submit" id="submit-reply1166636" value="Reply" />
+                           </div>
+                       </form>
+
+
+                    It'd be great if there was a feature to copy/paste wiki source code straight into Writer and have it retain the formatting!                    <p>
+                        <a href="http://www.linux.com/?module=comments&amp;func=display&amp;cid=1166636" title="Permalink" rel="bookmark">
+                           #
+                       </a>
+                   </p>
+
+<!-- show changelog -->
+<!-- end changelog -->
+           </div>
+       </div>
+<script type="text/javascript" src="/modules/base/xartemplates/includes/submitonce.js"></script>
+  <form action="http://www.linux.com/?module=comments&amp;func=reply" method="post" id="post" onsubmit="submitonce(this)"  >
+<br />
+    <div class="xar-ib-wrapper xar-accent-outline">
+  <h3>Post a new comment</h3>
+<div class="xar-ib-leftpanel">
+         <p>
+ Name :
+              Anonymous</p>
+         <label for="package-title">
+ Title: </label>
+            <input class="xar-ib-field" type="text" name="package[title]" id="package-title" value="Export Writer documents into any wiki format" tabindex="1" />
+         <label for="package-text">
+ Comment: </label>
+<textarea class="xar-ib-fieldtext" name="package[text]" id="package-text" tabindex="2"></textarea>
+
+
+
+<div style="line-height:1em; margin:10px 0;" >
+                    <label class="xar-form-label">Are you human?</label>
+ <!-- 0 is for invalid, so don't select it-->
+                   <div class="xar-form-container-after">
+                       <div style="float:left;width:200px;">
+                             <img class="antibot" src="http://www.linux.com/?module=formcaptcha&amp;func=antispam&amp;antiselect=31&amp;rnd=24614" />
+                        </div>
+                        <div style="float:left;text-align:left;">
+                            <input type="text" name="antiword" id="antiword" size="30" maxlength="10"><br />
+Copy the word from the image on the left into the input box.
+                            <br />
+                            <input type="hidden" name="antiselect" id="antiselect" value="31" />
+                           <input type="hidden" name="captchaon" id="captchaon" value="1" />
+                       </div>
+                   </div>
+               </div>
+
+         <div style="clear:left;">
+          <input type="hidden" name="header[modid]" id="header-modid" value="151" /> 
+          <input type="hidden" name="header[objectid]" id="header-objectid" value="119363" /> 
+          <input type="hidden" name="header[itemtype]" id="header-itemtype" value="12" />
+<input type="hidden" name="header[pid]" id="header-pid" value="0" />
+          <input type="hidden" name="receipt[returnurl][decoded]" id="receipt-returnurl-decoded" value="http://www.linux.com/feature/119363?&amp;depth=5&amp;order=1&amp;sortby=3&amp;render=threaded" /> 
+          <!--<input type="hidden" name="receipt[returnurl][encoded]" id="receipt-returnurl-encoded" value="#$receipt['returnurl']['encoded']#" />-->
+          <input type="hidden" name="receipt[action]" id="receipt-action"/> 
+          <input type="submit" id="receipt-action-preview" onclick="document.getElementById('receipt-action').value='preview'" value="Preview" /> 
+          <input type="submit" id="receipt-action-submit" onclick="document.getElementById('receipt-action').value='submit'" value="Submit" />
+         </div>
+       </div>
+</div>
+ </form>
+			</div>
+							               		 	    					</div>
+</div>
+   <div class="col2">
+	<div class="block" id="ad_pos_10">
+<div id="fad10"><!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p10_bottom_2nd;pg='+thispage+';logged_in='+thisuser+';tile='+dfp_tile+';'+thistpc+'sz=300x250,336x280;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div>
+	</div>
+   <div class="col2">
+	<div class="block" id="ad_pos_7">
+<div id="fad7"><div><div>
+<!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p7_bottom_1st;pg='+thispage+';logged_in='+thisuser+';tile='+dfp_tile+';'+thistpc+'sz=728x350;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div></div></div>
+	</div>
+   <br style="clear: left" />
+&nbsp;
+</div>
+</div>
+</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+    </div>
+<div class="block" id="ad_pos_1">
+<div id="fad1"><div><div>
+<!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+ //<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p1_leader;pg='+thispage+';logged_in='+thisuser+';tile='+dfp_tile+';'+thistpc+'sz=728x90,468x60;ptile=3;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div></div></div>
+<div class="block" id="ad_pos_5">
+<div id="fad5"><div><div>
+<!-- DoubleClick Ad Tag -->
+<script type="text/javascript">
+//<![CDATA[
+    document.write('<script type="text/javascript" src="http://ad.doubleclick.net/adj/ostg.linux/'+thiscat+'_p5_bottom_leader;pg='+thispage+';logged_in=+thisuser+;tile='+dfp_tile+';'+thistpc+'sz=728x90,468x60;ord='+dfp_ord+'?"><\/script>');
+    dfp_tile++;
+//]]>
+</script>
+<!-- End DoubleClick Ad Tag -->
+</div></div></div></div>
+<div id="ft">
+<div class="block" id="footer">
+<p style="margin-bottom: .5em">
+<small>
+&copy; Copyright 2007 - 
+<a href="http://web.sourceforge.com" title="Network which provides and promotes Open Source software downloads, development, discussion and news.">SourceForge</a>, Inc., All Rights Reserved
+<br />
+About 
+<a href="/about/" title="Learn more about Linux.com">Linux.com</a>
+&nbsp;-&nbsp; 
+<a href="http://web.sourceforge.com/privacy.php" title="Privacy" >Privacy Statement</a>
+&nbsp;-&nbsp; 
+<a href="http://web.sourceforge.com/terms.php" title="Terms" >Terms of Use</a>
+&nbsp;-&nbsp; 
+<a href="http://web.sourceforge.com/media_kit.php" title="Advertise on our network">Advertise</a>
+&nbsp;-&nbsp; 
+<a href="http://web.sourceforge.com/ftrademark.php" title="Legal Trademark information">Trademark</a>
+&nbsp;-&nbsp; 
+<a href="mailto:editors@linux.com" title="Contact our editors">Contact Us</a>
+&nbsp;-&nbsp; 
+<a href="/writeforus/" title="Write for us">Write for Us</a>
+&nbsp;-&nbsp;
+<a href="/feature?theme=rss" title="Add our feed to your site">RSS Feed</a>
+<br />
+<a href="http://www.thinkgeek.com/?cpg=tb" title="Stuff for Smart Masses">ThinkGeek</a>
+&nbsp;-&nbsp; 
+<a href="http://slashdot.org" title="News for Nerds">Slashdot</a>
+&nbsp;-&nbsp; 
+<a href="http://itmj.com" title="Tracking the evolution of IT">IT Manager&#39;s Journal</a>
+&nbsp;-&nbsp; 
+<a href="http://sourceforge.net" title="The world&#39;s largest development and download repository of Open Source code and applications">SourceForge.net</a>
+&nbsp;-&nbsp; 
+<a href="http://freshmeat.net" title="Web&#39;s largest index of Unix and cross-platform software and themes">freshmeat</a>
+&nbsp;-&nbsp; 
+<a href="http://www.techsay.com/default.php?page=join.php&amp;p=ostg&amp;CID=LINUXCOM" title="Help us make our network better">Surveys</a>
+&nbsp;-&nbsp; 
+<a href="http://jobs.linux.com/" title="Jobs">Jobs</a>
+&nbsp;-&nbsp; 
+<a href="http://ostg.pricegrabber.com" title="Compare prices">Pricegrabber</a>
+</small>
+</p></div>
+    <div class="badges">
+        <a class="xc-badge-tableless" href="http://www.webreference.com/authoring/style/sheets/layout/" title="Tableless layout"> <img src="http://images.linux.com/images/csstableless.gif" alt="Tableless layout" /> </a> <a class="xc-badge-xhtmlvalidate" href="http://validator.w3.org/check?uri=referer" title="Validate XHTML 1.0 Strict"> <img src="http://images.linux.com/images/xhtml10.gif" alt="Validate XHTML 1.0 Strict" /> </a> <a class="xc-badge-cssvalidate" href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.linux.com/index.php" title="Validate CSS"> <img src="http://images.linux.com/images/css.gif" alt="Validate CSS" /> </a> <a class="xc-badge-tableless" href="http://www.xaraya.com/" title="Powered by Xaraya"> <img src="http://images.linux.com/images/microbadge.gif" alt="Powered by Xaraya" /> </a>
+   </div>
+   <p id="footermsg">
+</p>
+</div>
+   </div>
+     <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+     <script type="text/javascript">_uacct = "UA-32013-3"; _udn = "linux.com"; urchinTracker();</script>
+   </body>
+ </html>
+

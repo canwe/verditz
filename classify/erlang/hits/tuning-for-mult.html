@@ -1,0 +1,446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="http://www.typepad.com/" />
+
+
+<title>/dev/websphere: Tuning for multi-core: First, the easy stuff</title>
+
+<link rel="stylesheet" href="http://www.devwebsphere.com/devwebsphere/styles.css" type="text/css" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.devwebsphere.com/devwebsphere/atom.xml" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.devwebsphere.com/devwebsphere/index.rdf" />
+
+<link rel="start" href="http://www.devwebsphere.com/devwebsphere/" title="Home" />
+<link rel="prev" href="http://www.devwebsphere.com/devwebsphere/2007/09/yourkit-java-pr.html" title="YourKit Java Profiler for the Mac, very good" />
+
+<link rel="next" href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html" title="AMDs quad cores demonstrate trend towards lower core speeds" />
+
+
+
+
+
+
+<script type="text/javascript" src="/.shared/comments.js"></script>
+<script type="text/javascript">
+hostName = '.devwebsphere.com';
+</script>
+
+</head>
+
+<body>
+
+<div id="container">
+<div id="banner-img">
+<div class="img-link"><a href="http://www.devwebsphere.com/devwebsphere/"><span></span></a></div>
+</div>
+
+
+<div id="banner">
+<h1><a href="http://www.devwebsphere.com/devwebsphere/" accesskey="1">/dev/websphere</a></h1>
+<h2>My rambling on WebSphere and J2EE. All opinions are my own and don't reflect those of my employer, IBM.</h2>
+</div>
+
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5478860289095486";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+
+<div id="left">
+<div class="sidebar">
+<div class="photo">
+<img src="http://www.devwebsphere.com/headshot.jpg" width="150" height="161" alt="My Photo" />
+</div>
+
+<div class="link-note">
+<a href="http://www.devwebsphere.com/about.html">About Me</a>
+</div>
+<div class="link-note">
+<p><a href="http://feeds.feedburner.com/dev/websphere"><img src="http://feeds.feedburner.com/~fc/dev/websphere?bg=99CCFF&amp;fg=444444&amp;anim=0&amp;label=listeners" height="26" width="88" style="border:0" alt="" /></a></p>
+</div>
+<div class="link-note">
+<a href="http://www.ibm.com/software/webservers/appserv/extend/
+">WebSphere XD Website</a>
+</div>
+<div class="link-note">
+<a href="http://www.devwebsphere.com/porsche">My Porsche blog</a>
+</div>
+<div class="link-note">
+<a href="http://www.trackpedia.com/blogs/john/">John Stechers DSR blog</a>
+</div>
+<div class="link-note">
+<a href="http://www.devwebsphere.com/personal">My non Java blog</a>
+</div>
+<div class="link-note">
+<a href="http://www.devwebsphere.com/ford_windstar_owners_blog">My Ford Windstar blog</a>
+</div>
+<div class="link-note">
+<script type="text/javascript">
+<!--
+document.write('<a href="ma' + 'ilto:&#98;&#110;&#101;&#119;&#112;&#111;&#114;&#116;&#64;&#117;&#115;&#46;&#105;&#98;&#109;&#46;&#99;&#111;&#109;">Email Me</a>');
+// -->
+</script>
+
+</div>
+<div class="link-note">
+<a href="http://www.blogtopsites.com/computers/"><img border="0" src="http://www.blogtopsites.com/tracker.php?do=in&id=31689" alt="Top Computers Blogs" /></a>
+</div>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5478860289095486";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<div id="powered">
+Powered by <a href="http://www.typepad.com/">TypePad</a><br />
+Member since 09/2003
+</div>
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-276791-2";
+urchinTracker();
+</script>
+</div>
+
+<script id="stats_script" type="text/javascript" src="http://metrics.performancing.com/tp.js"></script>
+
+</div>
+
+<div id="center">
+<div class="content">
+
+<p align="right">
+<a href="http://www.devwebsphere.com/devwebsphere/2007/09/yourkit-java-pr.html">&laquo; YourKit Java Profiler for the Mac, very good</a> |
+
+<a href="http://www.devwebsphere.com/devwebsphere/">Main</a>
+| <a href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html">AMDs quad cores demonstrate trend towards lower core speeds &raquo;</a>
+
+</p>
+
+<h2>September 02, 2007</h2>
+
+
+<h3>Tuning for multi-core: First, the easy stuff</h3>
+
+
+<p>Multi-core processors have arrived and are becoming the normal processor architecture now. Sun is the most extreme with 8 core processors, Intel has quad core and AMD dual core. This is going to impact tuning application servers in some pretty basic ways. It’s like going back to 2002 and tuning a JVM to run on a biggish SMP from the time. Lets compare a JVM running on a two way box and then on an 8 core processor. First, lets level set using published benchmarks on relative performance of these wide multi-core processors and the now normal dual core. IBM has published WebSphere 6.1 results for both Sun T2000 with the new T2 (8 cores chip) and the power 5+ (two cores per chip). The T2 number is 616 and the p5+ 404. So T2 is faster than p5+ processor for processor. But, lets look at core speeds. Lets divide by the number of cores. We get 616/8 or 77 for T2 versus 404/2 or 202 for p5+. That means the per core, p5 is almost 3x faster than a T2 running the exact same Java code. If I'd had a p6 number (the new IBM processor) then it's worse as it's much faster than a p5+. In terms of instructions per second overall, the T2 is a fast processor but for the context of this article, it’s the core speed that we’ll pay attention to. This core speed is expected to further slow as processors get wider, 16 cores and beyond. You can see these numbers on the spec web site <a href="http://www.spec.org/jAppServer2004/results/jAppServer2004.html">here</a>. Programmers and vendors have had it easy up to now as core speeds kept increasing as path lengths increases. Those days are gone as processor makers adopt wide multi-core processor architectures.</p>
+
+<p><strong>More threads are needed</strong><br />
+This is kind of obvious but if you have a thread pool of 10 threads on a two way, you’ll likely need 40 on an 8 core processor. What is the impact of more threads on the application besides the potential of more parallelism? Locking between threads will be a bigger problem. This is simply because there are more threads competing for resources. What resources? Things like access to thread pools, connection pools, database locks. Many programmers use synchronized blocks to serialize access to critical sections. This may not perform well as the number of cores/application threads scales up. Usually, people try to get clever using more specific locks such as MultipleReaderSingleWriter style locks that allow several threads to read the structure concurrently but only a single writer. This helps but even this has issues on a multi-core processor. Why? The core speed is lower. This impacts lock performance simply because the locking code itself takes longer to run. This means the critical section around the locking code of even an RWLock will start to hold up the threads as they start to stack up and compete around that resource to acquire read locks even. More efficient critical sections will help here and the good news is Doug Lea is ahead of this and Java 6 uses rewritten locking code to speed these paths. There are also other tricks such as striping locks which I’m using but haven’t seen anywhere else yet. This means instead of having a single RWLock, lets have say five. A thread can obtain a read lock by acquiring a read lock on any of the five. A thread can obtain a write lock only when it gets a write lock on all 5. This penalizes the writer but allows much more concurrency (five fold) for the common case that is reading. I’ve tested this on an AZUL box with over a 100 cores with good results as well as 32 way p5 systems.</p>
+
+<p><strong>Impact of slower cores on concurrency</strong><br />
+Slower cores means code takes longer to execute. As we've already seen, a wide multi-core processor is around 3x slower than a dual core processor. This means code runs this much slower and this includes locking code, code within critical sections and time spent while holding locks on database rows etc. Clearly, holding locks or staying in critical sections longer means more concurrency issues. Applications will need to be modified to address these issues.</p>
+
+<p><strong>Connection pools</strong><br />
+Given there are more threads being used and the individual threads can be running as much as 3x slower than in the past, each thread will hold connections for that much longer also. So, pools need to be bigger for two reasons. The first is simply there are more threads. The second is that connections are borrowed from the pool for a longer time because the cores are slower so you need more connections available in the pool.</p>
+
+<p><strong>Summary</strong><br />
+This is kind of interesting in a way because it’s like going back five years. Back then; our SMP boxes had much slower cores than today. The more extreme multi-core processors today are like moving back a few years in terms of core speeds. Applications will need careful tuning to be able to fully exploit those processors as well as optimize access to shared lock resources such as in memory locks as well as rows in databases. Java faces some unique challenges because its developers typically use a lot of frameworks. Examples of common frameworks would be commons-logging, JavaEE, Hibernate, OpenJPA, Spring and the list goes on. These frameworks help greatly with productivity but do nothing for path length. This extra path length is going to start to work against the parallelism needed to exploit these new processor architectures as longer path length around locking code means locks are held for longer and that does not improve concurrency, it restricts it especially with that code running 3x slower on wide multi-core processors than we are used to. Clearly, vendors will need to pay attention to concurrency and path length like never before as well as application designers may need take a step back to look at what they are doing also, maybe use optimistic locking more on databases rather than pessimistic locks or other such approaches. Anyway, interesting times ahead.</p>
+
+<a id="more"></a>
+
+
+<p class="posted">
+September  2, 2007 in <a href="http://www.devwebsphere.com/devwebsphere/xtp/index.html">XTP</a>  | <a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mult.html">Permalink</a>
+</p>
+
+
+
+
+<h2><a id="comments"></a>Comments</h2>
+
+<a id="c81456571"></a>
+<p>Well, I know plenty of projects that uses stripped locking. EDU.oswego.cs.dl.util.concurrent.ConcurrentHashMap , for example, is what 6-7 years old?</p>
+<p class="posted">Posted by: Kasper Nielsen | Sep 3, 2007 3:51:55 AM</p>
+<a id="c81468401"></a>
+<p>Agreed,<br />
+I meant, described for everyone to see in articles etc. It's all obvious when you think about it. Doug has done great work for everyone over the years.</p>
+<p class="posted">Posted by: <a rel="nofollow" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#110;&#101;&#119;&#112;&#111;&#114;&#116;&#64;&#117;&#115;&#46;&#105;&#98;&#109;&#46;&#99;&#111;&#109;">Billy</a> | Sep 3, 2007 8:22:34 AM</p>
+<a id="c81479275"></a>
+<p>Although, when I was tuning ObjectGrid on the AZUL box I remember phoning Doug and asking him about why the RWLock wasn't using striping so I don't think we're talking about the same things here. Yes, a concurrent hash map probably uses an rw lock per bucket but I'm talking about using a set of rw locks per bucket which is different.</p>
+<p class="posted">Posted by: <a rel="nofollow" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#110;&#101;&#119;&#112;&#111;&#114;&#116;&#64;&#117;&#115;&#46;&#105;&#98;&#109;&#46;&#99;&#111;&#109;">Billy</a> | Sep 3, 2007 10:47:02 AM</p>
+<a id="c81500415"></a>
+<p>I'm not sure I get the point<br />
+------<br />
+This means instead of having a single RWLock, lets have say five. A thread can obtain a read lock by acquiring a read lock on any of the five. A thread can obtain a write lock only when it gets a write lock on all 5.<br />
+------<br />
+How is this different from a rw lock that allow multiple concurrent readers but only one exclusive writer, such as for example j.u.c.locks.ReentrantReadWriteLock</p>
+<p class="posted">Posted by: Kasper Nielsen | Sep 3, 2007 3:16:40 PM</p>
+<a id="c81502301"></a>
+<p>A single RW lock has a single critical section that is entered for granting either read or write locks. This single lock is a choke point in a wide processor/SMP. Using five RW locks provides five critical sections allowing five x the lock grant rate of a single lock.</p>
+<p class="posted">Posted by: <a rel="nofollow" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#110;&#101;&#119;&#112;&#111;&#114;&#116;&#64;&#117;&#115;&#46;&#105;&#98;&#109;&#46;&#99;&#111;&#109;">Billy</a> | Sep 3, 2007 3:42:32 PM</p>
+<a id="c81506683"></a>
+<p>That is not really true. A RW lock implementation does not necessarily need to have a critical section. j.u.c.locks.ReentrantReadWriteLock, for example, does not have a critical section.</p>
+<p class="posted">Posted by: Kasper Nielsen | Sep 3, 2007 4:46:44 PM</p>
+
+
+
+<h2>Post a comment</h2>
+
+<form onsubmit="handleSubmit(this)" method="post" action="http://www.typepad.com/t/comments" name="comments_form">
+<input type="hidden" name="static" value="1" />
+<input type="hidden" name="entry_id" value="38403325" />
+
+<div id="comment-data">
+<p><label for="author">Name:</label><br />
+<input onchange="handleChange(this)" tabindex="1" id="author" name="author" /></p>
+
+<p><label for="email">Email Address:</label><br />
+<input onchange="handleChange(this)" tabindex="2" id="email" name="email" /></p>
+
+<p><label for="url">URL:</label><br />
+<input onchange="handleChange(this)" tabindex="3" id="url" name="url" /></p>
+</div>
+
+<p><label><input tabindex="5" onclick="handleCheck(this)" type="checkbox" id="bakecookie" name="bakecookie" value="1" /> Remember personal info?</label></p>
+<br style="clear: both;" />
+
+<p><label for="comment-text">Comments:</label><br />
+<textarea tabindex="4" id="comment-text" name="text" rows="10" cols="50"></textarea></p>
+
+<div align="center">
+<input tabindex="6" type="submit" name="preview" value="&nbsp;Preview&nbsp;" />
+<input tabindex="7" style="font-weight: bold;" onclick="disableButton(this)" type="submit" name="post" value="&nbsp;Post&nbsp;" />
+</div>
+
+</form>
+
+
+
+
+</div>
+</div>
+
+<div id="right">
+<div class="sidebar">
+<div id="calendar">
+<table summary="Monthly calendar with links to each day's posts">
+<caption>September 2007</caption>
+<tr>
+<th>Sun</th>
+<th>Mon</th>
+<th>Tue</th>
+<th>Wed</th>
+<th>Thu</th>
+<th>Fri</th>
+<th>Sat</th>
+
+</tr>
+
+<tr>
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/yourkit-java-pr.html">1</a></td></tr>
+<tr>
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mult.html">2</a></td>
+
+
+<td>3</td>
+
+
+<td>4</td>
+
+
+<td>5</td>
+
+
+<td>6</td>
+
+
+<td>7</td>
+
+
+<td>8</td></tr>
+<tr>
+
+<td>9</td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html">10</a></td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/vmware-fusion-a.html">11</a></td>
+
+
+<td>12</td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html">13</a></td>
+
+
+<td>14</td>
+
+
+<td>15</td></tr>
+<tr>
+
+<td>16</td>
+
+
+<td>17</td>
+
+
+<td>18</td>
+
+
+<td>19</td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/virtual-machine.html">20</a></td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/podcast-availab.html">21</a></td>
+
+
+<td>22</td></tr>
+<tr>
+
+<td>23</td>
+
+
+<td>24</td>
+
+
+<td><a href="http://www.devwebsphere.com/devwebsphere/2007/09/spring-webflow-.html">25</a></td>
+
+
+<td>26</td>
+
+
+<td>27</td>
+
+
+<td>28</td>
+
+
+<td>29</td></tr>
+<tr>
+
+<td>30</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td>
+
+
+<td>&nbsp;</td></tr>
+
+
+</table>
+</div>
+
+<h2>Recent Posts</h2>
+
+<ul>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/spring-webflow-.html">Spring WebFlow and ObjectGrid</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/podcast-availab.html">Podcast available on iTunes now</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/virtual-machine.html">Virtual machine specifications, the new BIOS</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html">Tuning for multicore, now the hard part, processors are going NUMA</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/objectgrid-on-a.html">ObjectGrid on Amazon EC2</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/vmware-fusion-a.html">VMWare Fusion almost as cheap as a Parallels upgrade</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/intel-ships-hig.html">Intel ships high core speed quad core processor</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html">AMDs quad cores demonstrate trend towards lower core speeds</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mult.html">Tuning for multi-core: First, the easy stuff</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/yourkit-java-pr.html">YourKit Java Profiler for the Mac, very good</a></li>
+
+</ul>
+
+<!--
+<h2>Recent Comments</h2>
+
+<ul>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/08/sparc-t2-and-po.html#c83740267">ATM</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/08/sparc-t2-and-po.html">Sparc T2 and Power 6</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/podcast-availab.html#c83681613">Anjan Bacchu</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/podcast-availab.html">Podcast available on iTunes now</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html#c83234381">Lisa</a> on <a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html">Washing machines and mobile phones</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html#c83234321">Lisa</a> on <a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html">Washing machines and mobile phones</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/objectgrid-on-a.html#c83225425">Billy</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/objectgrid-on-a.html">ObjectGrid on Amazon EC2</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/objectgrid-on-a.html#c83220679">Cylus Penkar</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/objectgrid-on-a.html">ObjectGrid on Amazon EC2</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html#c82776459">Billy</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html">Tuning for multicore, now the hard part, processors are going NUMA</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html#c82775645">Christof Meerwald</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/tuning-for-mu-1.html">Tuning for multicore, now the hard part, processors are going NUMA</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html#c82733213">Ben</a> on <a href="http://www.devwebsphere.com/devwebsphere/2007/09/amds-quad-cores.html">AMDs quad cores demonstrate trend towards lower core speeds</a></li>
+<li><a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html#c82454161">Dan</a> on <a href="http://www.devwebsphere.com/devwebsphere/2005/06/washing_machine.html">Washing machines and mobile phones</a></li>
+
+</ul>
+-->
+<div class="link-note">
+<a href="http://www.devwebsphere.com/devwebsphere/index.rdf">Subscribe to this blog's feed</a>
+</div>
+<div class="link-note">
+<a onclick="window.open(this.href, 'blogroll', 'width=500,height=600,scrollbars=yes'); return false;" href="http://www.typepad.com/t/app/lists?__mode=quickpost&amp;is_qp=1&amp;type=1&amp;qp_href=http://www.devwebsphere.com/devwebsphere/">Add me to your TypePad People list</a>
+</div>
+
+</div>
+
+</div>
+
+<div style="clear: both;">&#160;</div>
+
+</div>
+
+<script type="text/javascript">
+<!--
+var extra_happy = Math.floor(1000000000 * Math.random());
+document.write('<img src="http://www.typepad.com/t/stats?blog_id=6866&amp;user_id=4597&amp;page=' + escape(location.href) + '&amp;referrer=' + escape(document.referrer) + '&amp;i=' + extra_happy + '" width="1" height="1" alt="" style="position: absolute; top: 0; left: 0;" />');
+// -->
+</script>
+
+
+</body>
+</html>

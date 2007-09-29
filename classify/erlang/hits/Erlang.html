@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>
+<html><head><title>ongoing &#xb7; WF II: Erlang Blues</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<link rel='stylesheet' type='text/css' media='screen' title='sans' href='/ongoing/sans.css' />
+<link rel='alternate stylesheet' type='text/css' media='screen' title='serif' href='/ongoing/serif.css' />
+<script type='text/javascript' src='/ongoing/ongoing.js'></script>
+<link rel='alternate' type='application/atom+xml' title='Atom (full content)' href='/ongoing/ongoing.atom' />
+<!-- Generated from XML source code using Perl, Expat, Emacs, Mysql, Ruby, Java, and ImageMagick.  Industrial-strength technology, baby. -->
+</head><body>
+<div id='banner'><h1>WF II: Erlang Blues</h1><div id='search'><form action="http://www.google.com/search"><div>Search <input size="15" name="as_q" /><input type="hidden" name="hl" value="en" /><input type="hidden" name="ie" value="UTF-8" /><input type="hidden" name="btnG" value="Google+Search" /><input type="hidden" name="as_qdr" value="all" /><input type="hidden" name="as_occt" value="any" /><input type="hidden" name="as_dt" value="i" /><input type="hidden" name="as_sitesearch" value="tbray.org" /></div></form></div></div>
+<div id='centercontent'>
+<p>This is the second progress report from the
+<a href='/ongoing/When/200x/2007/09/20/Wide-Finder'>Wide Finder Project</a>,
+and a follow-on from the first,
+<a href='/ongoing/When/200x/2007/09/21/Erlang'>Erlang Ho!</a>  The one thing
+that Erlang does right is so important that I&#x2019;d like to get past its
+problems. So far I can&#x2019;t.</p>
+
+<p><i>[Update: Several people wrote &#x201c;show me the data!&#x201d;  Well, OK then.  
+Ten thousand lines of
+logfile, a little over two meg, may be found at
+<code>www.tbray.org/tmp/o10k.ap</code>.  Anyone who can generate Erlang code
+that can read this stuff and parse out the <span class="o">ongoing</span>
+fragment 
+fetches at a remotely competitive speed will get me interested in Erlang
+again.]
+[Update II: See the comments: the problem seems to be <code>io:get_line</code>
+(which is a serious problem, by the way).  At
+first glance, the solutions
+work for the case when you can read the whole file into memory before you
+start to process any of it.  Looks like I&#x2019;ll be spending a bit more quality
+time with E.]</i></p>
+
+<p id='p-1' class='p1'><span class='h2'>Interactive Irritation</span> &#xb7; 
+If you type <code>erl</code> at your shell prompt, you&#x2019;re in Erlang.  There
+are differences between what you can have in a file and
+what you can type at the prompt.  And when you type control-D, nothing
+happens; to get out, you have to interrupt it with control-C or
+equivalent.  This is wrong.</p>
+
+<p>If you type <code>erlc&#xa0;foo.erl</code> it&#x2019;ll compile into
+<code>foo.beam</code>, but you can&#x2019;t just type
+<code>erl&#xa0;foo.beam</code> to run it, you have to add a bunch of
+stupid pettifogging options.  This is wrong.</p>
+
+<p id='p-2' class='p1'><span class='h2'>Slow Basics</span> &#xb7; 
+Yesterday, I reported on Erlang&#x2019;s <em>appalling</em> regexp performance.
+Someone using the handle &#x201c;Masklinn&#x201d;
+<a href='http://www.tbray.org/ongoing/When/200x/2007/09/21/Erlang#c1190452706.452333'>suggested</a> using 
+pattern-matching with what Erlang calls &#x201c;binaries&#x201d; instead.  So I did.  Let&#x2019;s
+leave the add-&#x2019;em-up part of my problem out, and zero in on the problem of
+getting Erlang to read the 1,167,948 lines of logfile and select the 105,099
+that are fetches of <span class="o">ongoing</span> fragments.</p>
+
+<p>I coded it up using patterns per Masklinn&#x2019;s suggestion and it was really
+much better, burning only 56.44 CPU seconds on my MacBook.  The code looks
+like this:</p>
+
+<pre><code>process_match(&#x3c;&#x3c; &#x22;/ongoing/When/&#x22;, Trailer/binary &#x3e;&#x3e;) -&#x3e;
+    Last = binary_to_list(Trailer),
+    case lists:member($., Last) of
+	true -&#x3e; 0;
+	false -&#x3e; 1
+    end;
+process_match(_) -&#x3e; 0.
+
+scan_line(eof, _, Count) -&#x3e; Count;
+scan_line(Line, File, Count) -&#x3e;
+    Uri = list_to_binary(lists:nth(7, string:tokens(Line, &#x22; &#x22;))),
+    NewCount = Count + process_match(Uri),
+    scan_line(io:get_line(File, &#x27;&#x27;), File, NewCount).</code></pre>
+<p>At this point I smelled a rat; in particular, an I/O rat.  So I ripped out
+all the fragment-recognition crap and measured how long it takes Erlang to
+read the lines:</p>
+
+<pre><code>scan_line(eof, _, Count) -&#x3e; Count;
+scan_line(_, File, Count) -&#x3e;
+    scan_line(io:get_line(File, &#x27;&#x27;), File, Count + 1).</code></pre>
+<p>That was better: a mere 34.165 CPU seconds.</p>
+
+<p>Except for, on the same MacBook, my simple little Ruby program read the
+lines, parsed out the fragment fetches, and did all the totaling and sorting
+in, let&#x2019;s see... 3.036 CPU seconds (3.47 seconds elapsed).</p>
+
+<p id='p-5' class='p1'><span class='h2'>Hold On a Second</span> &#xb7; 
+Unlike Ruby, Erlang is highly concurrent.  So if I ran it on an 8-core
+machine, the Ruby would run at the same speed, but the Erlang ought to go
+faster.  Except for parallelizing line-at-a-time I/O from a file would be
+hard.  And even if you could, and go eight times as fast, and even leaving out
+all the matching and adding, you&#x2019;re still half again as slow as Ruby.  This is
+wrong.</p>
+
+<p id='p-3' class='p1'><span class='h2'>Dear Erlang I:</span> &#xb7; 
+I like you.  Really, I do.  But until you can read lines of text out of a
+file and do basic pattern-matching against them acceptably fast (which most
+people would say is <em>faster</em> than Ruby), you&#x2019;re stuck in a niche;
+you&#x2019;re a thought experiment and a consciousness-raiser and an engineering
+showpiece, but you&#x2019;re not a general-purpose tool.  Sorry.</p>
+
+<p>I&#x2019;m done with beating my head against Erlang for now.  If someone can
+show me how to make it read and pattern-match at a remotely competitive speed,
+I&#x2019;ll be able actually to look at that nice concurrency stuff; and I&#x2019;d like
+to.</p>
+
+<p id='p-4' class='p1'><span class='h2'>Dear Erlang II:</span> &#xb7; 
+Thank you for helping me think about the Wide Finder problem.  As a result
+of these days together, I think I know what the ideal solution 
+would look like.  I suspect it&#x2019;s not out there yet, but I bet I
+can recognize it when I see it.  More on that later.</p>
+
+<hr />
+<div id='commentHere'></div>
+<div id='footer'><p><b>Updated: 2007/09/23</b><br />
+<a href='/ongoing/' onclick="setActiveStyleSheet('serif'); return false;" onkeypress="setActiveStyleSheet('serif'); return false;" accesskey='p'>Serif</a> / <a href='/ongoing/' onclick="setActiveStyleSheet('sans'); return false;" onkeypress="setActiveStyleSheet('sans'); return false;" accesskey='p'>Sans-Serif</a><br />
+</p>
+</div>
+<hr/>
+<h2 id='comments'>Contributions</h2>
+<div class="comments"><p>Comment feed for <span class="o">ongoing</span>:<a href="/ongoing/comments.atom"><img src="/ongoing/Feed.png" alt="Comments feed"/></a></p><div class='comment-a' id='c1190523224.428984'><p class='from'>From: <a href='http://'>Evan</a> (Sep 22 2007, at 21:53)</p><p>For what it's worth, and I'll admit that it's been a while since I checked it out, Termite Scheme is a Scheme implementation which is meant have Erlangesque concurrency features.  It's built of Gambit Scheme, which is meant to be one of the faster Schemes.  It lives here: <a href='http://toute.ca/.'>http://toute.ca/.</a>  It was done as a thesis project, so it might not be current or well supported.</p><p>Keeping with the insect theme, there was something called Mosquito Lisp, done by some people called (appropriately enough) Ephemeral Security.  It appears to be gone, though, now that I've gone looking for the link.  It's <a href='http://ephsec.squarespace.com/mosquito-lisp/'>http://ephsec.squarespace.com/mosquito-lisp/</a> for what it's worth.  Perhaps it'll be back up soon.  </p><p>I'm following this one closely.  Something that goes seamlessly from simple scripts to writing 'enterprise class' concurrent systems more or less seamlessly is something that I've been waiting for a good long while now.  </p>
+<p><i>[<a href='#c1190523224.428984'>link</a>]</i></p></div><div class='comment-b' id='c1190531837.531874'><p class='from'>From: <a href='http://steve.vinoski.net/'>Steve Vinoski</a> (Sep 23 2007, at 00:17)</p><p>Hi Tim, to get out of erl, just type "q()." minus he quotes (and don't forget that final period/full stop).</p>
+<p><i>[<a href='#c1190531837.531874'>link</a>]</i></p></div><div class='comment-a' id='c1190531945.505601'><p class='from'>From: <a href='http://www.alanlittle.org/weblog/'>Alan Little</a> (Sep 23 2007, at 00:19)</p><p>I think (admittedly without personal experience of trying to use it for anything serious) Erlang is rather more than a "showpiece". All those Ericsson heavy duty backbone routers and switches that have been up for years aren't just for show. </p><p>Perhaps it would be fairer to say that it's a specialised piece of heavy duty industrial machinery and not a general purpose tool? It seems to me you are to some degree complaining that a nuclear reactor isn't a very good tool for making a cup of tea.</p>
+<p><i>[<a href='#c1190531945.505601'>link</a>]</i></p></div><div class='comment-b' id='c1190533488.672154'><p class='from'>From: <a href='http://steve.vinoski.net/'>Steve Vinoski</a> (Sep 23 2007, at 00:44)</p><p>Also, Tim, can you do what Thomas Lackner suggested in a comment to your previous post and make a file available with the data you're trying to process? It's hard to solve a data processing problem without the data. ;-)</p>
+<p><i>[<a href='#c1190533488.672154'>link</a>]</i></p></div><div class='comment-a' id='c1190535735.693676'><p class='from'>From: <a href='http://www.martin-probst.com'>Martin Probst</a> (Sep 23 2007, at 01:22)</p><p>Did you check out Scala Actors?</p><p>Scala is a very compelling Java replacement, and it has an implementation of Erlang-style concurrency in a library called Scala Actors. Might be worth checking out.</p>
+<p><i>[<a href='#c1190535735.693676'>link</a>]</i></p></div><div class='comment-b' id='c1190539292.312626'><p class='from'>From: <a href='http://'>Masklinn</a> (Sep 23 2007, at 02:21)</p><p>&gt; I think (admittedly without personal experience of trying to use it for anything serious) Erlang is rather more than a "showpiece". All those Ericsson heavy duty backbone routers and switches that have been up for years aren't just for show.</p><p>Erlang clearly isn't a showpiece, but Erlang was never designed with string manipulation in mind, and it shows.</p><p>Erlang will make it easy to serve almost anything, or create a local botnet to try to DDOS a box for testing purposes, but saying that heavy string lifting isn't its forte is quite an understatement.</p>
+<p><i>[<a href='#c1190539292.312626'>link</a>]</i></p></div><div class='comment-a' id='c1190542430.298423'><p class='from'>From: <a href='http://www.tincancamera.com/blog'>Pete Kirkham</a> (Sep 23 2007, at 03:13)</p><p>Making up a quick and dirty KMP match in C on a amd64 laptop, running it with while so the cpu actually gets to full speed, and comparing with one which just reads the data and doesn't match:</p><p>$ while true; do time bin/string_match_bench datasets/original/hundred-o10k.ap &gt; /dev/null; done</p><p>real    0m1.252s</p><p>user    0m1.084s</p><p>sys     0m0.156s</p><p>$while true; do time bin/read_bench datasets/original/hundred-o10k.ap &gt; /dev/null; done</p><p>real    0m0.139s</p><p>user    0m0.000s</p><p>sys     0m0.132s</p><p>Timings are for a the sample data concatenated a hundred times, otherwise they values for read_bench are lost in the noise.</p><p>So there may be room to farm the matching off to different CPUs, or write a better matching algorithm (this test doesn't separate splitting the IO block into lines and scanning them; the former is less obviously parallel). </p>
+<p><i>[<a href='#c1190542430.298423'>link</a>]</i></p></div><div class='comment-b' id='c1190546276.288098'><p class='from'>From: <a href='http://planet.gentoo.org/developers/ferdy'>Fernando J. Pereda</a> (Sep 23 2007, at 04:17)</p><p>Well... this code is able to process your testcase in less than 3 seconds in my dog slow AthlonXP 2000+:</p><p>[I don't know if the code will come 'as-is' so I'm posting it to <a href='http://dev.gentoo.org/~ferdy/tmp/reader.erl]'>http://dev.gentoo.org/~ferdy/tmp/reader.erl]</a></p><p>-module(reader).</p><p>-export([results_for/1, read_lines/1]).</p><p>results_for(File) -&gt;</p><p>    N = read_lines(File),</p><p>    io:format("Found ~w matches in ~s~n", [N, File]).</p><p>read_lines(File) -&gt;</p><p>    {ok, Rest} = file:read_file(File),</p><p>    List = binary_to_list(Rest),</p><p>    Lines = string:tokens(List, "\n"),</p><p>    parse_lines(Lines, 0).</p><p>parse_lines([], N) -&gt;</p><p>    N;</p><p>parse_lines([H|T], N) -&gt;</p><p>    Uri = list_to_binary(lists:nth(7, string:tokens(H, " "))),</p><p>    NewN = N + process_match(Uri),</p><p>    parse_lines(T, NewN).</p><p>process_match(&lt;&lt;"/ongoing/When/", Trailer/binary&gt;&gt;) -&gt;</p><p>    Last = binary_to_list(Trailer),</p><p>    case lists:member($., Last) of</p><p>        true  -&gt; 0;</p><p>        false -&gt; 1</p><p>    end;</p><p>process_match(_) -&gt; 0.</p><p>Instead of parse-lines, use a map function or a parallel map and things should be better and way less ugly.</p><p>- ferdy</p>
+<p><i>[<a href='#c1190546276.288098'>link</a>]</i></p></div><div class='comment-a' id='c1190546566.993085'><p class='from'>From: <a href='http://'>igwan</a> (Sep 23 2007, at 04:22)</p><p>You're right, io:get_line is DAMN slow ! Because it reads the file character by character ... This function is meant to read input from a keyboard, not to split lines on a file.</p><p>When I want to parse files in erlang, I read it in full first :</p><p>{ok, Binary} = file:read_file(Filename).</p><p>Then work on the Binary. Splitting your file into lines using pattern matching then takes 0.891 s on my 2,00 Ghz CPU.</p><p>Granted, Erlang lacks a good regexp library that works on binaries. It heard someone on the erlang mailing-list is currently working on it.</p><p>Regarding concurrency, you say : "So if I ran it on an 8-core machine, the Ruby would run at the same speed, but the Erlang ought to go faster.". Concurrency in Erlang is explicit, not automatic. In your case, I/O could not be parallelized but the parsing could. I would just spawn a bunch of process, and send each one a number of lines to parse, then collect the results.</p>
+<p><i>[<a href='#c1190546566.993085'>link</a>]</i></p></div><div class='comment-b' id='c1190547684.535784'><p class='from'>From: <a href='http://cbcg.net'>Toby DiPasquale</a> (Sep 23 2007, at 04:41)</p><p>Perhaps you should try Scala &lt;<a href='http://www.scala-lang.org/'>http://www.scala-lang.org/</a>&gt;? It has an Actor library to provide similar concurrency features as Erlang, but it compiles down to JVM bytecode and is purported to run at near-Java speeds. As well, it can call into any Java library if you need that sort of thing.</p>
+<p><i>[<a href='#c1190547684.535784'>link</a>]</i></p></div><div class='comment-a' id='c1190548681.455889'><p class='from'>From: <a href='http://somethingsimilar.com'>Jeff Hodges</a> (Sep 23 2007, at 04:58)</p><p>I was unable to reproduce your results on my own machine. At least, not the simple count.  It returns within a second or 2.  Was the log being written to while you were testing? Am I correct in assuming that you set `File` with  `{ok, File} = file:open('/path/to/o10k.ap', read)`?</p><p>Now, I was unable to run the more complex form of scan_line without an error in `string:tokens1`.  What arguments are you passing to `scan_line` initially?</p><p>I've written some code that I believe is a bit more idomatic than the code you posted here.  That runs very quickly on my own MacBook Pro.  Could you try both the `count_lines` and `count_tbray_matches` functions and reproduce the results from it?  <a href='http://somethingsimilar.com/code/fold_lines.erl'>http://somethingsimilar.com/code/fold_lines.erl</a></p><p>We should not that I shamelessly stole the basis of this code from TrapExit: <a href='http://www.trapexit.org/Count_Lines_in_a_File'>http://www.trapexit.org/Count_Lines_in_a_File</a></p><p>The fold_files version of `countlines` runs at under a second on my MacBook Pro, and `count_tbray_matches` runs in just over a second or 2.  756 is the number of matches, correct? </p>
+<p><i>[<a href='#c1190548681.455889'>link</a>]</i></p></div><div class='comment-b' id='c1190550088.94318'><p class='from'>From: <a href='http://unix.culti.st/'>Ceri Storey</a> (Sep 23 2007, at 05:21)</p><p>For what it's worth, you might want to consider anonymising the data in that logfile. I guess you don't have an explicit privacy policy, but all that data complete with internet protocol address ("Oh noes, you have my IP address") might upset a few people. </p><p>Of course, the fact that they're voluntarily visiting a site where someone else controls the logging is another point entirely.</p>
+<p><i>[<a href='#c1190550088.94318'>link</a>]</i></p></div><div class='comment-a' id='c1190552917.303789'><p class='from'>From: <a href='http://'>Ulf Wiger</a> (Sep 23 2007, at 06:08)</p><p>It is true that this form of I/O (esp combined with text processing) is a weak point of Erlang's. This is plainly evident in the shootout (<a href='http://shootout.alioth.debian.org/'>http://shootout.alioth.debian.org/</a>).</p><p>One may keep in mind that the type of I/O that Erlang applications normally encounters is in the form of thousands of concurrent streams. It is quite common for Erlangers to have to lift the default limit on file descriptors, and using about as many as they are allowed. Furthermore, the amount of data passed on each stream (signaling data) is normally quite small, but response times are of great importance.</p><p>While it would be great if it were also very good at reading one stream really quickly, this hasn't been an especially interesting problem in the type of application where Erlang is traditionally used. I appreciate that this doesn't satisfy those who care particularly applying regexps to large amounts of file data.</p><p>FWIW, it's not an intrinsic problem with Erlang, but rather a result of implementation choices in the Erlang virtual machine.</p><p>BR,</p><p>Ulf Wiger</p>
+<p><i>[<a href='#c1190552917.303789'>link</a>]</i></p></div><div class='comment-b' id='c1190558218.231347'><p class='from'>From: <a href='http://'>Anders N</a> (Sep 23 2007, at 07:36)</p><p>I am not sure how this will come out, since there is no preview. </p><p>But the following takes ~0.6 s on my core2 duo laptop.</p><p>lines() -&gt;</p><p>    {ok,B} = file:read_file("o10k.ap"),</p><p>    S=binary_to_list(B),</p><p>    Lines = string:tokens(S,"\n"),</p><p>    lists:foldl(fun (Line, Acc) -&gt;</p><p>			Acc + process_match(lists:nth(7, string:tokens(Line, " ")))</p><p>		end,</p><p>		0, Lines).</p><p>process_match("/ongoing/When/" ++ Last) -&gt;</p><p>    case lists:member($., Last) of</p><p>	true -&gt; 0;</p><p>	false -&gt; 1</p><p>    end;</p><p>process_match(_) -&gt; 0.</p>
+<p><i>[<a href='#c1190558218.231347'>link</a>]</i></p></div><div class='comment-a' id='c1190562012.371184'><p class='from'>From: <a href='http://'>Thomas Lindgren</a> (Sep 23 2007, at 08:40)</p><p>Reading the whole file into a binary takes 7.3ms on my machine (1.7 GHz, 0.5 GB), so 34 seconds of I/O seems appalling.</p><p>1&gt; T0 = erlang:now(), file:read_file("o10k.ap.html"), T1 = erlang:now(), timer:now_diff(T1,T0).</p><p>7316</p><p>And just to check:</p><p>2&gt; {ok, B} = file:read_file("o10k.ap.html").                                    {ok,&lt;&lt;"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;host-24-225-218-245.patmedia.net - -\n[01/Oct/2006:06:33:45 -0700] \"GET /ongoing/ong"...&gt;&gt;}</p><p>3&gt;  size(B).</p><p>2016367</p><p>(As you can see, I just saved the page from the browser. I guess it was raw text originally.)</p>
+<p><i>[<a href='#c1190562012.371184'>link</a>]</i></p></div><div class='comment-b' id='c1190562734.949230'><p class='from'>From: <a href='http://alan-griffith.blogspot.com'>Alan Griffith</a> (Sep 23 2007, at 08:52)</p><p>What about Parallel Python. Of course it's not Erlang, and I'm not arguing Python vs. Ruby, but that would be one place I'd look for to answer this kind of problem.</p>
+<p><i>[<a href='#c1190562734.949230'>link</a>]</i></p></div><div class='comment-a' id='c1190563106.834502'><p class='from'>From: <a href='http://limpet.net/mbrubeck/'>Matt Brubeck</a> (Sep 23 2007, at 08:58)</p><p>"Except for parallelizing line-at-a-time I/O from a file would be hard."</p><p>No, it's easy.  The first step is to split the file into N files, one for each thread or process.</p>
+<p><i>[<a href='#c1190563106.834502'>link</a>]</i></p></div><div class='comment-b' id='c1190569590.748418'><p class='from'>From: <a href='http://blogtrader.net/page/dcaoyuan'>Caoyuan</a> (Sep 23 2007, at 10:46)</p><p>The data file www.tbray.org/tmp/o10k.ap only contains 10,000 lines, so the result around 0.4s should be multipled by 100 to gain the result for 1,167,948 lines data file that Tim's case.</p><p>I tested various solution on 100 times copied of www.tbray.org/tmp/o10k.ap (It's a 240m size file), and got the result around 40s same as Tim. </p><p>test/1, test1/1 and test2/1 cost almost the same time. That is, parsing/matching the binary or list is not time consumer in Erlang. Actually the bottle neck is reading binary or stream byte by byte, please see test2/1.</p><p>&lt;pre&gt;</p><p>-module(widefinder).</p><p>-export([test/1,</p><p>         test1/1,</p><p>         test2/1]).</p><p>test(FileName) -&gt;</p><p>    statistics(wall_clock),  </p><p>    {ok, IO} = file:open(FileName, read),</p><p>    {Matched, Total} = scan_line(IO),</p><p>    {_, Duration} = statistics(wall_clock),</p><p>    io:format("Duration ~pms~n Matched:~B, Total:~B", [Duration, Matched, Total]).</p><p>    </p><p>scan_line(IO) -&gt; scan_line("", IO, 0, -1).</p><p>scan_line(eof, _, Matched, Total) -&gt; {Matched, Total};</p><p>scan_line(Line, IO, Matched, Total) -&gt;</p><p>    NewCount = Matched + process_match(Line),</p><p>    scan_line(io:get_line(IO, ''), IO, NewCount, Total + 1).</p><p>process_match([]) -&gt; 0;</p><p>process_match("/ongoing/When/"++Rest) -&gt;</p><p>    case parse_until_space(Rest, false) of</p><p>	true  -&gt; 0;</p><p>	false -&gt; 1</p><p>    end;</p><p>process_match([_H|Rest]) -&gt; process_match(Rest).</p><p>test1(FileName) -&gt;</p><p>    statistics(wall_clock),  </p><p>    {ok, Bin} = file:read_file(FileName),</p><p>    {Matched, Total} = scan_line1(Bin),</p><p>    {_, Duration} = statistics(wall_clock),</p><p>    io:format("Duration ~pms~n Matched:~B, Total:~B", [Duration, Matched, Total]).    </p><p>scan_line1(Bin) -&gt; scan_line1(Bin, [], 0, 0).</p><p>scan_line1(&lt;&lt;&gt;&gt;, _Line, Matched, Total) -&gt; {Matched, Total};</p><p>scan_line1(&lt;&lt;$\n, Rest/binary&gt;&gt;, Line, Matched, Total) -&gt; </p><p>    %Line1 = lists:reverse(Line),</p><p>    scan_line1(Rest, [], Matched, Total + 1);</p><p>scan_line1(&lt;&lt;C:1/binary, Rest/binary&gt;&gt;, Line, Matched, Total) -&gt;</p><p>    %NewCount = Matched + process_match(Line),</p><p>    scan_line1(Rest, [C|Line], Matched, Total).</p><p>test2(FileName) -&gt;</p><p>    statistics(wall_clock),  </p><p>    {ok, Bin} = file:read_file(FileName),</p><p>    Total = travel(Bin),</p><p>    {_, Duration} = statistics(wall_clock),</p><p>    io:format("Duration ~pms~n Total:~B", [Duration, Total]).        </p><p>travel(Bin) -&gt; travel(Bin, 0). </p><p>travel(&lt;&lt;&gt;&gt;, ByteCount) -&gt; ByteCount;</p><p>travel(&lt;&lt;_C:1/binary, Rest/binary&gt;&gt;, ByteCount) -&gt;</p><p>    travel(Rest, ByteCount + 1). </p><p>parse_until_space([$\040|_Rest], Bool) -&gt; Bool;</p><p>parse_until_space([$.|_Rest], _Bool) -&gt; true;</p><p>parse_until_space([_H|Rest], Bool) -&gt; parse_until_space(Rest, Bool).</p><p>&lt;/pre&gt;</p>
+<p><i>[<a href='#c1190569590.748418'>link</a>]</i></p></div><div class='comment-a' id='c1190570074.8962'><p class='from'>From: <a href='http://'>Masklinn</a> (Sep 23 2007, at 10:54)</p><p>To those who can't reproduce the result, the provided file is only 1% of the original logfile (10k lines versus 1,167,948), so your result have to be multiplied by 100 to have a good estimate of a "final" time.</p><p>Also, if you want to see what to compare against, Tim made his Ruby script available previously: </p><p>counts = {}</p><p>counts.default = 0</p><p>ARGF.each_line do |line|</p><p>  if line =~ %r{GET /ongoing/When/\d\d\dx/(\d\d\d\d/\d\d/\d\d/[^ .]+) }</p><p>    counts[$1] += 1</p><p>  end</p><p>end</p><p>keys_by_count = counts.keys.sort { |a, b| counts[b] &lt;=&gt; counts[a] }</p><p>keys_by_count[0 .. 9].each do |key|</p><p>  puts "#{counts[key]}: #{key}"</p><p>end</p><p>Just dump it in a .rb file, then `ruby yourscript.rb logfilename`, that way you can time the baseline (for your machine) and compare the outputs (note that it only prints the 10 most requested urls).</p><p>Finally, tim, since R11B4 there is a tool called "escript". Allows you to start simple erlang scripts from the CLI, but you can also use it to bootstrap your "main" script (e.g. `escript parser` will call parser.start() or something like that)</p>
+<p><i>[<a href='#c1190570074.8962'>link</a>]</i></p></div><div class='comment-b' id='c1190570357.21754'><p class='from'>From: <a href='http://'>Wil Carlton</a> (Sep 23 2007, at 10:59)</p><p>The Tim Bray gravy train, which should last another ten or twenty years:</p><p>On the discovery of a new programming lanugage X, perhaps one that's becoming trendy among the Pragmatic hipsters:</p><p>  - try out tired character-grabbing idioms that worked in C|perl|php|ruby, blah. . .</p><p>  - Speak at (X).Conf about why X sucks at grabbing characters in an I18N world</p><p>  - While you're in there, might as well haul in some XML baggage to test out. and be sure to let us know how miserably that failed, too.</p><p>End /* On */</p><p>It's reasonable that not all programming languages are intended for "finding things" in text files.  Why condemn future language designers to solving a problem that's already been excruciating </p><p>hashed out already?  </p><p>If I were doing an Erlang diary, I'd investigate its strengths and why it's different from &lt;insert best-selling O'Reilly programming language book title here&gt;</p><p>Good luck.</p>
+<p><i>[<a href='#c1190570357.21754'>link</a>]</i></p></div><div class='comment-a' id='c1190571386.400663'><p class='from'>From: <a href='http://telegraphics.com.au/sw'>Toby</a> (Sep 23 2007, at 11:16)</p><p>Matt, isn't it even easier - assuming the 'processing' part is non-trivial (and it must be if you expect to gain from multicore) - just have a read process which dispatches data to a bunch of other processes. </p>
+<p><i>[<a href='#c1190571386.400663'>link</a>]</i></p></div><div class='comment-b' id='c1190571764.386308'><p class='from'>From: <a href='http://sethwklein.net/'>Seth W. Klein</a> (Sep 23 2007, at 11:22)</p><p>It's net friendly to remember to zip 2MB text files when you put them online :)</p>
+<p><i>[<a href='#c1190571764.386308'>link</a>]</i></p></div><div class='comment-a' id='c1190581486.866848'><p class='from'>From: <a href='http://bob.pythonmac.org/'>Bob Ippolito</a> (Sep 23 2007, at 14:04)</p><p>I believe the fast path for Erlang is actually to use a port to do this, since the majority of Erlang's communication happens at that layer and you can get that to do line parsing and stuff for you.</p><p>Here's a version that uses a port and cat to do it, which runs at least twice as fast on my MBP than the "reader.erl" example from a previous comment, but that advantage probably goes up with a larger input since it includes the process spawn overhead of open_port. It also doesn't read the whole file into memory, so you could stream gigs of logs </p><p>through it, even on a 32-bit erlang :)</p><p>The zip includes a copy of the example log file plus a utility module it uses to do shell quoting of file names for open_port.</p><p><a href='http://undefined.org/erlang/o10k.zip'>undefined.org/erlang/o10k.zip</a></p><p>&lt;code&gt;</p><p>(emacs@ahi.local)50&gt; timer:tc(o10k, results_for, ["o10k.ap"]).</p><p>{270716,1101}</p><p>(emacs@ahi.local)51&gt; timer:tc(reader, results_for, ["o10k.ap"]).</p><p>Found 1101 matches in o10k.ap</p><p>{600700,ok}</p><p>&lt;/code&gt;</p>
+<p><i>[<a href='#c1190581486.866848'>link</a>]</i></p></div><div class='comment-b' id='c1190583414.148244'><p class='from'>From: <a href='http://'>Victor</a> (Sep 23 2007, at 14:36)</p><p>I think I should point out that the Erlang concurrency does occur automatically. If you are not splitting your work into separate processes there's nothing to run concurrently.</p><p>The code you listed above can't take advantage of your multiple cores because you wrote it that way.</p>
+<p><i>[<a href='#c1190583414.148244'>link</a>]</i></p></div><div class='comment-a' id='c1190584602.142246'><p class='from'>From: <a href='http://'>Clayton Wheeler</a> (Sep 23 2007, at 14:56)</p><p>I've been poking around with some alternative I/O strategies, specifically using file:open(Path, [read, raw, read_ahead}) with file:read/2 in 1K chunks, and also opening an I/O port to "cat &lt;filename&gt;" in line-at-a-time mode.</p><p>Both of these approaches take 140-150 ms of user time for just reading the lines of your file, using HiPE on an old slow x86 machine. (The port strategy is almost twice as fast as the open/read one on my MacBook, oddly; I'd guess that's HiPE optimizing the line-splitting code.) Doing the same thing, i.e. nothing, with Ruby's ARGF.each_line takes 141 ms, so I'd say that's competitive at the I/O level.</p>
+<p><i>[<a href='#c1190584602.142246'>link</a>]</i></p></div><div class='comment-b' id='c1190609823.519697'><p class='from'>From: <a href='http://steve.vinoski.net/'>Steve Vinoski</a> (Sep 23 2007, at 21:57)</p><p>Hi Tim, I posted an approach that makes clear use of multiple cores, which I think is what you were hoping for, over on my (new) blog:</p><p><a href='http://steve.vinoski.net/blog/2007/09/23/tim-bray-and-erlang/'>http://steve.vinoski.net/blog/2007/09/23/tim-bray-and-erlang/</a></p>
+<p><i>[<a href='#c1190609823.519697'>link</a>]</i></p></div><div class='comment-a' id='c1190617056.526055'><p class='from'>From: Akhilesh (Sep 23 2007, at 23:57)</p><p>Tim, Erlang is primarily used for its concurrency and high availability features. Saying that it should first get some XYZ thing right before you'd bother with its primary features, is not the right approach... that XYZ thing (IO and pattern matching) has _never_ been erlang's focus. Perl/Ruby is *designed* for that purpose, and I expect it to blow erlang out of water on that... and of course, for concurrency and high availability, erlang returns the favor to Perl/Ruby.</p>
+<p><i>[<a href='#c1190617056.526055'>link</a>]</i></p></div><div class='comment-b' id='c1190618074.411838'><p class='from'>From: <a href='http://www.tornkvist.org/'>etnt</a> (Sep 24 2007, at 00:14)</p><p>[quote]</p><p>....you&#8217;re stuck in a niche; you&#8217;re a thought experiment and a consciousness-raiser and an engineering showpiece, but you&#8217;re not a general-purpose tool....</p><p>[/quote]</p><p>Ha,ha,ha...that's funny! </p><p>Hint: Use Perl or something similar to solve your problem and let Erlang do what it does best, i.e complex 24x7 systems.</p><p> </p>
+<p><i>[<a href='#c1190618074.411838'>link</a>]</i></p></div><div class='comment-a' id='c1190677039.475579'><p class='from'>From: <a href='http://'>tsuraan</a> (Sep 24 2007, at 16:37)</p><p>"you can&#8217;t just type erl foo.beam to run it, you have to add a bunch of stupid pettifogging options. This is wrong"</p><p>Erlang's not perl.  Lots of languages aren't perl, and don't even try to be "a better perl."  That's ok.  However, if you want to pretend erlang is a scripting language, use escript.  A simple example, taken straight from the escript man page:</p><p>tsuraan@macbeth ~ $ cat simple.erl</p><p>#!/usr/bin/env escript</p><p>main([String]) -&gt;</p><p>    try</p><p>        N = list_to_integer(String),</p><p>        F = fac(N),</p><p>        io:format("factorial ~w = ~w\n", [N,F])</p><p>    catch</p><p>        _:_ -&gt;</p><p>            usage()</p><p>    end;</p><p>main(_) -&gt;</p><p>    usage().</p><p>usage() -&gt;</p><p>    io:format("usage: factorial integer\n"),</p><p>    halt(1).</p><p>fac(0) -&gt; 1;</p><p>fac(N) -&gt; N * fac(N-1).</p><p>tsuraan@macbeth ~ $ ./simple.erl 10</p><p>factorial 10 = 3628800</p><p>So, if you do feel like continuing to treat erlang as a scripting langauge (and I really don't think you'll ever be as happy with it for that purpose as you are with Ruby or perl), escript might help a bit.</p>
+<p><i>[<a href='#c1190677039.475579'>link</a>]</i></p></div><div class='comment-b' id='c1190823137.870279'><p class='from'>From: <a href='http://stephan.reposita.org'>Stephan Schmidt</a> (Sep 26 2007, at 09:12)</p><p>When parsing large log files one should use memory mapped files. I did this when parsing very large FTP log files for analysis. Back then I used Java NIO memory mapped files with some success.</p><p>Those files are swapped into memory by the operating system memory managment. Can't get faster than that.</p><p>Peace</p><p>-stephan</p><p>-- </p><p>Stephan Schmidt :: stephan@reposita.org</p><p>Reposita Open Source - Monitor your software development</p><p><a href='http://www.reposita.org '>http://www.reposita.org </a></p><p>Blog at <a href='http://stephan.reposita.org'>http://stephan.reposita.org</a> - No signal. No noise.</p>
+<p><i>[<a href='#c1190823137.870279'>link</a>]</i></p></div></div></div>
+
+<div id='rightcontent'><div class='oo'><a id='to-home' href='/ongoing/'><span id='home'>ongoing</span></a></div>
+<div>
+<div class='principles'>
+<a href='/ongoing/WhatItIs'>What this is</a> &#xb7;
+<a href='/ongoing/ongoing.atom'><img title="Subscribe to ongoing" alt="Subscribe to ongoing" src="/ongoing/Feed.png"/></a><br/>
+<a href='/ongoing/Truth'>Truth</a> &#xb7;
+<a href='/ongoing/Biz'>Biz</a> &#xb7;
+<a href='/ongoing/Tech'>Tech</a></div>
+<a href='/ongoing/misc/Software'>software</a> &#xb7;
+<a href="http://www.textuality.com/goodmeta.html">G &amp; M</a> &#xb7;
+<a href='http://www.textuality.com/BillBray/'>Dad</a> 
+<a href='/ongoing/misc/Tim'>author</a> &#xb7;
+<a href='/ongoing/misc/Colophon'>colophon</a> &#xb7;
+<a href='/ongoing/misc/Copyright'>rights</a>
+</div>
+<div id='potd'><a id='tnA' href='/ongoing/goto-potd/'><img id='tnI' src='/ongoing/potd.png' alt='picture of the day' /></a></div>
+Around <a href='/ongoing/When/200x/2007/09/'>September</a> <a href='/ongoing/When/200x/2007/09/22/'>22</a>, <a href='/ongoing/When/200x/2007/'>2007</a>: <a href='/ongoing/When/200x/2007/09/22/Early-Autumn'>Early Autumn</a>
+&#xb7; <a href='/ongoing/When/200x/2007/09/23/Flat-Rate-Considered-Harmful'>Flat Rate Considered Harmful</a>
+&#xb7; <a href='/ongoing/When/200x/2007/09/23/Erlang'>WF III: Lessons</a>
+&#xb7; <a href='/ongoing/When/200x/2007/09/21/Erlang'>WF I: Erlang Ho!</a>
+&#xb7; <a href='/ongoing/When/200x/2007/09/21/Rubinius-Sprint'>The Rubinius Sprint</a>
+<br />
+<div id='cats'>
+<p><a href='/ongoing/What/'>What?</a>
+<br/> &#xb7; <a  href='/ongoing/What/Technology'>Technology</a> (59 fragments)
+<br/> &#xb7; &#xb7; <a class='leaf'  href='/ongoing/What/Technology/Concurrency'>Concurrency</a> (20 more)
+<br/> &#xb7; &#xb7; <a class='leaf'  href='/ongoing/What/Technology/Erlang'>Erlang</a> (2 more)
+</p>
+</div>
+
+<div id="fonts">
+<hr />
+<a href="/ongoing/" 
+ onclick="setActiveStyleSheet('serif'); return false;" 
+ onkeypress = "setActiveStyleSheet('serif'); return false;"
+ accesskey="p" id="serif">Serif</a>  &#xb7; 
+<a href="/ongoing/"
+ onclick="setActiveStyleSheet('sans'); return false;" 
+ onkeypress = "setActiveStyleSheet('sans'); return false;"
+ accesskey="p" id="sans">Sans-Serif</a>
+<hr />
+</div>
+<div class="employ">I work at Sun Microsystems.
+The opinions expressed here are my own, 
+and neither Sun nor any other party necessarily
+agrees with them.
+</div>
+
+
+
+</div>
+</body>
+</html>

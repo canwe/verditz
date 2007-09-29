@@ -1,0 +1,582 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href='/images/favicon.png?1189116696' rel='icon' type='image/png' />
+      <link href="/stylesheets/main.css?1190152540" media="screen" rel="Stylesheet" type="text/css" />
+      <link href="/stylesheets/coderay.css?1189886303" media="screen" rel="Stylesheet" type="text/css" />
+      <script src="/javascripts/prototype.js?1189116696" type="text/javascript"></script>
+      <script src="/javascripts/effects.js?1189116696" type="text/javascript"></script>
+      <script src="/javascripts/dragdrop.js?1189116696" type="text/javascript"></script>
+      <script src="/javascripts/controls.js?1189116696" type="text/javascript"></script>
+      <script src="/javascripts/application.js?1189984070" type="text/javascript"></script>
+      <link href="http://nex-3.com/posts.atom" rel="alternate" title="Blog Posts : Nex3" type="application/atom+xml" />
+    <title>
+        How I Wrote an Emacs Blog Client (And Lived to Tell the Tale) :
+      Nex3
+    </title>
+    <!--[if lte IE 6]> 
+        <link href="/stylesheets/ie6.css?1189116789" media="screen" rel="Stylesheet" type="text/css" />
+      <script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
+    <![endif]-->
+    <!--[if IE 7]> 
+        <link href="/stylesheets/ie7.css?1189116789" media="screen" rel="Stylesheet" type="text/css" />
+    <![endif]-->
+      <link href="http://nex-3.com/posts/25/comments.atom" rel="alternate" title="Comments : Nex3" type="application/atom+xml" />
+  </head>
+  <body class='posts show' id='body'>
+    <div id='full'>
+      <div id='header'>
+        <a class='title' href='/'>
+          <img alt="Nex3" class="normal" src="/images/title.png?1189116696" />
+          <img alt="Nex3" class="hover" src="/images/title_hover.png?1189116696" />
+        </a>
+        <div class='citation'>By Nathan Weizenbaum</div>
+      </div>
+      <div id='main'>
+        <div id='sidebar'>
+          <div class='sect links'>
+            <a href="/about"><img alt="About Me" src="/images/silk/user.png?1189116694" />About Me</a>
+            <a href="/posts.atom"><img alt="Feed" src="/images/silk/feed.png?1189116693" />Feed</a>
+          </div>
+          <div class='sect archives'>
+            <h2>Archives</h2>
+            <ul>
+              <li><a href="/posts/dates/2007/9">September 2007</a></li>
+              <li><a href="/posts/dates/2007/8">August 2007</a></li>
+              <li><a href="/posts/dates/2007/7">July 2007</a></li>
+              <li><a href="/posts/dates/2007/6">June 2007</a></li>
+              <li><a href="/posts/dates/2007/5">May 2007</a></li>
+              <li><a href="/posts/dates/2007/4">April 2007</a></li>
+            </ul>
+          </div>
+          <div class='sect tags'>
+            <h2>Tags</h2>
+            <ul>
+              <li>
+                <a href="/posts.atom?tag=programming" class="feed" title="Feed for programming"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=programming">Programming</a>
+                &ndash; 29
+              </li>
+              <li>
+                <a href="/posts.atom?tag=ruby" class="feed" title="Feed for ruby"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=ruby">Ruby</a>
+                &ndash; 25
+              </li>
+              <li>
+                <a href="/posts.atom?tag=blog" class="feed" title="Feed for blog"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=blog">Blog</a>
+                &ndash; 13
+              </li>
+              <li>
+                <a href="/posts.atom?tag=make_resourceful" class="feed" title="Feed for make_resourceful"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=make_resourceful">Make Resourceful</a>
+                &ndash; 8
+              </li>
+              <li>
+                <a href="/posts.atom?tag=rails" class="feed" title="Feed for rails"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=rails">Rails</a>
+                &ndash; 7
+              </li>
+              <li>
+                <a href="/posts.atom?tag=haml" class="feed" title="Feed for haml"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=haml">Haml</a>
+                &ndash; 5
+              </li>
+              <li>
+                <a href="/posts.atom?tag=learning" class="feed" title="Feed for learning"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=learning">Learning</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=microsoft" class="feed" title="Feed for microsoft"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=microsoft">Microsoft</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=testing" class="feed" title="Feed for testing"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=testing">Testing</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=books" class="feed" title="Feed for books"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=books">Books</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=emacs" class="feed" title="Feed for emacs"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=emacs">Emacs</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=scribble%21" class="feed" title="Feed for scribble!"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=scribble%21">Scribble!</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=lisp" class="feed" title="Feed for lisp"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=lisp">Lisp</a>
+                &ndash; 3
+              </li>
+              <li>
+                <a href="/posts.atom?tag=unix" class="feed" title="Feed for unix"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=unix">Unix</a>
+                &ndash; 2
+              </li>
+              <li>
+                <a href="/posts.atom?tag=writing" class="feed" title="Feed for writing"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=writing">Writing</a>
+                &ndash; 2
+              </li>
+              <li>
+                <a href="/posts.atom?tag=user+interface" class="feed" title="Feed for user interface"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=user+interface">User Interface</a>
+                &ndash; 1
+              </li>
+              <li>
+                <a href="/posts.atom?tag=style" class="feed" title="Feed for style"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=style">Style</a>
+                &ndash; 1
+              </li>
+              <li>
+                <a href="/posts.atom?tag=languages" class="feed" title="Feed for languages"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=languages">Languages</a>
+                &ndash; 1
+              </li>
+              <li>
+                <a href="/posts.atom?tag=editors" class="feed" title="Feed for editors"><img alt="Feed" src="/images/silk/bullet_feed.png?1189116694" /></a>
+                <a href="/posts?tag=editors">Editors</a>
+                &ndash; 1
+              </li>
+            </ul>
+          </div>
+          <div class='sect search'>
+            <h2>Search</h2>
+          <form action="/posts" method="get">
+              <fieldset>
+                <input class="button" name="commit" type="submit" value="Go" />
+                <input id="query" name="query" type="text" />
+              </fieldset>
+          </form>
+            <div id='search_results'>
+            </div>
+          </div>
+        </div>
+        <div id='content'>
+          <div class='flash'>
+          </div>
+          <div class='post model' id='post_25'>
+            <div class='tags'>
+              <a href="/posts?tag=emacs">Emacs</a>, <a href="/posts?tag=lisp">Lisp</a>, <a href="/posts?tag=programming">Programming</a>
+              <div class='label'>Tags</div>
+            </div>
+            <h2>
+              <a href="/posts/25-how-i-wrote-an-emacs-blog-client-and-lived-to-tell-the-tale">How I Wrote an Emacs Blog Client (And Lived to Tell the Tale)</a>
+            </h2>
+            <div class='posted'>
+              Posted August 24, 2007
+            </div>
+            <div class='content'>
+              <p>As I hinted in my <a href="/posts/24-why-i-use-antimacs">last post</a>,
+              I wrote it from within Emacs.
+              This entry, too, is being composed in the text editor extrordinaire.
+              This shouldn&#8217;t come as much of a surprise.
+              There are clients out there for <a href="http://emacspeak.googlecode.com/svn/trunk/lisp/g-client">Blogger</a>,
+              <a href="http://edward.oconnor.cx/ljupdate/">Livejournal</a>,
+              the more generic <a href="http://www.emacswiki.org/cgi-bin/wiki/EmacsAtomApi">Atom <span class="caps">API</span></a>,
+              and probably others well.</p>
+              
+              
+              	<p>What&#8217;s cool about it, though,
+              is that my blog is neither hosted by a blog host,
+              nor does it implement Atom.
+              I had to write my blog-from-Emacs code from scratch.
+              This is my story.</p>
+              
+              
+              	<p>What first inspired me to write the Emacs-blog-poster
+              was a snazzy Emacs <a href="http://dev.nozav.org/textile-mode.html">Textile-mode</a>
+              which I happened across and installed.
+              I write my blog posts in Textile,
+              so the prospect of having them syntax-highlighted,
+              not to mention not having to deal with Firefox&#8217;s text area UI<sup><a href="#post-25-fn1">1</a></sup>,
+              was pretty cool.</p>
+              
+              
+              	<p>For a while, I&#8217;d write my entries in Emacs,
+              then copy them over to the textbox to preview them.
+              Then I&#8217;d switch back to Emacs to make any edits I needed to,
+              then copy it <em>back</em> to the webpage,
+              over and over again.</p>
+              
+              
+              	<p>This was okay, but it got tedious,
+              and it was a pain to deal with the idiosyncrasies
+              between Emacs&#8217;s and Gnome&#8217;s different copy-paste mechanisms.
+              Emacs behaves in the traditional X window system manner:
+              if you highlight or delete text, it&#8217;s added to the clipboard.</p>
+              
+              
+              	<p>This doesn&#8217;t disrupt Gnome&#8217;s more Mac- and Windows-style Control+C schema,
+              because they copy to different clipboards.
+              Highlighting text won&#8217;t get rid of whatever you last C-c&#8217;d.</p>
+              
+              
+              	<p>However, most of the time I wanted to <em>replace</em> the text
+              in the blog post text area, so I could preview the new stuff.
+              Normally, I&#8217;d select all then paste over it.
+              Unfortunately, selecting all then added <em>that</em> to the same clipboard
+              the blog post was on.</p>
+              
+              
+              	<p>This got to be enough of a pain that I decided to be a good programmer
+              and just automate the thing.
+              &#8220;It shouldn&#8217;t be too hard,&#8221; thought I,
+              &#8220;my blog is <acronym title="Representational State Transfer">REST</acronym>ful<sup><a href="#post-25-fn2">2</a></sup> anyway.
+              A few <span class="caps">HTTP</span> requests and I should be golden.&#8221;</p>
+              
+              
+              	<p>Not being eager to write my own ELisp <span class="caps">HTTP</span> library,
+              let alone having any idea how to do so,
+              I looked around to see what already existed.
+              Lo and behold, I found <a href="http://savannah.nongnu.org/projects/http-emacs/">http-emacs</a>.
+              It wasn&#8217;t ideal, but all I really needed was the ability to shove data at a website,
+              and this provided that.</p>
+              
+              
+              	<p>The general interface for posting data was a function called <code>http-post</code>.
+              Keeping in mind that in Lisp syntax,
+              <code>(foo bar baz)</code> means &#8220;call the function <code>foo</code> with arguments <code>bar</code> and <code>baz</code>,&#8221; 
+              let&#8217;s look at how it works:</p>
+              
+              
+              	<div class="CodeRay">
+                <div class="code"><pre><span class="dl">(</span>http-post URL PARAMETERS ENCODING<span class="dl">)</span></pre></div>
+              </div>
+              
+              
+              
+              	<p><code>PARAMETERS</code> was an assoc list<sup><a href="#post-25-fn3">3</a></sup> of parameters to send to the website,
+              the same sort you&#8217;d send if you submitted, say, an <span class="caps">HTML</span> form.
+              So to post the same data as my <span class="caps">HTML</span> form,
+              I just had to set the same parameter names<sup><a href="#post-25-fn4">4</a></sup>:
+              <code>post[title]</code> and <code>post[content]</code>.</p>
+              
+              
+              	<p>I came up with a very basic function
+              to post the text I&#8217;m currently editing to the server.
+              Since I didn&#8217;t want any tests I made actually showing up on the real blog,
+              I pointed it to <code>http://localhost:3000/</code>,
+              where I was running my local development copy of my blog.</p>
+              
+              
+              	<div class="CodeRay">
+                <div class="code"><pre><span class="dl">(</span><span class="r">defun</span> <span class="fu">post-blog-entry</span> <span class="dl">(</span><span class="dl">)</span>&#x000A;  <span class="s"><span class="dl">&quot;</span><span class="k">Post an entry to my blog</span><span class="dl">&quot;</span></span> &#x000A;  <span class="dl">(</span>interactive<span class="dl">)</span>&#x000A;  <span class="dl">(</span>http-post <span class="s"><span class="dl">&quot;</span><span class="k">http://localhost:3000/posts</span><span class="dl">&quot;</span></span> &#x000A;             <span class="dl">(</span>list <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">post[title]</span><span class="dl">&quot;</span></span>   <span class="dl">(</span>read-from-minibuffer <span class="s"><span class="dl">&quot;</span><span class="k">Post title: </span><span class="dl">&quot;</span></span><span class="dl">)</span><span class="dl">)</span>&#x000A;                   <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">post[content]</span><span class="dl">&quot;</span></span> <span class="dl">(</span>buffer-string<span class="dl">)</span><span class="dl">)</span><span class="dl">)</span>&#x000A;             <span class="sy">'utf-8</span><span class="dl">)</span><span class="dl">)</span></pre></div>
+              </div>
+              
+              
+              
+              	<p>Let&#8217;s walk through this.
+              I&#8217;m defining a function called <code>post-blog-entry</code>
+              that takes no arguments.
+              The first line is a docstring;
+              it&#8217;s a string documenting the function.
+              The ELisp runtime notices these
+              and associates them with the function,
+              so that one can look them up via C-h f<sup><a href="#post-25-fn5">5</a></sup>.</p>
+              
+              
+              	<p>The next line, <code>(interactive)</code>,
+              tells Emacs that this function should be callable by the user.
+              The user can type M-x <span class="caps">FUNCTION</span>-NAME to call any interactive function.</p>
+              
+              
+              	<p>Then comes the call to http-post.
+              The <span class="caps">URL</span> is pretty straightforward.
+              When I post information to <code>/posts</code>,
+              my blog software knows to make it into a new post and save it.</p>
+              
+              
+              	<p>All that stuff with <code>list</code> and <code>cons</code> is just constructing the assoc list.
+              The upshot of it is that we&#8217;re posting the <code>post[title]</code> and <code>post[content]</code> parameters.
+              The title is assigned to a value read from the minibuffer
+              (the one-line area down at the bottom of Emacs),
+              and the content is assigned to the current contents of the file being edited.
+              Presumably, this is the blog post.</p>
+              
+              
+              	<p>That little <code>'utf-8</code> bit at the bottom might be a bit confusing to non-Lispers.
+              It&#8217;s just a symbol.
+              Lisp symbols are the same as those in Ruby,
+              except that they begin with an apostrophe instead of a colon.</p>
+              
+              
+              	<p>I gave my newborn function a try and,
+              as so often happens with just-written functions, it failed.
+              The problem wasn&#8217;t actually my function;
+              it was my stupidity.
+              I had forgotten that in order to post to my blog,
+              I needed proper credentials.
+              The server needed to know I was who I said I was.</p>
+              
+              
+              	<p>The way this is accomplished through the <span class="caps">HTML</span> interface is with a session cookie.
+              When a browser first visits my blog,
+              the blog sends a unique cookie that identifies that browser.
+              This browser then notifies the server of the cookie every time it goes to a new page,
+              and the server uses that to figure out which user the browser request is being made by<sup><a href="#post-25-fn6">6</a></sup>.</p>
+              
+              
+              	<p>When I sign in, the server is able to remember me via cookies.
+              Then, when I try to make a post, it thinks,
+              &#8220;Oh, that cookie belongs to a guy who&#8217;s allowed to post&#8221; 
+              and doesn&#8217;t make a fuss.</p>
+              
+              
+              	<p>I tried to get this working with http-emacs,
+              but its cookie module was still experimental.
+              Unfortunately, this appeared to mean that it flat-out didn&#8217;t work.</p>
+              
+              
+              	<p>I decided the easiest thing to do would be to leave Lisp-world for a little
+              and modify the server code.
+              I decided I&#8217;d make it possible to do a one-time-only login
+              using additional parameters: <code>admin[name]</code> and <code>admin[pass]</code>.
+              If the requester, in this case my Emacs function, didn&#8217;t have a cookie set,
+              the server would check for the presence of these parameters
+              and attempt to log the user in with those.</p>
+              
+              
+              	<p>This ended up being pretty simple to implement;
+              it ended up being six more meaningful lines of code.
+              I then went and added these parameters to my function:</p>
+              
+              
+              	<div class="CodeRay">
+                <div class="code"><pre><span class="dl">(</span><span class="r">defun</span> <span class="fu">blog-post-entry</span> <span class="dl">(</span><span class="dl">)</span>&#x000A;  <span class="s"><span class="dl">&quot;</span><span class="k">Post an entry to my blog</span><span class="dl">&quot;</span></span> &#x000A;  <span class="dl">(</span>interactive<span class="dl">)</span>&#x000A;  <span class="dl">(</span>http-post <span class="s"><span class="dl">&quot;</span><span class="k">http://localhost:3000/posts</span><span class="dl">&quot;</span></span> &#x000A;             <span class="dl">(</span>list <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">post[title]</span><span class="dl">&quot;</span></span>   <span class="dl">(</span>read-from-minibuffer <span class="s"><span class="dl">&quot;</span><span class="k">Post title: </span><span class="dl">&quot;</span></span><span class="dl">)</span><span class="dl">)</span>&#x000A;                   <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">post[content]</span><span class="dl">&quot;</span></span> <span class="dl">(</span>buffer-string<span class="dl">)</span><span class="dl">)</span>&#x000A;                   <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">admin[pass]</span><span class="dl">&quot;</span></span>   <span class="dl">(</span>read-passwd <span class="s"><span class="dl">&quot;</span><span class="k">Password: </span><span class="dl">&quot;</span></span><span class="dl">)</span><span class="dl">)</span>&#x000A;                   <span class="dl">(</span>cons <span class="s"><span class="dl">&quot;</span><span class="k">admin[name]</span><span class="dl">&quot;</span></span>   <span class="s"><span class="dl">&quot;</span><span class="k">Nathan</span><span class="dl">&quot;</span></span><span class="dl">)</span><span class="dl">)</span>&#x000A;             <span class="sy">'utf-8</span><span class="dl">)</span><span class="dl">)</span></pre></div>
+              </div>
+              
+              
+              
+              	<p>I didn&#8217;t want my password sitting around in a plaintext configuration file,
+              so I used <code>read-passwd</code> to read it from the user.
+              <code>read-passwd</code> works just like <code>read-from-minibuffer</code>,
+              except that it replaces all characters with periods.</p>
+              
+              
+              	<p>After that, the function finally worked;
+              I was able to post my blog entries from Emacs.
+              After trying it out, I decided to switch the name around from
+              <code>post-blog-entry</code> to <code>blog-post-entry</code>.
+              This was partly because it&#8217;s better ELisp style to have a &#8220;namespace&#8221; word first,
+              but mostly because more functions began with &#8220;pos&#8221; than with &#8220;blo&#8221;,
+              so tab completion worked better this way.</p>
+              
+              
+              	<p>I actually spent a fair amount of time polishing the function after I got the bare bones working;
+              I made it more user-friendly,
+              had it open the new post in Firefox,
+              and even managed to get it to preview the rendered document
+              (that one was quite tricky).</p>
+              
+              
+              	<p>However, it&#8217;s 1:00 AM here in Seattle,
+              and I&#8217;m tired, so I&#8217;m gonna call it a post
+              and use my snazzy function to send it off to the blog.
+              Let me know in the comments if you enjoyed this;
+              if so, I could definitely continue it in a future post.</p>
+              
+              
+              	<p id="post-25-fn1" class="footnote"><sup>1</sup> Don&#8217;t get me wrong, the text area UI is great for what it is.
+                   But lacking all my special Emacs keybindings just sucks
+                   for writing long blocks of text,
+                   such as blog posts.</p>
+              
+              
+              	<p id="post-25-fn2" class="footnote"><sup>2</sup> For those of you who don&#8217;t know and don&#8217;t care what <span class="caps">REST</span> is,
+                   it pretty much just means that it&#8217;s easy to get information from
+                   and send information to a website using only normal URLs.
+                   For those of you who do care,
+                   I unfortunately don&#8217;t know any good introductions to <span class="caps">REST</span>.
+                   I&#8217;ll try to write one up at some point.</p>
+              
+              
+              	<p id="post-25-fn3" class="footnote"><sup>3</sup> An assoc list is a list of pairs of data.
+                   It&#8217;s used to link together keys and values,
+                   in a similarly to a Ruby hash or a Python dict.
+                   They&#8217;re represented as <code>((key1 . value1) (key2 . value2))</code>.</p>
+              
+              
+              	<p id="post-25-fn4" class="footnote"><sup>4</sup> A nifty thing about Rails:
+                   parameters of the form <code>foo[bar]</code>
+                   are automatically converted into hashes.
+                   So if you submit <code>foo[bar]</code> as &#8220;Grumblesnakes,&#8221; 
+                   the parameters hash will be
+                   <code>{"foo" =&gt; {"bar" =&gt; "Grumblesnakes"}}</code>.</p>
+              
+              
+              	<p id="post-25-fn5" class="footnote"><sup>5</sup> I&#8217;m here using the Emacs style of denoting shortcut keys.
+                   C stands for Control; M stands for Meta, or Alt on modern keyboards.
+                   C-h f means Control+H followed by F.</p>
+              
+              
+              	<p id="post-25-fn6" class="footnote"><sup>6</sup> Thankfully, Rails handles this almost entirely behind the scenes.</p>
+            </div>
+            <div class='nav'>
+              <a href="/posts/24-why-i-use-antimacs" class="prev"><img alt="Previous Post" src="/images/silk/arrow_left.png?1189116694" /> Why I Use Antimacs</a>
+              <a href="/posts/26-no-more-rss" class="next">No More RSS <img alt="Next Post" src="/images/silk/arrow_right.png?1189116694" /></a>
+            </div>
+          </div>
+          <div id='comments'>
+            <div class='comment model' id='comment_208'>
+              <div class='posted'>
+                <span class='name'><a href="http://nex3.leeweiz.net">Nathan</a></span>
+                said September 04, 2007:
+              </div>
+              <div class='content' id='comment_208_content'>
+                <p>For the record: <a href="http://edward.oconnor.cx">Edward O&#8217;Connor</a> posted a comment suggesting I check out the <code>url</code> package, as it&#8217;s included in the main distribution as of Emacs 22. I replied saying that I would check it out, and that I was dissatisfied with <code>http-emacs</code>&#8217; UI.</p>
+                
+                
+                	<p>Then I accidentally deleted the comments while futzing around with spam without making backups. Clever me.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_222'>
+              <div class='posted'>
+                <span class='name'>Daniel</span>
+                said September 08, 2007:
+              </div>
+              <div class='content' id='comment_222_content'>
+                <p>Set x-select-enable-clipboard to make Emacs copy to the clipboard.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_223'>
+              <div class='posted'>
+                <span class='name'>Liang Wang</span>
+                said September 08, 2007:
+              </div>
+              <div class='content' id='comment_223_content'>
+                <p>If you use firefox, there is an extension, It&#8217;s All Text!
+                https://addons.mozilla.org/en-US/firefox/addon/4125
+                quote: &#8220;Edit textareas using an external editor&#8221;</p>
+                
+                
+                	<p>So, when you save content in emacs buffer, it appears in textareas soon without copy-and-paste.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_224'>
+              <div class='posted'>
+                <span class='name'><a href="http://nex3.leeweiz.net">Nathan</a></span>
+                said September 08, 2007:
+              </div>
+              <div class='content' id='comment_224_content'>
+                <p><strong>Daniel</strong>: Then <em>all</em> my Emacs selections end up in the clipboard. Ideally I&#8217;d have something separate from normal deleting-and-yanking that copies to and pastes from the clipboard. I&#8217;m sure this is possible (I think <a href="http://www.cua.dk/">cua-mode</a> does something similar), I just haven&#8217;t gotten around to figuring it all out.</p>
+                
+                
+                	<p><strong>Liang</strong>: Cool! I&#8217;ll have to check that out. I think I still prefer my client, though, just because it allows me to seamlessly move from whatever I was doing in Emacs before to writing a blog entry without mucking about in a browser.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_225'>
+              <div class='posted'>
+                <span class='name'>Daniel</span>
+                said September 08, 2007:
+              </div>
+              <div class='content' id='comment_225_content'>
+                <p>Nathan, you got it. You can find these commands with M-x apropos <span class="caps">RET</span> clipboard <span class="caps">RET</span>.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_227'>
+              <div class='posted'>
+                <span class='name'><a href="http://nex3.leeweiz.net">Nathan</a></span>
+                said September 08, 2007:
+              </div>
+              <div class='content' id='comment_227_content'>
+                <p>Sweet! Off to edit my <code>.emacs</code>...</p>
+                
+                
+                	<p>For those curious, here are my modifications:</p>
+                
+                
+                <div class="CodeRay">
+                  <div class="code"><pre><span class="dl">(</span><span class="r">defun</span> <span class="fu">x-clipboard-only-yank</span> <span class="dl">(</span><span class="dl">)</span>&#x000A;  <span class="s"><span class="dl">&quot;</span><span class="k">Insert the clipboard contents (but never killed text)</span><span class="dl">&quot;</span></span> &#x000A;  <span class="dl">(</span>interactive<span class="dl">)</span>&#x000A;  <span class="dl">(</span>insert <span class="dl">(</span>x-get-clipboard<span class="dl">)</span><span class="dl">)</span><span class="dl">)</span>&#x000A;&#x000A;<span class="dl">(</span>global-set-key <span class="dl">(</span>kbd <span class="s"><span class="dl">&quot;</span><span class="k">C-v</span><span class="dl">&quot;</span></span><span class="dl">)</span> <span class="sy">'x-clipboard-only-yank</span><span class="dl">)</span>&#x000A;<span class="dl">(</span>global-set-key <span class="dl">(</span>kbd <span class="s"><span class="dl">&quot;</span><span class="k">C-z</span><span class="dl">&quot;</span></span><span class="dl">)</span> <span class="sy">'clipboard-kill-region</span><span class="dl">)</span></pre></div>
+                </div>
+                
+                
+                	<p>I defined my own yank function because the built-in one, <code>x-clipboard-yank</code>, yanks from Emacs&#8217; kill ring if something had been killed after the most recent copy. I wanted it to only yank from the X clipboard.</p>
+                
+                
+                	<p>I bound them to <code>C-v</code> and <code>C-z</code> because I use the arrows and such for navigation (I know, I know), and because I hate it minimizing when I miss <code>C-x</code> so I didn&#8217;t have <code>C-z</code> bound anyway.</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_229'>
+              <div class='posted'>
+                <span class='name'>Codehammer</span>
+                said September 11, 2007:
+              </div>
+              <div class='content' id='comment_229_content'>
+                <p>Arent you transmitting the password as plaintext over the line? I believe using &#8220;read-passwd&#8221; only solved half the problem. I&#8217;m not an expert on this topic, but wouldnt using https rather than http solve this insecurity?</p>
+              </div>
+            </div>
+            <div class='comment model' id='comment_230'>
+              <div class='posted'>
+                <span class='name'><a href="http://nex3.leeweiz.net">Nathan</a></span>
+                said September 12, 2007:
+              </div>
+              <div class='content' id='comment_230_content'>
+                <p>Yes, that&#8217;s true. <span class="caps">SSL</span> is kind of a pain to set up on the server side, so I haven&#8217;t gotten around to it. Also, I don&#8217;t think <code>http-emacs</code> supports <span class="caps">SSL</span>, so I&#8217;d also have to switch over to <code>url.el</code>. Since I&#8217;m lazy and I have diverse passwords, I haven&#8217;t really worried about it much.</p>
+              </div>
+            </div>
+            <div class='comment_feed'>
+              <a href='http://nex-3.com/posts/25/comments.atom'>
+                Comment Feed
+                <img alt="" src="/images/silk/feed.png?1189116693" />
+              </a>
+            </div>
+            <div id='new_comment'>
+            <form action="/posts/25/comments" method="post">
+                <div class='user_name'>
+                  <label for='user_name'>Name</label>
+                  <input id="user_name" name="user[name]" type="text" value="Anonymous" />
+                </div>
+                <div class='user_email'>
+                  <label for='user_email'>Email (optional)</label>
+                  <input id="user_email" name="user[email]" type="text" value="" />
+                </div>
+                <div class='user_site'>
+                  <label for='user_link'>Website (also optional)</label>
+                  <input id="user_link" name="user[link]" type="text" value="" />
+                </div>
+                <p class='textile'>
+                  Make your comments snazzy with
+                  <a href='http://hobix.com/textile/quick.html'>Textile</a>!
+                </p>
+                <div id='content_field'>
+                  <textarea cols="40" id="comment_content" name="comment[content]" rows="20"></textarea>
+                </div>
+                <input class="button" name="submit" onclick="new Ajax.Request('/posts/25/comments/new.js', {asynchronous:true, evalScripts:true, method:'post', onFailure:function(request){$(&quot;preview&quot;).update(&quot;&lt;h3 class='failure'&gt;Preview Failed&lt;/h3&gt;&quot;)}, onLoading:function(request){$(&quot;preview&quot;).spin()}, parameters:Form.serialize(this.form)}); return false;" type="button" value="Preview" />
+                <input class="button" name="commit" type="submit" value="Comment!" />
+            </form>
+              <div class='content' id='preview' style='display: none'>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id='bottom'>
+          <a href="http://validator.w3.org/check?uri=referer" title="Valid XHTML 1.1"><img alt="Valid XHTML 1.1" src="/images/silk/xhtml.png?1189116694" /></a>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Valid CSS"><img alt="Valid CSS" src="/images/silk/css.png?1189116694" /></a>
+          <a href="/legal" title="Legal Information"><img alt="Legal Information" src="/images/silk/information.png?1189116695" /></a>
+          <a class='license' href='http://creativecommons.org/licenses/by-sa/3.0/' rel='license'>
+            <img alt='Creative Commons Attribution Share-Alike 3.0' src='http://i.creativecommons.org/l/by-sa/3.0/80x15.png' />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id='signin'><a href="/signin">⊕</a></div>
+    <script src='http://www.google-analytics.com/urchin.js' type='text/javascript'>
+    </script>
+    <script type='text/javascript'>
+      _uacct = "UA-535380-7";
+      urchinTracker();
+    </script>
+  </body>
+</html>
