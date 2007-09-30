@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
 import at.ac.tuwien.dbai.verditz.indexer.db.Article;
+import at.ac.tuwien.dbai.verditz.indexer.db.Source;
 
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -51,6 +52,9 @@ public class ArticleCrawler implements Crawler<URL> {
 						article.setText(this.getFeedBody(entry.getContents()));
 						article.setPublishTime(entry.getPublishedDate());
 						article.setUrl(new URL(entry.getLink()));
+						Source source = new Source();
+						source.setUrl(new URL(event.getUrlString()));
+						article.setSource(source);
 						articles.add(article);
 						} catch(MalformedURLException e) {
 							log.error("could not index article because of malformed URL: " + entry.getLink());

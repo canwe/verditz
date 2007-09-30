@@ -28,10 +28,6 @@ public class Article {
 		this.publishTime = publishTime;
 	}
 	
-	public java.sql.Date getPublishTimeAsSqlDate() {
-		return null;
-	}
-
 	public void setSource(Source source) {
 		this.source = source;
 	}

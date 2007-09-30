@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
@@ -20,6 +21,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.log4j.Logger;
+
+import at.ac.tuwien.dbai.verditz.indexer.IndexerException;
 
 public class DatabaseIndexer {
 	private final DataSource dataSource;
@@ -65,13 +68,14 @@ public class DatabaseIndexer {
 		stmt.executeUpdate();
 	}
 
-	public void addArticle(Article article) throws SQLException {
+	public int addArticle(Article article) throws SQLException {
 		Connection conn = null;
 		try {
 			conn = this.dataSource.getConnection();
 			conn.setAutoCommit(false);
-			this.addArticle(article);
+			int added = this.addArticle(article);
 			conn.commit();
+			return added;
 		} catch (SQLException e) {
 			throw e;
 		} finally {
@@ -79,32 +83,69 @@ public class DatabaseIndexer {
 		}
 	}
 
-	public void addArticle(Article article, Connection conn)
-			throws SQLException {
-		PreparedStatement stmt = conn.prepareStatement("insert into article "
-				+ "(text, title, url, publish_time, f_source) values(?, ?, ?, ?, ?)");
+	public int addArticle(Article article, Connection conn)
+			throws SQLException, IndexerException {
+		if (this.articleExists(article.getUrl(), conn))
+			return 0;
+
+		PreparedStatement stmt = conn
+				.prepareStatement("insert into articles "
+						+ "(text, title, url, publish_time, f_source) values(?, ?, ?, ?, ?)");
 		stmt.setString(1, article.getPlainText());
 		stmt.setString(2, article.getTitle());
 		stmt.setString(3, article.getUrl().toString());
-		stmt.setDate(4, DatabaseHelpers.toSqlDate(article.getPublishTime()));
-		stmt.setInt(5, article.getSource().getId());
+		if (article.getPublishTime() != null)
+			stmt.setDate(4, new java.sql.Date(article.getPublishTime()
+					.getTime()));
+		else
+			stmt.setDate(4, new java.sql.Date(new Date().getTime()));
+		if (article.getSource().getId() != null)
+			stmt.setInt(5, article.getSource().getId());
+		else {
+			stmt.setInt(5, this.getFeedIdFromUrl(article.getSource().getUrl(),
+					conn));
+		}
 		stmt.execute();
+		log.info("indexed article: " + article.getUrl());
+		return 1;
 	}
 
-	public void addArticles(Collection<Article> articles) throws SQLException {
+	public boolean articleExists(URL url, Connection conn) throws SQLException {
+		PreparedStatement stmt = conn
+				.prepareStatement("select 'X' from articles where url = ?");
+		stmt.setString(1, url.toString());
+		ResultSet rs = stmt.executeQuery();
+		return rs.next();
+	}
+
+	public int addArticles(Collection<Article> articles) throws SQLException,
+			IndexerException {
 		Connection conn = null;
+		int added = 0;
 		try {
 			conn = this.dataSource.getConnection();
 			conn.setAutoCommit(false);
 			for (Article article : articles) {
-				this.addArticle(article, conn);
+				added += this.addArticle(article, conn);
 			}
 			conn.commit();
+			return added;
 		} catch (SQLException e) {
 			throw e;
 		} finally {
 			conn.close();
 		}
+	}
+
+	private int getFeedIdFromUrl(URL url, Connection conn) throws SQLException,
+			IndexerException {
+		PreparedStatement stmt = conn
+				.prepareStatement("select id from sources where url = ?");
+		stmt.setString(1, url.toString());
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next())
+			return rs.getInt("id");
+		throw new IndexerException("no feed exists with url: " + url.toString());
 	}
 
 	public Collection<URL> getFeeds() throws SQLException {
@@ -113,9 +154,8 @@ public class DatabaseIndexer {
 		try {
 			conn = this.dataSource.getConnection();
 			PreparedStatement stmt = conn
-					.prepareStatement("select url from feed");
-			stmt.execute();
-			ResultSet rs = stmt.getResultSet();
+					.prepareStatement("select url from sources");
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String stringUrl = rs.getString("url");
 				try {
