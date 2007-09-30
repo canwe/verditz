@@ -2,53 +2,69 @@
 -export([train/0, classify/1, test/0, wordcounts/1,testP/1]).
 -define(bias,2).
 -define(min_word_length,3).
-
+-define(WordsPersistentStore,'_words').
+-define(blacklist,'stopwords').
 -define(hitsDir,"hits").
 -define(missesDir,"misses").
 %% -define(hitsDir,"hits_small").
 %% -define(missesDir,"misses_small").
 
 test() ->
-    lists:foreach(
-	  fun(_N) -> 
-			  L = lists:map(fun(X) -> 
-								{T,_} = timer:tc(bayes,testP,[X]), T end, 
-						[1000, 2000, 5000, 10000, 100000, 1000000]),
-			  io:format("~p~n",[L]) end,
-	  lists:seq(1,100)).
+	{T,_} = timer:tc(bayes,testP,[]), 
+	T. 
 
 testP(N)->
 	Hits = wordcounts(?hitsDir),
 	Misses = wordcounts(?missesDir),
 	Misses.
-%    Probabilities = create_probabilities(filter(Hits), filter(Misses), N),
+%   Probabilities = create_probabilities(filter(Hits), filter(Misses), N),
 %	dict:to_list(Probabilities).
 
-filter(WordCounts) -> 
-	dict:filter(fun({_,Count}) -> Count > 5 end, WordCounts).
+filter(WordCounts,BlackList) -> 
+	dict:filter(
+	  fun(Word,Count) -> 
+			  Count > 5, (not lists:member(Word, BlackList))
+	  end, 
+	  WordCounts).
 
 train() ->
-	Hits = wordcounts(?hitsDir),
-	Misses = wordcounts(?missesDir),
-    Probabilities = create_probabilities(Hits, Misses, 10),
-	{bayes,ok}.
-	
+	BlackList = blacklist(),
+	Hits = filter(wordcounts(?hitsDir), BlackList),
+	Misses = filter(wordcounts(?missesDir), BlackList),
+    {ok, words} = create_probabilities(Hits, Misses),
+	ets:tab2file(words,?WordsPersistentStore),
+	words.
 
-get_item(Key, Dict) ->
-	case dict:find(Key,Dict) of
-		error -> 0;
-		{ok, Value} -> Value end.
-					 
-									 
+load_store_if_neccessary() ->
+	case ets:info(words) of
+		undefined -> {ok, words} = ets:file2tab(?WordsPersistentStore),
+					 {ok, words, loaded};
+		_ -> {ok, words, existed}
+	end.
 
-create_probabilities(Hits, Misses, numbags) ->
+
+classify(Text) ->
+	{ok, words, _} = load_store_if_neccessary(),
+
+	Probabilities = lists:filter(
+					  fun(P)-> P > 0 end, 
+					  lists:map(
+						fun(Word) -> get_count(words, Word) end, 
+						words_in_string(Text))),
+
+	Product = lists:foldl(fun(A,B)->A*B end,1,Probabilities),
+	Score = Product  / (Product + lists:foldl(fun(A, B)->(1-A)*B end, 1, Probabilities)),
+	io:format("~f~n",[Score]),
+	{bayes,Score}.
+
+create_probabilities(Hits, Misses) ->
 	KeysHits = lists:sort(dict:fetch_keys(Hits)),
 	KeysMisses = lists:sort(dict:fetch_keys(Misses)),
 	Nhits = length(KeysHits),
 	Nmisses = length(KeysMisses),
 	Words = lists:umerge(KeysHits, KeysMisses),	
 	Bags = split_list_into_bags(Words, numbags),
-	WordDict = ets:new(words,[set,public,named]),
+	WordDict = ets:new(words,[set,public,named_table]),
 	phofs:mapreduce(
 	  fun(Pid, Bag) ->
 			  lists:map(
@@ -57,7 +73,7 @@ create_probabilities(Hits, Misses, numbags) ->
 							{Word,
 							 probability(
 							   get_item(Word, Hits), 
-							   get_item(Word, Misses), 
+							   get_item(Word, Misses) * ?bias, 
 							   Nhits,
 							   Nmisses,
 							   Word)} end, 
@@ -66,11 +82,11 @@ create_probabilities(Hits, Misses, numbags) ->
 			  [Value | _] = Values,
 			  ets:insert(WordDict,{Key, Value}) end,
 	  nothing, Bags),
-	{bayes, words}.
+	{ok, words}.
 
 probability(Hit, Miss, Nhits, Nmisses, Word) ->
 	P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmisses)),
-	lists:max([lists:min([P,0.99]),0.1]). 
+	lists:max([lists:min([P,0.99]),0.01]). 
 
 	
 
@@ -81,20 +97,20 @@ split_list_into_bags(L,N) ->
 	{L1, L2} = lists:split(N, L),
 	[L1] ++ split_list_into_bags(L2,N).
 
-classify(Text) ->
-	0.
 
+blacklist() ->
+	[httpd_util:to_lower(Word) || Word <- words_in_string(read_file(?blacklist))].
 
 wordcounts(Directory) ->
 	Files = lib_find:files(Directory, "*", false),
 	dict:from_list(phofs:mapreduce(
-	  fun(Pid, File) -> 
-			  SendWord = fun(Word) -> Pid ! {httpd_util:to_lower(Word), 1} end,
-			  lists:map(SendWord, words_in_string(read_file(File))) end,
-	  fun(Key, Values, A) -> 
-			  [{Key, length(Values)} | A]
-	  end, 
-	  [], Files)).
+					 fun(Pid, File) -> 
+							 SendWord = fun(Word) -> 
+												Pid ! {httpd_util:to_lower(Word), 1} end,
+							 lists:map(SendWord, words_in_string(read_file(File))) end,
+					 fun(Key, Values, A) -> 
+							 [{Key, length(Values)} | A] end, 
+					 [], Files)).
 
 read_file(File) ->
     case file:read_file(File) of
@@ -108,7 +124,20 @@ words_in_string(String) ->
 		_ -> []
 	end.
 
+
+get_item(Key, Dict) ->
+	case dict:find(Key,Dict) of
+		error -> 0;
+		{ok, Value} -> Value end.
+
 %    
+
+
+	
+get_count(Dict, W) ->
+	case ets:lookup(Dict,W) of 
+		[{_,X}] -> X;
+	    [] -> 0 end.
 
 	
 %time with ets: {47 62 56 04,18}
@@ -141,3 +170,5 @@ words_in_string(String) ->
 %% 	  fun(Key, Values, _) -> ets:insert(Dict,{Key, length(Values)}) end, 
 %% 	  nothing, Files),
 %% 	Dict.
+
+
