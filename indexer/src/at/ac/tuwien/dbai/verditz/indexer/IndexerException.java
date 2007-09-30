@@ -8,6 +8,10 @@ public class IndexerException extends Exception {
 		super();
 	}
 	
+	public IndexerException(String message) {
+		super(message);
+	}
+	
 	public IndexerException(Throwable throwable) {
 		super(throwable);
 	}
