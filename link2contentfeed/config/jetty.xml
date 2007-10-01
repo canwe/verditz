@@ -16,7 +16,7 @@
   </Set>
 
   <Set name="Handler">
-    <New id="handler" class="at.ac.tuwien.dbai.verditz.l2cfeed.L2CHandler">
+    <New id="handler" class="at.ac.tuwien.dbai.verditz.l2cfeed.L2CFeedHandler">
     </New>
   </Set>
 
