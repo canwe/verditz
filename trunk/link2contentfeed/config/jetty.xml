@@ -1,0 +1,23 @@
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure id="server" class="org.mortbay.jetty.Server">
+
+  <Set name="Connectors">
+    <Array type="org.mortbay.jetty.Connector">
+      <Item>
+        <New id="connector" class="org.mortbay.jetty.bio.SocketConnector">
+          <Set name="Port">
+            14821
+          </Set>
+        </New>
+      </Item>
+    </Array>
+  </Set>
+
+  <Set name="Handler">
+    <New id="handler" class="at.ac.tuwien.dbai.verditz.l2cfeed.L2CHandler">
+    </New>
+  </Set>
+
+</Configure>
