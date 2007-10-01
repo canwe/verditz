@@ -42,8 +42,6 @@ public class ArticleCrawler implements Crawler<URL> {
 			@SuppressWarnings("unchecked")
 			public void fetcherEvent(FetcherEvent event) {
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
-					event.getFeed().getEntries().size();
-					System.out.println(event.getFeed().getTitle());
 					SyndFeed feed = event.getFeed();
 					for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()) {
 						try {
