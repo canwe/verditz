@@ -7,7 +7,7 @@ CREATE TABLE sources (
 DROP TABLE IF EXISTS articles;
 CREATE TABLE articles (
 	id serial PRIMARY KEY,
-	title varchar(255),
+	title varchar(1024),
 	text text,
 	publish_time timestamp,
 	url varchar(1024) NOT NULL,
