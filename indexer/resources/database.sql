@@ -11,5 +11,5 @@ CREATE TABLE articles (
 	text text,
 	publish_time timestamp,
 	url varchar(1024) NOT NULL,
-	f_source integer REFERENCES sources
+	source_id integer REFERENCES sources
 );
