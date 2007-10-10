@@ -90,7 +90,7 @@ public class DatabaseIndexer {
 
 		PreparedStatement stmt = conn
 				.prepareStatement("insert into articles "
-						+ "(text, title, url, publish_time, f_source) values(?, ?, ?, ?, ?)");
+						+ "(text, title, url, publish_time, source_id) values(?, ?, ?, ?, ?)");
 		stmt.setString(1, article.getPlainText());
 		stmt.setString(2, article.getTitle());
 		stmt.setString(3, article.getUrl().toString());
