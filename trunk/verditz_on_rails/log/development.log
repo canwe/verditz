@@ -1,0 +1,924 @@
+  [4;36;1mSQL (0.142543)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001852)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001391)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (1)
+  [4;36;1mSQL (0.069037)[0m   [0;1mCREATE TABLE articles ("id" serial primary key, "title" character varying(255) DEFAULT NULL, "text" text DEFAULT NULL, "publish_time" timestamp DEFAULT NULL, "url" character varying(255) DEFAULT NULL) [0m
+  [4;35;1mSQL (0.002201)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000559)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateSources (2)
+  [4;35;1mSQL (0.014216)[0m   [0mCREATE TABLE sources ("id" serial primary key, "url" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.003075)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+  [4;35;1mSQL (0.000275)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (3)
+  [4;36;1mSQL (0.006591)[0m   [0;1mCREATE TABLE users ("id" serial primary key) [0m
+  [4;35;1mSQL (0.000919)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.000259)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateRecommendations (4)
+  [4;35;1mSQL (0.005792)[0m   [0mCREATE TABLE recommendations ("id" serial primary key) [0m
+  [4;36;1mSQL (0.000971)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.000441)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000269)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.033734)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;36;1mSQL (0.003443)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.004440)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'articles'::regclass
+[0m
+  [4;36;1mSQL (0.002862)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'articles'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.001592)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'recommendations'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003159)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'recommendations'::regclass
+[0m
+  [4;35;1mSQL (0.002006)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'recommendations'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000920)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'sources'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.003012)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'sources'::regclass
+[0m
+  [4;36;1mSQL (0.002128)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'sources'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000921)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003147)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;35;1mSQL (0.002676)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.116084)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002782)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000798)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (1)
+  [4;36;1mSQL (0.016718)[0m   [0;1mCREATE TABLE articles ("id" serial primary key, "title" character varying(255) DEFAULT NULL, "text" text DEFAULT NULL, "publish_time" timestamp DEFAULT NULL, "url" character varying(255) NOT NULL, "source_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "sources" does not exist
+: alter table articles add constraint fk_articles_sources foreign key (source_id) references sources(id)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000864)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateSources (1)
+  [4;35;1mSQL (0.116493)[0m   [0mCREATE TABLE sources ("id" serial primary key, "url" character varying(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001033)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000271)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (2)
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "articles" already exists
+: CREATE TABLE articles ("id" serial primary key, "title" character varying(255) DEFAULT NULL, "text" text DEFAULT NULL, "publish_time" timestamp DEFAULT NULL, "url" character varying(255) NOT NULL, "source_id" integer NOT NULL) [0m
+  [4;36;1mSQL (0.015229)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001043)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000725)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSources (1)
+  [4;36;1mSQL (0.103468)[0m   [0;1mCREATE TABLE sources ("id" serial primary key, "url" character varying(255) DEFAULT NULL) [0m
+  [4;35;1mSQL (0.001260)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000289)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (2)
+  [4;35;1mSQL (0.010774)[0m   [0mCREATE TABLE articles ("id" serial primary key, "title" character varying(255) DEFAULT NULL, "text" text DEFAULT NULL, "publish_time" timestamp DEFAULT NULL, "url" character varying(255) NOT NULL, "source_id" integer NOT NULL) [0m
+  [4;36;1mSQL (0.004206)[0m   [0;1malter table articles add constraint fk_articles_sources foreign key (source_id) references sources(id)[0m
+  [4;35;1mSQL (0.000856)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000265)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (3)
+  [4;35;1mSQL (0.005201)[0m   [0mCREATE TABLE users ("id" serial primary key) [0m
+  [4;36;1mSQL (0.005783)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000276)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateRecommendations (4)
+  [4;36;1mSQL (0.013532)[0m   [0;1mCREATE TABLE recommendations ("id" serial primary key) [0m
+  [4;35;1mSQL (0.001448)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.000433)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000264)[0m   [0mSHOW search_path[0m
+  [4;36;1mSQL (0.003036)[0m   [0;1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;35;1mSQL (0.005629)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.004278)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'articles'::regclass
+[0m
+  [4;35;1mSQL (0.002857)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'articles'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000944)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'recommendations'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.003097)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'recommendations'::regclass
+[0m
+  [4;36;1mSQL (0.002732)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'recommendations'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000955)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'sources'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003074)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'sources'::regclass
+[0m
+  [4;35;1mSQL (0.002033)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'sources'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000887)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.003193)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;36;1mSQL (0.002097)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 15:36:24) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mSQL (0.004407)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.001104)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.000476)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.09049 (11 reqs/sec) | Rendering: 0.01542 (17%) | DB: 0.00599 (6%) | 200 OK [http://localhost/articles/]
+
+
+Processing ArticlesController#new (for 127.0.0.1 at 2007-10-10 15:36:32) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"new", "controller"=>"articles"}
+  [4;35;1mSQL (0.001387)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.01272 (78 reqs/sec) | Rendering: 0.00050 (3%) | DB: 0.00139 (10%) | 200 OK [http://localhost/articles/new]
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000701)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000279)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000487)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateRecommendations (4)
+  [4;35;1mSQL (0.013092)[0m   [0mDROP TABLE recommendations[0m
+  [4;36;1mSQL (0.001740)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000273)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (3)
+  [4;36;1mSQL (0.002376)[0m   [0;1mDROP TABLE users[0m
+  [4;35;1mSQL (0.000659)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000263)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (2)
+  [4;35;1mSQL (0.004783)[0m   [0mDROP TABLE articles[0m
+  [4;36;1mSQL (0.000692)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+Reached target version: 1
+  [4;35;1mSQL (0.006629)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000311)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.002979)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;36;1mSQL (0.002853)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'sources'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.004062)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'sources'::regclass
+[0m
+  [4;36;1mSQL (0.002816)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'sources'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000679)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000274)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000483)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000242)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000222)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000214)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateSources (1)
+  [4;36;1mSQL (0.008692)[0m   [0;1mDROP TABLE sources[0m
+  [4;35;1mSQL (0.000956)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mSQL (0.000432)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000299)[0m   [0mSHOW search_path[0m
+  [4;36;1mSQL (0.002941)[0m   [0;1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000864)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateSources (1)
+  [4;35;1mSQL (0.014497)[0m   [0mCREATE TABLE sources ("id" serial primary key, "url" character varying(1024) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.001943)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000270)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateArticles (2)
+  [4;36;1mSQL (0.013059)[0m   [0;1mCREATE TABLE articles ("id" serial primary key, "title" character varying(1024) DEFAULT NULL, "text" text DEFAULT NULL, "publish_time" timestamp DEFAULT NULL, "url" character varying(1024) NOT NULL, "source_id" integer NOT NULL) [0m
+  [4;35;1mSQL (0.003964)[0m   [0malter table articles add constraint fk_articles_sources foreign key (source_id) references sources(id)[0m
+  [4;36;1mSQL (0.000781)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+  [4;35;1mSQL (0.000253)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (3)
+  [4;36;1mSQL (0.006472)[0m   [0;1mCREATE TABLE users ("id" serial primary key) [0m
+  [4;35;1mSQL (0.001156)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.000264)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateRecommendations (4)
+  [4;35;1mSQL (0.005918)[0m   [0mCREATE TABLE recommendations ("id" serial primary key) [0m
+  [4;36;1mSQL (0.001078)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.000495)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000271)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.004515)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;36;1mSQL (0.003087)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.004031)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'articles'::regclass
+[0m
+  [4;36;1mSQL (0.002960)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'articles'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000993)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'recommendations'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003147)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'recommendations'::regclass
+[0m
+  [4;35;1mSQL (0.002023)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'recommendations'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000916)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'sources'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.003098)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'sources'::regclass
+[0m
+  [4;36;1mSQL (0.002120)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'sources'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000908)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.003876)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;35;1mSQL (0.002136)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 15:43:46) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mSQL (0.004316)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000890)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.007530)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.08646 (11 reqs/sec) | Rendering: 0.00366 (4%) | DB: 0.01274 (14%) | 200 OK [http://localhost/articles/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 15:45:55) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mSQL (0.011036)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000492)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.008592)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.04169 (23 reqs/sec) | Rendering: 0.00060 (1%) | DB: 0.02012 (48%) | 200 OK [http://localhost/articles/]
+
+
+Processing ArticlesController#edit (for 127.0.0.1 at 2007-10-10 15:46:11) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"articles"}
+  [4;36;1mSQL (0.001626)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mArticle Load (0.000846)[0m   [0mSELECT * FROM articles WHERE (articles.id = 1) [0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.11320 (8 reqs/sec) | Rendering: 0.00057 (0%) | DB: 0.00247 (2%) | 200 OK [http://localhost/articles/edit/1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 15:48:14) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"2"}
+  [4;36;1mSQL (0.004676)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000451)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.018101)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 10[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.11189 (8 reqs/sec) | Rendering: 0.00448 (4%) | DB: 0.02323 (20%) | 200 OK [http://localhost/articles?page=2]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 15:48:46) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mSQL (0.003745)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.001430)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.008789)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03433 (29 reqs/sec) | Rendering: 0.00064 (1%) | DB: 0.01396 (40%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:08:02) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mSQL (0.004505)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.006072)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.009058)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03742 (26 reqs/sec) | Rendering: 0.00059 (1%) | DB: 0.01964 (52%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:08:05) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mSQL (0.001771)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000708)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.009129)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03027 (33 reqs/sec) | Rendering: 0.00060 (1%) | DB: 0.01161 (38%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:56:02) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mSQL (0.001584)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000519)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.008728)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.10358 (9 reqs/sec) | Rendering: 0.00078 (0%) | DB: 0.01083 (10%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:56:05) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mSQL (0.002589)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000516)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.009019)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03009 (33 reqs/sec) | Rendering: 0.00068 (2%) | DB: 0.01212 (40%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:56:52) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"2"}
+  [4;36;1mSQL (0.001530)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000551)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.017408)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 10[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03760 (26 reqs/sec) | Rendering: 0.00071 (1%) | DB: 0.01949 (51%) | 200 OK [http://localhost/articles?page=2]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:56:59) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"3"}
+  [4;35;1mSQL (0.001708)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000765)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.016749)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 20[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03567 (28 reqs/sec) | Rendering: 0.00063 (1%) | DB: 0.01922 (53%) | 200 OK [http://localhost/articles?page=3]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 16:57:21) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mSQL (0.001782)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000527)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.008763)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.02908 (34 reqs/sec) | Rendering: 0.00072 (2%) | DB: 0.01107 (38%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 17:46:04) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mSQL (0.002200)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.001312)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.010956)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 0[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.03389 (29 reqs/sec) | Rendering: 0.00072 (2%) | DB: 0.01447 (42%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 17:46:10) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"2"}
+  [4;36;1mSQL (0.002664)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000900)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.023311)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 10[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.04650 (21 reqs/sec) | Rendering: 0.00072 (1%) | DB: 0.02688 (57%) | 200 OK [http://localhost/articles?page=2]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 17:46:17) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"3"}
+  [4;35;1mSQL (0.002543)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.001219)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.027852)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 20[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.05009 (19 reqs/sec) | Rendering: 0.00069 (1%) | DB: 0.03161 (63%) | 200 OK [http://localhost/articles?page=3]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-10-10 17:46:23) [GET]
+  Session ID: 73818b17444ae8ba299b484a71f53cf5
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"4"}
+  [4;36;1mSQL (0.001679)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000643)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.004288)[0m   [0;1mSELECT * FROM articles LIMIT 10 OFFSET 30[0m
+Rendering ./script/../config/../vendor/rails/actionpack/lib/action_controller/templates/scaffolds/layout.rhtml
+Completed in 0.01895 (52 reqs/sec) | Rendering: 0.00074 (3%) | DB: 0.00661 (34%) | 200 OK [http://localhost/articles?page=4]
