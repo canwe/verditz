@@ -25,8 +25,11 @@ public class L2C implements Callable<String> {
 
 	public String call() throws Exception {
 		URLConnection connection = url.openConnection();
-		String contentType = connection
-		.getContentType().split(";")[0].trim();
+		if (connection.getContentType() == null) {
+			throw new Exception("content type could not be determinded");
+		}
+		String contentType = connection.getContentType().split(";")[0].trim();
+			
 		if (!L2C.isSupportedContentType(contentType))
 			throw new Exception("content type not supported: " + contentType);
 		return Html2Text.getText(this.url.toString());
