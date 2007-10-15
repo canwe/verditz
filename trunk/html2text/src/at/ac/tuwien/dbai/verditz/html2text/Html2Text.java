@@ -1,8 +1,10 @@
 package at.ac.tuwien.dbai.verditz.html2text;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
@@ -13,43 +15,74 @@ import org.htmlparser.filters.NotFilter;
 import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.nodes.TextNode;
 import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
 
 public class Html2Text {
 
-	public static String getText(String url) throws Exception {
-		NodeFilter textNodeFilter = new NodeClassFilter(TextNode.class);
-		NodeFilter scriptParentFilter = new NotFilter(new HasParentFilter(new TagNameFilter("SCRIPT"), true));
-		NodeFilter styleParentFilter = new NotFilter(new HasParentFilter(new TagNameFilter("STYLE"), true));
-		NodeFilter parentFilter = new AndFilter(scriptParentFilter, styleParentFilter);
-		NodeFilter filter = new AndFilter(textNodeFilter, parentFilter);
-		
-		// WORKAROUND: we need to replace all scripts from the page with a regexp
-		//             because htmlparser doesn't filter scripts (although the
-		//             filter is defined above) if the script isn't embedded in
-		//             a html comment section and contains html markup. (i.e.
-		//             document.write("<b>hello world</b>");)
+	private static String getUrlContent(String url) throws IOException {
 		URL myUrl = new URL(url);
-		BufferedReader in = new BufferedReader(
-					new InputStreamReader(
-					myUrl.openStream()));
+		URLConnection connection = myUrl.openConnection();
+
+		String charset;
+		String[] contentTypeKeyMaps = connection.getContentType().split(";");
+		if (contentTypeKeyMaps.length > 1 && contentTypeKeyMaps[1].split("=").length > 1) {
+			charset = contentTypeKeyMaps[1].split("=")[1].trim();
+		} else {
+			charset = "ISO-8859-1";
+		}
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(connection
+				.getInputStream(), charset));
 
 		StringBuilder builder = new StringBuilder();
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
-		    builder.append(inputLine);
+			builder.append(inputLine + System.getProperty("line.separator"));
 		}
 
 		in.close();
-		
+
 		String content = builder.toString();
-		content = content.replaceAll("<script.*?</script>", "");
-		
+		return content;
+	}
+
+	private static String html2Text(String html) throws ParserException {
 		Parser parser = new Parser();
-		parser.setInputHTML(content);
-		// END WORKAROUND
-		
+		parser.setInputHTML(html);
+
+		NodeFilter textNodeFilter = new NodeClassFilter(TextNode.class);
+		NodeFilter scriptParentFilter = new NotFilter(new HasParentFilter(
+				new TagNameFilter("SCRIPT"), true));
+		NodeFilter styleParentFilter = new NotFilter(new HasParentFilter(
+				new TagNameFilter("STYLE"), true));
+		NodeFilter parentFilter = new AndFilter(scriptParentFilter,
+				styleParentFilter);
+		NodeFilter filter = new AndFilter(textNodeFilter, parentFilter);
 		NodeList list = parser.parse(filter);
-		return list.toHtml();
+
+		StringBuilder plaintext = new StringBuilder();
+		for (int i = 0; i < list.size(); i++) {
+			TextNode node = (TextNode) list.elementAt(i);
+			// appending whitespace because something HTML like:
+			// <p>paragraph1</p><p>paragraph2</p>
+			// would otherwise result in text: paragraph1paragraph2
+			plaintext.append(node.toHtml() + " ");
+		}
+		return plaintext.toString();
+	}
+
+	public static String getText(String url) throws Exception {
+		String content = Html2Text.getUrlContent(url);
+
+		// WORKAROUND: we need to replace all scripts from the page with a
+		// regexp
+		// because htmlparser doesn't filter scripts (although the
+		// filter is defined above) if the script isn't embedded in
+		// a html comment section and contains html markup. (i.e.
+		// document.write("<b>hello world</b>");)
+		content = content.replaceAll("<script.*?</script>", "");
+
+		return Html2Text.html2Text(content);
 	}
 
 	public static void main(String[] args) {
