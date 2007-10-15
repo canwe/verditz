@@ -1,6 +1,7 @@
 package at.ac.tuwien.dbai.verditz.l2cfeed;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.AbstractHandler;
 
 import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
+import at.ac.tuwien.dbai.verditz.crawler.FilePersistentCache;
 
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.fetcher.FetcherEvent;
@@ -42,6 +44,14 @@ public class L2CFeedHandler extends AbstractHandler {
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
 					SyndFeed feed = event.getFeed();
 					feeds.add(L2CFeed.link2Content(feed));
+				} else {
+					SyndFeed feed;
+					try {
+						feed = new FilePersistentCache().getFeedInfo(new URL(event.getUrlString())).getSyndFeed();
+						feeds.add(L2CFeed.link2Content(feed));
+					} catch (MalformedURLException e) {
+						log.error(e);
+					}
 				}
 			}
 
