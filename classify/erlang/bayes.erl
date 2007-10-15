@@ -1,5 +1,5 @@
 -module(bayes).
--export([train/0, classify/1, test/0, wordcounts/1,testP/1]).
+-export([train/0, classify/1, test/0, wordcounts/1,testP/0,filter/2]).
 -define(bias,2).
 -define(min_word_length,3).
 -define(WordsPersistentStore,'_words').
@@ -13,12 +13,12 @@ test() ->
 	{T,_} = timer:tc(bayes,testP,[]), 
 	T. 
 
-testP(N)->
+testP()->
+	BlackList = blacklist(),
 	Hits = wordcounts(?hitsDir),
 	Misses = wordcounts(?missesDir),
-	Misses.
-%   Probabilities = create_probabilities(filter(Hits), filter(Misses), N),
-%	dict:to_list(Probabilities).
+    Probabilities = create_probabilities(filter(Hits,BlackList), filter(Misses,BlackList)),
+    dict:to_list(Probabilities).
 
 filter(WordCounts,BlackList) -> 
 	dict:filter(
@@ -45,7 +45,7 @@ load_store_if_neccessary() ->
 
 classify(Text) ->
 	{ok, words, _} = load_store_if_neccessary(),
-
+    
 	Probabilities = lists:filter(
 					  fun(P)-> P > 0 end, 
 					  lists:map(
@@ -59,13 +59,14 @@ classify(Text) ->
 
 create_probabilities(Hits, Misses) ->
 	KeysHits = lists:sort(dict:fetch_keys(Hits)),
+
 	KeysMisses = lists:sort(dict:fetch_keys(Misses)),
 	Nhits = length(KeysHits),
 	Nmisses = length(KeysMisses),
 	Words = lists:umerge(KeysHits, KeysMisses),	
 	Bags = split_list_into_bags(Words, numbags),
 	WordDict = ets:new(words,[set,public,named_table]),
-	phofs:mapreduce(
+	utils:mapreduce(
 	  fun(Pid, Bag) ->
 			  lists:map(
 				fun(Word) -> 
@@ -99,18 +100,19 @@ split_list_into_bags(L,N) ->
 
 
 blacklist() ->
-	[httpd_util:to_lower(Word) || Word <- words_in_string(read_file(?blacklist))].
+	[string:to_lower(Word) || Word <- words_in_string(read_file(?blacklist))].
 
+%build a dictionary of all the text in Directory
 wordcounts(Directory) ->
 	Files = lib_find:files(Directory, "*", false),
-	dict:from_list(phofs:mapreduce(
-					 fun(Pid, File) -> 
-							 SendWord = fun(Word) -> 
-												Pid ! {httpd_util:to_lower(Word), 1} end,
-							 lists:map(SendWord, words_in_string(read_file(File))) end,
+	Texts = lists:map(fun(File)-> string:to_lower(read_file(File)) end,Files), 
+	dict:from_list(utils:mapreduce(
+					 fun(Pid, Text) -> 
+							 SendWord = fun(Word) -> Pid ! {Word, 1} end,
+							 lists:map(SendWord, words_in_string(Text)) end,
 					 fun(Key, Values, A) -> 
 							 [{Key, length(Values)} | A] end, 
-					 [], Files)).
+					 [], Texts)).
 
 read_file(File) ->
     case file:read_file(File) of
@@ -119,7 +121,7 @@ read_file(File) ->
     end.
 
 words_in_string(String) ->
-	case regexp:split(httpd_util:to_lower(String), "[^a-zA-Z]") of
+	case regexp:split(string:to_lower(String), "[^a-zA-Z]") of
 		{ok,Words} -> lists:filter(fun(X) -> length(X) > 0 end, Words);
 		_ -> []
 	end.
