@@ -99,7 +99,7 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 						public void run() {
 							try {
 								fetcherPool.next().retrieveFeed(url);
-								cache.saveCache();
+								// TODO: cache.saveCache();
 							} catch (IllegalArgumentException e) {
 								log.info(e);
 							} catch (IOException e) {
@@ -150,6 +150,5 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 		}
 		return fetchers;
 	}
-
 
 }

@@ -6,12 +6,19 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="crawler">
     <property environment="env"/>
+    <property name="indexer.location" value="../indexer"/>
+    <property name="link2contentfeed.location" value="../link2contentfeed"/>
     <property name="ECLIPSE_HOME" value="../../../opt/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <import file="anttasks.xml"/>
+    <path id="JavaFX.userclasspath">
+        <pathelement location="../../../opt/eclipse/plugins/javafx.eclipse.f3editor_0.0.2/lib/javafxrt.jar"/>
+        <pathelement location="../../../opt/eclipse/plugins/javafx.eclipse.f3editor_0.0.2/lib/Filters.jar"/>
+        <pathelement location="../../../opt/eclipse/plugins/javafx.eclipse.f3editor_0.0.2/lib/swing-layout.jar"/>
+    </path>
     <path id="crawler.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/ant.jar"/>
@@ -34,6 +41,7 @@
         <pathelement location="lib/commons-cli-1.1.jar"/>
         <pathelement location="lib/commons-dbcp-1.2.2.jar"/>
         <pathelement location="lib/commons-configuration-1.4.jar"/>
+        <path refid="JavaFX.userclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -54,7 +62,20 @@
             <classpath refid="crawler.classpath"/>
         </javac>
     </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="${indexer.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${indexer.location}/build.xml" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="${link2contentfeed.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${link2contentfeed.location}/build.xml" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
@@ -68,6 +89,11 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+    <target name="Main">
+        <java classname="at.ac.tuwien.dbai.verditz.crawler.databaseindexer.Main" failonerror="true" fork="yes">
+            <classpath refid="crawler.classpath"/>
+        </java>
+    </target>
     <target name="FeedCrawlerTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -75,11 +101,6 @@
             <test name="at.ac.tuwien.dbai.verditz.crawler.test.FeedCrawlerTest" todir="${junit.output.dir}"/>
             <classpath refid="crawler.classpath"/>
         </junit>
-    </target>
-    <target name="Main">
-        <java classname="at.ac.tuwien.dbai.verditz.crawler.databaseindexer.Main" failonerror="true" fork="yes">
-            <classpath refid="crawler.classpath"/>
-        </java>
     </target>
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
