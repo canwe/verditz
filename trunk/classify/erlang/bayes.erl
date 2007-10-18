@@ -1,6 +1,6 @@
 -module(bayes).
--export([train/0, classify/1, test/0, wordcounts/1,testP/0,filter/2]).
--define(bias,2).
+-export([train/0, classify/1, classify_folder/1 ,test/0, wordcounts/1,testP/0,filter/2]).
+-define(bias,1).
 -define(min_word_length,3).
 -define(WordsPersistentStore,'_words').
 -define(blacklist,'stopwords').
@@ -42,20 +42,58 @@ load_store_if_neccessary() ->
 		_ -> {ok, words, existed}
 	end.
 
+classify_folder(Directory) ->
+	Files = lib_find:files(Directory, "*", false),
+	Texts = lists:map(fun(File) -> string:to_lower(read_file(File)) end,Files), 
+	Results = lists:map(fun(Text)->
+						%		io:format("~s~n",[Text]),
+								classify(Text) 
+						end, Texts),
+	{ok,lists:reverse(lists:sort(
+						fun(A,B) ->
+								{bayes,_,S1} = A,
+								{bayes,_,S2} = B,
+								S1 < S2
+						end, 
+						Results))}.
+
+filterProps(Props) ->
+	Step0 = lists:filter(fun(P)->
+								 P > 0.1
+				 end,Props),
+	Step1 = lists:filter(fun(P)->
+								 P < 0.9
+				 end,Step0),
+	Step2 = lists:filter(fun(P)->
+								 abs(P-0.5) > 0
+				 end,Step1),
+	Step3 = lists:reverse(lists:sort(Step2)),
+	Step4 = lists:sublist(Step3,1,10),
+	Step4.
 
 classify(Text) ->
 	{ok, words, _} = load_store_if_neccessary(),
-    
-	Probabilities = lists:filter(
+	Probs = filterProps(lists:filter(
 					  fun(P)-> P > 0 end, 
 					  lists:map(
 						fun(Word) -> get_count(words, Word) end, 
-						words_in_string(Text))),
+						words_in_string(Text)))),
 
-	Product = lists:foldl(fun(A,B)->A*B end,1,Probabilities),
-	Score = Product  / (Product + lists:foldl(fun(A, B)->(1-A)*B end, 1, Probabilities)),
-	io:format("~f~n",[Score]),
-	{bayes,Score}.
+	io:format("~w~n",[Probs]),
+
+	Product = lists:foldl(fun(A,B)->A*B end,1,Probs),
+	io:format("Product: ~w~n",[Product]),
+	Title = title(Text),
+	Score = Product, %/ lists:max(Probs),%(Product + lists:foldl(fun(A, B)->(1-A)*B end, 1, Probs)),
+	io:format("Score: ~w~n",[Score]),
+	{bayes,Title,Score}. 
+
+title(Text) ->
+	case regexp:first_match(Text,"<title>.*</title>") of
+		{match,A,B} -> string:substr(Text,A,B);
+		X -> string:substr(Text,1,50);
+		{nomatch,_} -> string:substr(Text,1,50)
+	end.
 
 create_probabilities(Hits, Misses) ->
 	KeysHits = lists:sort(dict:fetch_keys(Hits)),
@@ -85,11 +123,18 @@ create_probabilities(Hits, Misses) ->
 	  nothing, Bags),
 	{ok, words}.
 
-probability(Hit, Miss, Nhits, Nmisses, Word) ->
-	P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmisses)),
-	lists:max([lists:min([P,0.99]),0.01]). 
+%% probability(Hit, Miss, Nhits, Nmisses, Word) ->
+%% 	P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmisses)),
+%% 	lists:max([lists:min([P,0.99]),0.01]). 
 
-	
+probability(Hit, Miss, Nhits, Nmisses, Word) ->
+	%P = (Hit * Nhits) / (Nhits + Nmisses),
+	P = (Hit/Nhits)/((Hit/Nhits) + (Miss/Nmisses)),
+	io:format(":::~f~n",[P]),
+	R = lists:max([lists:min([P,0.99]),0.01]),
+	io:format("---~f~n",[R]),
+	R.
+
 
 split_list_into_bags(L, N) when length(L) < N ->
 	[L];
@@ -106,13 +151,17 @@ blacklist() ->
 wordcounts(Directory) ->
 	Files = lib_find:files(Directory, "*", false),
 	Texts = lists:map(fun(File)-> string:to_lower(read_file(File)) end,Files), 
-	dict:from_list(utils:mapreduce(
+	Dict = dict:from_list(utils:mapreduce(
 					 fun(Pid, Text) -> 
 							 SendWord = fun(Word) -> Pid ! {Word, 1} end,
 							 lists:map(SendWord, words_in_string(Text)) end,
 					 fun(Key, Values, A) -> 
 							 [{Key, length(Values)} | A] end, 
-					 [], Texts)).
+					 [], Texts)),
+	feature_selection(Dict).
+
+feature_selection(Dict) ->
+	dict:filter(fun(K,V) -> V > 5 end, Dict).
 
 read_file(File) ->
     case file:read_file(File) of
@@ -139,7 +188,7 @@ get_item(Key, Dict) ->
 get_count(Dict, W) ->
 	case ets:lookup(Dict,W) of 
 		[{_,X}] -> X;
-	    [] -> 0 end.
+	    [] -> 0.5 end.
 
 	
 %time with ets: {47 62 56 04,18}

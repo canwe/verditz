@@ -9,7 +9,8 @@ public class Main {
 
 	public void start() throws Exception {
 		Server server = new Server();
-		XmlConfiguration configuration = new XmlConfiguration(new FileInputStream("config/jetty.xml"));
+		XmlConfiguration configuration = new XmlConfiguration(
+				new FileInputStream("config/jetty.xml"));
 		configuration.configure(server);
 		server.start();
 		server.join();
