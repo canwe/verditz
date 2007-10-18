@@ -45,13 +45,6 @@ public class L2CFeedHandler extends AbstractHandler {
 					SyndFeed feed = event.getFeed();
 					feeds.add(L2CFeed.link2Content(feed));
 				} else {
-					SyndFeed feed;
-					try {
-						feed = new FilePersistentCache().getFeedInfo(new URL(event.getUrlString())).getSyndFeed();
-						feeds.add(L2CFeed.link2Content(feed));
-					} catch (MalformedURLException e) {
-						log.error(e);
-					}
 				}
 			}
 

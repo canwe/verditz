@@ -9,6 +9,6 @@
 	<classpathentry kind="lib" path="lib/rome-fetcher-0.7.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/verditz_html2text"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/verditz_crawler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/crawler"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
