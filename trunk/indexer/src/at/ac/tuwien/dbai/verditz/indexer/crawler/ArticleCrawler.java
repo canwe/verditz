@@ -50,7 +50,7 @@ public class ArticleCrawler implements Crawler<URL> {
 						Article article = new Article();
 						article.setTitle(entry.getTitle());
 						article.setText(this.getFeedBody(entry.getContents()));
-						article.setPublishTime(new Date());
+						article.setPublishTime(entry.getPublishedDate());
 						article.setUrl(new URL(entry.getLink()));
 						Source source = new Source();
 						source.setUrl(new URL(event.getUrlString()));

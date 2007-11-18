@@ -96,10 +96,10 @@ public class DatabaseIndexer {
 		stmt.setString(2, article.getTitle());
 		stmt.setString(3, article.getUrl().toString());
 		if (article.getPublishTime() != null)
-			stmt.setDate(4, new java.sql.Date(article.getPublishTime()
+			stmt.setTimestamp(4, new java.sql.Timestamp(article.getPublishTime()
 					.getTime()));
 		else
-			stmt.setDate(4, new java.sql.Date(new Date().getTime()));
+			stmt.setTimestamp(4, new java.sql.Timestamp(new Date().getTime()));
 		if (article.getSource().getId() != null)
 			stmt.setInt(5, article.getSource().getId());
 		else {
