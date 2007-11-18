@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -49,7 +50,7 @@ public class ArticleCrawler implements Crawler<URL> {
 						Article article = new Article();
 						article.setTitle(entry.getTitle());
 						article.setText(this.getFeedBody(entry.getContents()));
-						article.setPublishTime(entry.getPublishedDate());
+						article.setPublishTime(new Date());
 						article.setUrl(new URL(entry.getLink()));
 						Source source = new Source();
 						source.setUrl(new URL(event.getUrlString()));
