@@ -87,7 +87,8 @@ public class DatabaseIndexer {
 			throws SQLException, IndexerException {
 		if (this.articleExists(article.getUrl(), conn))
 			return 0;
-
+		
+		log.info("indexing article: " + article.getUrl());
 		PreparedStatement stmt = conn
 				.prepareStatement("insert into articles "
 						+ "(text, title, url, publish_time, source_id) values(?, ?, ?, ?, ?)");
@@ -125,10 +126,15 @@ public class DatabaseIndexer {
 		try {
 			conn = this.dataSource.getConnection();
 			conn.setAutoCommit(false);
+			log.info("indexing articles");
 			for (Article article : articles) {
 				added += this.addArticle(article, conn);
 			}
 			conn.commit();
+			if (added > 0)
+				log.info("Indexer successfully indexed " + added + " article(s)");
+			else
+				log.info("No new articles to index");
 			return added;
 		} catch (SQLException e) {
 			throw e;
