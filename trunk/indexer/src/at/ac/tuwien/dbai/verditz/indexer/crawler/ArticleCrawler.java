@@ -43,7 +43,7 @@ public class ArticleCrawler implements Crawler<URL> {
 			public void fetcherEvent(FetcherEvent event) {
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
 					SyndFeed feed = event.getFeed();
-					log.info("retrieved feed: " + feed.getLink());
+					log.info("retrieved feed: " + feed.getUri());
 					for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()) {
 						try {
 						Article article = new Article();
