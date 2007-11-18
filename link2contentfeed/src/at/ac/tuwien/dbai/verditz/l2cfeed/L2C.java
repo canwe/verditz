@@ -25,6 +25,7 @@ public class L2C implements Callable<String> {
 
 	public String call() throws Exception {
 		URLConnection connection = url.openConnection();
+		connection.setConnectTimeout(5000);
 		if (connection.getContentType() == null) {
 			throw new Exception("content type could not be determinded");
 		}
