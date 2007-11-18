@@ -11,6 +11,6 @@
 	<classpathentry kind="lib" path="lib/jaxen-core.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-jdom.jar"/>
 	<classpathentry kind="lib" path="lib/rome-0.9.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/crawler"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/verditz_crawler"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

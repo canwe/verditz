@@ -31,11 +31,7 @@ public class Main {
 	public void start() throws IndexerException {
 		Collection<Article> articles = this.crawler.fetchArticles();
 		try {
-			int added = indexer.addArticles(articles);
-			if (added > 0)
-				log.info("Indexer successfully indexed " + added + " article(s)");
-			else
-				log.info("No new articles to index");
+			indexer.addArticles(articles);
 		} catch (SQLException e) {
 			log.error("error occured while inserting articles into database:");
 			throw new IndexerException(e);
