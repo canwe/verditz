@@ -18,10 +18,15 @@ import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
 public class Html2Text {
-
+	
 	private static String getUrlContent(String url) throws IOException {
+		return Html2Text.getUrlContent(url, 5000);
+	}
+
+	private static String getUrlContent(String url, int timeout) throws IOException {
 		URL myUrl = new URL(url);
 		URLConnection connection = myUrl.openConnection();
+		connection.setConnectTimeout(timeout);
 
 		String charset;
 		String[] contentTypeKeyMaps = connection.getContentType().split(";");
