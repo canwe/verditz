@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.regex.Pattern;
 
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
@@ -85,7 +86,7 @@ public class Html2Text {
 		// filter is defined above) if the script isn't embedded in
 		// a html comment section and contains html markup. (i.e.
 		// document.write("<b>hello world</b>");)
-		content = content.replaceAll("<script.*?</script>", "");
+		content = Pattern.compile("<script.*?</script>", Pattern.DOTALL).matcher(content).replaceAll("");
 
 		return Html2Text.html2Text(content);
 	}
