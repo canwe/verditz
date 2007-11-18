@@ -90,7 +90,7 @@
     <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
     <antcall target="build"/>
   </target>
-  <target name="indexer">
+  <target name="run">
     <java fork="yes" classname="at.ac.tuwien.dbai.verditz.indexer.Main" failonerror="true">
       <jvmarg line="-DdatabaseSettings=config/database.properties"/>
       <classpath refid="verditz_indexer.classpath"/>
