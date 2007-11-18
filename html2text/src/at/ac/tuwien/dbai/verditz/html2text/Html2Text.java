@@ -17,6 +17,7 @@ import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.nodes.TextNode;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
+import org.htmlparser.util.Translate;
 
 public class Html2Text {
 	
@@ -74,7 +75,7 @@ public class Html2Text {
 			// would otherwise result in text: paragraph1paragraph2
 			plaintext.append(node.toHtml() + " ");
 		}
-		return plaintext.toString();
+		return Translate.decode(plaintext.toString());
 	}
 
 	public static String getText(String url) throws Exception {
@@ -86,7 +87,7 @@ public class Html2Text {
 		// filter is defined above) if the script isn't embedded in
 		// a html comment section and contains html markup. (i.e.
 		// document.write("<b>hello world</b>");)
-		content = Pattern.compile("<script.*?</script>", Pattern.DOTALL).matcher(content).replaceAll("");
+		content = Pattern.compile("<script.*?</script>", Pattern.CASE_INSENSITIVE | Pattern.DOTALL).matcher(content).replaceAll("");
 
 		return Html2Text.html2Text(content);
 	}
