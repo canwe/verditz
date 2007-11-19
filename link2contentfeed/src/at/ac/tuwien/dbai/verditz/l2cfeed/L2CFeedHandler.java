@@ -59,6 +59,7 @@ public class L2CFeedHandler extends AbstractHandler {
 		crawler.fetch();
 
 		response.setContentType("application/rss+xml");
+		response.setCharacterEncoding("UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		SyndFeedOutput feedOutput = new SyndFeedOutput();
 		try {
