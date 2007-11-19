@@ -34,6 +34,11 @@ public class Html2Text {
 		String[] contentTypeKeyMaps = connection.getContentType().split(";");
 		if (contentTypeKeyMaps.length > 1 && contentTypeKeyMaps[1].split("=").length > 1) {
 			charset = contentTypeKeyMaps[1].split("=")[1].trim();
+			// some servers give the name of the encoding enclosed in quotes
+			// (i.e. charset="UTF-8") which is not standard HTTP (see
+			// http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html (14.17))
+			// we want to be tolerant and fetch these resources anyway
+			charset = charset.replaceAll("[\"']", "");
 		} else {
 			charset = "ISO-8859-1";
 		}
