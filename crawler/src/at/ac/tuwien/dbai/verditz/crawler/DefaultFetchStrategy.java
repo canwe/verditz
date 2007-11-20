@@ -60,22 +60,14 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 
 	private static Logger log = Logger.getLogger(DefaultFetchStrategy.class);
 
-	private final FilePersistentCache cache;
-
 	private Collection<FeedFetcher> fetchers;
 
 	public DefaultFetchStrategy() {
-		this.cache = new FilePersistentCache();
-		this.fetchers = createFeedFetchers(1, this.cache);
+		this.fetchers = createFeedFetchers(1);
 	}
 
 	public DefaultFetchStrategy(int numThreads) {
-		this.cache = new FilePersistentCache();
-		this.fetchers = createFeedFetchers(numThreads, this.cache);
-	}
-
-	public DefaultFetchStrategy(List<FetcherListener> obervers) {
-		this.cache = new FilePersistentCache();
+		this.fetchers = createFeedFetchers(numThreads);
 	}
 
 	public void addObserver(FetcherListener observer) {
@@ -142,11 +134,10 @@ public final class DefaultFetchStrategy implements FetchStrategy {
 		}
 	}
 
-	private Collection<FeedFetcher> createFeedFetchers(final Integer num,
-			FeedFetcherCache cache) {
+	private Collection<FeedFetcher> createFeedFetchers(final Integer num) {
 		Collection<com.sun.syndication.fetcher.FeedFetcher> fetchers = new ArrayList<com.sun.syndication.fetcher.FeedFetcher>();
 		for (int i = 0; i < num; i++) {
-			fetchers.add(new HttpURLFeedFetcher(cache));
+			fetchers.add(new HttpURLFeedFetcher());
 		}
 		return fetchers;
 	}
