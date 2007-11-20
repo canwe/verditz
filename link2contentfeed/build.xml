@@ -106,6 +106,8 @@
     </target>
     <target name="run">
         <java classname="at.ac.tuwien.dbai.verditz.l2cfeed.Main" failonerror="true" fork="yes">
+	    <jvmarg line="-Xms64M"/>
+	    <jvmarg line="-Xmx512M"/>
             <classpath refid="verditz_link2contentfeed.classpath"/>
         </java>
     </target>
