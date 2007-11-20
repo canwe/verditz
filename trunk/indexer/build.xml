@@ -93,6 +93,8 @@
   <target name="run">
     <java fork="yes" classname="at.ac.tuwien.dbai.verditz.indexer.Main" failonerror="true">
       <jvmarg line="-DdatabaseSettings=config/database.properties"/>
+      <jvmarg line="-Xms64M"/>
+      <jvmarg line="-Xmx256M"/>
       <classpath refid="verditz_indexer.classpath"/>
     </java>
   </target>
