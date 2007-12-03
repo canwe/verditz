@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @article_pages, @articles = paginate :articles, :per_page => 10, :order => "publish_time"
+    @article_pages, @articles = paginate :articles, :per_page => 30, :order => "publish_time DESC"
   end
 
   def show
