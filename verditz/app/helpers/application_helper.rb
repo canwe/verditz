@@ -25,7 +25,7 @@ module ApplicationHelper
     when minutes < 90
       "about one hour"
     when minutes < 1080
-      "#{(minutes / 60).round} hours"
+      "#{(minutes.to_f / 60.to_f).round} hours"
     when minutes < 1440
       "one day"
     when minutes < 2880
