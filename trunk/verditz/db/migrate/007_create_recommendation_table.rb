@@ -6,6 +6,5 @@ class CreateRecommendationTable < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :recommendations
   end
 end

@@ -12,6 +12,8 @@ ActiveRecord::Schema.define(:version => 7) do
     t.column "source_id",    :integer,                     :null => false
   end
 
+  add_index "articles", ["source_id"], :name => "index_articles_on_source_id"
+
   create_table "recommendations", :force => true do |t|
     t.column "user_id",    :integer
     t.column "article_id", :integer
