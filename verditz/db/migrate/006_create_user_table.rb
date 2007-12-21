@@ -1,10 +1,8 @@
 class CreateUserTable < ActiveRecord::Migration
   def self.up
-    create_table :users do |t|
-      t.column :name, :string
-      t.column :hashed_password, :string
-      t.column :salt, :string
-    end
+      add_column :users, :name, :string
+      add_column :users, :hashed_password, :string
+      add_column :users, :salt, :string
   end
 
   def self.down
