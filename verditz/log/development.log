@@ -281,3 +281,1846 @@ DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (
   [4;35;1mArticle Load (0.028002)[0m   [0mSELECT * FROM articles LIMIT 10 OFFSET 10[0m
 Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/scaffolds/layout.rhtml
 Completed in 0.04800 (20 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.02800 (58%) | 200 OK [http://localhost/articles?page=2]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:27:33) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.312018)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.184011)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.060003)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 10 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 1.00806 (0 reqs/sec) | Rendering: 0.00400 (0%) | DB: 0.55603 (55%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:28:55) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.032002)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 10 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.04400 (22 reqs/sec) | Rendering: 0.00000 (0%) | DB: 0.03600 (81%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:29:35) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.192011)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 50 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.20801 (4 reqs/sec) | Rendering: 0.00400 (1%) | DB: 0.19601 (94%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:29:44) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.056004)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 25 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.07200 (13 reqs/sec) | Rendering: 0.00400 (5%) | DB: 0.05600 (77%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:29:51) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.128007)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14401 (6 reqs/sec) | Rendering: 0.00400 (2%) | DB: 0.12801 (88%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:30:15) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.124007)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14001 (7 reqs/sec) | Rendering: 0.00400 (2%) | DB: 0.12401 (88%) | 200 OK [http://localhost/]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:31:57) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"2"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.056003)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 30[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.07200 (13 reqs/sec) | Rendering: 0.00400 (5%) | DB: 0.06000 (83%) | 200 OK [http://localhost/?page=2]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:31:58) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.120007)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.13601 (7 reqs/sec) | Rendering: 0.00400 (2%) | DB: 0.12001 (88%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:37:42) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.140008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `minutes' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h article.publish_time.minutes.ago %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:43:02) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.136008)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.16001 (6 reqs/sec) | Rendering: 0.01200 (7%) | DB: 0.14001 (87%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:44:47) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.124007)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `today' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h (Date.today - article.publish_time.today).to_i %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:45:07) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.144009)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `today' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h ((Date.today - article.publish_time.today).to_i) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:45:09) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.132008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `today' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h ((Date.today - article.publish_time.today).to_i) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:45:25) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.136008)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `days' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h ((Date.today - article.publish_time.days).to_i) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:45:26) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.136008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `days' for Sun Nov 18 16:43:18 +0100 2007:Time) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= h ((Date.today - article.publish_time.days).to_i) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 22:45:45) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.148009)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.16801 (5 reqs/sec) | Rendering: 0.01200 (7%) | DB: 0.15201 (90%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:08:07) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.004000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.124007)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb706a81c>:0xb706a7f4>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:08:39) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.172010)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `timeago' for ApplicationHelper:Module) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= ApplicationHelper::timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:09:42) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.004000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.140008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb6eb90f4>:0xb6eb90cc>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:09:52) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.008000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.144008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb6f43f24>:0xb6f43efc>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:13:21) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.144009)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb7103b84>:0xb7103b5c>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:15:45) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.144008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb710b1a4>:0xb710b17c>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:16:01) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.004000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.124008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb6f27e28>:0xb6f27e00>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:16:38) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.144008)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb70e7a74>:0xb70e7a4c>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:18:10) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.144008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb70ef0bc>:0xb70ef094>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:20:07) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.124007)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14801 (6 reqs/sec) | Rendering: 0.01200 (8%) | DB: 0.12801 (86%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:20:09) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.004000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.124007)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14801 (6 reqs/sec) | Rendering: 0.01200 (8%) | DB: 0.12801 (86%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:20:19) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.124008)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+
+
+ActionView::TemplateError (undefined method `–' for #<#<Class:0xb6f9cbec>:0xb6f9cbc4>) on line #6 of app/views/articles/list.rhtml:
+3: <% for article in @articles %>
+4:   <div class="article">
+5:     <div class="title"><a href="<%= article.url %>"><%= h article.title %></a></div>
+6:     <div class="time-ago"><%= timeago(article.publish_time) %></div>
+7:   </div>
+8: <% end %>
+9: 
+
+    /home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6:in `timeago'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:6:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `each'
+    /home/thomas/workspace/verditz/verditz/app/views/articles/list.rhtml:3:in `_run_rhtml_47app47views47articles47list46rhtml'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:325:in `compile_and_render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:301:in `render_template'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_view/base.rb:260:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:812:in `render_file'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:744:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:869:in `render_without_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:804:in `render_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:754:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/deprecation.rb:44:in `silence'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:753:in `render_with_no_layout'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/layout.rb:244:in `render_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:50:in `render'
+    /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:4:in `index'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:1101:in `perform_action_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:696:in `call_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:688:in `perform_action_without_benchmark'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/rescue.rb:83:in `perform_action'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:435:in `process_without_filters'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/filters.rb:684:in `process_without_session_management_support'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/session_management.rb:114:in `process'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/base.rb:334:in `process'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:41:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:20:34) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.124007)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14801 (6 reqs/sec) | Rendering: 0.01200 (8%) | DB: 0.12401 (83%) | 200 OK [http://localhost/?page=1]
+
+
+Processing Base#index (for 127.0.0.1 at 2007-12-03 23:20:57) [GET]
+  Session ID: 1e0bdb908425e551fb4a8562a64b70e6
+  Parameters: {"page"=>"1"}
+
+
+SyntaxError (/home/thomas/workspace/verditz/verditz/app/helpers/application_helper.rb:6: syntax error, unexpected tIDENTIFIER, expecting ')'
+    delta_minutes = (start_date.to_i() – time.to_i()).floor / 60
+                                          ^):
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:203:in `load_without_new_constant_marking'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:203:in `load_file'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:202:in `load_file'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:94:in `require_or_load'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:60:in `depend_on'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:442:in `require_dependency'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/helpers.rb:111:in `default_helper_module!'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/helpers.rb:124:in `send'
+    /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/helpers.rb:124:in `inherited_without_api'
+    /var/lib/gems/1.8/gems/actionwebservice-1.2.5/lib/action_web_service/container/action_controller_container.rb:84:in `inherited_without_action_controller'
+    /var/lib/gems/1.8/gems/actionwebservice-1.2.5/lib/action_web_service/dispatcher/action_controller_dispatcher.rb:32:in `inherited'
+    /home/thomas/workspace/verditz/verditz/app/controllers/application.rb:4
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:203:in `load_without_new_constant_marking'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:203:in `load_file'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:202:in `load_file'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:94:in `require_or_load'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:60:in `depend_on'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:442:in `require_dependency'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:109:in `prepare_application'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/dispatcher.rb:39:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:113:in `handle_dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/webrick_server.rb:63:in `dispatch'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/servers/webrick.rb:59
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /var/lib/gems/1.8/gems/activesupport-1.4.4/lib/active_support/dependencies.rb:495:in `require'
+    /var/lib/gems/1.8/gems/rails-1.2.5/lib/commands/server.rb:39
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /var/lib/gems/1.8/gems/actionpack-1.13.5/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:21:52) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.124007)[0m   [0mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.14801 (6 reqs/sec) | Rendering: 0.01200 (8%) | DB: 0.12801 (86%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:21:53) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.136008)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.15201 (6 reqs/sec) | Rendering: 0.00800 (5%) | DB: 0.13601 (89%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:22:44) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT count(*) AS count_all FROM articles [0m
+  [4;35;1mArticle Load (0.216012)[0m   [0mSELECT * FROM articles ORDER BY publish_time DESC LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.23601 (4 reqs/sec) | Rendering: 0.01200 (5%) | DB: 0.22001 (93%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-03 23:27:12) [GET]
+  Session ID: 976c697f76c75789fd08d85a254ffb81
+  Parameters: {"action"=>"index", "controller"=>"articles", "page"=>"1"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.008001)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.092005)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time DESC LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.25201 (3 reqs/sec) | Rendering: 0.01600 (6%) | DB: 0.10001 (39%) | 200 OK [http://localhost/?page=1]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2007-12-06 14:21:34) [GET]
+  Session ID: 7c9b4bd541e8df35d05dbb3d026cc5fd
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+DEPRECATION WARNING: paginate is deprecated and will be removed from Rails 2.0 (Pagination is moving to a plugin in Rails 2.0: script/plugin install svn://errtheblog.com/svn/plugins/classic_pagination)  See http://www.rubyonrails.org/deprecation for details. (called from list at /home/thomas/workspace/verditz/verditz/app/controllers/articles_controller.rb:12)
+  [4;36;1mSQL (0.340020)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mSQL (0.044002)[0m   [0mSELECT count(*) AS count_all FROM articles [0m
+  [4;36;1mArticle Load (0.240014)[0m   [0;1mSELECT * FROM articles ORDER BY publish_time DESC LIMIT 30 OFFSET 0[0m
+Rendering actionlistlayoutfalse within layouts/articles
+Rendering articles/list
+Completed in 0.86405 (1 reqs/sec) | Rendering: 0.05600 (6%) | DB: 0.62404 (72%) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.076004)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.012001)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
