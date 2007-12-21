@@ -4,6 +4,6 @@ class IncreaseArticleTextLimit < ActiveRecord::Migration
   end
 
   def self.down
-    change_column :articles, :string, :text
+    change_column :articles, :text, :text
   end
 end
