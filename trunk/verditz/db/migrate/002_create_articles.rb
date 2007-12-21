@@ -8,7 +8,7 @@ class CreateArticles < ActiveRecord::Migration
       t.column :source_id, :integer, :null => false
     end
 
-    execute "alter table articles add constraint fk_articles_sources foreign key (source_id) references sources(id)"
+    add_index :articles, :source_id
   end
 
   def self.down
