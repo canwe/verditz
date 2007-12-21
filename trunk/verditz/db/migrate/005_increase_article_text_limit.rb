@@ -1,9 +1,9 @@
 class IncreaseArticleTextLimit < ActiveRecord::Migration
   def self.up
-    change_column :articles, :text, :text, :limit => (2**24)
+    change_column :articles, :text, :string, :limit => (2**23)
   end
 
   def self.down
-    change_column :articles, :text, :text, :limit => (2**16 - 1)
+    change_column :articles, :string, :text
   end
 end

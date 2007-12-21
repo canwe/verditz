@@ -2124,3 +2124,245 @@ Migrating to IncreaseArticleTextLimit (5)
   [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
   [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
 : ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ALTER COLUMN text TYPE text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: syntax error at or near "(" at character 49
+: ALTER TABLE articles ADD COLUMN text_ar_tmp text(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: length for type varchar cannot exceed 10485760
+: ALTER TABLE articles ALTER COLUMN text TYPE character varying(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: length for type varchar cannot exceed 10485760
+: ALTER TABLE articles ADD COLUMN text_ar_tmp character varying(16777216)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mPGError: ERROR: relation "schema_info" already exists
+: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to IncreaseArticleTextLimit (5)
+  [4;35;1mSQL (0.736042)[0m   [0mALTER TABLE articles ALTER COLUMN text TYPE character varying(8388608)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mUPDATE schema_info SET version = 5[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUserTable (6)
+  [4;36;1mSQL (0.004000)[0m   [0;1mALTER TABLE users ADD COLUMN name character varying(255)[0m
+  [4;35;1mSQL (0.004001)[0m   [0mALTER TABLE users ADD COLUMN hashed_password character varying(255)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mALTER TABLE users ADD COLUMN salt character varying(255)[0m
+  [4;35;1mSQL (0.004000)[0m   [0mUPDATE schema_info SET version = 6[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateRecommendationTable (7)
+  [4;35;1mSQL (0.000000)[0m   [0mALTER TABLE recommendations ADD COLUMN user_id integer[0m
+  [4;36;1mSQL (0.004000)[0m   [0;1mALTER TABLE recommendations ADD COLUMN article_id integer[0m
+  [4;35;1mSQL (0.004000)[0m   [0mALTER TABLE recommendations ADD COLUMN score decimal[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mUPDATE schema_info SET version = 7[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW search_path[0m
+  [4;35;1mSQL (0.160009)[0m   [0m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname IN ('"$user"','public')
+[0m
+  [4;36;1mSQL (0.084004)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'articles'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.068004)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'articles'::regclass
+[0m
+  [4;36;1mSQL (0.004001)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'articles'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'recommendations'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.004000)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'recommendations'::regclass
+[0m
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'recommendations'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'sources'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;35;1mPK and serial sequence (0.004000)[0m   [0m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'sources'::regclass
+[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'sources'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
+  [4;35;1mSQL (0.004000)[0m   [0m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = 'users'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [4;36;1mPK and serial sequence (0.004001)[0m   [0;1m SELECT attr.attname, name.nspname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relnamespace = name.oid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = 'users'::regclass
+[0m
+  [4;35;1mSQL (0.000000)[0m   [0m SELECT i.relname, d.indisunique, a.attname
+ FROM pg_class t, pg_class i, pg_index d, pg_attribute a
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'users'
+ AND a.attrelid = t.oid
+ AND ( d.indkey[0]=a.attnum OR d.indkey[1]=a.attnum
+ OR d.indkey[2]=a.attnum OR d.indkey[3]=a.attnum
+ OR d.indkey[4]=a.attnum OR d.indkey[5]=a.attnum
+ OR d.indkey[6]=a.attnum OR d.indkey[7]=a.attnum
+ OR d.indkey[8]=a.attnum OR d.indkey[9]=a.attnum )
+ ORDER BY i.relname
+[0m
