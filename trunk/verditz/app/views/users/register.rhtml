@@ -1,0 +1,23 @@
+<h2>Registration</h2>
+<%= error_messages_for 'user' %>
+<fieldset>
+  <% form_for :user do |form| %>
+    <p>
+    <label for="user_name">Name:</label><br/>
+    <%= form.text_field :name, :size => 40 %>
+    </p>
+
+    <p>
+    <label for="user_password">Password:</label><br/>
+
+    <%= form.password_field :password, :size => 40 %>
+    </p>
+
+    <p>
+    <label for="user_name">Confirm:</label><br/>
+
+    <%= form.password_field :password_confirmation, :size => 40 %>
+    </p>
+    <%= submit_tag "Register", :class => "submit" %>
+  <% end %>
+</fieldset>
