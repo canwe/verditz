@@ -1,0 +1,1 @@
+page.replace_html("votebox-#{@article.id}", :partial => "article_votebox", :locals => { :article => @article })

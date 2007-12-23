@@ -1,8 +1,4 @@
-<% for article in @articles %>
-  <div class="article">
-    <div class="title"><a href="<%= article.url %>"><%= h article.title %></a> <span class="timeago"><%= timeago(article.publish_time) %></span></div>
-  </div>
-<% end %>
+<%= render(:partial => "article", :collection => @articles) %>
 
 <%= link_to 'Previous page', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
 <%= link_to 'Next page', { :page => @article_pages.current.next } if @article_pages.current.next %> 
