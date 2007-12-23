@@ -1,5 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def username
+    return "anonymous" if session[:user_id].nil?
+    return User.find(session[:user_id]).name
+  end
+  
   def timeago(time, options = {})
     start_date = options.delete(:start_date) || Time.new
     date_format = options.delete(:date_format) || :default

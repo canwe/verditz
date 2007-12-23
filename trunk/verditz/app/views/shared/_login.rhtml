@@ -1,0 +1,30 @@
+<% if not session[:user_id] %>
+  <div id="login">
+    <fieldset>
+      <legend>Login</legend>
+      <% form_tag :controller => "users", :action => "login" do %>
+        <p>
+        <label for="name">Name:</label><br/>
+        <%= text_field_tag :name, params[:name] %>
+        </p>
+
+        <p>
+        <label for="name">Password:</label><br/>
+        <%= password_field_tag :password, params[:password] %>
+        </p>
+
+        <p>
+        <%= submit_tag "Login" %> <%= link_to "register", :controller => "users", :action => "register" %>
+        </p>
+      <% end %>
+    </fieldset>
+  </div>
+<% else %>
+  <div id="login">
+    <fieldset>
+      <legend>Login</legend>
+      <p>logged in as <%= username %></p>
+      <p><%= link_to "logout", :controller => "users", :action => "logout" %></p>
+    </fieldset>
+  </div>
+<% end %>
