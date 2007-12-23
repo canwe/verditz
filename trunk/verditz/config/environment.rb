@@ -58,3 +58,5 @@ end
 # Mime::Type.register "application/x-mobile", :mobile
 
 # Include your application configuration below
+
+CGI::Session.expire_after 1.year
