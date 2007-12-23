@@ -3,6 +3,6 @@
     <%= render(:partial => "article_votebox", :locals => { :article => article }) %>
   <% end %>
   <div class="article-content">
-    <div class="title"><a href="<%= article.url %>"><%= h article.title %></a> <span class="timeago"><%= timeago(article.publish_time) %></span></div>
+    <div class="title"><a href="<%= h article.url %>"><%= h article.title %></a> <span class="timeago"><%= timeago(article.publish_time) %></span></div>
   </div>
 </div>
