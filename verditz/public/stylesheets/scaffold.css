@@ -72,3 +72,12 @@ div.progressBar div.background {
   width: 0%;
 }
 
+div.votebox {
+  float:left;
+  margin-right:10px;
+}
+
+div.article {
+  clear:both;
+  margin-top:7px;
+}

@@ -1,0 +1,11 @@
+<div class="votebox" id="votebox-<%= article.id %>">
+  <% form_remote_tag :url => { :controller => "articles", :action => "vote", :id => article.id } do %>
+
+    <% #WORKAROUND: http://vault.openmonkey.com/articles/2006/01/16/multiple-ajax-submit-buttons-in-a-rails-form %>
+
+    <input type="hidden" name="vote" value="<%= up_vote_value(article) %>"/>
+
+    <%= submit_tag "up", :name => "_vote", :type => "image", :src => up_vote_path(article), :value => up_vote_value(article) %>
+    <%= submit_tag "down", :name => "_vote", :type => "image", :src => down_vote_path(article), :value => down_vote_value(article), :onclick => "Form.getInputs(this.form, null, 'vote')[0].value = '#{down_vote_value(article)}'" %>
+  <% end %>
+</div>

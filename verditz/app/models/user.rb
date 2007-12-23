@@ -36,6 +36,20 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
 
+  def vote(article, value)
+    vote = Vote.find(:first, :conditions => ["user_id = ? and article_id = ?", self.id, article.id])
+    if vote.nil?
+      vote = Vote.new
+    elsif value == 0
+      vote.destroy
+      return
+    end
+    vote.value = value
+    vote.user = self
+    vote.article = article
+    vote.save
+  end
+
   private
   def self.encrypted_password(password, salt)
     string_to_hash = password + "signanz" + salt # 'signanz' makes it harder to guess

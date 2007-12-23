@@ -4,48 +4,16 @@ class ArticlesController < ApplicationController
     render :action => 'list'
   end
 
-  # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
   def list
     @article_pages, @articles = paginate :articles, :per_page => 30, :order => "publish_time DESC"
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
-
-  def new
-    @article = Article.new
-  end
-
-  def create
-    @article = Article.new(params[:article])
-    if @article.save
-      flash[:notice] = 'Article was successfully created.'
-      redirect_to :action => 'list'
-    else
-      render :action => 'new'
+  def vote
+    if request.post?
+      article = Article.find(params[:id])
+      user = User.find(session[:user_id])
+      user.vote(article, params[:vote].to_i)
+      @article = article
     end
-  end
-
-  def edit
-    @article = Article.find(params[:id])
-  end
-
-  def update
-    @article = Article.find(params[:id])
-    if @article.update_attributes(params[:article])
-      flash[:notice] = 'Article was successfully updated.'
-      redirect_to :action => 'show', :id => @article
-    else
-      render :action => 'edit'
-    end
-  end
-
-  def destroy
-    Article.find(params[:id]).destroy
-    redirect_to :action => 'list'
   end
 end
