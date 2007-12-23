@@ -78,10 +78,19 @@ div.votebox {
 }
 
 div.article {
-  clear:both;
+  clear:left;
   margin-top:7px;
 }
 
 div.article-content {
   margin-left:10px;
+}
+
+div#login {
+  float:right;
+  width:240px;
+}
+
+div.pagination-nav {
+  clear:left;
 }

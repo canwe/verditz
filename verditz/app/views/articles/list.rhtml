@@ -1,4 +1,11 @@
+<div class="pagination-nav">
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
+  <%= link_to 'next', { :page => @article_pages.current.next } if @article_pages.current.next %> 
+</div>
+
 <%= render(:partial => "article", :collection => @articles) %>
 
-<%= link_to 'Previous page', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
-<%= link_to 'Next page', { :page => @article_pages.current.next } if @article_pages.current.next %> 
+<div class="pagination-nav">
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
+  <%= link_to 'next', { :page => @article_pages.current.next } if @article_pages.current.next %> 
+</div>

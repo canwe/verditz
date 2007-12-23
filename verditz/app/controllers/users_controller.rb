@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   def register
     @user = User.new(params[:user])
     if request.post? and @user.save
-      flash.now[:notice] = "you've been successfully registered, #{@user.name}"
-      @user = User.new
+      session[:user_id] = @user.id
+      redirect_to(:action => "index", :controller => "articles")
     end
   end
 end

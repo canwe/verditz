@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title>Verditz | <%= controller.action_name %></title>
+    <title>verditz | <%= controller.action_name %></title>
     <%= stylesheet_link_tag 'scaffold' %>
     <%= javascript_include_tag :defaults %>
   </head>
@@ -12,37 +12,12 @@
 
     <div id="header">
       <h1><%= link_to "verditz", :controller => "articles", :action => "index" %></h1>
-
-      <% if not session[:user_id] %>
-        <div id="login">
-          <fieldset>
-            <legend>Login</legend>
-            <% form_tag :controller => "users", :action => "login" do %>
-              <p>
-              <label for="name">Name:</label><br/>
-              <%= text_field_tag :name, params[:name] %>
-              </p>
-
-              <p>
-              <label for="name">Password:</label><br/>
-              <%= password_field_tag :password, params[:password] %>
-              </p>
-
-              <p>
-              <%= submit_tag "Login" %>
-              </p>
-            <% end %>
-            <%= link_to "register", :controller => "users", :action => "register" %>
-          </fieldset>
-        </div>
-      <% else %>
-        <%= link_to "logout", :controller => "users", :action => "logout" %>
-      <% end %>
     </div>
 
     <p style="color: green"><%= flash[:notice] %></p>
 
     <div id="main">
+      <%= render(:partial => "shared/login") %>
       <%= yield  %>
     </div>
 
