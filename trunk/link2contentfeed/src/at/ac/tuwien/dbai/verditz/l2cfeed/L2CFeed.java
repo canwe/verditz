@@ -21,12 +21,7 @@ public class L2CFeed {
 			try {
 				URL url = new URL(entry.getLink());
 				String text = L2C.getText(url);
-				//replacing illegal (unescaped) xml characters
-				//because jdom would choke on it when trying to output the feed
-				text = text.replaceAll("\"", "");
-				text = text.replaceAll("'", "");
-				text = text.replaceAll("<", "");
-				text = text.replaceAll(">", "");
+				//replacing binary zero because jdom would choke on it
 				text = text.replaceAll("\0", "");
 				SyndContent content = new SyndContentImpl();
 				content.setType("text/plain");
