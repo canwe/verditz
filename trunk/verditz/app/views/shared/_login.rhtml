@@ -24,7 +24,9 @@
     <fieldset>
       <legend>Login</legend>
       <p>logged in as <%= username %></p>
-      <p><%= link_to "logout", :controller => "users", :action => "logout" %></p>
+      <% form_tag :controller => :users, :action => :logout do %>
+        <%= submit_tag "logout" %>
+      <% end %>
     </fieldset>
   </div>
 <% end %>

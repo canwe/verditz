@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
-    redirect_to(:back)
+    if request.post?
+      session[:user_id] = nil
+      redirect_to(:back)
+    end
   end
 
   def register
