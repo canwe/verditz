@@ -38,11 +38,11 @@ class User < ActiveRecord::Base
 
   def vote(article, value)
     vote = Vote.find(:first, :conditions => ["user_id = ? and article_id = ?", self.id, article.id])
-    if vote.nil?
-      vote = Vote.new
-    elsif value == 0
+    if value == 0 and not vote.nil?
       vote.destroy
       return
+    elsif value == 0 and vote.nil?
+      vote = Vote.new
     end
     vote.value = value
     vote.user = self
