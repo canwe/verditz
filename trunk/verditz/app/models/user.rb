@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     if value == 0
       vote.destroy unless vote.nil?
       return
-    else
+    elsif vote.nil?
       vote = Vote.new
     end
     vote.value = value
