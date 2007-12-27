@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
     vote.value = value
     vote.user = self
     vote.article = article
+    vote.createtime = Time.now
     vote.save
   end
 
