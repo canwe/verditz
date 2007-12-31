@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="lib/jaxen-jdom.jar"/>
 	<classpathentry kind="lib" path="lib/rome-0.9.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/verditz_crawler"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
