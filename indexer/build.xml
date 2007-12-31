@@ -1,101 +1,81 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- WARNING: Eclipse auto-generated file.
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project name="verditz_indexer" default="build" basedir=".">
-  <property environment="env"/>
-  <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
-  <property name="verditz_crawler.location" value="../crawler"/>
-  <property name="debuglevel" value="source,lines,vars"/>
-  <property name="target" value="1.6"/>
-  <property name="source" value="1.6"/>
-  <path id="JavaFX.userclasspath"/>
-  <path id="verditz_crawler.classpath">
-    <pathelement location="${verditz_crawler.location}/bin"/>
-    <pathelement location="${verditz_crawler.location}/lib/ant.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-collections-3.2.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-dbcp-1.2.1.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-io-1.2.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-pool-1.3.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/jaxen-core.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/jaxen-jdom.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/jdom.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/log4j-1.2.14.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/mysql-connector-java-5.0.3-bin.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/rome-0.8.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/rome-fetcher-0.7.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/saxpath.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/xalan.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/xerces.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/xml-apis.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/junit-4.1.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-cli-1.1.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-dbcp-1.2.2.jar"/>
-    <pathelement location="${verditz_crawler.location}/lib/commons-configuration-1.4.jar"/>
-    <path refid="JavaFX.userclasspath"/>
-  </path>
-  <path id="verditz_indexer.classpath">
-    <pathelement location="bin"/>
-    <pathelement location="lib/postgresql-8.2-506.jdbc4.jar"/>
-    <pathelement location="lib/rome-fetcher-0.7.jar"/>
-    <pathelement location="lib/commons-pool-1.3.jar"/>
-    <pathelement location="lib/log4j-1.2.14.jar"/>
-    <pathelement location="lib/jdom.jar"/>
-    <path refid="verditz_crawler.classpath"/>
-    <pathelement location="lib/commons-dbcp-1.2.2.jar"/>
-    <pathelement location="lib/jaxen-core.jar"/>
-    <pathelement location="lib/jaxen-jdom.jar"/>
-    <pathelement location="lib/rome-0.9.jar"/>
-  </path>
-  <target name="init">
-    <mkdir dir="bin"/>
-    <copy todir="bin" includeemptydirs="false">
-      <fileset dir="src" excludes="**/*.launch, **/*.java"/>
-    </copy>
-  </target>
-  <target name="clean">
-    <delete dir="bin"/>
-  </target>
-  <target name="cleanall" depends="clean">
-    <ant antfile="${verditz_crawler.location}/build.xml" target="clean" inheritAll="false"/>
-  </target>
-  <target name="build" depends="build-subprojects,build-project"/>
-  <target name="build-subprojects">
-    <ant antfile="${verditz_crawler.location}/build.xml" target="build-project" inheritAll="false">
-      <propertyset>
-        <propertyref name="build.compiler"/>
-      </propertyset>
-    </ant>
-  </target>
-  <target name="build-project" depends="init">
-    <echo message="${ant.project.name}: ${ant.file}"/>
-    <javac destdir="bin" debug="true" debuglevel="${debuglevel}" source="${source}" target="${target}">
-      <src path="src"/>
-      <classpath refid="verditz_indexer.classpath"/>
-    </javac>
-  </target>
-  <target name="build-refprojects" description="Build all projects which reference this project. Useful to propagate changes."/>
-  <target name="init-eclipse-compiler" description="copy Eclipse compiler jars to ant lib directory">
-    <copy todir="${ant.library.dir}">
-      <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-    </copy>
-    <unzip dest="${ant.library.dir}">
-      <patternset includes="jdtCompilerAdapter.jar"/>
-      <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-    </unzip>
-  </target>
-  <target name="build-eclipse-compiler" description="compile project with Eclipse compiler">
-    <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-    <antcall target="build"/>
-  </target>
-  <target name="run">
-    <java fork="yes" classname="at.ac.tuwien.dbai.verditz.indexer.Main" failonerror="true">
-      <jvmarg line="-DdatabaseSettings=config/database.properties"/>
-      <jvmarg line="-Xms64M"/>
-      <jvmarg line="-Xmx256M"/>
-      <classpath refid="verditz_indexer.classpath"/>
-    </java>
-  </target>
+<project basedir="." default="build" name="verditz_indexer">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
+    <property name="verditz_crawler.location" value="../crawler"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="verditz_crawler.classpath">
+        <pathelement location="${verditz_crawler.location}/bin"/>
+        <pathelement location="${verditz_crawler.location}/lib/rome-0.9.jar"/>
+        <pathelement location="${verditz_crawler.location}/lib/rome-fetcher-0.9.jar"/>
+        <pathelement location="${verditz_crawler.location}/lib/jdom.jar"/>
+        <pathelement location="${verditz_crawler.location}/lib/log4j-1.2.14.jar"/>
+    </path>
+    <path id="verditz_indexer.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/postgresql-8.2-506.jdbc4.jar"/>
+        <pathelement location="lib/rome-fetcher-0.7.jar"/>
+        <pathelement location="lib/commons-pool-1.3.jar"/>
+        <pathelement location="lib/log4j-1.2.14.jar"/>
+        <pathelement location="lib/jdom.jar"/>
+        <pathelement location="lib/commons-dbcp-1.2.2.jar"/>
+        <pathelement location="lib/jaxen-core.jar"/>
+        <pathelement location="lib/jaxen-jdom.jar"/>
+        <pathelement location="lib/rome-0.9.jar"/>
+        <path refid="verditz_crawler.classpath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="${verditz_crawler.location}/build.xml" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="${verditz_crawler.location}/build.xml" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="verditz_indexer.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="run">
+        <java classname="at.ac.tuwien.dbai.verditz.indexer.Main" failonerror="true" fork="yes">
+            <jvmarg line="-DdatabaseSettings=config/database.properties"/>
+            <classpath refid="verditz_indexer.classpath"/>
+        </java>
+    </target>
 </project>
