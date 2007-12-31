@@ -30,6 +30,7 @@
         <pathelement location="lib/jaxen-jdom.jar"/>
         <pathelement location="lib/rome-0.9.jar"/>
         <path refid="verditz_crawler.classpath"/>
+        <pathelement location="lib/mysql-connector-java-5.1.5-bin.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
