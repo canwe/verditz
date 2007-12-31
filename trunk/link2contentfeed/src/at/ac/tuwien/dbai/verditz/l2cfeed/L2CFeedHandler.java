@@ -1,7 +1,6 @@
 package at.ac.tuwien.dbai.verditz.l2cfeed;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.mortbay.jetty.Request;
 import org.mortbay.jetty.handler.AbstractHandler;
 
 import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
-import at.ac.tuwien.dbai.verditz.crawler.FilePersistentCache;
 
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.fetcher.FetcherEvent;
@@ -51,11 +49,8 @@ public class L2CFeedHandler extends AbstractHandler {
 		};
 		FeedCrawler crawler = new FeedCrawler(handler);
 
-		List<URL> feed = new ArrayList<URL>();
-
 		URL url = new URL(request.getParameter("feed"));
-		feed.add(url);
-		crawler.addFeedSource(feed);
+		crawler.addSource(url);
 		crawler.fetch();
 
 		response.setContentType("application/rss+xml");
