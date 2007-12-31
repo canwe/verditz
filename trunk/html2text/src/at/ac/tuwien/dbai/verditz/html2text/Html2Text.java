@@ -29,6 +29,7 @@ public class Html2Text {
 		URL myUrl = new URL(url);
 		URLConnection connection = myUrl.openConnection();
 		connection.setConnectTimeout(timeout);
+		connection.setReadTimeout(60*1000);
 
 		String charset;
 		String[] contentTypeKeyMaps = connection.getContentType().split(";");
