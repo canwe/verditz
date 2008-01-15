@@ -1,4 +1,4 @@
-<% if not session[:user_id] %>
+<% render_if_logged_out do %>
   <div id="login">
     <fieldset>
       <legend>Login</legend>
@@ -19,7 +19,8 @@
       <% end %>
     </fieldset>
   </div>
-<% else %>
+<% end %>
+<% render_if_logged_in do %>
   <div id="login">
     <fieldset>
       <legend>Login</legend>

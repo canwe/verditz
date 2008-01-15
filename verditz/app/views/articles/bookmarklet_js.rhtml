@@ -1,0 +1,7 @@
+var div = document.createElement('div');
+div.setAttribute('style', 'position:fixed;width:100%;top:0px;left:0px;z-index:10000000;');
+var iframe = document.createElement('iframe');
+iframe.setAttribute('src', '<%= url_for :controller => "articles", :action => "bookmarklet_iframe", :only_path => false %>?url=' + encodeURIComponent(document.location.href));
+iframe.setAttribute('style', 'width:100%;background-color:white;');
+div.appendChild(iframe);
+document.body.insertBefore(div, document.body.firstChild);

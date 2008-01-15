@@ -1,5 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def render_if_logged_in
+    unless session[:user_id].nil?
+      yield
+    end
+  end
+
+  def render_if_logged_out
+    if session[:user_id].nil?
+      yield
+    end
+  end
+
   def username
     return "anonymous" if session[:user_id].nil?
     return User.find(session[:user_id]).name

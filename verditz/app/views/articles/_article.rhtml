@@ -1,5 +1,5 @@
 <div class="article">
-  <% if session[:user_id] %>
+  <% render_if_logged_in do %>
     <%= render(:partial => "article_votebox", :locals => { :article => article }) %>
   <% end %>
   <div class="article-content">

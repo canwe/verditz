@@ -1,0 +1,20 @@
+<script type="text/javascript">
+  new Ajax.Request("<%= url_for :controller => "articles", :action => "new", :only_path => false %>", {
+  method: 'post',
+  parameters: { url: "<%= params[:url] %>"},
+  onSuccess: function(transport) {
+    new Ajax.Request("<%= url_for :controller => "articles", :action => "vote" %>", {
+      method: 'post',
+      parameters: {},
+      onSuccess: function(transport) {
+      },
+      onFailure: function(transport) {
+        // display error message
+      }
+    });
+  },
+  onFailure: function(transport) {
+    // display error message
+  }
+});
+</script>
