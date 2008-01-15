@@ -16,4 +16,19 @@ class ArticlesController < ApplicationController
       @article = article
     end
   end
+
+  def new
+    if request.post?
+      @id = Article.index(params[:url])
+      render :action => "new", :layout => false
+    end
+  end
+
+  def bookmarklet_js
+    response.headers['Content-Type'] = 'text/javascript'
+    render :action => "bookmarklet_js", :layout => false
+  end
+
+  def bookmarklet_iframe
+  end
 end

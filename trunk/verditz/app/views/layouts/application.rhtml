@@ -16,8 +16,12 @@
 
     <p style="color: green"><%= flash[:notice] %></p>
 
-    <div id="main">
+    <div id="sidebar">
       <%= render(:partial => "shared/login") %>
+      <%= yield :sidebar %>
+    </div>
+
+    <div id="main">
       <%= yield  %>
     </div>
 
