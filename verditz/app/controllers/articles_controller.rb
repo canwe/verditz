@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def bookmarklet_vote
+    vote
+  end
+
   def new
     if request.post?
       @id = Article.index(params[:url])
