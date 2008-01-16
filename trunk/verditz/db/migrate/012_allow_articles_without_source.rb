@@ -1,6 +1,6 @@
 class AllowArticlesWithoutSource < ActiveRecord::Migration
   def self.up
-    #change_column :articles, :source_id, :integer, :null => true
+    #change_column :articles, :source_id, :integer, :null => true, :default => nil
     #rails bug: http://dev.rubyonrails.org/ticket/8115
     execute "ALTER TABLE articles ALTER source_id DROP NOT NULL"
   end
