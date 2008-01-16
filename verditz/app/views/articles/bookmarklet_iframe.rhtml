@@ -1,3 +1,6 @@
+<div id="bookmarklet_message">
+  <p><img src="/images/indicator.gif"/> please wait while your vote is being submitted to verditz...</p>
+</div>
 <script type="text/javascript">
   new Ajax.Request("<%= url_for :controller => "articles", :action => "new", :only_path => false %>", {
   method: 'post',
@@ -7,6 +10,7 @@
       method: 'post',
       parameters: { id: transport.responseText,vote: <%= params[:vote] %> },
       onSuccess: function(transport) {
+        $('bookmarklet_message').update(transport.responseText);
       },
       onFailure: function(transport) {
         // display error message
@@ -14,7 +18,7 @@
     });
   },
   onFailure: function(transport) {
-    // display error message
+  $('bookmarklet_message').update("<p><span style=\"color:red\">Error:</span> please <a href=\"<%= url_for :controller => "/", :only_path => false %>\" target=\"_top\">login</a> first</p>");
   }
 });
 </script>
