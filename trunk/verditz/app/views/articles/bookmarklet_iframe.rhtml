@@ -1,11 +1,11 @@
 <script type="text/javascript">
   new Ajax.Request("<%= url_for :controller => "articles", :action => "new", :only_path => false %>", {
   method: 'post',
-  parameters: { url: "<%= params[:url] %>"},
+  parameters: { url: "<%= params[:url] %>" },
   onSuccess: function(transport) {
-    new Ajax.Request("<%= url_for :controller => "articles", :action => "vote" %>", {
+    new Ajax.Request("<%= url_for :controller => "articles", :action => "bookmarklet_vote" %>", {
       method: 'post',
-      parameters: {},
+      parameters: { id: transport.responseText,vote: <%= params[:vote] %> },
       onSuccess: function(transport) {
       },
       onFailure: function(transport) {
