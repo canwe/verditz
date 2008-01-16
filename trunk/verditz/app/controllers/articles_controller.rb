@@ -10,6 +10,10 @@ class ArticlesController < ApplicationController
 
   def vote
     if request.post?
+      if session[:user_id].nil?
+        render :action => "vote", :status => 401
+        return
+      end
       article = Article.find(params[:id])
       user = User.find(session[:user_id])
       user.vote(article, params[:vote].to_i)
@@ -19,10 +23,15 @@ class ArticlesController < ApplicationController
 
   def bookmarklet_vote
     vote
+    render :layout => false
   end
 
   def new
     if request.post?
+      if session[:user_id].nil?
+        render :action => "new", :status => 401
+        return
+      end
       @id = Article.index(params[:url])
       render :action => "new", :layout => false
     end
@@ -34,5 +43,6 @@ class ArticlesController < ApplicationController
   end
 
   def bookmarklet_iframe
+    render :layout => "bookmarklet"
   end
 end

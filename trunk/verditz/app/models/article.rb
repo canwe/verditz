@@ -1,6 +1,7 @@
 require 'hpricot'
 require 'htmlentities'
 require 'open-uri'
+require 'iconv'
 
 class Article < ActiveRecord::Base
   has_many :recommendations
@@ -10,7 +11,9 @@ class Article < ActiveRecord::Base
   def self.index(url)
     article = Article.find(:first, :conditions => ["url = ?", url])
     if article.nil?
-      doc = Hpricot(open(url))
+      resource = open(url)
+      charset = resource.charset()
+      doc = Hpricot(resource)
       title = doc.at("title").inner_text
       body = doc.at("body").inner_html
       body = body.gsub(/<script.*?<\/script>/m, "")
@@ -19,8 +22,8 @@ class Article < ActiveRecord::Base
       coder = HTMLEntities.new
       body = coder.decode(body)
       article = Article.new
-      article.title = title
-      article.text = body
+      article.title = Iconv.new("UTF-8", charset).iconv(title)
+      article.text = Iconv.new("UTF-8", charset).iconv(body)
       article.publish_time = Time.now
       article.url = url
       article.save
