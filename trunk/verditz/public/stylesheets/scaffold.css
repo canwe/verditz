@@ -90,3 +90,7 @@ div#sidebar {
 div.pagination-nav {
   clear:left;
 }
+
+h1 a {
+  text-decoration:none;
+}
