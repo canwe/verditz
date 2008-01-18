@@ -13,7 +13,7 @@ articles.each { |article|
         article.url = response['location']
         article.save
       elsif response.kind_of? Net::HTTPClientError
-        p "#{article.url}: response.class. deleting article."
+        p "#{article.url}: #{response.class}. deleting article."
         article.destroy
       end
     }
