@@ -20,5 +20,8 @@ articles.each { |article|
   rescue SocketError
     p "#{article.url}: host not reachable. deleting article."
     article.destroy
+  rescue StandardError
+    p "#{article.url}: #{$!}. deleting article."
+    article.destroy
   end
 }
