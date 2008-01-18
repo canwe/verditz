@@ -4,8 +4,8 @@ require "uri"
 
 articles = Article.find(:all)
 articles.each { |article|
-  uri = URI.parse(article.url)
   begin
+    uri = URI.parse(article.url)
     Net::HTTP.start(uri.host, uri.port) { |http|
       response = http.request_head(uri.request_uri, initheader={'User-Agent','Mozilla/5.0'})
       if response.kind_of? Net::HTTPRedirection
@@ -17,6 +17,8 @@ articles.each { |article|
         article.destroy
       end
     }
+  rescue URI:InvalidURIError
+    p "#{article.url}: invalid URI. deleting article."
   rescue SocketError
     p "#{article.url}: host not reachable. deleting article."
     article.destroy
