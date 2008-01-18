@@ -1,6 +1,6 @@
 package at.ac.tuwien.dbai.verditz.indexer.crawler;
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,13 +50,14 @@ public class ArticleCrawler implements Crawler<URL> {
 						article.setTitle(entry.getTitle());
 						article.setText(this.getFeedBody(entry.getContents()));
 						article.setPublishTime(entry.getPublishedDate());
-						article.setUrl(new URL(entry.getLink()));
+						URL url = RedirectResolver.resolve(new URL(entry.getLink()));
+						article.setUrl(url);
 						Source source = new Source();
 						source.setUrl(new URL(event.getUrlString()));
 						article.setSource(source);
 						articles.add(article);
-						} catch(MalformedURLException e) {
-							log.error("could not index article because of malformed URL: " + entry.getLink());
+						} catch(IOException e) {
+							log.error("could not index article", e);
 						}
 					}
 				}
