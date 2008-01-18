@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  has_many :recommendations, :dependant => :destroy
-  has_many :votes, :dependant => :destroy
+  has_many :recommendations, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
   has_many :articles, :through => :recommendations
 
   def validate
