@@ -1,4 +1,4 @@
-require "../../config/environment"
+require File.dirname(__FILE__) + "/../../config/environment"
 require "net/http"
 require "uri"
 
@@ -17,7 +17,7 @@ articles.each { |article|
         article.destroy
       end
     }
-  rescue URI:InvalidURIError
+  rescue URI::InvalidURIError
     p "#{article.url}: invalid URI. deleting article."
   rescue SocketError
     p "#{article.url}: host not reachable. deleting article."
