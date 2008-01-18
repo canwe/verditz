@@ -4,7 +4,8 @@ require 'open-uri'
 require 'iconv'
 
 class Article < ActiveRecord::Base
-  has_many :recommendations
+  has_many :recommendations, :dependant => :destroy
+  has_many :votes, :dependant => :destroy
   has_many :users, :through => :recommendations
   belongs_to :source
 
