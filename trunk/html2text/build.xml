@@ -6,6 +6,7 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="verditz_html2text">
     <property environment="env"/>
+    <property name="verditz_indexer.location" value="../indexer"/>
     <property name="verditz_link2contentfeed.location" value="../link2contentfeed"/>
     <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
@@ -41,6 +42,12 @@
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="${verditz_indexer.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${verditz_indexer.location}/build.xml" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
         <ant antfile="${verditz_link2contentfeed.location}/build.xml" inheritAll="false" target="clean"/>
         <ant antfile="${verditz_link2contentfeed.location}/build.xml" inheritAll="false" target="build">
             <propertyset>
@@ -71,7 +78,7 @@
     </target>
     <target name="html2text">
         <java classname="at.ac.tuwien.dbai.verditz.html2text.Html2Text" failonerror="true" fork="yes">
-            <arg line="http://blog.bookworm.at"/>
+            <arg line="http://reddit.com/goto?rss=true&amp;id=t3_65ufe"/>
             <classpath refid="verditz_html2text.classpath"/>
         </java>
     </target>
