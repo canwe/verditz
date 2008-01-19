@@ -59,7 +59,7 @@ public class Html2Text {
 		return content;
 	}
 
-	private static String html2Text(String html) throws ParserException {
+	public static String html2Text(String html) throws ParserException {
 		Parser parser = new Parser();
 		parser.setInputHTML(html);
 
