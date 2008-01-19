@@ -94,3 +94,16 @@ div.pagination-nav {
 h1 a {
   text-decoration:none;
 }
+
+div#header {
+  margin-top:20px;
+}
+
+h1#verditz-caption {
+  display:inline;
+}
+
+p#navbar {
+  display:inline;
+  margin-left:5px;
+}
