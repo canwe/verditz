@@ -1,6 +1,6 @@
 <div class="article">
   <% render_if_logged_in do %>
-    <%= render(:partial => "article_votebox", :locals => { :article => article }) %>
+    <%= render(:partial => "shared/article_votebox", :locals => { :article => article }) %>
   <% end %>
   <div class="article-content">
     <div class="title"><a href="<%= h article.url %>"><%= h article.title %></a> <span class="timeago"><%= timeago(article.publish_time) %></span></div>

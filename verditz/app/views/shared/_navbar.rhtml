@@ -1,0 +1,3 @@
+<p id="navbar"><%= link_to_unless_current "recent", :action => "index", :controller => "articles" %>
+<%= link_to_unless_current "votes", :action => "votes", :controller => "users", :id => username %>
+<%= link_to_unless_current "recommendations", :action => "recommendations", :controller => "users", :id => username %></p>

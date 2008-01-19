@@ -11,10 +11,13 @@
   <body>
 
     <div id="header">
-      <h1><%= link_to "verditz", :controller => "articles", :action => "index" %></h1>
+      <h1 id="verditz-caption"><%= link_to "verditz", :controller => "articles", :action => "index" %></h1>
+      <% render_if_logged_in do %>
+        <%= render :partial => "shared/navbar" %>
+      <% end %>
     </div>
 
-    <p style="color: green"><%= flash[:notice] %></p>
+    <p style="color:green"><%= flash[:notice] %></p>
 
     <div id="sidebar">
       <%= render(:partial => "shared/login") %>

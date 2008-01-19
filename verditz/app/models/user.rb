@@ -7,9 +7,11 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  has_many :recommendations, :dependent => :destroy
   has_many :votes, :dependent => :destroy
-  has_many :articles, :through => :recommendations
+  has_many :recommendations, :dependent => :destroy
+
+  has_many :voted_articles, :through => :votes, :source => :article, :order => "votes.createtime DESC"
+  has_many :recommended_articles, :through => :recommendations, :source => :article, :order => "recommendations.score DESC"
 
   def validate
     errors.add_to_base("Missing password") if hashed_password.blank?

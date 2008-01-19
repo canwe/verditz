@@ -6,7 +6,9 @@ require 'iconv'
 class Article < ActiveRecord::Base
   has_many :recommendations, :dependent => :destroy
   has_many :votes, :dependent => :destroy
-  has_many :users, :through => :recommendations
+
+  has_many :voters, :through => :votes, :source => :user, :order => "votes.createtime DESC"
+  has_many :recommendation_receivers, :through => :recommendations, :source => :user, :order => "recommendations.score DESC"
   belongs_to :source
 
   def self.index(url)

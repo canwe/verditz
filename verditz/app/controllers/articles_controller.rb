@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     list
-    render :action => 'list'
+    render "shared/list"
   end
 
   def list
