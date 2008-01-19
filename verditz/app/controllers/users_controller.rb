@@ -34,8 +34,11 @@ class UsersController < ApplicationController
       render "shared/403", :status => 403
       return
     end
-    @article_pages = Paginator.new self, user.recommended_articles.count, 30
-    @articles = user.recommended_articles
+    page = (params[:page] ||= 1).to_i
+    items_per_page = 30
+    offset = (page - 1) * items_per_page
+    @article_pages = Paginator.new self, user.recommended_articles.count, items_per_page, params['page']
+    @articles = user.recommended_articles[offset..(offset + items_per_page - 1)]
     render "shared/list"
   end
 
@@ -45,8 +48,11 @@ class UsersController < ApplicationController
       render "shared/403", :status => 403
       return
     end
-    @article_pages = Paginator.new self, user.voted_articles.count, 30
-    @articles = user.voted_articles
+    page = (params[:page] ||= 1).to_i
+    items_per_page = 30
+    offset = (page - 1) * items_per_page
+    @article_pages = Paginator.new self, user.voted_articles.count, items_per_page, params['page']
+    @articles = user.voted_articles[offset..(offset + items_per_page - 1)]
     render "shared/list"
   end
 end
