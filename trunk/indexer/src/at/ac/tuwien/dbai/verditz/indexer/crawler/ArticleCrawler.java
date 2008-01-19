@@ -8,8 +8,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.htmlparser.util.ParserException;
 
 import at.ac.tuwien.dbai.verditz.crawler.FeedCrawler;
+import at.ac.tuwien.dbai.verditz.html2text.Html2Text;
 import at.ac.tuwien.dbai.verditz.indexer.db.Article;
 import at.ac.tuwien.dbai.verditz.indexer.db.Source;
 
@@ -21,16 +23,16 @@ import com.sun.syndication.fetcher.FetcherListener;
 
 public class ArticleCrawler implements Crawler<URL> {
 	private Collection<URL> feeds = new ArrayList<URL>();
-	
+
 	private final static Logger log = Logger.getLogger(ArticleCrawler.class);
-	
+
 	public ArticleCrawler() {
 	}
-	
+
 	public ArticleCrawler(Collection<URL> feeds) {
 		this.setSources(feeds);
 	}
-	
+
 	public void setSources(Collection<URL> sources) {
 		this.feeds = sources;
 	}
@@ -46,27 +48,39 @@ public class ArticleCrawler implements Crawler<URL> {
 					log.info("retrieved feed: " + feed.getTitle());
 					for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()) {
 						try {
-						Article article = new Article();
-						article.setTitle(entry.getTitle());
-						article.setText(this.getFeedBody(entry.getContents()));
-						article.setPublishTime(entry.getPublishedDate());
-						URL url = RedirectResolver.resolve(new URL(entry.getLink()));
-						article.setUrl(url);
-						Source source = new Source();
-						source.setUrl(new URL(event.getUrlString()));
-						article.setSource(source);
-						articles.add(article);
-						} catch(IOException e) {
+							Article article = new Article();
+							article.setTitle(entry.getTitle());
+							String text = Html2Text.html2Text(this
+									.getFeedBody(entry));
+							article.setText(text);
+							article.setPublishTime(entry.getPublishedDate());
+							URL url = RedirectResolver.resolve(new URL(entry
+									.getLink()));
+							article.setUrl(url);
+							Source source = new Source();
+							source.setUrl(new URL(event.getUrlString()));
+							article.setSource(source);
+							articles.add(article);
+						} catch (IOException e) {
+							log.error("could not index article", e);
+						} catch (ParserException e) {
 							log.error("could not index article", e);
 						}
 					}
 				}
 			}
-			
-			private String getFeedBody(List<SyndContent> contents) {
+
+			private String getFeedBody(SyndEntry entry) {
 				final StringBuilder sb = new StringBuilder();
+				List<SyndContent> contents = entry.getContents();
+				contents.add(entry.getDescription());
 				for (SyndContent content : contents) {
-					if (this.isSupportedContentType(content.getType())) {
+					String type = "text/plain";
+					if (content.getType() != null) {
+						type = content.getType();
+					}
+						
+					if (this.isSupportedContentType(type)) {
 						sb.append(content.getValue());
 					}
 				}
@@ -74,12 +88,13 @@ public class ArticleCrawler implements Crawler<URL> {
 			}
 
 			private boolean isSupportedContentType(final String type) {
-				Collection<String> supportedContentTypes = Arrays.asList(new String[] {
-						"text/plain", "text/html", "text", "html" });
+				Collection<String> supportedContentTypes = Arrays
+						.asList(new String[] { "text/plain", "text/html",
+								"text", "html", "application/xhtml+xml" });
 
 				return supportedContentTypes.contains(type);
 			}
-			
+
 		};
 		FeedCrawler crawler = new FeedCrawler(handler, this.feeds);
 		log.info("fetching articles...");
@@ -87,7 +102,5 @@ public class ArticleCrawler implements Crawler<URL> {
 		log.info("done with fetching articles");
 		return articles;
 	}
-	
-	
 
 }

@@ -6,6 +6,7 @@
               as the first entry and export the buildfile again. -->
 <project basedir="." default="build" name="verditz_indexer">
     <property environment="env"/>
+    <property name="verditz_html2text.location" value="../html2text"/>
     <property name="ECLIPSE_HOME" value="../../../../../usr/lib/eclipse"/>
     <property name="verditz_crawler.location" value="../crawler"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -17,6 +18,15 @@
         <pathelement location="${verditz_crawler.location}/lib/rome-fetcher-0.9.jar"/>
         <pathelement location="${verditz_crawler.location}/lib/jdom.jar"/>
         <pathelement location="${verditz_crawler.location}/lib/log4j-1.2.14.jar"/>
+    </path>
+    <path id="verditz_html2text.classpath">
+        <pathelement location="${verditz_html2text.location}/bin"/>
+        <pathelement location="${verditz_html2text.location}/lib/filterbuilder.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/htmllexer.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/htmlparser.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/sax2.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/thumbelina.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/junit-4.1.jar"/>
     </path>
     <path id="verditz_indexer.classpath">
         <pathelement location="bin"/>
@@ -31,6 +41,9 @@
         <pathelement location="lib/rome-0.9.jar"/>
         <path refid="verditz_crawler.classpath"/>
         <pathelement location="lib/mysql-connector-java-5.1.5-bin.jar"/>
+        <path refid="verditz_html2text.classpath"/>
+        <pathelement location="${verditz_html2text.location}/lib/htmlparser.jar"/>
+        <pathelement location="${verditz_html2text.location}/lib/htmllexer.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -43,10 +56,16 @@
     </target>
     <target depends="clean" name="cleanall">
         <ant antfile="${verditz_crawler.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${verditz_html2text.location}/build.xml" inheritAll="false" target="clean"/>
     </target>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects">
         <ant antfile="${verditz_crawler.location}/build.xml" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="${verditz_html2text.location}/build.xml" inheritAll="false" target="build-project">
             <propertyset>
                 <propertyref name="build.compiler"/>
             </propertyset>
