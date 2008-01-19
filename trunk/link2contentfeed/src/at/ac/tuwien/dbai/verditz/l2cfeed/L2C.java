@@ -11,7 +11,7 @@ public class L2C {
 
 	private static boolean isSupportedContentType(final String type) {
 		Collection<String> supportedContentTypes = Arrays.asList(new String[] {
-				"text/plain", "text/html", "text", "html" });
+				"text/plain", "text/html", "text", "html", "application/xhtml+xml" });
 
 		return supportedContentTypes.contains(type);
 	}
@@ -20,7 +20,7 @@ public class L2C {
 		URLConnection connection = url.openConnection();
 		connection.setConnectTimeout(5000);
 		if (connection.getContentType() == null) {
-			throw new Exception("content type could not be determinded");
+			throw new Exception("content type could not be determined");
 		}
 		String contentType = connection.getContentType().split(";")[0].trim();
 
