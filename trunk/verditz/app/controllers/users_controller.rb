@@ -30,29 +30,54 @@ class UsersController < ApplicationController
 
   def recommendations
     user = User.find_by_name(params[:id])
-    if session[:user_id].nil? or session[:user_id] != user.id
-      render "shared/403", :status => 403
-      return
-    end
     page = (params[:page] ||= 1).to_i
     items_per_page = 30
     offset = (page - 1) * items_per_page
     @article_pages = Paginator.new self, user.recommended_articles.count, items_per_page, params['page']
     @articles = user.recommended_articles[offset..(offset + items_per_page - 1)]
-    render "shared/list"
+    respond_to do |format|
+      format.html {
+        if session[:user_id].nil? or session[:user_id] != user.id
+          render "shared/403", :status => 403
+          return
+        end
+        @feeds = ["#{url_for(:controller => "users", :action => "recommendations", :id => params[:id], :format => "xml")}?secret_key=#{user.hashed_password}"]
+        render "shared/list"
+      }
+      format.xml {
+        if params[:secret_key] != user.hashed_password
+          render :file => 'public/404.html’, :status => 404'
+          return
+        end
+        render_without_layout "shared/list.rxml"
+      }
+    end
   end
 
   def votes
     user = User.find_by_name(params[:id])
-    if session[:user_id].nil? or session[:user_id] != user.id
-      render "shared/403", :status => 403
-      return
-    end
     page = (params[:page] ||= 1).to_i
     items_per_page = 30
     offset = (page - 1) * items_per_page
     @article_pages = Paginator.new self, user.voted_articles.count, items_per_page, params['page']
     @articles = user.voted_articles[offset..(offset + items_per_page - 1)]
-    render "shared/list"
+    
+    respond_to do |format|
+      format.html {
+        if session[:user_id].nil? or session[:user_id] != user.id
+          render "shared/403", :status => 403
+          return
+        end
+        @feeds = ["#{url_for(:controller => "users", :action => "votes", :id => params[:id], :format => "xml")}?secret_key=#{user.hashed_password}"]
+        render "shared/list"
+      }
+      format.xml {
+        if params[:secret_key] != user.hashed_password
+          render :file => 'public/404.html', :status => 404
+          return
+        end
+        render_without_layout "shared/list.rxml"
+      }
+    end
   end
 end
