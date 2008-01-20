@@ -42,6 +42,7 @@ class UsersController < ApplicationController
           return
         end
         @feeds = ["#{url_for(:controller => "users", :action => "recommendations", :id => params[:id], :format => "xml")}?secret_key=#{user.hashed_password}"]
+        @title = "recommendations for #{params[:id]}"
         render "shared/list"
       }
       format.xml {
@@ -69,6 +70,7 @@ class UsersController < ApplicationController
           return
         end
         @feeds = ["#{url_for(:controller => "users", :action => "votes", :id => params[:id], :format => "xml")}?secret_key=#{user.hashed_password}"]
+        @title = "votes for #{params[:id]}"
         render "shared/list"
       }
       format.xml {
