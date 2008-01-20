@@ -19,14 +19,14 @@
 <% end %>
 <div class="pagination-nav">
   <%= pagination_links(@article_pages) %>
-  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= link_to 'next', { :page => @article_pages.current.next} if @article_pages.current.next %>
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
 </div>
 
 <%= render(:partial => "shared/article", :collection => @articles) %>
 
 <div class="pagination-nav">
   <%= pagination_links(@article_pages) %>
-  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= link_to 'next', { :page => @article_pages.current.next} if @article_pages.current.next %>
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
 </div>
