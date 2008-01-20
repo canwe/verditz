@@ -77,7 +77,7 @@ class UsersController < ApplicationController
           render :file => 'public/404.html', :status => 404
           return
         end
-        @title = "votes for #{params[:id]}"
+        @title = "votes by #{params[:id]}"
         render_without_layout "shared/list.rxml"
       }
     end
