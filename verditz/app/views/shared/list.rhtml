@@ -1,3 +1,11 @@
+<% content_for(:head) do %>
+  <% unless @feeds.nil? %>
+    <% @feeds.each do |feed| %>
+      <link rel="alternate" type="application/rss+xml" href="<%= feed %>"/>
+    <% end %>
+  <% end %>
+<% end %>
+
 <% render_if_logged_in do %>
 <% content_for(:sidebar) do %>
 <div>
@@ -10,15 +18,15 @@
 <% end %>
 <% end %>
 <div class="pagination-nav">
-  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= pagination_links(@article_pages) %>
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= link_to 'next', { :page => @article_pages.current.next} if @article_pages.current.next %>
 </div>
 
 <%= render(:partial => "shared/article", :collection => @articles) %>
 
 <div class="pagination-nav">
-  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= pagination_links(@article_pages) %>
+  <%= link_to 'previous', { :page => @article_pages.current.previous } if @article_pages.current.previous %>
   <%= link_to 'next', { :page => @article_pages.current.next} if @article_pages.current.next %>
 </div>

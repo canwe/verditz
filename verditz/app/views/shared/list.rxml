@@ -1,0 +1,19 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+ xml.channel do
+
+   xml.title       "verditz"
+   xml.link        url_for :only_path => false, :controller => 'articles', :action => 'votes', :id => "thomas"
+   xml.description "verditz votes for thomas"
+
+   @articles.each do |article|
+     xml.item do
+       xml.title       article.title
+       xml.link        article.url
+       xml.guid        article.url
+     end
+   end
+
+ end
+end
