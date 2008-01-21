@@ -11,8 +11,10 @@ public class RedirectResolver {
 		String redirect = conn.getHeaderField("Location");
 		if (redirect != null) {
 			return new URL(redirect);
-		} else {
+		} else if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 			return url;
+		} else {
+			throw new IOException(url.toString() + " unavailable");
 		}
 	}
 }
