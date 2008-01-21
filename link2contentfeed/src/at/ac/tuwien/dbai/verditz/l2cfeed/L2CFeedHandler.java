@@ -42,7 +42,6 @@ public class L2CFeedHandler extends AbstractHandler {
 				if (event.getEventType() == FetcherEvent.EVENT_TYPE_FEED_RETRIEVED) {
 					SyndFeed feed = event.getFeed();
 					feeds.add(L2CFeed.link2Content(feed));
-				} else {
 				}
 			}
 
