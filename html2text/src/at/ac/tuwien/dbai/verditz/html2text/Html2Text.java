@@ -3,6 +3,7 @@ package at.ac.tuwien.dbai.verditz.html2text;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.regex.Pattern;
@@ -27,7 +28,8 @@ public class Html2Text {
 
 	private static String getUrlContent(String url, int timeout) throws IOException {
 		URL myUrl = new URL(url);
-		URLConnection connection = myUrl.openConnection();
+		HttpURLConnection connection = (HttpURLConnection) myUrl.openConnection();
+		connection.setRequestProperty("User-Agent", "Mozilla/5.0");
 		connection.setConnectTimeout(timeout);
 		connection.setReadTimeout(60*1000);
 
