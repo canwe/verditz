@@ -68,15 +68,17 @@ public class DatabaseIndexer {
 		stmt.executeUpdate();
 	}
 
-	public int addArticle(Article article) throws SQLException {
+	public int addArticle(Article article) throws SQLException, IndexerException {
 		Connection conn = null;
 		try {
 			conn = this.dataSource.getConnection();
 			conn.setAutoCommit(false);
-			int added = this.addArticle(article);
+			int added = this.addArticle(article, conn);
 			conn.commit();
 			return added;
 		} catch (SQLException e) {
+			throw e;
+		} catch (IndexerException e) {
 			throw e;
 		} finally {
 			conn.close();
