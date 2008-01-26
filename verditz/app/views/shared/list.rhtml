@@ -6,17 +6,6 @@
   <% end %>
 <% end %>
 
-<% render_if_logged_in do %>
-<% content_for(:sidebar) do %>
-<div>
-  <fieldset>
-    <legend>Bookmarklets</legend>
-    <p>use these bookmarklets to up or downvote any website in your browser. just bookmark the following links and click them when you're on a site you want to vote on.</p>
-    <p><a href="javascript:function loadScript(scriptURL) { var scriptElem = document.createElement('SCRIPT'); scriptElem.setAttribute('language', 'JavaScript'); scriptElem.setAttribute('src', scriptURL); void(document.body.appendChild(scriptElem));} loadScript('<%= url_for :controller => "articles", :action => "bookmarklet_js", :only_path => false %>?vote=1');">upvote</a> | <a href="javascript:function loadScript(scriptURL) { var scriptElem = document.createElement('SCRIPT'); scriptElem.setAttribute('language', 'JavaScript'); scriptElem.setAttribute('src', scriptURL); void(document.body.appendChild(scriptElem));} loadScript('<%= url_for :controller => "articles", :action => "bookmarklet_js", :only_path => false %>?vote=-1');">downvote</a></p>
-</fieldset>
-</div>
-<% end %>
-<% end %>
 <div class="pagination-nav">
   <%= pagination_links(@article_pages) %>
   <%= link_to 'next', { :page => @article_pages.current.next} if @article_pages.current.next %>
