@@ -1,7 +1,16 @@
 class ArticlesController < ApplicationController
   def index
     list
-    render "shared/list"
+    respond_to do |format|
+      format.html {
+        @feeds = ["#{url_for(:controller => "articles", :action => "index", :format => "xml")}"]
+        render "shared/list"
+      }
+      format.xml {
+        @title = "recently indexed"
+        render_without_layout "shared/list.rxml"
+      }
+    end
   end
 
   def list
