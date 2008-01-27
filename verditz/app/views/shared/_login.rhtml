@@ -20,14 +20,3 @@
     </fieldset>
   </div>
 <% end %>
-<% render_if_logged_in do %>
-  <div id="login">
-    <fieldset>
-      <legend>Login</legend>
-      <p>logged in as <%= username %></p>
-      <% form_tag :controller => :users, :action => :logout do %>
-        <%= submit_tag "logout" %>
-      <% end %>
-    </fieldset>
-  </div>
-<% end %>

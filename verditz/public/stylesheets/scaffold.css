@@ -107,3 +107,11 @@ p#navbar {
   display:inline;
   margin-left:5px;
 }
+
+div#logout {
+  float:right;
+}
+
+div#logout, div#logout form, div#logout p {
+  display:inline;
+}

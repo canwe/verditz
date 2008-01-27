@@ -1,0 +1,9 @@
+<% render_if_logged_in do %>
+  <div id="logout">
+      <p>logged in as <%= username %></p>
+      <% form_tag :controller => :users, :action => :logout do %>
+        <%= submit_tag "logout" %>
+      <% end %>
+  </div>
+<% end %>
+
