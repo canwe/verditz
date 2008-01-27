@@ -115,3 +115,7 @@ div#logout {
 div#logout, div#logout form, div#logout p {
   display:inline;
 }
+
+div#logout p {
+  vertical-align:bottom;
+}
