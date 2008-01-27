@@ -27,7 +27,7 @@ module Verditz
       @thresholds = {}
     end
 
-    def classify item, default = {:guess => :unknown, :score => 0}
+    def classify item, default = {:guess => :unknown, :score => nil}
       catprobs= categories.collect{ |cat| {:guess => cat, 
                                            :score => @strategy.probability(cat,item)} }
       best = catprobs.max{|a,b| a[:score] <=> b[:score]}
