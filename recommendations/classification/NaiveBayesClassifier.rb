@@ -17,16 +17,21 @@
 
 require "delegate"
 require "classifier"
+require "bayes"
 require "features"
 module Verditz
   
   class NaiveBayesClassifier < DelegateClass(Classifier)
     
     def initialize
-      @classifier = Classifier.new FeatureSeletor::WordSelector, Strategy::NaiveBayes
+      @classifier = Classifier.new FeatureSelection::WordSelector, Strategy::NaiveBayes
       super @classifier
     end
 
   end
 
+end
+
+if $0 == __FILE__
+  Verditz::NaiveBayesClassifier.new
 end
