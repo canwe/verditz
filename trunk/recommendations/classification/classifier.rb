@@ -27,6 +27,10 @@ module Verditz
       @thresholds = {}
     end
 
+    def guess item, default = {:guess => :unknown, :score => 0}
+      classify(item,default)[:guess]
+    end
+
     def classify item, default = {:guess => :unknown, :score => nil}
       catprobs= categories.collect{ |cat| {:guess => cat, 
                                            :score => @strategy.probability(cat,item)} }
@@ -37,20 +41,6 @@ module Verditz
         return best
       end
     end
-
-    def below_threshold? catprobs, best
-      for item in catprobs.reject{|x|x == best}
-        if (item[:score] * get_threshold(best[:guess])) > best[:score]
-          return true
-        end
-      end
-      return false
-    end
-
-    def guess item, default = {:guess => :unknown, :score => 0}
-      classify(item,default)[:guess]
-    end
-
 
     def set_threshold cat, value
       @thresholds[cat.to_sym] = value
@@ -135,6 +125,16 @@ module Verditz
       return feature_count(cat, feature).to_f / category_count(cat).to_f
     end
 
+    def below_threshold? catprobs, best
+      for item in catprobs.reject{|x|x == best}
+        if (item[:score] * get_threshold(best[:guess])) > best[:score]
+          return true
+        end
+      end
+      return false
+    end
+
+
   end
     
 end
@@ -152,17 +152,23 @@ if $0 == __FILE__
     BAD_TEXTS = ["Obama 55%, Clinton 27%, Edwards 18% in South Carolina.", "Ron Paul is our man.", "Bush on war against terror"]
 
     class DummyFeatureSelector
-      def extract str
-        str.split(/\b/).uniq.collect{ |word| word.strip.downcase}.
+      
+      #extract a list of features from a corpus.
+      def extract corpus
+        corpus.split(/\b/).uniq.collect{ |word| word.strip.downcase}.
              select{ |word| word.size > 1 && word.size < 20 }
       end
     end
 
     class DummyStrategy
-      
+
+      #backreference allows strategies to 
+      #access instance methods of the classifier
       def initialize classifier
       end
 
+      #calculate the probability that item 
+      #belongs to category.
       def probability category, item
         return 0.5
       end
