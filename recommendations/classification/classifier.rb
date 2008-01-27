@@ -143,7 +143,7 @@ end
 if $0 == __FILE__
 
   require "test/unit"
-  require "featureselection"
+  require "features"
 
   class TheTest < Test::Unit::TestCase
     include Verditz
@@ -151,22 +151,32 @@ if $0 == __FILE__
                   "Welcome to the Ruby Standard Library Documentation collection, brought to you by the ruby-doc project. Whether you are browsing online or offline, we hope that your use of Ruby's standard library will become more productive as a result of this effort."]
     BAD_TEXTS = ["Obama 55%, Clinton 27%, Edwards 18% in South Carolina.", "Ron Paul is our man.", "Bush on war against terror"]
 
-    def test_text_words
-      words = FeatureSelection::words.call(GOOD_TEXTS.first)
-      assert (not words.empty?)
+    class DummyFeatureSelector
+      def extract str
+        str.split(/\b/).uniq.collect{ |word| word.strip.downcase}.
+             select{ |word| word.size > 1 && word.size < 20 }
+      end
     end
 
+    class DummyStrategy
+      
+      def initialize classifier
+      end
+
+      def probability category, item
+        return 0.5
+      end
+    end
+
+
     def test_classifier_train
-      classifier = Classifier.new FeatureSelection::words
+      classifier = Classifier.new DummyFeatureSelector, DummyStrategy
       GOOD_TEXTS.each{|text| classifier.train(text, :good)}
       BAD_TEXTS.each{|text| classifier.train(text, :bad)}
 
-      p classifier.probabilities
-
       assert classifier.num_documents == 5
-      assert classifier.categories == [:good, :bad]
+      assert (classifier.categories & [:good, :bad]).size == 2 
       assert classifier.features.size == 63
-
     end
 
 
