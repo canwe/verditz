@@ -120,23 +120,3 @@ The archive will save all pages and votings in the system for finite
 amount of time. The best time should be as long as possible: We assume
 that the information on most submitted pages will never be outdated,
 so as more data we can store and use, the better.
-
-Because we want to keep the architecture as modular as possible, we
-will decouple the agent(s) that do the actual text classification by
-having all applications communicating through web services.
-
- We chose to implement these web services as a RESTful architecture
- based on the idea of a Resource Oriented Architecture (ROA):
-
-All existing entities (users,pages, recommendations, votings) in
-Verditz will be made accessible as Restful Web Resources that may be
-accessed by sending standard HTTP reuqests to the web service. 
-
-
-Verditz: Resource Oriented Architecture (ROA)
-
-
-
-Verditz: Agent <> ROA communication
-
-
