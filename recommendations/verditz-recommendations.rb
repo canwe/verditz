@@ -113,7 +113,7 @@ end
 require "yaml"
 opt = YAML::load(File.new("/home/ferrari/.verditz/database.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
-                                        opt["password"], opt["database"]), opt[:threshold].to_i)
+                                        opt["password"], opt["database"]), opt["threshold"].to_i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts
