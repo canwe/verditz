@@ -73,13 +73,15 @@ public class ArticleCrawler implements Crawler<URL> {
 			private String getFeedBody(SyndEntry entry) {
 				final StringBuilder sb = new StringBuilder();
 				List<SyndContent> contents = entry.getContents();
-				contents.add(entry.getDescription());
+				if (entry.getDescription() != null) {
+					contents.add(entry.getDescription());
+				}
 				for (SyndContent content : contents) {
 					String type = "text/plain";
 					if (content.getType() != null) {
 						type = content.getType();
 					}
-						
+
 					if (this.isSupportedContentType(type)) {
 						sb.append(content.getValue());
 					}
