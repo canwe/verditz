@@ -45,7 +45,7 @@ require "mysql"
 
 class VerditzDs
 
-  User = Struct.new(:id, :upvotes, :downvotes)
+  User = Struct.new(:id, :name, :upvotes, :downvotes)
   Article = Struct.new(:id,:title, :body)
 
 
@@ -63,10 +63,10 @@ class VerditzDs
   end
   
   def users
-    res = @db.query("select id from users where id = 2 order by id ASC")
+    res = @db.query("select id, name from users where order by name ASC")
     users = []
     res.each do |row| 
-      user = User.new(row[0])
+      user = User.new(row[0],row[1])
       user.upvotes = collect_upvotes_for user
       user.downvotes = collect_downvotes_for user
       users << user
@@ -113,11 +113,12 @@ end
 
 rec = Recommendations.new(VerditzDs.new)
 rec.update_recommendations do |user, articles|
-  puts "USER: #{user.id}"
+  puts "\n\nprocessing user #{user.name} ..."
   puts
   articles.sort_by{|a|a[:score]}.reverse.each do |article|
-    puts "#{article[:id]}, #{article[:score]}"
+#    puts "#{article[:id]}, #{article[:score]}"
   end
+  puts "done"
 end
 
 
