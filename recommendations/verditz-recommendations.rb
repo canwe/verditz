@@ -10,6 +10,7 @@ class Recommendations
     rec = []
     classifier = Verditz::NaiveBayesClassifier.new
     classifier.set_threshold(:good, 4)
+    classifier.set_threshold(:bad, 1)
 
     train(classifier, user.upvotes, :good)
     train(classifier, user.downvotes, :bad)
