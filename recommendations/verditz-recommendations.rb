@@ -9,6 +9,7 @@ class Recommendations
   def recommendations_for user
     rec = []
     classifier = Verditz::NaiveBayesClassifier.new
+    classifier.set_threshold(:good, 4)
 
     train_good(classifier, user.upvotes)
     train_bad(classifier, user.downvotes)
@@ -46,28 +47,6 @@ class Recommendations
 
 end
 
-
-class DummyDs
-
-  User = Struct.new(:id, :upvoted, :downvoted)
-  Article = Struct.new(:id,:title, :body)
-
-  def users
-    user = User.new
-    user.id = 1
-    user.upvoted = [Article.new(1,"Title 1", "Body 1"), Article.new(2,"Title 2", "Body 2")] 
-    user.downvoted = [Article.new(3,"Titel Drei", "Inhalt Drei"), Article.new(4,"Titel Vier", "Inhalt Vier")] 
-    [user]
-  end
-
-  def articles user
-    [Article.new(5,"Title 5", "Body 1"), Article.new(6,"Titel", "Vier")].each{|article| yield article.id, article.title, article.body}
-  end
-
-end
-
-
-
 require "mysql"
 
 
@@ -84,14 +63,14 @@ class VerditzDs
   def set_recommendations user, articles
     recs = articles.sort_by{|a|a[:score]}.reverse
     @db.query("delete from recommendations where user_id = #{user.id}")
-    recs[0..25].each do |article|
+    recs[0..50].each do |article|
       @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{article[:score]})")
       @db.commit
     end
   end
   
   def users
-    res = @db.query("select id from users order by id ASC")
+    res = @db.query("select id from users where id = 2 order by id ASC")
     users = []
     res.each do |row| 
       user = User.new(row[0])
@@ -112,7 +91,7 @@ class VerditzDs
 
   def collect_votes_for user, value
     articles = []
-    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{1}  order by publish_time DESC")    
+    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{1}  order by publish_time DESC limit 5000")    
     for row in res
       articles << Article.new(row[0],row[1],row[2])
     end
