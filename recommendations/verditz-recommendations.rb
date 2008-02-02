@@ -28,9 +28,11 @@ class Recommendations
 
   def update_recommendations 
     @ds.users.each do |user|
-      articles = recommendations_for(user)
-      @ds.set_recommendations(user, articles)
-      yield user, articles
+      if @ds.active_user? user
+        articles = recommendations_for(user)
+        @ds.set_recommendations(user, articles)
+        yield user, articles
+      end
     end
   end
 
@@ -44,7 +46,7 @@ class Recommendations
 end
 
 require "mysql"
-
+require "date"
 
 class VerditzDs
 
@@ -83,6 +85,13 @@ class VerditzDs
 
   def collect_downvotes_for userid
     collect_votes_for userid, -1
+  end
+
+  def active_user? user
+    res = @db.query("select createtime from votes where v.user_id = #{user.id} order by publish_time DESC limit 1")
+    time = DateTime.parse(res.fetch_row[0])
+    now = DateTime.now
+    (time + 2) > now
   end
 
   def collect_votes_for user, value
