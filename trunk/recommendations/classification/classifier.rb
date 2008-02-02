@@ -100,6 +100,7 @@ module Verditz
       probs
     end
 
+    #this is the weighted probability that a feature belongs to a category
     def feature_probability cat, feature, weight=1.0, bias=0.5
       cat = cat.to_sym
       basic_prob = basic_probability(cat, feature)
