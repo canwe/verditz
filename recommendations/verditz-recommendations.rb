@@ -36,7 +36,7 @@ class Recommendations
 
   def train classifier, documents, cat
     documents.each do |doc|
-      @titleboost.times{ classifier.train doc.title, cat }
+      @titleboost.times{ classifier.train(doc.title, cat) }
       classifier.train(doc.body, cat)
     end 
   end
@@ -87,7 +87,7 @@ class VerditzDs
 
   def collect_votes_for user, value
     articles = []
-    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{1}  order by publish_time DESC limit 5000")    
+    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{value}  order by publish_time DESC limit 5000")    
     for row in res
       articles << Article.new(row[0],row[1],row[2])
     end
@@ -117,10 +117,6 @@ rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"],
                                         opt["password"], opt["database"]), opt["threshold"].to_i, opt["titleboost"].to_i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
-  puts
-  articles.sort_by{|a|a[:score]}.reverse.each do |article|
-#    puts "#{article[:id]}, #{article[:score]}"
-  end
   puts "done"
 end
 
