@@ -2,14 +2,15 @@ require "classification/nbayes"
 
 class Recommendations
   
-  def initialize datasource
+  def initialize datasource, threshold
     @ds = datasource
+    @threshold = threshold
   end
 
   def recommendations_for user
     rec = []
     classifier = Verditz::NaiveBayesClassifier.new
-    classifier.set_threshold(:good, 4)
+    classifier.set_threshold(:good, @threshold)
     classifier.set_threshold(:bad, 1)
 
     train(classifier, user.upvotes, :good)
@@ -112,7 +113,7 @@ end
 require "yaml"
 opt = YAML::load(File.new("/home/ferrari/.verditz/database.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
-                                        opt["password"], opt["database"]))
+                                        opt["password"], opt["database"]), opt[:threshold].to_i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts
