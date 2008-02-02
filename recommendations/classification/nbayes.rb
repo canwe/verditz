@@ -16,9 +16,9 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require "delegate"
-require "classifier"
-require "bayes"
-require "features"
+require "classification/classifier"
+require "classification/bayes"
+require "classification/features"
 module Verditz
   
   class NaiveBayesClassifier < DelegateClass(Classifier)
@@ -33,5 +33,8 @@ module Verditz
 end
 
 if $0 == __FILE__
-  Verditz::NaiveBayesClassifier.new
+  classifier = Verditz::NaiveBayesClassifier.new
+  classifier.train("Hallo Welt", :bad)
+  classifier.train("Hello World", :good)
+  p classifier.classify("Hello")
 end

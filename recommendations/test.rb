@@ -16,7 +16,7 @@
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require "test/unit"
-require "classify"
+require "classification/nbayes"
 class TC_MyTest < Test::Unit::TestCase
 
   def setup
@@ -25,14 +25,22 @@ class TC_MyTest < Test::Unit::TestCase
   def teardown
   end
 
-  def test_training
+
+  def test
     
   end
 
-  def test_model
-    assert((User.find :all).size == 3)
-    assert((Recommendation.find :all).empty?, "expected no recommendations")
-    assert((Vote.find :all).size == 169)
+
+  def test_training
+
+    require "mysql"
+    m = Mysql.new("localhost", "root", "", "verditz_snapshot")
+    res = m.query("select * from votes limit 5")
+    fields = res.fetch_fields.collect{|f|f.name}
+    puts fields.join("\t")
+    res.each_hash do |row|
+      p row
+    end    
   end
 
 end
