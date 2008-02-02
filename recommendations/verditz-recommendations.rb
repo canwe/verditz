@@ -108,10 +108,10 @@ end
 #   p article.id
 
 # end
-
-host, username, password, database = ARGV
-
-rec = Recommendations.new(VerditzDs.new(host, username, password, database))
+require "yaml"
+opt = YAML::load(File.new("../verditz/config/database.yml"))["test"]
+rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
+                                        opt["password"], opt["database"]))
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts
