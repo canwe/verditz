@@ -54,8 +54,9 @@ class VerditzDs
   Article = Struct.new(:id,:title, :body)
 
 
-  def initialize host, username, password, database
+  def initialize host, username, password, database, active_user_days
     @db = Mysql.new(host, username, password, database)
+    @active_user_days = active_user_days
   end
 
   def set_recommendations user, articles
@@ -91,7 +92,7 @@ class VerditzDs
     res = @db.query("select createtime from votes where v.user_id = #{user.id} order by publish_time DESC limit 1")
     time = DateTime.parse(res.fetch_row[0])
     now = DateTime.now
-    (time + 2) > now
+    (time + @active_user_days) > now
   end
 
   def collect_votes_for user, value
@@ -121,9 +122,9 @@ end
 
 # end
 require "yaml"
-opt = YAML::load(File.new("/home/ferrari/.verditz/database.yml"))["test"]
+opt = YAML::load(File.new("/home/ferrari/.verditz/config.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
-                                        opt["password"], opt["database"]), opt["threshold"].to_i, opt["titleboost"].to_i)
+                                        opt["password"], opt["database"], opt["user_active_days"]), opt["threshold"].to_i, opt["titleboost"].to_i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts "done"
