@@ -2,10 +2,11 @@ require "classification/nbayes"
 
 class Recommendations
   
-  def initialize datasource, threshold, titleboost
+  def initialize datasource, threshold, titleboost, max_recommendations
     @ds = datasource
     @threshold = threshold
     @titleboost = titleboost
+    @max_recommendations = max_recommendations
   end
 
   def recommendations_for user
@@ -30,7 +31,7 @@ class Recommendations
     @ds.users.each do |user|
       if @ds.active_user? user
         articles = recommendations_for(user)
-        @ds.set_recommendations(user, articles)
+        @ds.set_recommendations(user, articles, @max_recommendations)
         yield user, articles
       end
     end
@@ -59,10 +60,10 @@ class VerditzDs
     @active_user_days = active_user_days
   end
 
-  def set_recommendations user, articles
+  def set_recommendations user, articles, limit
     recs = articles.sort_by{|a|a[:score]}.reverse
     @db.query("delete from recommendations where user_id = #{user.id}")
-    recs[0..50].each do |article|
+    recs[0..limit].each do |article|
       @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{article[:score]})")
       @db.commit
     end
@@ -124,7 +125,7 @@ end
 require "yaml"
 opt = YAML::load(File.new("/home/ferrari/.verditz/config.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
-                                        opt["password"], opt["database"], opt["user_active_days"].to_i), opt["threshold"].to_i, opt["titleboost"].to_i)
+                                        opt["password"], opt["database"], opt["user_active_days"].to_i), opt["threshold"].to_i, opt["titleboost"].to_i, opt["max_recommendations"].to+i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts "done"
