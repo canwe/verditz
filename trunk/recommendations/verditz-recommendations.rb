@@ -11,8 +11,8 @@ class Recommendations
     classifier = Verditz::NaiveBayesClassifier.new
     classifier.set_threshold(:good, 4)
 
-    train_good(classifier, user.upvotes)
-    train_bad(classifier, user.downvotes)
+    train(classifier, user.upvotes, :good)
+    train(classifier, user.downvotes, :bad)
 
     @ds.articles(user) do |article|
       result = classifier.classify("#{article.title}\n#{article.body}")
@@ -31,17 +31,10 @@ class Recommendations
     end
   end
 
-  def train_good classifier, documents
+  def train classifier, documents, cat
     documents.each do |doc|
-      classifier.train doc.title, :good
-      classifier.train doc.body, :good
-    end 
-  end
-
-  def train_bad classifier, documents
-    documents.each do |doc|
-      classifier.train doc.title, :bad
-      classifier.train doc.body, :bad
+      10.times{ classifier.train doc.title, cat }
+      classifier.train(doc.body, cat)
     end 
   end
 
