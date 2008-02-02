@@ -2,9 +2,10 @@ require "classification/nbayes"
 
 class Recommendations
   
-  def initialize datasource, threshold
+  def initialize datasource, threshold, titleboost
     @ds = datasource
     @threshold = threshold
+    @titleboost = titleboost
   end
 
   def recommendations_for user
@@ -35,7 +36,7 @@ class Recommendations
 
   def train classifier, documents, cat
     documents.each do |doc|
-      10.times{ classifier.train doc.title, cat }
+      @titleboost.times{ classifier.train doc.title, cat }
       classifier.train(doc.body, cat)
     end 
   end
@@ -113,7 +114,7 @@ end
 require "yaml"
 opt = YAML::load(File.new("/home/ferrari/.verditz/database.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
-                                        opt["password"], opt["database"]), opt["threshold"].to_i)
+                                        opt["password"], opt["database"]), opt["threshold"].to_i, opt["titleboost"].to_i)
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts
