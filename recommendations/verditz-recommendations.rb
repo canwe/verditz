@@ -89,7 +89,7 @@ class VerditzDs
   end
 
   def active_user? user
-    res = @db.query("select createtime from votes where v.user_id = #{user.id} order by publish_time DESC limit 1")
+    res = @db.query("select createtime from votes where user_id = #{user.id} order by publish_time DESC limit 1")
     time = DateTime.parse(res.fetch_row[0])
     now = DateTime.now
     (time + @active_user_days) > now
