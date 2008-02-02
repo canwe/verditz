@@ -49,8 +49,8 @@ class VerditzDs
   Article = Struct.new(:id,:title, :body)
 
 
-  def initialize
-    @db = Mysql.new("localhost", "root", "", "verditz_snapshot")
+  def initialize host, username, password, database
+    @db = Mysql.new(host, username, password, database)
   end
 
   def set_recommendations user, articles
@@ -109,9 +109,9 @@ end
 
 # end
 
+host, username, password, database = ARGV
 
-
-rec = Recommendations.new(VerditzDs.new)
+rec = Recommendations.new(VerditzDs.new(host, username, password, database))
 rec.update_recommendations do |user, articles|
   puts "\n\nprocessing user #{user.name} ..."
   puts
