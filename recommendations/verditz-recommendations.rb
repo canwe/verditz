@@ -63,7 +63,7 @@ class VerditzDs
   end
   
   def users
-    res = @db.query("select id, name from users where order by name ASC")
+    res = @db.query("select id, name from users order by name ASC")
     users = []
     res.each do |row| 
       user = User.new(row[0],row[1])
