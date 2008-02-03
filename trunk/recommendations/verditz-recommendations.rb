@@ -55,9 +55,9 @@ class VerditzDs
   Article = Struct.new(:id,:title, :body)
 
 
-  def initialize host, username, password, database, active_user_days
+  def initialize host, username, password, database, user_active_days
     @db = Mysql.new(host, username, password, database)
-    @active_user_days = active_user_days
+    @user_active_days = user_active_days
   end
 
   def set_recommendations user, articles, limit
@@ -92,11 +92,9 @@ class VerditzDs
   def active_user? user
     res = @db.query("select max(createtime) from votes where user_id = #{user.id}")
     date_str =  res.fetch_row[0]
-    p date_str
     time = DateTime.parse(date_str)
     now = DateTime.now
-    puts @active_user_days
-    flag = (time + @active_user_days) > now
+    flag = (time + @user_active_days) > now
     puts "User is active: #{flag}"
     flag
   end
