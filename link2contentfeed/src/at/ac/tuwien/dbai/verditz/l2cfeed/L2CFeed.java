@@ -26,7 +26,10 @@ public class L2CFeed {
 				SyndContent content = new SyndContentImpl();
 				content.setType("text/plain");
 				content.setValue(text);
-				entry.setDescription(content);
+				List<SyndContent> contents = new ArrayList<SyndContent>();
+				contents.add(content);
+				entry.setDescription(null);
+				entry.setContents(contents);
 				entries.add(entry);
 			} catch (Exception e) {
 				log.error("error getting text for url:" + entry.getLink(), e);
