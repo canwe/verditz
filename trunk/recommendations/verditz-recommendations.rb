@@ -93,7 +93,9 @@ class VerditzDs
     res = @db.query("select max(createtime) from votes where user_id = #{user.id}")
     time = DateTime.parse(res.fetch_row[0])
     now = DateTime.now
-    (time + @active_user_days) > now
+    flag = (time + @active_user_days) > now
+    puts "User is active: #{flag}"
+    flag
   end
 
   def collect_votes_for user, value
@@ -127,8 +129,7 @@ opt = YAML::load(File.new("/home/ferrari/.verditz/config.yml"))["test"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
                                         opt["password"], opt["database"], opt["user_active_days"].to_i), opt["threshold"].to_i, opt["titleboost"].to_i, opt["max_recommendations"].to_i)
 rec.update_recommendations do |user, articles|
-  puts "\n\nprocessing user #{user.name} ..."
-  puts "done"
+  puts "updated recommendations for #{user.name}"
 end
 
 
