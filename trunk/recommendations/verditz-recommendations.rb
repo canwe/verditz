@@ -91,6 +91,7 @@ class VerditzDs
 
   def active_user? user
     res = @db.query("select max(createtime) from votes where user_id = #{user.id}")
+    p res.fetch_row[0]
     time = DateTime.parse(res.fetch_row[0])
     now = DateTime.now
     puts time + @active_user_days, now
