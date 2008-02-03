@@ -81,8 +81,8 @@ public class ArticleCrawler implements Crawler<URL> {
 					if (content.getType() != null) {
 						type = content.getType();
 					}
-
-					if (this.isSupportedContentType(type)) {
+					
+					if (this.isSupportedContentType(type.toLowerCase())) {
 						sb.append(content.getValue());
 					}
 				}
