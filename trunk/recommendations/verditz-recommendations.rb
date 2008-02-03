@@ -95,7 +95,7 @@ class VerditzDs
     p date_str
     time = DateTime.parse(date_str)
     now = DateTime.now
-    puts time + @active_user_days, now
+    puts @active_user_days
     flag = (time + @active_user_days) > now
     puts "User is active: #{flag}"
     flag
