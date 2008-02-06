@@ -29,7 +29,7 @@ module Verditz
       def probability cat, item
         catprob = @classifier.category_count(cat) / @classifier.num_documents.to_f
         docprob = document_probability(cat, item)
-        [(docprob * catprob),0.01].max
+        (docprob * catprob)
       end
 
       def document_probability cat, item
