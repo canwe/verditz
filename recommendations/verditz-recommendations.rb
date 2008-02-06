@@ -24,14 +24,13 @@ class Recommendations
         rec << {:id => article.id, :score => result[:score]}
       end
     end
-    rec
+    normalize_scores(rec)
   end
 
   def update_recommendations 
     @ds.users.each do |user|
       if @ds.active_user? user
         articles = recommendations_for(user)
-        articles = normalize_scores(articles)
         @ds.set_recommendations(user, articles, @max_recommendations)
         yield user, articles
       end
@@ -39,6 +38,7 @@ class Recommendations
   end
 
   def normalize_scores articles
+    return articles if articles.empty?
     max = articles.max{|a,b|a[:score] <=> b[:score]}[:score].to_f
     articles.each{|a| a[:score] = a[:score] / max}
     articles
