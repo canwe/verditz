@@ -106,7 +106,7 @@ module Verditz
       basic_prob = basic_probability(cat, feature)
       total_count = categories.collect{|c| feature_count(c, feature)}.inject{|sum,n| sum + n}.to_f
       p = ( ((weight*bias) + (total_count*basic_prob)) / (weight + total_count) )
-      [p, 0.1].max
+      [p, 0.01].max
     end
 
     private
