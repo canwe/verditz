@@ -66,10 +66,10 @@ module Verditz
     end
 
     def feature_count cat, feature
-      if @feature_counts.has_key? feature and @feature_counts[feature].has_key? cat
-        @feature_counts[feature][cat.to_sym]
+      if @feature_counts.has_key?(feature) and @feature_counts[feature].has_key? cat.to_sym
+        return @feature_counts[feature][cat.to_sym]
       else
-        0
+        return 0.0
       end
     end
 
@@ -101,12 +101,12 @@ module Verditz
     end
 
     #this is the weighted probability that a feature belongs to a category
-    def feature_probability cat, feature, weight=1.0, bias=0.5
+    def feature_probability cat, feature, weight=1.0, guess=0.5
       cat = cat.to_sym
-      basic_prob = basic_probability(cat, feature)
+      basic_prob = [basic_probability(cat, feature), 0.01].max
       total_count = categories.collect{|c| feature_count(c, feature)}.inject{|sum,n| sum + n}.to_f
-      p = ( ((weight*bias) + (total_count*basic_prob)) / (weight + total_count) )
-      [p, 0.01].max
+      p = ( ((weight * guess) + (total_count * basic_prob)) / (weight + total_count) )
+      p
     end
 
     private
