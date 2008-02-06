@@ -27,7 +27,7 @@ module Verditz
       @thresholds = {}
     end
 
-    def guess item, default = {:guess => :unknown, :score => 0}
+    def guess item, default = {:guess => :unknown, :score => 1}
       classify(item,default)[:guess]
     end
 
