@@ -39,7 +39,7 @@ class Recommendations
   end
 
   def normalize_scores articles
-    max = articles.max{|a,b|a[:score] <=> b[:score]}.to_f
+    max = articles.max{|a,b|a[:score] <=> b[:score]}[:score].to_f
     articles.each{|a| a[:score] = a[:score] / max}
     articles
   end
