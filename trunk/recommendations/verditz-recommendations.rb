@@ -31,10 +31,17 @@ class Recommendations
     @ds.users.each do |user|
       if @ds.active_user? user
         articles = recommendations_for(user)
+        articles = normalize_scores(articles)
         @ds.set_recommendations(user, articles, @max_recommendations)
         yield user, articles
       end
     end
+  end
+
+  def normalize_scores articles
+    max = articles.max{|a|a[:score]}.to_f
+    articles.each{|a| a[:score] = a[:score] / max}
+    articles
   end
 
   def train classifier, documents, cat
