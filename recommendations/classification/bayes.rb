@@ -29,12 +29,15 @@ module Verditz
       def probability cat, item
         catprob = @classifier.category_count(cat) / @classifier.num_documents.to_f
         docprob = document_probability(cat, item)
-        (docprob * catprob)
+        [(docprob * catprob),0.01].max
       end
 
       def document_probability cat, item
         features = @classifier.find_features(item)
-        features.inject(1){ |r,f|r * @classifier.feature_probability(cat,f) }
+#        features.inject(1){ |r,f|r * @classifier.feature_probability(cat,f) }
+        p = 1
+        features.each{|f| p *= @classifier.feature_probability(cat,f) }
+        p
       end
 
     end
