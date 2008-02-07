@@ -103,7 +103,7 @@ module Verditz
     #this is the weighted probability that a feature belongs to a category
     def feature_probability cat, feature, weight=1.0, guess=0.5
       cat = cat.to_sym
-      basic_prob = [basic_probability(cat, feature), 0.01].max
+      basic_prob = basic_probability(cat, feature)
       total_count = categories.collect{|c| feature_count(c, feature)}.inject{|sum,n| sum + n}.to_f
       p = ( ((weight * guess) + (total_count * basic_prob)) / (weight + total_count) )
       p
