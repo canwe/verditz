@@ -74,7 +74,7 @@ class VerditzDs
     i = limit
     recs[0..limit].each do |article|
       puts article[:score]
-      @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{i})")
+      @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{article[:score]})")
       @db.commit
       i -= 1
     end
