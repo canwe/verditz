@@ -41,6 +41,7 @@ class Recommendations
     return articles if articles.empty?
     max = articles.max{|a,b|a[:score] <=> b[:score]}[:score].to_f
     articles.each{|a| a[:score] = a[:score] / max}
+    articles = articles.reject{|a|a[:score] <= 0}
     articles
   end
 
