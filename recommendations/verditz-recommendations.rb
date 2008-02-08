@@ -110,7 +110,7 @@ class VerditzDs
 
   def collect_votes_for user, value
     articles = []
-    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{value}  order by publish_time DESC limit 5000")    
+    res = @db.query("select a.id, a.title, a.text from articles a, votes v where v.user_id = #{user.id} and v.article_id = a.id and v.value = #{value}  order by publish_time DESC limit 2000")    
     for row in res
       articles << Article.new(row[0],row[1],row[2])
     end
@@ -118,7 +118,7 @@ class VerditzDs
   end
 
   def articles user
-    res = @db.query("select id, title, text from articles WHERE id not in (select article_id from votes WHERE user_id = #{user.id} ) order by publish_time DESC limit 100")
+    res = @db.query("select id, title, text from articles WHERE id not in (select article_id from votes WHERE user_id = #{user.id} ) order by publish_time DESC")
     res.each do |row|
       yield Article.new(row[0], row[1], row[2])
     end
