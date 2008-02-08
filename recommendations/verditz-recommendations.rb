@@ -72,10 +72,10 @@ class VerditzDs
     @db.query("delete from recommendations where user_id = #{user.id}")
     i = limit
     recs[0..limit].each do |article|
-      i -= 1
       puts article[:score]
       @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{i})")
       @db.commit
+      i -= 1
     end
   end
   
