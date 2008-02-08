@@ -68,11 +68,11 @@ class VerditzDs
   end
 
   def set_recommendations user, articles, limit
-    recs = articles.sort_by{|a|a[:score]}.reverse
+    recs = articles.sort_by{|a|a[:score].to_f}.reverse
     @db.query("delete from recommendations where user_id = #{user.id}")
     i = limit
     recs[0..limit].each do |article|
-      limit -= 1
+      i -= 1
       puts article[:score]
       @db.query("insert into recommendations (user_id, article_id, score) values (#{user.id}, #{article[:id]}, #{i})")
       @db.commit
@@ -118,7 +118,7 @@ class VerditzDs
   end
 
   def articles user
-    res = @db.query("select id, title, text from articles WHERE id not in (select article_id from votes WHERE user_id = #{user.id} ) order by publish_time DESC")
+    res = @db.query("select id, title, text from articles WHERE id not in (select article_id from votes WHERE user_id = #{user.id} ) order by publish_time DESC limit 100")
     res.each do |row|
       yield Article.new(row[0], row[1], row[2])
     end
