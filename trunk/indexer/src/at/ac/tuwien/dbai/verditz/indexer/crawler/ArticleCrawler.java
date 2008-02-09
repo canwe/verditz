@@ -28,7 +28,7 @@ public class ArticleCrawler implements Crawler<URL> {
 
 	public ArticleCrawler() {
 	}
-	
+
 	public ArticleCrawler(URL feed) {
 		Collection<URL> feeds = new ArrayList<URL>();
 		feeds.add(feed);
@@ -56,10 +56,14 @@ public class ArticleCrawler implements Crawler<URL> {
 						try {
 							Article article = new Article();
 							article.setTitle(entry.getTitle());
+							log.debug("stripping html from feed entry "
+									+ entry.getLink());
 							String text = Html2Text.html2Text(this
 									.getFeedBody(entry));
 							article.setText(text);
 							article.setPublishTime(entry.getPublishedDate());
+							log.debug("resolving redirect for "
+									+ entry.getLink());
 							URL url = RedirectResolver.resolve(new URL(entry
 									.getLink()));
 							article.setUrl(url);
@@ -87,7 +91,7 @@ public class ArticleCrawler implements Crawler<URL> {
 					if (content.getType() != null) {
 						type = content.getType();
 					}
-					
+
 					if (this.isSupportedContentType(type.toLowerCase())) {
 						sb.append(content.getValue());
 					}
