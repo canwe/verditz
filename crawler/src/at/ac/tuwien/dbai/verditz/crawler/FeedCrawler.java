@@ -50,13 +50,13 @@ public class FeedCrawler {
 			try {
 				feedFetcher.retrieveFeed(source);
 			} catch (IllegalArgumentException e) {
-				log.warn(e);
+				log.error(e);
 			} catch (IOException e) {
-				log.warn(e);
+				log.error(e);
 			} catch (FeedException e) {
-				log.warn(e);
+				log.error(e);
 			} catch (FetcherException e) {
-				log.warn(e);
+				log.error(e);
 			}
 		}
 	}
