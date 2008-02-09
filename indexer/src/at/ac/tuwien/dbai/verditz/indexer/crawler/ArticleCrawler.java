@@ -28,6 +28,12 @@ public class ArticleCrawler implements Crawler<URL> {
 
 	public ArticleCrawler() {
 	}
+	
+	public ArticleCrawler(URL feed) {
+		Collection<URL> feeds = new ArrayList<URL>();
+		feeds.add(feed);
+		this.setSources(feeds);
+	}
 
 	public ArticleCrawler(Collection<URL> feeds) {
 		this.setSources(feeds);
