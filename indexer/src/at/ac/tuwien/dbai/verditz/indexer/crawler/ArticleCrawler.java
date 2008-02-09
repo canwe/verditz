@@ -102,7 +102,7 @@ public class ArticleCrawler implements Crawler<URL> {
 			private boolean isSupportedContentType(final String type) {
 				Collection<String> supportedContentTypes = Arrays
 						.asList(new String[] { "text/plain", "text/html",
-								"text", "html", "application/xhtml+xml" });
+								"text", "html", "xhtml", "application/xhtml+xml" });
 
 				return supportedContentTypes.contains(type);
 			}
