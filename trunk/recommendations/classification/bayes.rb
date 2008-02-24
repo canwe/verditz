@@ -36,7 +36,7 @@ module Verditz
         features = @classifier.find_features(item)
 #        features.inject(1){ |r,f|r * @classifier.feature_probability(cat,f) }
         p = 1
-        features.each{|f| p *= @classifier.feature_probability(cat,f) }
+        features.each{|f| p *= @classifier.feature_probability(cat,f,1.0,1.0) }
         p
       end
 
