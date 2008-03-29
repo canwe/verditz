@@ -87,8 +87,10 @@ public class DatabaseIndexer {
 
 	public int addArticle(Article article, Connection conn)
 			throws SQLException, IndexerException {
-		if (this.articleExists(article.getUrl(), conn))
+		if (this.articleExists(article.getUrl(), conn)) {
+			log.info("article already indexed: " + article.getUrl());
 			return 0;
+		}
 		
 		log.info("indexing article: " + article.getUrl());
 		PreparedStatement stmt = conn

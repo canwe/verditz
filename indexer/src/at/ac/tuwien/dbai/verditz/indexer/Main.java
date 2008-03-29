@@ -42,7 +42,6 @@ public class Main {
 			} catch (SQLException e) {
 				log
 						.error("error occured while inserting articles into database:");
-				throw new IndexerException(e);
 			}
 		}
 	}
