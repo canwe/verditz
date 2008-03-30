@@ -2,26 +2,26 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 14) do
 
   create_table "articles", :force => true do |t|
     t.column "title",        :string,   :limit => 1024
-    t.column "text",         :string,   :limit => 8388608
+    t.column "text",         :text
     t.column "publish_time", :datetime
-    t.column "url",          :string,   :limit => 1024,    :null => false
+    t.column "url",          :string,   :limit => 1024, :null => false
     t.column "source_id",    :integer
   end
 
-  add_index "articles", ["source_id"], :name => "index_articles_on_source_id"
+  add_index "articles", ["source_id"], :name => "fk_articles_sources"
 
   create_table "recommendations", :force => true do |t|
     t.column "user_id",    :integer
     t.column "article_id", :integer
-    t.column "score",      :decimal
+    t.column "score",      :float
   end
 
-  add_index "recommendations", ["article_id"], :name => "index_recommendations_on_article_id"
   add_index "recommendations", ["user_id"], :name => "index_recommendations_on_user_id"
+  add_index "recommendations", ["article_id"], :name => "index_recommendations_on_article_id"
 
   create_table "sources", :force => true do |t|
     t.column "url", :string, :limit => 1024
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(:version => 12) do
     t.column "user_id",    :integer
     t.column "article_id", :integer
     t.column "value",      :integer
-    t.column "createtime", :datetime, :default => '2007-12-27 22:02:34'
+    t.column "createtime", :datetime, :default => '2007-12-27 22:19:16'
   end
 
-  add_index "votes", ["article_id"], :name => "index_votes_on_article_id"
   add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
+  add_index "votes", ["article_id"], :name => "index_votes_on_article_id"
 
 end

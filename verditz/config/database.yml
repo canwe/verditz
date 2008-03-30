@@ -17,7 +17,11 @@ test:
 
 production:
   adapter: mysql
-  database: verditz_production
-  username: root
-  password: 
+  database: wienerkreis_verditz_production
+  username: wienerkreis
+  password: "#karamb0lasch"
   host: localhost
+  threshold: 3
+  titleboost: 3
+  user_active_days: 7    
+  max_recommendations: 500

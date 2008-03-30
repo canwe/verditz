@@ -135,7 +135,7 @@ end
 
 # end
 require "yaml"
-opt = YAML::load(File.new(ARGV.shift))["test"]
+opt = YAML::load(File.new(ARGV.shift))["production"]
 rec = Recommendations.new(VerditzDs.new(opt["host"], opt["username"], 
                                         opt["password"], opt["database"], opt["user_active_days"].to_i), opt["threshold"].to_i, opt["titleboost"].to_i, opt["max_recommendations"].to_i)
 rec.update_recommendations do |user, articles|
