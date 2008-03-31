@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require File.dirname(__FILE__) + "/../../config/environment"
 require "net/http"
 require "uri"
