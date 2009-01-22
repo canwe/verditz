@@ -57,7 +57,7 @@ module ApplicationHelper
         "#{distance} ago"
       end
     else
-      return "on #{system_date.to_formatted_s(date_format)}"
+      return time.strftime("%B %d, %Y at %H:%M")
     end
   end
 
